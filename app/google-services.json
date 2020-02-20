@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "154246860409",
+    "firebase_url": "https://jumgledjumble.firebaseio.com",
+    "project_id": "jumgledjumble",
+    "storage_bucket": "jumgledjumble.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:154246860409:android:c82c4ea294a3d27d348ea8",
+        "android_client_info": {
+          "package_name": "com.android.jungledjumble"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "154246860409-u0l0q7i4mdak06icmakpenss26rsg2e4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.android.jungledjumble",
+            "certificate_hash": "b3796eb16c464587124c1e2727a57eebd0e891ba"
+          }
+        },
+        {
+          "client_id": "154246860409-1cr2vfcr22s5jjptf2brdumj66arkubb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD8chvZkwvawniN5mkJ_e-PFxy_cVnsEd8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "154246860409-1cr2vfcr22s5jjptf2brdumj66arkubb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
