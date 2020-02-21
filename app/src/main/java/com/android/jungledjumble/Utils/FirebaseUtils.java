@@ -31,6 +31,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -46,6 +47,7 @@ public class FirebaseUtils {
     private static final String TAG = "FirebaseMethods";
     private Activity mActivity;
     private String userID;
+//    private User user;
     private FirebaseAuth mAuth;
     private DatabaseReference myRef;
     private FirebaseFirestore database;
@@ -68,86 +70,61 @@ public class FirebaseUtils {
         }
     }
 
-    public void signUp(final String email, String password, final String userName, final String bio, final File photoFile) {
-        mAuth.createUserWithEmailAndPassword (email, password)
-                .addOnCompleteListener (new OnCompleteListener<AuthResult> () {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        Log.d (TAG, "createUserWithEmail:onComplete:" + task.isSuccessful ());
+    public void signUp(final String userName, final String age, final String gender, final File photoFile) {
+        if (photoFile != null){
+            Uri imageUri = Uri.fromFile (photoFile);
+            final StorageReference fireReference = mStorageRef.child (userID + "/" + "displayPic.jpg");
+            uploadTask = fireReference.putFile (imageUri);
 
-                        task.addOnSuccessListener (new OnSuccessListener<AuthResult> () {
-                            @Override
-                            public void onSuccess(AuthResult authResult) {
-
-                                final FirebaseUser user = mAuth.getCurrentUser ();
-                                userID = user.getUid ();
-
-                                if (photoFile != null){
-
-                                    Uri imageUri = Uri.fromFile (photoFile);
-                                    final StorageReference fireReference = mStorageRef.child (userID + "/" + "displayPic.jpg");
-                                    uploadTask = fireReference.putFile (imageUri);
-//                                    uploadTask.addOnFailureListener (new OnFailureListener () {
-//                                        @Override
-//                                        public void onFailure(@NonNull Exception exception) {
-//                                            // Handle unsuccessful uploads
-//                                            Toast.makeText (mActivity, "Failed " + exception.getMessage (), Toast.LENGTH_SHORT).show ();
-//                                        }
-//                                    });
-
-                                    Task<Uri> urlTask = uploadTask.continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
-                                        @Override
-                                        public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception {
-                                            if (!task.isSuccessful()) {
-                                                throw task.getException();
-                                            }
-
-                                            // Continue with the task to get the download URL
-                                            return fireReference.getDownloadUrl();
-                                        }
-                                    }).addOnCompleteListener(new OnCompleteListener<Uri>() {
-                                        @Override
-                                        public void onComplete(@NonNull Task<Uri> task) {
-                                            if (task.isSuccessful()) {
-                                                downloadUri = task.getResult().toString ();
-                                                addNewUserData (userName, bio, downloadUri);
-                                                mActivity.startActivity(new Intent(mActivity, HomeActivity.class));
-                                            } else {
-                                                // Handle failures
-                                                // ...
-                                            }
-                                        }
-                                    });
-
-                                }else{
-                                    addNewUserData (userName, bio, "");
-                                }
-                            }
-                        });
+            Task<Uri> urlTask = uploadTask.continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
+                @Override
+                public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception {
+                    if (!task.isSuccessful()) {
+                        throw task.getException();
                     }
 
-                    private void addNewUserData(String username, String bio, String profile_photo) {
+                    // Continue with the task to get the download URL
+                    return fireReference.getDownloadUrl();
+                }
+            }).addOnCompleteListener(new OnCompleteListener<Uri>() {
+                @Override
+                public void onComplete(@NonNull Task<Uri> task) {
+                    if (task.isSuccessful()) {
+                        downloadUri = task.getResult().toString ();
+                        addNewUserData (new User(userName,age,gender,downloadUri));
+                        mActivity.startActivity(new Intent(mActivity, HomeActivity.class));
+                    } else {
+                        // Handle failures
+                        // ...
+                    }
+                }
+            });
 
-                        Map<String, Object> settings = new HashMap<> ();
-                        settings.put ("username", StringManipulation.condenseUserName (username).toLowerCase ());
-                        settings.put ("bio", bio);
-                        settings.put ("profilePhoto", profile_photo);
-                        database.collection ("users").document (userID)
-                                .set (settings)
-                                .addOnSuccessListener (new OnSuccessListener<Void> () {
-                                    @Override
-                                    public void onSuccess(Void aVoid) {
-                                        Toast.makeText (mActivity, "User information added!",
-                                                Toast.LENGTH_SHORT).show ();
-                                    }
-                                })
-                                .addOnFailureListener (new OnFailureListener () {
-                                    @Override
-                                    public void onFailure(@NonNull Exception e) {
-                                        Toast.makeText (mActivity, "Failed to add user information",
-                                                Toast.LENGTH_SHORT).show ();
-                                    }
-                                });
+        }else{
+            addNewUserData (new User(userName,age,gender,""));
+            mActivity.startActivity(new Intent(mActivity, HomeActivity.class));
+        }
+    }
+    private void addNewUserData(User user) {
+        Map<String, Object> settings = new HashMap<> ();
+        settings.put ("username", user.getUsername ());
+        settings.put("age",user.getAge ());
+        settings.put("gender",user.getGender ());
+        settings.put ("profilePhoto", user.getProfile_image ());
+        database.collection ("users")
+                .add (settings)
+                .addOnSuccessListener (new OnSuccessListener<DocumentReference> () {
+                    @Override
+                    public void onSuccess(DocumentReference documentReference) {
+                        Toast.makeText (mActivity, "User information added!",
+                                Toast.LENGTH_SHORT).show ();
+                    }
+                })
+                .addOnFailureListener (new OnFailureListener () {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText (mActivity, "Failed to add user information",
+                                Toast.LENGTH_SHORT).show ();
                     }
                 });
     }

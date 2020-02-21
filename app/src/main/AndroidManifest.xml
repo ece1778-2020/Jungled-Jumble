@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.android.jungledjumble">
+
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -16,6 +17,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".Auth.PrivacyPolicyActivity"
+            android:screenOrientation="landscape"></activity>
+        <activity android:name=".Auth.ProgressActivity"
+            android:screenOrientation="landscape"/>
+        <activity android:name=".Auth.UserListActivity"
+            android:screenOrientation="landscape"/>
+        <activity android:name=".Auth.SettingsAcitivity"
+            android:screenOrientation="landscape"/>
+        <activity android:name=".Auth.SelectUserActivity"
+            android:screenOrientation="landscape"/>
+
 
         <provider
             android:name="androidx.core.content.FileProvider"
@@ -27,13 +39,17 @@
                 android:resource="@xml/file_paths" />
         </provider>
 
-
-        <activity android:name=".Auth.RegisterActivity"></activity>
-        <activity android:name=".Auth.LoginActivity" />
-        <activity android:name=".Main.HomeActivity" />
-        <activity android:name=".Auth.StartActivity">
+        <activity android:name=".Auth.RegisterActivity"
+            android:screenOrientation="landscape"/>
+        <activity android:name=".Auth.LoginActivity"
+            android:screenOrientation="landscape"/>
+        <activity android:name=".Main.HomeActivity"
+            android:screenOrientation="landscape"/>
+        <activity android:name=".Auth.StartActivity"
+            android:screenOrientation="landscape">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

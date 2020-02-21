@@ -32,7 +32,7 @@ import com.bumptech.glide.Glide;
 
 public class RegisterActivity extends AppCompatActivity {
     // Layout
-    EditText mUsername, mBio, mEmail, mPassword, mConfirmPassword;
+    EditText mUsername, mAge, mGender;
     Button registerButton;
     CircleImageView profile_image;
     TextView txt_login;
@@ -56,32 +56,20 @@ public class RegisterActivity extends AppCompatActivity {
 
         registerButton = findViewById (R.id.register);
         profile_image = findViewById (R.id.profile_image);
-        txt_login = findViewById (R.id.txt_login);
-        mEmail = findViewById (R.id.email);
-        mBio = findViewById (R.id.bio);
-        mPassword = findViewById (R.id.password);
-        mConfirmPassword = findViewById (R.id.confirmpassword);
-        mUsername = findViewById (R.id.username);
+
+        mUsername = findViewById (R.id.username_text);
+        mAge = findViewById (R.id.age_text);
+        mGender = findViewById (R.id.gender_text);
+
 
 
 
         firebaseUtils = new FirebaseUtils (RegisterActivity.this);
 
-        BackToLogIn();
         SetProfileImage();
         Register();
-
-
-
     }
 
-    private void BackToLogIn(){
-        txt_login.setOnClickListener (new View.OnClickListener () {
-            public void onClick(View view) {
-                startActivity (new Intent (RegisterActivity.this, LoginActivity.class));
-            }
-        });
-    }
 
     private void SetProfileImage() {
         profile_image.setOnClickListener (new View.OnClickListener () {
@@ -143,29 +131,15 @@ public class RegisterActivity extends AppCompatActivity {
                 pd.setMessage ("Please wait..");
                 pd.show ();
 
-                String str_email = mEmail.getText ().toString ();
                 String str_username = mUsername.getText ().toString ();
-                String str_bio = mBio.getText ().toString ();
-                String str_password = mPassword.getText ().toString ();
-                String str_confirm_password = mConfirmPassword.getText ().toString ();
-                if (TextUtils.isEmpty (str_username) || TextUtils.isEmpty (str_confirm_password)
-                        || TextUtils.isEmpty (str_email) || TextUtils.isEmpty (str_password)) {
+                String str_age = mAge.getText ().toString ();
+                String str_gender = mGender.getText ().toString ();
+                if (Integer.parseInt (str_age) < 0) {
                     Toast.makeText (RegisterActivity.this, "Found missing fields!", Toast.LENGTH_SHORT).show ();
-                    mPassword.setText ("");
-                    mConfirmPassword.setText ("");
+                    mAge.setText ("");
                     pd.dismiss ();
-                } else if (!str_password.equals (str_confirm_password)) {
-                    Toast.makeText (RegisterActivity.this, "Passwords mismatch!", Toast.LENGTH_SHORT).show ();
-                    mPassword.setText ("");
-                    pd.dismiss ();
-                    mConfirmPassword.setText ("");
-                } else if (str_password.length () < 6) {
-                    Toast.makeText (RegisterActivity.this, "Password must have 6 characters", Toast.LENGTH_SHORT).show ();
-                    mPassword.setText ("");
-                    pd.dismiss ();
-                    mConfirmPassword.setText ("");
                 } else {
-                    firebaseUtils.signUp (str_email,str_password,str_username,str_bio,photoFile);
+                    firebaseUtils.signUp (str_username,str_age,str_gender,photoFile);
                     pd.dismiss();
 
                 }
@@ -173,7 +147,4 @@ public class RegisterActivity extends AppCompatActivity {
         });
     }
 
-    private void PerformRegister(final String username, final String bio, String email, String password) {
-
-    }
 }

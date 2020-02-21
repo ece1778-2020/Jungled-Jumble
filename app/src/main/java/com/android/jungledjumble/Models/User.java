@@ -3,33 +3,19 @@ package com.android.jungledjumble.Models;
 public class User {
 
 
-    private String user_id;
-    private String email;
     private String username;
+    private String age;
+    private String gender;
+    private String profile_image;
 
-    public User(String user_id, String email, String username) {
-        this.user_id = user_id;
-        this.email = email;
+    public User(String user_name, String age, String gender, String profile_image) {
         this.username = username;
+        this.age = age;
+        this.gender = gender;
+        this.profile_image = profile_image;
     }
 
     public User() {
-    }
-
-    public String getUser_id() {
-        return user_id;
-    }
-
-    public void setUser_id(String user_id) {
-        this.user_id = user_id;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
     }
 
     public String getUsername() {
@@ -40,13 +26,36 @@ public class User {
         this.username = username;
     }
 
+    public String getAge() {
+        return age;
+    }
+
+    public void setAge(String age) {
+        this.age= age;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public String getProfile_image() {
+        return profile_image;
+    }
+
+    public void setProfile_image(String profile_image) {
+        this.profile_image = profile_image;
+    }
 
     @Override
     public String toString() {
         return "User{" +
-                "user_id='" + user_id + '\'' +
-                ", email='" + email + '\'' +
-                ", username='" + username + '\'' +
+                "user_id='" + username + '\'' +
+                ", email='" + age + '\'' +
+                ", username='" +gender + '\'' +
                 '}';
     }
 

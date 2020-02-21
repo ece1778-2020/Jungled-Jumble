@@ -8,21 +8,41 @@
     android:padding="12dp"
     android:orientation="vertical"
     tools:context=".Auth.StartActivity">
+    
+    <ImageView
+        android:layout_width="600dp"
+        android:layout_height="200dp"
+        android:id="@+id/jungleImageView"
+        android:src="@drawable/jungle"/>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp">
 
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Log in"
-        android:id="@+id/login"
-        android:layout_marginTop="15dp"
-        android:textColor="@color/colorPrimary"
-        android:background="@drawable/button_background"/>
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Register"
-        android:id="@+id/register"
-        android:layout_marginTop="15dp"
-        android:textColor="@color/colorPrimary"
-        android:background="@drawable/button_background"/>
+        <Button
+            android:id="@+id/play"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:layout_marginStart="135dp"
+            android:background="@drawable/button_background"
+            android:text="@string/play"
+            android:textColor="@color/colorPrimary" />
+
+        <Button
+            android:id="@+id/settings"
+            android:layout_width="127dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="181dp"
+            android:layout_marginTop="30dp"
+            android:layout_toEndOf="@id/play"
+            android:background="@drawable/button_background"
+            android:text="@string/settings"
+            android:textColor="@color/colorPrimary" />
+
+
+    </RelativeLayout>
+
+
+
+
 </LinearLayout>
