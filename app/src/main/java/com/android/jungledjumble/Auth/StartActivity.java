@@ -20,10 +20,10 @@ public class StartActivity extends AppCompatActivity {
         super.onStart();
         // Check if user is already signed in
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-        if (firebaseUser != null){
-            startActivity(new Intent(StartActivity.this, HomeActivity.class));
-            finish();
-        }
+//        if (firebaseUser != null){
+//            startActivity(new Intent(StartActivity.this, HomeActivity.class));
+//            finish();
+//        }
     }
     @Override
     public void onCreate(Bundle savedInstanceState) {
