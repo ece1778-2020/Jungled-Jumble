@@ -38,7 +38,6 @@
             android:layout_marginTop="15dp"
             android:background="@drawable/edittext_background"
             android:hint="Age"
-            android:inputType="textPassword"
             android:padding="10dp" />
 
         <EditText
@@ -48,7 +47,6 @@
             android:layout_marginTop="15dp"
             android:background="@drawable/edittext_background"
             android:hint="Gender"
-            android:inputType="textPassword"
             android:padding="10dp" />
         <Button
             android:layout_width="match_parent"

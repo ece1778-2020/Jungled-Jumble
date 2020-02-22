@@ -1,18 +1,18 @@
 package com.android.jungledjumble.Models;
 
 public class User {
-
-
     private String username;
     private String age;
     private String gender;
     private String profile_image;
+    private String timestamp;
 
-    public User(String user_name, String age, String gender, String profile_image) {
+    public User(String username, String age, String gender, String timestamp, String profile_image) {
         this.username = username;
         this.age = age;
         this.gender = gender;
         this.profile_image = profile_image;
+        this.timestamp = timestamp;
     }
 
     public User() {
@@ -42,6 +42,14 @@ public class User {
         this.gender = gender;
     }
 
+    public String getTimestamp() {
+        return timestamp;
+    }
+
+    public void setTimestamp(String timestamp) {
+        this.timestamp = timestamp;
+    }
+
     public String getProfile_image() {
         return profile_image;
     }
@@ -56,6 +64,7 @@ public class User {
                 "user_id='" + username + '\'' +
                 ", email='" + age + '\'' +
                 ", username='" +gender + '\'' +
+                ", username='" +timestamp + '\'' +
                 '}';
     }
 

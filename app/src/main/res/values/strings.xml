@@ -12,6 +12,8 @@
     <string name="play">PLAY</string>
     <string name="settings">SETTINGS</string>
     <string name="guest">GUEST</string>
+
+
     <!--    <string name="user_account_settings_node">user_account_settings</string>-->
     <!--    <string name="user_photos_node">user_photos</string>-->
     <!--    <string name="user_videos_node">user_videos</string>-->
@@ -32,5 +34,6 @@
     <!--    <string name="node_followers">followers</string>-->
     <!--    <string name="node_following">following</string>-->
     <!--    <string name="register">Register</string>-->
-
+    <string name="privacy_polcy_text">This is where the details of privacy policy should locate, I will add some meaningless text for testing ****************************
+    *****************************************************************************************</string>
 </resources>

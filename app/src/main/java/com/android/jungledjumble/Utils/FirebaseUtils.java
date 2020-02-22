@@ -91,7 +91,9 @@ public class FirebaseUtils {
                 public void onComplete(@NonNull Task<Uri> task) {
                     if (task.isSuccessful()) {
                         downloadUri = task.getResult().toString ();
-                        addNewUserData (new User(userName,age,gender,downloadUri));
+                        Long tsLong = System.currentTimeMillis()/1000;
+                        String ts = tsLong.toString();
+                        addNewUserData (new User(userName,age,gender,ts,downloadUri));
                         mActivity.startActivity(new Intent(mActivity, HomeActivity.class));
                     } else {
                         // Handle failures
@@ -101,18 +103,21 @@ public class FirebaseUtils {
             });
 
         }else{
-            addNewUserData (new User(userName,age,gender,""));
+            Long tsLong = System.currentTimeMillis()/1000;
+            String ts = tsLong.toString();
+            addNewUserData (new User(userName,age,ts,gender,""));
             mActivity.startActivity(new Intent(mActivity, HomeActivity.class));
         }
     }
     private void addNewUserData(User user) {
         Map<String, Object> settings = new HashMap<> ();
-        settings.put ("username", user.getUsername ());
-        settings.put("age",user.getAge ());
-        settings.put("gender",user.getGender ());
-        settings.put ("profilePhoto", user.getProfile_image ());
+//        settings.put ("username", user.getUsername ());
+//        settings.put("age",user.getAge ());
+//        settings.put("gender",user.getGender ());
+//        settings.put ("profilePhoto", user.getProfile_image ());
+
         database.collection ("users")
-                .add (settings)
+                .add (user)
                 .addOnSuccessListener (new OnSuccessListener<DocumentReference> () {
                     @Override
                     public void onSuccess(DocumentReference documentReference) {

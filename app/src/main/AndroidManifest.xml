@@ -41,8 +41,6 @@
 
         <activity android:name=".Auth.RegisterActivity"
             android:screenOrientation="landscape"/>
-        <activity android:name=".Auth.LoginActivity"
-            android:screenOrientation="landscape"/>
         <activity android:name=".Main.HomeActivity"
             android:screenOrientation="landscape"/>
         <activity android:name=".Auth.StartActivity"
