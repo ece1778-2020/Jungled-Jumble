@@ -4,8 +4,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.util.Log;
-import android.view.View;
-import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -13,24 +11,13 @@ import androidx.annotation.NonNull;
 import com.android.jungledjumble.Main.HomeActivity;
 import com.android.jungledjumble.Models.User;
 
-import com.android.jungledjumble.Auth.RegisterActivity;
-import com.android.jungledjumble.Models.UserAccountSettings;
-import com.android.jungledjumble.R;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
-import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
@@ -40,7 +27,6 @@ import com.google.firebase.storage.UploadTask;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Objects;
 import java.io.File;
 
 public class FirebaseUtils {
@@ -54,7 +40,6 @@ public class FirebaseUtils {
     private FirebaseStorage mStorage;
     private StorageReference mStorageRef;
     private long mediaCount = 0;
-    private StorageTask uploadTask;
     private String downloadUri = "";
 
     public FirebaseUtils(Activity activity) {
@@ -62,7 +47,6 @@ public class FirebaseUtils {
         mAuth = FirebaseAuth.getInstance ();
         database = FirebaseFirestore.getInstance ();
         mStorage = FirebaseStorage.getInstance ();
-//        myRef = database.getReference();
         mStorageRef = mStorage.getReference ();
         mActivity = activity;
         if (mAuth.getCurrentUser () != null) {
@@ -74,7 +58,7 @@ public class FirebaseUtils {
         if (photoFile != null){
             Uri imageUri = Uri.fromFile (photoFile);
             final StorageReference fireReference = mStorageRef.child (userID + "/" + "displayPic.jpg");
-            uploadTask = fireReference.putFile (imageUri);
+            StorageTask uploadTask = fireReference.putFile (imageUri);
 
             Task<Uri> urlTask = uploadTask.continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
                 @Override
@@ -91,30 +75,34 @@ public class FirebaseUtils {
                 public void onComplete(@NonNull Task<Uri> task) {
                     if (task.isSuccessful()) {
                         downloadUri = task.getResult().toString ();
-                        Long tsLong = System.currentTimeMillis()/1000;
-                        String ts = tsLong.toString();
-                        addNewUserData (new User(userName,age,gender,ts,downloadUri));
-                        mActivity.startActivity(new Intent(mActivity, HomeActivity.class));
+                        String ts = getTimestamp ();
+                        uploadNewUserData (new User(userName,age,gender,ts,downloadUri));
+                        Intent intent = new Intent(mActivity, HomeActivity.class);
+                        intent.putExtra ("username",userName);
+                        mActivity.startActivity(intent);
                     } else {
                         // Handle failures
-                        // ...
+                        Log.d(TAG,"Failed to upload a profile image");
                     }
                 }
             });
 
         }else{
-            Long tsLong = System.currentTimeMillis()/1000;
-            String ts = tsLong.toString();
-            addNewUserData (new User(userName,age,ts,gender,""));
-            mActivity.startActivity(new Intent(mActivity, HomeActivity.class));
+            String ts = getTimestamp ();
+            uploadNewUserData (new User(userName,age,ts,gender,""));
+            Intent intent = new Intent(mActivity, HomeActivity.class);
+            intent.putExtra ("username",userName);
+            mActivity.startActivity(intent);
         }
     }
-    private void addNewUserData(User user) {
+
+    private String getTimestamp(){
+        Long tsLong = System.currentTimeMillis()/1000;
+        return tsLong.toString();
+    }
+
+    private void uploadNewUserData(User user) {
         Map<String, Object> settings = new HashMap<> ();
-//        settings.put ("username", user.getUsername ());
-//        settings.put("age",user.getAge ());
-//        settings.put("gender",user.getGender ());
-//        settings.put ("profilePhoto", user.getProfile_image ());
 
         database.collection ("users")
                 .add (user)

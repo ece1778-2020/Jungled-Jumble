@@ -141,7 +141,6 @@ public class RegisterActivity extends AppCompatActivity {
                 } else {
                     firebaseUtils.signUp (str_username,str_age,str_gender,photoFile);
                     pd.dismiss();
-
                 }
             }
         });
