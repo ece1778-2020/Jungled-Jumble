@@ -1,4 +1,4 @@
-package com.android.jungledjumble.Auth;
+package com.android.jungledjumble.Setting;
 
 import androidx.appcompat.app.AppCompatActivity;
 

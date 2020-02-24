@@ -7,39 +7,68 @@
     tools:context=".Main.HomeActivity"
     android:background="@drawable/background">
 
-
-    <ImageView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="370dp"
-        android:layout_height="470dp"
-        android:src="@drawable/tree"
+        android:layout_height="wrap_content"
+        android:id="@+id/left_part"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
+        <ImageView
+            android:layout_width="370dp"
+            android:layout_height="470dp"
+            android:id="@+id/left_tree"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:src="@drawable/tree"/>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/oranges"
+            android:layout_width="280dp"
+            android:layout_height="210dp"
+            app:layout_constraintStart_toStartOf = "parent"
+            app:layout_constraintTop_toTopOf = "parent"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="80dp"/>
+        <ImageView
+            android:layout_width="370dp"
+            android:layout_height="470dp"
+            android:id="@+id/left"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <ImageView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="370dp"
-        android:layout_height="470dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/right_part"
         app:layout_constraintEnd_toEndOf = "parent"
-        app:layout_constraintTop_toTopOf = "parent"
-        android:layout_marginStart="410dp"
-        android:src="@drawable/tree"/>
+        app:layout_constraintTop_toTopOf = "parent">
+        <ImageView
+            android:layout_width="370dp"
+            android:layout_height="470dp"
+            android:id="@+id/right_tree"
+            app:layout_constraintEnd_toEndOf = "parent"
+            app:layout_constraintTop_toTopOf = "parent"
+            android:layout_marginStart="410dp"
+            android:src="@drawable/tree"/>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/oranges"
-        android:layout_width="280dp"
-        android:layout_height="210dp"
-        app:layout_constraintStart_toStartOf = "parent"
-        app:layout_constraintTop_toTopOf = "parent"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="80dp"/>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/oranges_right"
+            android:layout_width="280dp"
+            android:layout_height="210dp"
+            app:layout_constraintStart_toStartOf = "parent"
+            app:layout_constraintTop_toTopOf = "parent"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="80dp"/>
+        <ImageView
+            android:layout_width="370dp"
+            android:layout_height="470dp"
+            android:id="@+id/right"
+            app:layout_constraintEnd_toEndOf = "parent"
+            app:layout_constraintTop_toTopOf = "parent"
+            android:layout_marginStart="410dp" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/oranges_right"
-        android:layout_width="280dp"
-        android:layout_height="210dp"
-        app:layout_constraintStart_toStartOf = "parent"
-        app:layout_constraintTop_toTopOf = "parent"
-        android:layout_marginStart="400dp"
-        android:layout_marginTop="80dp"/>
+
 
     <ImageView
         android:layout_width="225dp"

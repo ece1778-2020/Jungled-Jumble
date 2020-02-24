@@ -1,46 +1,143 @@
 package com.android.jungledjumble.Main;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.android.jungledjumble.Auth.RegisterActivity;
+import com.android.jungledjumble.Models.UserResults;
 import com.android.jungledjumble.R;
+import com.android.jungledjumble.Setting.ProgressActivity;
+import com.android.jungledjumble.Setting.SettingsAcitivity;
+import com.android.jungledjumble.Utils.FirebaseUtils;
 import com.android.jungledjumble.Utils.OrangeAdaptor;
-
+import com.android.jungledjumble.Utils.UserAdaptor;
+import com.android.jungledjumble.Utils.Utils;
 import java.util.List;
 
 public class HomeActivity extends AppCompatActivity {
+    private Utils utils;
+    ImageView left,right;
+    RecyclerView orangeViewLeft, orangeViewRight;
+    private int level,points,rewards;
+    private UserResults userResults;
 
+    private int larger_side;
+    private static int TOTAL_LEVELS = 5;
+    private final String TAG = "HomeActivity";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate (savedInstanceState);
         setContentView (R.layout.activity_home);
 
+        utils = new Utils (HomeActivity.this);
+        left = findViewById (R.id.left);
+        right = findViewById (R.id.right);
+
         Intent intent = getIntent ();
-        String username = intent.getStringExtra ("username");
-        Toast.makeText (this, "Welcome, "+username+"!", Toast.LENGTH_SHORT).show ();
+        try {
+            String username = intent.getStringExtra ("username");
+            Toast.makeText (this, "Welcome, "+username+"!", Toast.LENGTH_SHORT).show ();
+        }catch (Exception e){
 
+        }
 
-        //Display the oranges
-        final RecyclerView orangeView = findViewById (R.id.oranges);
-        orangeView.setLayoutManager (
+        //************************
+        // Level: the current level of the game
+        // Points: the number of times user makes the correct choice
+        // Rewards: the cumulated rewards of current user
+        //************************
+        // Retrieve the results
+        Log.d(TAG,intent.getStringExtra ("level"));
+        level = Integer.parseInt (intent.getStringExtra ("level"));
+        points = Integer.parseInt (intent.getStringExtra ("points"));
+        rewards = Integer.parseInt (intent.getStringExtra ("rewards"));
+
+        userResults = new UserResults (level,points,rewards);
+
+        // Update the results
+        userResults.updateLevel ();
+
+        // Display the oranges
+        orangeViewLeft = findViewById (R.id.oranges);
+        orangeViewLeft.setLayoutManager (
                 new GridLayoutManager (this, 4)
         );
 
-        int[] mSizesList = {0,2,0,2,0};
-        orangeView.setAdapter (new OrangeAdaptor (HomeActivity.this,mSizesList));
+        Integer[] mSizesListLeft = utils.getOrangeSizes (8,1,3,12);
+
+        orangeViewLeft.setAdapter (new OrangeAdaptor (HomeActivity.this,mSizesListLeft,level));
 
 
-        final RecyclerView orangeViewRight = findViewById (R.id.oranges_right);
+        orangeViewRight = findViewById (R.id.oranges_right);
         orangeViewRight.setLayoutManager (
                 new GridLayoutManager (this, 4)
         );
 
-        int[] mSizesListRight = {2,0,2,0,2};
-        orangeViewRight.setAdapter (new OrangeAdaptor (HomeActivity.this,mSizesListRight));
+        Integer[] mSizesListRight = utils.getOrangeSizes (8,1,3,12);
+        orangeViewRight.setAdapter (new OrangeAdaptor (HomeActivity.this,mSizesListRight,level));
+
+
+        // Determine which choice is correct
+        int sumLeft = utils.getSum (mSizesListLeft);
+        int sumRight = utils.getSum (mSizesListRight);
+        if (sumLeft<sumRight){
+            larger_side = 1;
+        }else{
+            larger_side = 0;
+        }
+
+
+        left.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View view){
+                finish();
+                if (level < TOTAL_LEVELS){
+                    Intent intent = new Intent(getIntent ());
+                    intent.putExtra ("level",String.valueOf (level));
+                    intent.putExtra ("rewards",String.valueOf (userResults.getRewards ()));  // MODIFY THIS LINE LATER!!!
+                    if (larger_side == 0){
+                        userResults.updatePoints ();
+                        intent.putExtra ("points",String.valueOf (userResults.getPoints ()));
+                    }else{
+                        intent.putExtra ("points",String.valueOf (points));
+                    }
+                    startActivity(intent);
+                }else{
+                    Intent intent = new Intent(HomeActivity.this,ReturnActivity.class);
+                    startActivity(intent);
+                }
+            }
+        });
+
+        right.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View view){
+                finish();
+                if (userResults.getLevel () < TOTAL_LEVELS){
+                    Intent intent = new Intent(getIntent ());
+                    intent.putExtra ("level",String.valueOf (userResults.getLevel ()));
+                    intent.putExtra ("rewards",String.valueOf (userResults.getRewards ()));  // MODIFY THIS LINE LATER!!!
+                    if (larger_side == 0){
+                        intent.putExtra ("points",String.valueOf (points));
+                    }else{
+                        userResults.updatePoints ();
+                        intent.putExtra ("points",String.valueOf (userResults.getPoints ()));
+                    }
+                    startActivity(intent);
+                }else{
+                    Intent intent = new Intent(HomeActivity.this,ReturnActivity.class);
+                    startActivity(intent);
+                }
+            }
+        });
+
     }
+
 }

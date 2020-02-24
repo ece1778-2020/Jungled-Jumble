@@ -90,7 +90,9 @@ public class UserListActivity extends AppCompatActivity implements UserAdaptor.O
 //        CurrentUser currentUser = new CurrentUser ();
 //        currentUser.user = user;
         intent.putExtra ("username",user.getUsername ());
-
+        intent.putExtra ("level","1");
+        intent.putExtra ("points",String.valueOf ("0"));
+        intent.putExtra ("rewards",String.valueOf ("0"));  // MODIFY THIS LINE LATER!!!
         startActivity (intent);
     }
 //    public class CurrentUser implements Serializable {
