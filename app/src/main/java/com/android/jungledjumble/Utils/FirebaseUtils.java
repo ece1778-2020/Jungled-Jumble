@@ -79,9 +79,6 @@ public class FirebaseUtils {
                         uploadNewUserData (new User(userName,age,gender,ts,downloadUri));
                         Intent intent = new Intent(mActivity, HomeActivity.class);
                         intent.putExtra ("username",userName);
-                        intent.putExtra ("level","0");
-                        intent.putExtra ("points",String.valueOf ("0"));
-                        intent.putExtra ("rewards",String.valueOf ("0"));  // MODIFY THIS LINE LATER!!!
                         mActivity.startActivity(intent);
                     } else {
                         // Handle failures
@@ -92,12 +89,9 @@ public class FirebaseUtils {
 
         }else{
             String ts = getTimestamp ();
-            uploadNewUserData (new User(userName,age,ts,gender,""));
+            uploadNewUserData (new User(userName,age,gender,ts,""));
             Intent intent = new Intent(mActivity, HomeActivity.class);
             intent.putExtra ("username",userName);
-            intent.putExtra ("level","0");
-            intent.putExtra ("points",String.valueOf ("0"));
-            intent.putExtra ("rewards",String.valueOf ("0"));  // MODIFY THIS LINE LATER!!!
             mActivity.startActivity(intent);
         }
     }

@@ -17,9 +17,8 @@ public class UserResults {
     public void setLevel(int level) {
         this.level = level;
     }
-    public int updateLevel() {
+    public void updateLevel() {
         this.level += 1;
-        return this.level;
     }
 
     public int getPoints() { return points; }

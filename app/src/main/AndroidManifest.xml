@@ -17,7 +17,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.DayNight.NoActionBar">
-        <activity android:name=".Main.ReturnActivity"></activity>
+        <activity android:name=".Main.ReturnActivity"
+            android:screenOrientation="landscape" ></activity>
         <activity
             android:name=".Setting.PrivacyPolicyActivity"
             android:screenOrientation="landscape" />
