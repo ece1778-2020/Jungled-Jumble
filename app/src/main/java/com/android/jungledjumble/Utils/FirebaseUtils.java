@@ -20,6 +20,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.StorageTask;
@@ -54,7 +56,7 @@ public class FirebaseUtils {
         }
     }
 
-    public void signUp(final String userName, final String age, final String gender, final File photoFile) {
+    public void signUp(final String username, final String age, final String gender, final File photoFile) {
         if (photoFile != null){
             Uri imageUri = Uri.fromFile (photoFile);
             final StorageReference fireReference = mStorageRef.child (userID + "/" + "displayPic.jpg");
@@ -76,9 +78,9 @@ public class FirebaseUtils {
                     if (task.isSuccessful()) {
                         downloadUri = task.getResult().toString ();
                         String ts = getTimestamp ();
-                        uploadNewUserData (new User(userName,age,gender,ts,downloadUri));
+                        uploadNewUserData (new User(username,age,gender,ts,downloadUri,"",""));
                         Intent intent = new Intent(mActivity, HomeActivity.class);
-                        intent.putExtra ("username",userName);
+                        intent.putExtra ("username",username);
                         mActivity.startActivity(intent);
                     } else {
                         // Handle failures
@@ -89,9 +91,9 @@ public class FirebaseUtils {
 
         }else{
             String ts = getTimestamp ();
-            uploadNewUserData (new User(userName,age,gender,ts,""));
+            uploadNewUserData (new User(username,age,gender,ts,"","",""));
             Intent intent = new Intent(mActivity, HomeActivity.class);
-            intent.putExtra ("username",userName);
+            intent.putExtra ("username",username);
             mActivity.startActivity(intent);
         }
     }
@@ -118,6 +120,49 @@ public class FirebaseUtils {
                     public void onFailure(@NonNull Exception e) {
                         Toast.makeText (mActivity, "Failed to add user information",
                                 Toast.LENGTH_SHORT).show ();
+                    }
+                });
+    }
+    public void updateResults(final String username, final String choices, final String correct_choices) {
+        database.collection ("users")
+                .whereEqualTo ("username",username)
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            String choices_store = null,correct_choices_store = null;
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                Log.d(TAG, document.getId() + " => " + document.getData());
+                                choices_store = document.get("choices").toString ();
+                                correct_choices_store = document.get("correct_choices").toString ();
+                                choices_store += " "+choices;
+                                correct_choices_store += " "+correct_choices;
+
+                                database.collection ("users").document(document.getId ())
+                                        .update ("choices",choices_store,
+                                                "correct_choices",correct_choices_store)
+                                        .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                            @Override
+                                            public void onSuccess(Void aVoid) {
+                                                Log.d(TAG, "DocumentSnapshot successfully updated!");
+                                            }
+                                        })
+                                        .addOnFailureListener(new OnFailureListener() {
+                                            @Override
+                                            public void onFailure(@NonNull Exception e) {
+                                                Log.w(TAG, "Error updating document", e);
+                                            }
+                                        });
+                                break;
+                            }
+
+
+
+
+                        } else {
+                            Log.d(TAG, "Error getting documents: ", task.getException());
+                        }
                     }
                 });
     }

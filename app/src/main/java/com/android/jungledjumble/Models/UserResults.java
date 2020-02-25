@@ -4,11 +4,15 @@ public class UserResults {
     private int level;
     private int points;
     private int rewards;
+    private String choices;
+    private String correct_choices;
 
-    public UserResults(int level, int points, int rewards){
+    public UserResults(int level, int points, int rewards, String choices,String correct_choices){
         this.level = level;
         this.points = points;
         this.rewards = rewards;
+        this.choices = choices;
+        this.correct_choices = correct_choices;
     }
 
     public UserResults(){}
@@ -39,12 +43,35 @@ public class UserResults {
         return this.rewards;
     }
 
+    public String getChoices() {
+        return choices;
+    }
+
+    public void setChoices(String choices) {
+        this.choices = choices;
+    }
+
+    public void updateChoices(String choice){this.choices += choice;}
+
+    public String getCorrect_choices() {
+        return correct_choices;
+    }
+
+    public void setCorrect_choices(String correct_choices) { this.correct_choices = correct_choices; }
+
+    public void updateCorrect_choices(String correct_choice){this.correct_choices += correct_choice;}
+
     @Override
     public String toString() {
         return "User{" +
                 "level='" + String.valueOf (level) + '\'' +
                 ", points='" + String.valueOf (points) + '\'' +
                 ", rewards='" + String.valueOf (rewards) + '\'' +
+                ", choices='" +choices + '\'' +
+                ", correct choices='" +correct_choices + '\'' +
                 '}';
     }
+
+
+
 }

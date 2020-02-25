@@ -1,6 +1,9 @@
 package com.android.jungledjumble.Utils;
 
 import android.app.Activity;
+import android.util.Log;
+
+import com.android.jungledjumble.Models.UserResults;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -43,5 +46,11 @@ public class Utils {
             sum += i;
         }
         return sum;
+    }
+
+    public String getCorrectRate(UserResults userResults, int TOTAL_LEVELS){
+        double correct_choice_d = (double)userResults.getPoints ()/TOTAL_LEVELS*100;
+        int correct_choice_rate = (int)correct_choice_d;
+        return String.valueOf (correct_choice_rate);
     }
 }

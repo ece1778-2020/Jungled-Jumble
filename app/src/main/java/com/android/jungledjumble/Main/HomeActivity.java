@@ -28,6 +28,7 @@ public class HomeActivity extends AppCompatActivity {
     ImageView left,right;
     RecyclerView orangeViewLeft, orangeViewRight;
     private int level,points,rewards;
+    private String choices, correct_choices;
     private UserResults userResults;
     String username;
 
@@ -59,15 +60,16 @@ public class HomeActivity extends AppCompatActivity {
             level = Integer.parseInt (intent.getStringExtra ("level"));
             points = Integer.parseInt (intent.getStringExtra ("points"));
             rewards = Integer.parseInt (intent.getStringExtra ("rewards"));
-            userResults = new UserResults (level,points,rewards);
+            choices = intent.getStringExtra ("choices");
+            correct_choices = intent.getStringExtra ("correct_choices");
+            userResults = new UserResults (level,points,rewards,choices,correct_choices);
         }catch (Exception e){
-            userResults = new UserResults (0,0,0);
+            userResults = new UserResults (0,0,0,"","");
         }
         username= intent.getStringExtra ("username");
         if (userResults.getLevel ()==0){
             Toast.makeText (this, "Welcome, "+username+"!", Toast.LENGTH_SHORT).show ();
         }
-
 
         // Update the results
         userResults.updateLevel ();
@@ -79,7 +81,6 @@ public class HomeActivity extends AppCompatActivity {
         );
 
         Integer[] mSizesListLeft = utils.getOrangeSizes (8,1,3,12);
-
         orangeViewLeft.setAdapter (new OrangeAdaptor (HomeActivity.this,mSizesListLeft,level));
 
 
@@ -103,25 +104,26 @@ public class HomeActivity extends AppCompatActivity {
         left.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
                 finish();
+                userResults.updateChoices ("0");
+                userResults.updateCorrect_choices (String.valueOf (larger_side));
+                if (larger_side == 0){
+                    userResults.updatePoints ();
+                }
                 if (userResults.getLevel () < TOTAL_LEVELS){
                     Intent intent = new Intent(getIntent ());
                     intent.putExtra ("level",String.valueOf (userResults.getLevel ()));
                     intent.putExtra ("rewards",String.valueOf (userResults.getRewards ()));  // MODIFY THIS LINE LATER!!!
-                    if (larger_side == 0){
-                        userResults.updatePoints ();
-                        intent.putExtra ("points",String.valueOf (userResults.getPoints ()));
-
-                    }else{
-                        intent.putExtra ("points",String.valueOf (points));
-                    }
+                    intent.putExtra ("choices",userResults.getChoices ());
+                    intent.putExtra ("correct_choices",userResults.getCorrect_choices ());
+                    intent.putExtra ("points",String.valueOf (userResults.getPoints ()));
+                    intent.putExtra ("username",username);
                     startActivity(intent);
                 }else{
                     Intent intent = new Intent(HomeActivity.this,ReturnActivity.class);
                     intent.putExtra ("rewards",String.valueOf (userResults.getRewards ()));  // MODIFY THIS LINE LATER!!!
-                    double correct_choice_d = (double)userResults.getPoints ()/TOTAL_LEVELS*100;
-                    int correct_choice = (int)correct_choice_d;
-                    Log.d(TAG+" test",String.valueOf (correct_choice));
-                    intent.putExtra ("correct_choice",String.valueOf (correct_choice));  // MODIFY THIS LINE LATER!!!
+                    intent.putExtra ("correct_choice_rate",utils.getCorrectRate (userResults,TOTAL_LEVELS));
+                    intent.putExtra ("choices",userResults.getChoices ());
+                    intent.putExtra ("correct_choices",userResults.getCorrect_choices ());
                     intent.putExtra ("username",username);
                     startActivity(intent);
                 }
@@ -131,31 +133,31 @@ public class HomeActivity extends AppCompatActivity {
         right.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
                 finish();
+                userResults.updateChoices ("1");
+                userResults.updateCorrect_choices (String.valueOf (larger_side));
+                if (larger_side == 1){
+                    userResults.updatePoints ();
+                }
                 if (userResults.getLevel () < TOTAL_LEVELS){
                     Intent intent = new Intent(getIntent ());
                     intent.putExtra ("level",String.valueOf (userResults.getLevel ()));
                     intent.putExtra ("rewards",String.valueOf (userResults.getRewards ()));  // MODIFY THIS LINE LATER!!!
-                    if (larger_side == 0){
-                        intent.putExtra ("points",String.valueOf (points));
-                    }else{
-                        userResults.updatePoints ();
-                        intent.putExtra ("points",String.valueOf (userResults.getPoints ()));
-                    }
+                    intent.putExtra ("choices",userResults.getChoices ());
+                    intent.putExtra ("correct_choices",userResults.getCorrect_choices ());
+                    intent.putExtra ("points",String.valueOf (userResults.getPoints ()));
                     intent.putExtra ("username",username);
                     startActivity(intent);
                 }else{
                     Intent intent = new Intent(HomeActivity.this,ReturnActivity.class);
                     intent.putExtra ("rewards",String.valueOf (userResults.getRewards ()));  // MODIFY THIS LINE LATER!!!
-                    double correct_choice_d = (double)userResults.getPoints ()/TOTAL_LEVELS*100;
-                    int correct_choice = (int)correct_choice_d;
-                    Log.d(TAG+" test",String.valueOf (correct_choice));
-                    intent.putExtra ("correct_choice",String.valueOf (correct_choice));  // MODIFY THIS LINE LATER!!!
+                    intent.putExtra ("correct_choice_rate",utils.getCorrectRate (userResults,TOTAL_LEVELS));
+                    intent.putExtra ("choices",userResults.getChoices ());
+                    intent.putExtra ("correct_choices",userResults.getCorrect_choices ());
                     intent.putExtra ("username",username);
                     startActivity(intent);
                 }
             }
         });
-
     }
 
 }

@@ -10,18 +10,21 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.android.jungledjumble.Auth.RegisterActivity;
 import com.android.jungledjumble.Auth.StartActivity;
 import com.android.jungledjumble.Models.UserResults;
 import com.android.jungledjumble.R;
 import com.android.jungledjumble.Setting.ProgressActivity;
 import com.android.jungledjumble.Setting.SettingsAcitivity;
+import com.android.jungledjumble.Utils.FirebaseUtils;
 
 public class ReturnActivity extends AppCompatActivity {
     ImageView replay, menu;
-    TextView fruitsCollected, correctChoice;
+    TextView fruitsCollected, correctChoiceRate;
     int level,points,rewards;
     UserResults userResults;
-    String username;
+    String username, choices,correct_choices;
+    private FirebaseUtils firebaseUtils;
 
     final static String TAG = "ReturnActivity";
     @Override
@@ -32,16 +35,23 @@ public class ReturnActivity extends AppCompatActivity {
         replay = findViewById (R.id.replay);
         menu = findViewById (R.id.menu);
         fruitsCollected = findViewById (R.id.fruits_collected);
-        correctChoice = findViewById (R.id.correct_choice);
+        correctChoiceRate = findViewById (R.id.correct_choice);
+        firebaseUtils = new FirebaseUtils (ReturnActivity.this);
 
         final Intent intent = getIntent ();
-        points = Integer.parseInt (intent.getStringExtra ("correct_choice"));
+        points = Integer.parseInt (intent.getStringExtra ("correct_choice_rate"));
         rewards = Integer.parseInt (intent.getStringExtra ("rewards"));
         username = intent.getStringExtra ("username");
-        userResults = new UserResults (level,points,rewards);
+        choices = intent.getStringExtra ("choices");
+        correct_choices = intent.getStringExtra ("correct_choices");
+        userResults = new UserResults (level,points,rewards,choices,correct_choices);
+
+        firebaseUtils.updateResults (username, choices,correct_choices);
+
 
         fruitsCollected.setText (String.valueOf(rewards)+" fruits collected");
-        correctChoice.setText (String.valueOf(points)+"% "+"correct choice");
+        correctChoiceRate.setText (String.valueOf(points)+"% "+"correct choice");
+
 
         replay.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){

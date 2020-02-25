@@ -6,13 +6,17 @@ public class User {
     private String gender;
     private String profile_image;
     private String timestamp;
+    private String choices;
+    private String correct_choices;
 
-    public User(String username, String age, String gender, String timestamp, String profile_image) {
+    public User(String username, String age, String gender, String timestamp, String profile_image, String choices, String correct_choices) {
         this.username = username;
         this.age = age;
         this.gender = gender;
         this.profile_image = profile_image;
         this.timestamp = timestamp;
+        this.choices = choices;
+        this.correct_choices = correct_choices;
     }
 
     public User() {
@@ -58,13 +62,30 @@ public class User {
         this.profile_image = profile_image;
     }
 
+    public String getChoices() {
+        return choices;
+    }
+
+    public void setChoices(String choices) {
+        this.choices = choices;
+    }
+
+    public String getCorrect_choices() {
+        return correct_choices;
+    }
+
+    public void setCorrect_choices(String correct_choices) {
+        this.correct_choices = correct_choices;
+    }
     @Override
     public String toString() {
         return "User{" +
                 "user_id='" + username + '\'' +
                 ", email='" + age + '\'' +
-                ", username='" +gender + '\'' +
-                ", username='" +timestamp + '\'' +
+                ", gender='" +gender + '\'' +
+                ", timestamp='" +timestamp + '\'' +
+                ", choices='" +choices + '\'' +
+                ", correct choices='" +correct_choices + '\'' +
                 '}';
     }
 

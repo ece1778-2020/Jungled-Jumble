@@ -65,7 +65,9 @@ public class UserListActivity extends AppCompatActivity implements UserAdaptor.O
                                         document.get("age").toString (),
                                         document.get("gender").toString (),
                                         document.get("timestamp").toString (),
-                                        document.get("profile_image").toString ());
+                                        document.get("profile_image").toString (),
+                                        document.get("choices").toString (),
+                                        document.get("correct_choices").toString ());
                                 map.put(user.getTimestamp (),user);
                             }
                             ArrayList<String> sortedKeys = new ArrayList<String>(map.keySet());
