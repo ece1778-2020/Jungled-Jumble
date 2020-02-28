@@ -4,18 +4,14 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.android.jungledjumble.Auth.RegisterActivity;
 import com.android.jungledjumble.Auth.StartActivity;
 import com.android.jungledjumble.Models.UserResults;
 import com.android.jungledjumble.R;
-import com.android.jungledjumble.Setting.ProgressActivity;
-import com.android.jungledjumble.Setting.SettingsAcitivity;
 import com.android.jungledjumble.Utils.FirebaseUtils;
 
 public class ReturnActivity extends AppCompatActivity {
@@ -25,6 +21,7 @@ public class ReturnActivity extends AppCompatActivity {
     UserResults userResults;
     String username, choices,correct_choices;
     private FirebaseUtils firebaseUtils;
+    Button button_charts;
 
     final static String TAG = "ReturnActivity";
     @Override
@@ -37,6 +34,7 @@ public class ReturnActivity extends AppCompatActivity {
         fruitsCollected = findViewById (R.id.fruits_collected);
         correctChoiceRate = findViewById (R.id.correct_choice);
         firebaseUtils = new FirebaseUtils (ReturnActivity.this);
+        button_charts = findViewById(R.id.button_charts);
 
         final Intent intent = getIntent ();
         points = Integer.parseInt (intent.getStringExtra ("correct_choice_rate"));
@@ -64,6 +62,14 @@ public class ReturnActivity extends AppCompatActivity {
         menu.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
                 startActivity(new Intent (ReturnActivity.this, StartActivity.class));
+            }
+        });
+
+        button_charts.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+
+                startActivity(new Intent (ReturnActivity.this, UserResults_Charts.class));
+
             }
         });
 

@@ -119,7 +119,7 @@ public class HomeActivity extends AppCompatActivity {
                     intent.putExtra ("username",username);
                     startActivity(intent);
                 }else{
-                    Intent intent = new Intent(HomeActivity.this,ReturnActivity.class);
+                    Intent intent = new Intent(HomeActivity.this,UserResults_Charts.class);
                     intent.putExtra ("rewards",String.valueOf (userResults.getRewards ()));  // MODIFY THIS LINE LATER!!!
                     intent.putExtra ("correct_choice_rate",utils.getCorrectRate (userResults,TOTAL_LEVELS));
                     intent.putExtra ("choices",userResults.getChoices ());
@@ -148,7 +148,7 @@ public class HomeActivity extends AppCompatActivity {
                     intent.putExtra ("username",username);
                     startActivity(intent);
                 }else{
-                    Intent intent = new Intent(HomeActivity.this,ReturnActivity.class);
+                    Intent intent = new Intent(HomeActivity.this,UserResults_Charts.class);
                     intent.putExtra ("rewards",String.valueOf (userResults.getRewards ()));  // MODIFY THIS LINE LATER!!!
                     intent.putExtra ("correct_choice_rate",utils.getCorrectRate (userResults,TOTAL_LEVELS));
                     intent.putExtra ("choices",userResults.getChoices ());
