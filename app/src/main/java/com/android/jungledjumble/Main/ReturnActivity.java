@@ -50,6 +50,8 @@ public class ReturnActivity extends AppCompatActivity {
         background_sound.start();
 
 
+
+
         final Intent intent = getIntent ();
         points = Integer.parseInt (intent.getStringExtra ("correct_choice_rate"));
         rewards = Integer.parseInt (intent.getStringExtra ("rewards"));

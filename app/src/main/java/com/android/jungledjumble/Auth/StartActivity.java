@@ -15,6 +15,7 @@ import com.google.firebase.auth.FirebaseUser;
 public class StartActivity extends AppCompatActivity {
     Button play,settings;
     FirebaseUser firebaseUser;
+    MediaPlayer background_sound;
     @Override
     protected void onStart() {
         super.onStart();
@@ -30,7 +31,14 @@ public class StartActivity extends AppCompatActivity {
         settings = findViewById(R.id.settings);
 
 
-        final MediaPlayer background_sound = MediaPlayer.create(this, R.raw.mixed_demo);
+        //final MediaPlayer background_sound = MediaPlayer.create(this, R.raw.mixed_demo);
+        //background_sound.start();
+
+        if (background_sound != null && background_sound.isPlaying()) {
+            background_sound.stop();
+            background_sound.reset();
+        }
+        background_sound = MediaPlayer.create(this, R.raw.mixed_demo);
         background_sound.start();
 
 
