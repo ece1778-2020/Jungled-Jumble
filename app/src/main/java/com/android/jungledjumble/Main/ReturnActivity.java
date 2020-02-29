@@ -23,6 +23,8 @@ public class ReturnActivity extends AppCompatActivity {
     String username, choices,correct_choices;
     private FirebaseUtils firebaseUtils;
     //Button button_charts;
+    MediaPlayer background_sound;
+
 
     final static String TAG = "ReturnActivity";
     @Override
@@ -37,8 +39,16 @@ public class ReturnActivity extends AppCompatActivity {
         firebaseUtils = new FirebaseUtils (ReturnActivity.this);
        // button_charts = findViewById(R.id.button_charts);
 
-        final MediaPlayer background_sound = MediaPlayer.create(this, R.raw.mixed_demo);
+       // final MediaPlayer background_sound = MediaPlayer.create(this, R.raw.mixed_demo);
+        //background_sound.start();
+
+        if (background_sound != null && background_sound.isPlaying()) {
+            background_sound.stop();
+            background_sound.reset();
+        }
+        background_sound = MediaPlayer.create(this, R.raw.mixed_demo);
         background_sound.start();
+
 
         final Intent intent = getIntent ();
         points = Integer.parseInt (intent.getStringExtra ("correct_choice_rate"));
