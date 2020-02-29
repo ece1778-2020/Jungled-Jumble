@@ -33,13 +33,13 @@ public class StartActivity extends AppCompatActivity {
         final MediaPlayer click_sound = MediaPlayer.create(this, R.raw.blip_annabel);
         //final MediaPlayer background_sound = MediaPlayer.create(this, R.raw.mixed_demo);
         //background_sound.start();
-
+        background_sound.start();
         if (background_sound != null && background_sound.isPlaying()) {
             background_sound.stop();
             background_sound.reset();
         }
         background_sound = MediaPlayer.create(this, R.raw.mixed_demo);
-        background_sound.start();
+        //
 
 
         play.setOnClickListener(new View.OnClickListener(){
