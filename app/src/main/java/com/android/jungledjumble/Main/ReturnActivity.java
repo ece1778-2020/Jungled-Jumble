@@ -3,6 +3,7 @@ package com.android.jungledjumble.Main;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -35,6 +36,9 @@ public class ReturnActivity extends AppCompatActivity {
         correctChoiceRate = findViewById (R.id.correct_choice);
         firebaseUtils = new FirebaseUtils (ReturnActivity.this);
        // button_charts = findViewById(R.id.button_charts);
+
+        final MediaPlayer background_sound = MediaPlayer.create(this, R.raw.mixed_demo);
+        background_sound.start();
 
         final Intent intent = getIntent ();
         points = Integer.parseInt (intent.getStringExtra ("correct_choice_rate"));

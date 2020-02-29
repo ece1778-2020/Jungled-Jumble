@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -58,17 +59,20 @@ int countdown = 5;
 
         Intent intent = getIntent ();
 
-
-
-
-
-
-
         textView_whichtree = findViewById (R.id.textView_whichtree);
         textView_countdown = findViewById (R.id.textView_countdown);
 
+        final MediaPlayer click_sound = MediaPlayer.create(this, R.raw.blip_annabel);
+        final MediaPlayer background_sound = MediaPlayer.create(this, R.raw.mixed_demo);
+        final MediaPlayer transition1_sound = MediaPlayer.create(this, R.raw.rustle1_sfx);
+        final MediaPlayer transition2_sound = MediaPlayer.create(this, R.raw.rustle2_sfx);
+        final MediaPlayer transition3_sound = MediaPlayer.create(this, R.raw.rustle3_sfx);
 
 
+
+
+
+        background_sound.start();
 
 
 
@@ -150,6 +154,12 @@ int countdown = 5;
 
         }else{
 
+            if (userResults.getLevel ()==1){transition1_sound.start();}
+            if (userResults.getLevel ()==2){transition2_sound.start();}
+            if (userResults.getLevel ()==3){transition3_sound.start();}
+            if (userResults.getLevel ()==4){transition1_sound.start();}
+            if (userResults.getLevel ()==5){transition2_sound.start();}
+
 
 
             textView_whichtree.setText(String.valueOf(TOTAL_LEVELS-userResults.getLevel ()) + " left!");
@@ -215,6 +225,7 @@ int countdown = 5;
                 elapsedSeconds = tDelta / 1000.0;
                 //Toast.makeText(HomeActivity.this, " " + elapsedSeconds, Toast.LENGTH_SHORT).show();
 
+                click_sound.start();
 
                 finish();
                 userResults.updateChoices ("0");
@@ -251,6 +262,8 @@ int countdown = 5;
                 tDelta = tEnd - tStart;
                 elapsedSeconds = tDelta / 1000.0;
                 //Toast.makeText(HomeActivity.this, " " + elapsedSeconds, Toast.LENGTH_SHORT).show();
+
+                click_sound.start();
 
                 finish();
                 userResults.updateChoices ("1");

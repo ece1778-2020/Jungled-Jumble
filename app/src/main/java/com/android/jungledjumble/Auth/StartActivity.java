@@ -3,6 +3,7 @@ package com.android.jungledjumble.Auth;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -17,7 +18,8 @@ public class StartActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-
+        //final MediaPlayer background_sound = MediaPlayer.create(this, R.raw.mixed_demo);
+        //background_sound.start();
     }
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -26,6 +28,11 @@ public class StartActivity extends AppCompatActivity {
 
         play = findViewById(R.id.play);
         settings = findViewById(R.id.settings);
+
+
+        final MediaPlayer background_sound = MediaPlayer.create(this, R.raw.mixed_demo);
+        background_sound.start();
+
 
         play.setOnClickListener(new View.OnClickListener(){
             @Override
