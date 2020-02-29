@@ -96,7 +96,7 @@ int countdown = 5;
         if (userResults.getLevel ()==0){
             Toast.makeText (this, "Welcome "+username+"!", Toast.LENGTH_SHORT).show ();
 
-            background_sound.start();
+            //background_sound.start();
 
             textView_whichtree.setVisibility(View.VISIBLE);
             textView_countdown.setVisibility(View.VISIBLE);
