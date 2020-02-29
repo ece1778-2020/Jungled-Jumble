@@ -86,9 +86,9 @@ int countdown = 5;
             rewards = Integer.parseInt (intent.getStringExtra ("rewards"));
             choices = intent.getStringExtra ("choices");
             correct_choices = intent.getStringExtra ("correct_choices");
-            userResults = new UserResults (level,points,rewards,choices,correct_choices);
+            userResults = new UserResults (level,points,rewards,choices,correct_choices,"","");
         }catch (Exception e){
-            userResults = new UserResults (0,0,0,"","");
+            userResults = new UserResults (0,0,0,"","","","");
         }
         username= intent.getStringExtra ("username");
         if (username == null){username="";}
@@ -188,7 +188,7 @@ int countdown = 5;
                 new GridLayoutManager (this, 4)
         );
 
-        Integer[] mSizesListLeft = utils.getOrangeSizes (8,1,3,12);
+        Integer[] mSizesListLeft = utils.getOrangeSizes (1,3);
         orangeViewLeft.setAdapter (new OrangeAdaptor (HomeActivity.this,mSizesListLeft,level));
 
 
@@ -197,7 +197,7 @@ int countdown = 5;
                 new GridLayoutManager (this, 4)
         );
 
-        Integer[] mSizesListRight = utils.getOrangeSizes (8,1,3,12);
+        Integer[] mSizesListRight = utils.getOrangeSizes (1,3);
         orangeViewRight.setAdapter (new OrangeAdaptor (HomeActivity.this,mSizesListRight,level));
 
 

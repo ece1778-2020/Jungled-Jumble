@@ -8,75 +8,32 @@
     tools:context=".Auth.SelectUserActivity">
 
     <ImageView
-        android:id="@+id/imageView5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/user_select1"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:id="@+id/who"
+        android:layout_width="320dp"
+        android:layout_height="157dp"
+        android:layout_marginStart="0dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:src="@drawable/whosplaying" />
 
-
-    <TextView
-        android:id="@+id/guest_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="731dp"
-        android:layout_marginBottom="411dp"
-        android:text="@string/guest"
-        android:textAlignment="center"
-        android:textSize="50sp"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-
-    <de.hdodenhof.circleimageview.CircleImageView
+    <ImageView
         android:id="@+id/new_user"
-        android:layout_width="94dp"
-        android:layout_height="101dp"
-        android:src="@drawable/user_monkey_face"
-        app:civ_border_color="#FFFFFF"
-        app:civ_border_width="2dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.306"
+        android:layout_width="220dp"
+        android:layout_height="220dp"
+        android:layout_marginStart="170dp"
+        android:layout_marginTop="170dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.712" />
-
-    <TextView
-        android:id="@+id/existing_user_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="411dp"
-        android:layout_marginEnd="731dp"
-        android:layout_marginBottom="411dp"
-        android:text="User"
-        android:textAlignment="center"
-        android:textSize="50sp"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <de.hdodenhof.circleimageview.CircleImageView
+        android:src="@drawable/guest" />
+    <ImageView
         android:id="@+id/existing_user"
-        android:layout_width="82dp"
-        android:layout_height="108dp"
-        android:src="@drawable/empty_user"
-        app:civ_border_color="#FFFFFF"
-        app:civ_border_width="2dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.637"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginStart="420dp"
+        android:layout_marginTop="245dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.93" />
+        android:src="@drawable/user" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

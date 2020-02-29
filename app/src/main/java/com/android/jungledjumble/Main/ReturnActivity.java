@@ -58,7 +58,7 @@ public class ReturnActivity extends AppCompatActivity {
         username = intent.getStringExtra ("username");
         choices = intent.getStringExtra ("choices");
         correct_choices = intent.getStringExtra ("correct_choices");
-        userResults = new UserResults (level,points,rewards,choices,correct_choices);
+        userResults = new UserResults (level,points,rewards,choices,correct_choices,"","");
 
         firebaseUtils.updateResults (username, choices,correct_choices);
 

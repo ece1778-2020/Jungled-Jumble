@@ -22,7 +22,33 @@ public class Utils {
         Random r = new Random();
         return r.nextInt((max - min) + 1) + min;
     }
-    public Integer[] getOrangeSizes(int n,int min, int max,int total){
+
+    public Integer[] getOrangeSizes(int min, int max){
+        int total = 12;
+        List<Integer> solution = new ArrayList<> ();
+        solution.add(0);
+        solution.add(getRandomNumber (min, max));
+        solution.add(getRandomNumber (min, max));
+        solution.add(0);
+        solution.add(getRandomNumber (min, max));
+        solution.add(getRandomNumber (min, max));
+        solution.add(getRandomNumber (min, max));
+        solution.add(getRandomNumber (min, max));
+        solution.add(0);
+        solution.add(getRandomNumber (min, max));
+        solution.add(getRandomNumber (min, max));
+        solution.add(0);
+
+
+        Integer[] array = new Integer[total];
+
+        solution.toArray (array);
+
+        return array;
+
+    }
+
+    public Integer[] getOrangeSizes_old(int n,int min, int max,int total){
 
         List<Integer> solution = new ArrayList<> ();
         for (int i = 0; i < n; i++) {

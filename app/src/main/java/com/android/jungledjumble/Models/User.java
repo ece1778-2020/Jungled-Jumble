@@ -70,13 +70,6 @@ public class User {
         this.choices = choices;
     }
 
-    public String getCorrect_choices() {
-        return correct_choices;
-    }
-
-    public void setCorrect_choices(String correct_choices) {
-        this.correct_choices = correct_choices;
-    }
     @Override
     public String toString() {
         return "User{" +
