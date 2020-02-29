@@ -123,6 +123,7 @@ public class FirebaseUtils {
                     }
                 });
     }
+
     public void updateResults(final String username, final String choices, final String correct_choices) {
         database.collection ("users")
                 .whereEqualTo ("username",username)

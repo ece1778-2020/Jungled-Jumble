@@ -88,13 +88,7 @@ public class UserListActivity extends AppCompatActivity implements UserAdaptor.O
     @Override
     public void OnClickUser(User user) {
         Intent intent = new Intent(UserListActivity.this, HomeActivity.class);
-
-//        CurrentUser currentUser = new CurrentUser ();
-//        currentUser.user = user;
         intent.putExtra ("username",user.getUsername ());
         startActivity (intent);
     }
-//    public class CurrentUser implements Serializable {
-//        User user;
-//    }
 }
