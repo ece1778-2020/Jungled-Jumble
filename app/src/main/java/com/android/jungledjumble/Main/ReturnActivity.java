@@ -21,7 +21,7 @@ public class ReturnActivity extends AppCompatActivity {
     UserResults userResults;
     String username, choices,correct_choices;
     private FirebaseUtils firebaseUtils;
-    Button button_charts;
+    //Button button_charts;
 
     final static String TAG = "ReturnActivity";
     @Override
@@ -34,7 +34,7 @@ public class ReturnActivity extends AppCompatActivity {
         fruitsCollected = findViewById (R.id.fruits_collected);
         correctChoiceRate = findViewById (R.id.correct_choice);
         firebaseUtils = new FirebaseUtils (ReturnActivity.this);
-        button_charts = findViewById(R.id.button_charts);
+       // button_charts = findViewById(R.id.button_charts);
 
         final Intent intent = getIntent ();
         points = Integer.parseInt (intent.getStringExtra ("correct_choice_rate"));
@@ -47,8 +47,8 @@ public class ReturnActivity extends AppCompatActivity {
         firebaseUtils.updateResults (username, choices,correct_choices);
 
 
-        fruitsCollected.setText (String.valueOf(rewards)+" fruits collected");
-        correctChoiceRate.setText (String.valueOf(points)+"% "+"correct choice");
+        fruitsCollected.setText (String.valueOf(points)+" fruits collected");
+        correctChoiceRate.setText (String.valueOf((int) (Math.random()*100))+"% "+"correct choice");
 
 
         replay.setOnClickListener(new View.OnClickListener(){
@@ -65,13 +65,7 @@ public class ReturnActivity extends AppCompatActivity {
             }
         });
 
-        button_charts.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
 
-                startActivity(new Intent (ReturnActivity.this, UserResults_Charts.class));
-
-            }
-        });
 
     }
 }

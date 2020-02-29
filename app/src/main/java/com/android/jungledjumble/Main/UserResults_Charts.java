@@ -45,8 +45,8 @@ import java.util.Arrays;
 public class UserResults_Charts extends AppCompatActivity {
 
     BarChart chart1;
-    Button button_Replay;
-    Button button_Home;
+    //Button button_Replay;
+    //Button button_Home;
 
     TextView textView4;
     TextView textView5;
@@ -61,14 +61,14 @@ public class UserResults_Charts extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_results);
+        setContentView(R.layout.activity_progress);
 
         final Intent intent = getIntent ();
         username = intent.getStringExtra ("username");
 
         chart1 = findViewById(R.id.chart1);
-        button_Replay = findViewById(R.id.button_Replay);
-        button_Home = findViewById(R.id.button_Home);
+        //button_Replay = findViewById(R.id.button_Replay);
+        //button_Home = findViewById(R.id.button_Home);
 
         textView4 = findViewById(R.id.textView4);
         textView5 = findViewById(R.id.textView5);
@@ -157,19 +157,7 @@ public class UserResults_Charts extends AppCompatActivity {
 
 
 
-        button_Replay.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View view){
-                Intent intent = new Intent (UserResults_Charts.this, HomeActivity.class);
-                intent.putExtra ("username",username);
-                startActivity(intent);
-            }
-        });
 
-        button_Home.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View view){
-                startActivity(new Intent (UserResults_Charts.this, StartActivity.class));
-            }
-        });
 
 
     }

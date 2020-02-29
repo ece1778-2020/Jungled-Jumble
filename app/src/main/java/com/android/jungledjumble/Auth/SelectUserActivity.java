@@ -24,7 +24,7 @@ public class SelectUserActivity extends AppCompatActivity {
 
         guest.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
-                startActivity(new Intent (SelectUserActivity.this, RegisterActivity.class));
+                startActivity(new Intent (SelectUserActivity.this, HomeActivity.class));
             }
         });
 

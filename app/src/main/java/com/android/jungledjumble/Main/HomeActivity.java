@@ -9,7 +9,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
+import android.view.animation.AnimationSet;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.jungledjumble.Auth.RegisterActivity;
@@ -30,7 +34,15 @@ public class HomeActivity extends AppCompatActivity {
     private int level,points,rewards;
     private String choices, correct_choices;
     private UserResults userResults;
-    String username;
+    String username = "";
+    private long tStart;
+    private long tEnd;
+    private long tDelta;
+    private double elapsedSeconds;
+
+    TextView textView_whichtree;
+TextView textView_countdown;
+int countdown = 5;
 
     private int larger_side;
     private static int TOTAL_LEVELS = 5;
@@ -45,6 +57,19 @@ public class HomeActivity extends AppCompatActivity {
         right = findViewById (R.id.right);
 
         Intent intent = getIntent ();
+
+
+
+
+
+
+
+        textView_whichtree = findViewById (R.id.textView_whichtree);
+        textView_countdown = findViewById (R.id.textView_countdown);
+
+
+
+
 
 
 
@@ -67,8 +92,84 @@ public class HomeActivity extends AppCompatActivity {
             userResults = new UserResults (0,0,0,"","");
         }
         username= intent.getStringExtra ("username");
+        if (username == null){username="";}
+
         if (userResults.getLevel ()==0){
-            Toast.makeText (this, "Welcome, "+username+"!", Toast.LENGTH_SHORT).show ();
+            Toast.makeText (this, "Welcome "+username+"!", Toast.LENGTH_SHORT).show ();
+
+            textView_whichtree.setVisibility(View.VISIBLE);
+            textView_countdown.setVisibility(View.VISIBLE);
+
+            final Animation in = new AlphaAnimation(0.0f, 1.0f);
+            in.setDuration(1000);
+
+            final Animation out = new AlphaAnimation(1.0f, 0.0f);
+            out.setDuration(1000);
+
+            textView_countdown.setText(String.valueOf(countdown));
+            textView_countdown.startAnimation(in);
+
+            in.setAnimationListener(new Animation.AnimationListener() {
+                @Override
+                public void onAnimationStart(Animation animation) {
+                }
+                @Override
+                public void onAnimationEnd(Animation animation) {
+                    textView_countdown.startAnimation(out);
+                }
+                @Override
+                public void onAnimationRepeat(Animation animation) {
+                }
+            });
+
+            out.setAnimationListener(new Animation.AnimationListener() {
+                @Override
+                public void onAnimationStart(Animation animation) {
+                }
+                @Override
+                public void onAnimationEnd(Animation animation) {
+                    countdown--;
+                    if (countdown == 0) {
+                        textView_countdown.setText("");
+                        textView_whichtree.startAnimation(out);
+                        textView_countdown.startAnimation(out);
+                        textView_whichtree.setVisibility(View.GONE);
+                        textView_countdown.setVisibility(View.GONE);
+                        return;}
+                    else if  (countdown < 0) {
+                        return;
+                    }
+                    else{
+                        textView_countdown.setText(String.valueOf(countdown));
+                        textView_countdown.startAnimation(in);}
+                }
+                @Override
+                public void onAnimationRepeat(Animation animation) {
+                }
+            });
+
+        }else{
+
+
+
+            textView_whichtree.setText(String.valueOf(TOTAL_LEVELS-userResults.getLevel ()) + " left!");
+            textView_whichtree.setVisibility(View.VISIBLE);
+            final Animation out1 = new AlphaAnimation(1.0f, 0.0f);
+            out1.setDuration(3000);
+            textView_whichtree.startAnimation(out1);
+            out1.setAnimationListener(new Animation.AnimationListener() {
+                @Override
+                public void onAnimationStart(Animation animation) {
+                }
+                @Override
+                public void onAnimationEnd(Animation animation) {
+                    textView_whichtree.setVisibility(View.GONE);
+                }
+                @Override
+                public void onAnimationRepeat(Animation animation) {
+                }
+            });
+
         }
 
         // Update the results
@@ -93,6 +194,10 @@ public class HomeActivity extends AppCompatActivity {
         orangeViewRight.setAdapter (new OrangeAdaptor (HomeActivity.this,mSizesListRight,level));
 
 
+        //Timer starts
+        tStart = System.currentTimeMillis();
+
+
         // Determine which choice is correct
         int sumLeft = utils.getSum (mSizesListLeft);
         int sumRight = utils.getSum (mSizesListRight);
@@ -103,6 +208,14 @@ public class HomeActivity extends AppCompatActivity {
         }
         left.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
+
+                //Timer ends
+                tEnd = System.currentTimeMillis();
+                tDelta = tEnd - tStart;
+                elapsedSeconds = tDelta / 1000.0;
+                //Toast.makeText(HomeActivity.this, " " + elapsedSeconds, Toast.LENGTH_SHORT).show();
+
+
                 finish();
                 userResults.updateChoices ("0");
                 userResults.updateCorrect_choices (String.valueOf (larger_side));
@@ -119,7 +232,7 @@ public class HomeActivity extends AppCompatActivity {
                     intent.putExtra ("username",username);
                     startActivity(intent);
                 }else{
-                    Intent intent = new Intent(HomeActivity.this,UserResults_Charts.class);
+                    Intent intent = new Intent(HomeActivity.this,ReturnActivity.class);
                     intent.putExtra ("rewards",String.valueOf (userResults.getRewards ()));  // MODIFY THIS LINE LATER!!!
                     intent.putExtra ("correct_choice_rate",utils.getCorrectRate (userResults,TOTAL_LEVELS));
                     intent.putExtra ("choices",userResults.getChoices ());
@@ -132,6 +245,13 @@ public class HomeActivity extends AppCompatActivity {
 
         right.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
+
+                //Timer ends
+                tEnd = System.currentTimeMillis();
+                tDelta = tEnd - tStart;
+                elapsedSeconds = tDelta / 1000.0;
+                //Toast.makeText(HomeActivity.this, " " + elapsedSeconds, Toast.LENGTH_SHORT).show();
+
                 finish();
                 userResults.updateChoices ("1");
                 userResults.updateCorrect_choices (String.valueOf (larger_side));
@@ -148,7 +268,7 @@ public class HomeActivity extends AppCompatActivity {
                     intent.putExtra ("username",username);
                     startActivity(intent);
                 }else{
-                    Intent intent = new Intent(HomeActivity.this,UserResults_Charts.class);
+                    Intent intent = new Intent(HomeActivity.this,ReturnActivity.class);
                     intent.putExtra ("rewards",String.valueOf (userResults.getRewards ()));  // MODIFY THIS LINE LATER!!!
                     intent.putExtra ("correct_choice_rate",utils.getCorrectRate (userResults,TOTAL_LEVELS));
                     intent.putExtra ("choices",userResults.getChoices ());
@@ -158,6 +278,13 @@ public class HomeActivity extends AppCompatActivity {
                 }
             }
         });
+
+
+
     }
+
+
+
+
 
 }

@@ -34,6 +34,7 @@
             android:id="@+id/left"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -77,4 +78,35 @@
         app:layout_constraintBottom_toBottomOf = "parent"
         android:layout_marginStart="260dp"
         android:src="@drawable/monkey_back"/>
+
+    <TextView
+        android:id="@+id/textView_whichtree"
+        android:layout_width="321dp"
+        android:layout_height="140dp"
+        android:fontFamily="@font/skranji_bold"
+        android:text="Which tree has bigger fruits?"
+        android:textAlignment="center"
+        android:textSize="36sp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/textView_countdown"
+        android:layout_width="230dp"
+        android:layout_height="245dp"
+        android:fontFamily="@font/skranji_bold"
+        android:text="3"
+        android:textAlignment="center"
+        android:textSize="180sp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.7" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
