@@ -30,7 +30,7 @@ public class StartActivity extends AppCompatActivity {
         play = findViewById(R.id.play);
         settings = findViewById(R.id.settings);
 
-
+        final MediaPlayer click_sound = MediaPlayer.create(this, R.raw.blip_annabel);
         //final MediaPlayer background_sound = MediaPlayer.create(this, R.raw.mixed_demo);
         //background_sound.start();
 
@@ -45,12 +45,16 @@ public class StartActivity extends AppCompatActivity {
         play.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
+
+
+                click_sound.start();
                 startActivity(new Intent(StartActivity.this, SelectUserActivity.class));
             }
         });
 
         settings.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
+                click_sound.start();
                 startActivity(new Intent(StartActivity.this, SettingsAcitivity.class));
             }
         });
