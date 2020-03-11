@@ -5,7 +5,24 @@
     <string name="password">Password</string>
     <string name="email">Email</string>
 
+    <string-array name="gender">
+        <item>Male</item>
+        <item>Female</item>
+    </string-array>
+    <string-array name="hand">
+        <item>Left-handed</item>
+        <item>right-handed</item>
+    </string-array>
 
+    <string-array name="need">
+        <item>need</item>
+        <item>do not need</item>
+    </string-array>
+
+    <string-array name="have">
+        <item>have</item>
+        <item>do not have</item>
+    </string-array>
     <!---Firebase-->
     <string name="users_node">users</string>
     <string name="register">Register</string>

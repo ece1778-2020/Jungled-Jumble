@@ -15,6 +15,10 @@ import com.android.jungledjumble.Models.UserResults;
 import com.android.jungledjumble.R;
 import com.android.jungledjumble.Utils.FirebaseUtils;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 public class ReturnActivity extends AppCompatActivity {
     ImageView replay, menu;
     TextView fruitsCollected, correctChoiceRate;
@@ -71,6 +75,15 @@ public class ReturnActivity extends AppCompatActivity {
             public void onClick(View view){
                 Intent intent = new Intent (ReturnActivity.this, HomeActivity.class);
                 intent.putExtra ("username",username);
+                List<Integer> indices = new ArrayList<Integer> ();
+
+                for (int i=0;i<10;i++){
+                    for (int j=0;j<4;j++){
+                        indices.add(i);
+                    }
+                }
+                Collections.shuffle (indices);
+                intent.putIntegerArrayListExtra ("indices",(ArrayList<Integer>) indices);
                 startActivity(intent);
             }
         });

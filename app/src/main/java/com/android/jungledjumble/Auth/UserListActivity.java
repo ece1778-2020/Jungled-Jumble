@@ -8,9 +8,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.Gallery;
 
 import com.android.jungledjumble.Main.HomeActivity;
+import com.android.jungledjumble.Main.ReturnActivity;
 import com.android.jungledjumble.R;
 import com.android.jungledjumble.Models.User;
 import com.android.jungledjumble.Utils.UserAdaptor;
@@ -29,10 +32,12 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
 public class UserListActivity extends AppCompatActivity implements UserAdaptor.OnClickUserListener{
     FirebaseFirestore db;
     DocumentReference docRef;
+    private Button new_user;
 
     final static String TAG = "UserListActivity";
 
@@ -41,6 +46,7 @@ public class UserListActivity extends AppCompatActivity implements UserAdaptor.O
         super.onCreate (savedInstanceState);
         setContentView (R.layout.activity_user_list);
         db = FirebaseFirestore.getInstance ();
+        new_user = findViewById (R.id.new_user);
 
 
         //Retrieve the profile
@@ -83,12 +89,31 @@ public class UserListActivity extends AppCompatActivity implements UserAdaptor.O
                         }
                     }
                 });
+        new_user.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View view){
+                Intent intent = new Intent (UserListActivity.this, RegisterActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override
     public void OnClickUser(User user) {
         Intent intent = new Intent(UserListActivity.this, HomeActivity.class);
         intent.putExtra ("username",user.getUsername ());
+
+        List<Integer> indices = new ArrayList<Integer>();
+
+        for (int i=0;i<10;i++){
+            for (int j=0;j<4;j++){
+                indices.add(i);
+            }
+        }
+        Collections.shuffle (indices);
+        intent.putIntegerArrayListExtra ("indices",(ArrayList<Integer>) indices);
+
+
+
         startActivity (intent);
     }
 }

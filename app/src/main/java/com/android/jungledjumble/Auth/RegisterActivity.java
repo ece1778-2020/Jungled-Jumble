@@ -13,8 +13,11 @@ import android.provider.MediaStore;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,18 +27,21 @@ import com.android.jungledjumble.Utils.FirebaseUtils;
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 import com.android.jungledjumble.BuildConfig;
 import com.bumptech.glide.Glide;
 
-public class RegisterActivity extends AppCompatActivity {
+public class RegisterActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
     // Layout
     EditText mUsername, mAge, mGender;
-    Button registerButton;
+    Button registerButton, nextPage;
     CircleImageView profile_image;
     TextView txt_login;
+    Spinner gender_spinner,hand_spinner;
 
     //
 
@@ -59,15 +65,53 @@ public class RegisterActivity extends AppCompatActivity {
 
         mUsername = findViewById (R.id.username_text);
         mAge = findViewById (R.id.age_text);
-        mGender = findViewById (R.id.gender_text);
+//        mGender = findViewById (R.id.gender_text);
+        gender_spinner = findViewById (R.id.gender_spinner);
+        hand_spinner = findViewById (R.id.hand_spinner);
+        nextPage = findViewById (R.id.next_page);
 
 
+        ArrayAdapter<CharSequence> adaptor = ArrayAdapter.createFromResource (this,R.array.gender,android.R.layout.simple_spinner_item);
+        adaptor.setDropDownViewResource (android.R.layout.simple_spinner_dropdown_item);
+        gender_spinner.setAdapter (adaptor);
+        gender_spinner.setOnItemSelectedListener (this);
 
+        ArrayAdapter<CharSequence> handAdaptor = ArrayAdapter.createFromResource (this,R.array.hand,android.R.layout.simple_spinner_item);
+        handAdaptor.setDropDownViewResource (android.R.layout.simple_spinner_dropdown_item);
+        hand_spinner.setAdapter (handAdaptor);
+        hand_spinner.setOnItemSelectedListener (this);
+//        List<String> genders = new ArrayList<>();
+//        genders.add(0,"choose Gender");
+//        genders.add("Male");
+//        genders.add("Female");
+//        ArrayAdapter<String> dataAdaptor;
+//        dataAdaptor = new ArrayAdapter(this, android.R.layout.simple_spinner_item);
+//
+//        dataAdaptor.setDropDownViewResource (android.R.layout.simple_spinner_dropdown_item);
+//
+//        gender_spinner.setAdapter (dataAdaptor);
+//
+//        gender_spinner.setOnItemClickListener (new AdapterView.OnItemClickListener () {
+//            @Override
+//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//                if (parent.getItemAtPosition(position).equals ("Choose Gender")){
+//
+//                }else{
+//                    gender = parent.getItemAtPosition (position).toString ();
+//                }
+//            }
+//        });
 
         firebaseUtils = new FirebaseUtils (RegisterActivity.this);
 
         SetProfileImage();
         Register();
+        nextPage.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View view){
+                Intent intent = new Intent (RegisterActivity.this, OptionalActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
 
@@ -133,7 +177,8 @@ public class RegisterActivity extends AppCompatActivity {
 
                 String str_username = mUsername.getText ().toString ();
                 String str_age = mAge.getText ().toString ();
-                String str_gender = mGender.getText ().toString ();
+//                String str_gender = mGender.getText ().toString ();
+                String str_gender = gender_spinner.getSelectedItem ().toString ();
                 if (Integer.parseInt (str_age) < 0) {
                     Toast.makeText (RegisterActivity.this, "Found missing fields!", Toast.LENGTH_SHORT).show ();
                     mAge.setText ("");
@@ -146,4 +191,13 @@ public class RegisterActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        String text = parent.getItemAtPosition (position).toString ();
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+
+    }
 }

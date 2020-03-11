@@ -15,8 +15,11 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.DayNight.NoActionBar">
-        <activity android:name=".Main.ReturnActivity"
-            android:screenOrientation="landscape" ></activity>
+        <activity android:name=".Auth.OptionalActivity"
+            android:screenOrientation="landscape"/>
+        <activity
+            android:name=".Main.ReturnActivity"
+            android:screenOrientation="landscape" />
         <activity
             android:name=".Setting.PrivacyPolicyActivity"
             android:screenOrientation="landscape" />
@@ -49,6 +52,7 @@
         <activity
             android:name=".Main.HomeActivity"
             android:screenOrientation="landscape" />
+
         <activity
             android:name=".Main.UserResults_Charts"
             android:screenOrientation="landscape" />

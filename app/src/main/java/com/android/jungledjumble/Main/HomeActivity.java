@@ -26,6 +26,11 @@ import com.android.jungledjumble.Utils.FirebaseUtils;
 import com.android.jungledjumble.Utils.OrangeAdaptor;
 import com.android.jungledjumble.Utils.UserAdaptor;
 import com.android.jungledjumble.Utils.Utils;
+import com.android.jungledjumble.Models.Sizes;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class HomeActivity extends AppCompatActivity {
@@ -35,6 +40,7 @@ public class HomeActivity extends AppCompatActivity {
     private int level,points,rewards;
     private String choices, correct_choices;
     private UserResults userResults;
+    private Sizes sizes;
     String username = "";
     private long tStart;
     private long tEnd;
@@ -42,8 +48,8 @@ public class HomeActivity extends AppCompatActivity {
     private double elapsedSeconds;
 
     TextView textView_whichtree;
-TextView textView_countdown;
-int countdown = 5;
+    TextView textView_countdown;
+    int countdown = 5;
 
     private int larger_side;
     private static int TOTAL_LEVELS = 5;
@@ -71,6 +77,24 @@ int countdown = 5;
 
 
 
+
+        sizes = new Sizes();
+        double [][] mat = sizes.getMat ();
+        final ArrayList<Integer> indices = intent.getIntegerArrayListExtra("indices");
+        Integer k = indices.get(0);
+        indices.remove(0);
+        List<Double> sizes_small = new ArrayList<Double>();
+        for (int i=0;i<4;i++){
+            sizes_small.add(mat[k][i]);
+        }
+        Collections.shuffle (sizes_small);
+        List<Double> sizes_large = new ArrayList<Double>();
+        for (int i=4;i<8;i++){
+            sizes_large.add(mat[k][i]);
+        }
+        Collections.shuffle (sizes_large);
+
+        Log.d(TAG,sizes_large.toString ()+' '+sizes_small.toString ());
 
 
         //************************
@@ -238,6 +262,7 @@ int countdown = 5;
                     intent.putExtra ("correct_choices",userResults.getCorrect_choices ());
                     intent.putExtra ("points",String.valueOf (userResults.getPoints ()));
                     intent.putExtra ("username",username);
+                    intent.putIntegerArrayListExtra ("indices",(ArrayList<Integer>) indices);
                     startActivity(intent);
                 }else{
                     Intent intent = new Intent(HomeActivity.this,ReturnActivity.class);
@@ -246,6 +271,7 @@ int countdown = 5;
                     intent.putExtra ("choices",userResults.getChoices ());
                     intent.putExtra ("correct_choices",userResults.getCorrect_choices ());
                     intent.putExtra ("username",username);
+                    intent.putIntegerArrayListExtra ("indices",(ArrayList<Integer>) indices);
                     startActivity(intent);
                 }
             }
@@ -276,6 +302,7 @@ int countdown = 5;
                     intent.putExtra ("correct_choices",userResults.getCorrect_choices ());
                     intent.putExtra ("points",String.valueOf (userResults.getPoints ()));
                     intent.putExtra ("username",username);
+                    intent.putIntegerArrayListExtra ("indices",(ArrayList<Integer>) indices);
                     startActivity(intent);
                 }else{
                     Intent intent = new Intent(HomeActivity.this,ReturnActivity.class);
@@ -284,6 +311,7 @@ int countdown = 5;
                     intent.putExtra ("choices",userResults.getChoices ());
                     intent.putExtra ("correct_choices",userResults.getCorrect_choices ());
                     intent.putExtra ("username",username);
+                    intent.putIntegerArrayListExtra ("indices",(ArrayList<Integer>) indices);
                     startActivity(intent);
                 }
             }
