@@ -211,6 +211,7 @@ public class HomeActivity extends AppCompatActivity {
         // Random selection is a value of either 0 or 1 that represents which side will be larger
         Random r = new Random ();
         int randomSelection = r.nextInt(2);
+
         
         if (randomSelection == 0){
             orangeViewLeft.setAdapter (new OrangeAdaptor (HomeActivity.this,sizes_small,level));
