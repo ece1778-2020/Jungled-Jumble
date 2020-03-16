@@ -10,14 +10,17 @@ import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.AnimationSet;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.jungledjumble.Auth.RegisterActivity;
+import com.android.jungledjumble.Models.Pair;
 import com.android.jungledjumble.Models.UserResults;
 import com.android.jungledjumble.R;
 import com.android.jungledjumble.Setting.ProgressActivity;
@@ -32,6 +35,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.Random;
 
 public class HomeActivity extends AppCompatActivity {
     private Utils utils;
@@ -46,6 +50,7 @@ public class HomeActivity extends AppCompatActivity {
     private long tEnd;
     private long tDelta;
     private double elapsedSeconds;
+    double[] sizes_large,sizes_small;
 
     TextView textView_whichtree;
     TextView textView_countdown;
@@ -74,28 +79,14 @@ public class HomeActivity extends AppCompatActivity {
         final MediaPlayer transition2_sound = MediaPlayer.create(this, R.raw.rustle2_sfx);
         final MediaPlayer transition3_sound = MediaPlayer.create(this, R.raw.rustle3_sfx);
 
-
-
-
-
-        sizes = new Sizes();
-        double [][] mat = sizes.getMat ();
+//        sizes = new Sizes();
+//        double [][] mat = sizes.getMat ();
         final ArrayList<Integer> indices = intent.getIntegerArrayListExtra("indices");
-        Integer k = indices.get(0);
-        indices.remove(0);
-        List<Double> sizes_small = new ArrayList<Double>();
-        for (int i=0;i<4;i++){
-            sizes_small.add(mat[k][i]);
-        }
-        Collections.shuffle (sizes_small);
-        List<Double> sizes_large = new ArrayList<Double>();
-        for (int i=4;i<8;i++){
-            sizes_large.add(mat[k][i]);
-        }
-        Collections.shuffle (sizes_large);
 
+        Pair pair = utils.GetOrangeSizes (indices);
+        sizes_large = pair.getLargeSizes ();
+        sizes_small = pair.getSmallSizes ();
         Log.d(TAG,sizes_large.toString ()+' '+sizes_small.toString ());
-
 
         //************************
         // Level: the current level of the game
@@ -181,8 +172,6 @@ public class HomeActivity extends AppCompatActivity {
             if (userResults.getLevel ()==4){transition1_sound.start();}
             if (userResults.getLevel ()==5){transition2_sound.start();}
 
-
-
             textView_whichtree.setText(String.valueOf(TOTAL_LEVELS-userResults.getLevel ()) + " left!");
             textView_whichtree.setVisibility(View.VISIBLE);
             final Animation out1 = new AlphaAnimation(1.0f, 0.0f);
@@ -206,23 +195,37 @@ public class HomeActivity extends AppCompatActivity {
         // Update the results
         userResults.updateLevel ();
 
+
+
         // Display the oranges
         orangeViewLeft = findViewById (R.id.oranges);
         orangeViewLeft.setLayoutManager (
                 new GridLayoutManager (this, 4)
         );
 
-        Integer[] mSizesListLeft = utils.getOrangeSizes (1,3);
-        orangeViewLeft.setAdapter (new OrangeAdaptor (HomeActivity.this,mSizesListLeft,level));
-
-
         orangeViewRight = findViewById (R.id.oranges_right);
         orangeViewRight.setLayoutManager (
                 new GridLayoutManager (this, 4)
         );
 
-        Integer[] mSizesListRight = utils.getOrangeSizes (1,3);
-        orangeViewRight.setAdapter (new OrangeAdaptor (HomeActivity.this,mSizesListRight,level));
+        // Random selection is a value of either 0 or 1 that represents which side will be larger
+        Random r = new Random ();
+        int randomSelection = r.nextInt(2);
+        
+        if (randomSelection == 0){
+            orangeViewLeft.setAdapter (new OrangeAdaptor (HomeActivity.this,sizes_small,level));
+            orangeViewRight.setAdapter (new OrangeAdaptor (HomeActivity.this,sizes_large,level));
+        }else{
+            orangeViewLeft.setAdapter (new OrangeAdaptor (HomeActivity.this,sizes_large,level));
+            orangeViewRight.setAdapter (new OrangeAdaptor (HomeActivity.this,sizes_small,level));
+        }
+        larger_side = 1 - randomSelection;
+
+
+//
+//
+//        Integer[] mSizesListRight = utils.getOrangeSizes (1,3);
+//        orangeViewRight.setAdapter (new OrangeAdaptor (HomeActivity.this,mSizesListRight,level));
 
 
         //Timer starts
@@ -230,13 +233,13 @@ public class HomeActivity extends AppCompatActivity {
 
 
         // Determine which choice is correct
-        int sumLeft = utils.getSum (mSizesListLeft);
-        int sumRight = utils.getSum (mSizesListRight);
-        if (sumLeft<sumRight){
-            larger_side = 1;
-        }else{
-            larger_side = 0;
-        }
+//        int sumLeft = utils.getSum (mSizesListLeft);
+//        int sumRight = utils.getSum (mSizesListRight);
+//        if (sumLeft<sumRight){
+//            larger_side = 1;
+//        }else{
+//            larger_side = 0;
+//        }
         left.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
 

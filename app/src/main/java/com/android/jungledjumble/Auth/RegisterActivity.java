@@ -38,10 +38,10 @@ import com.bumptech.glide.Glide;
 public class RegisterActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
     // Layout
     EditText mUsername, mAge, mGender;
-    Button registerButton, nextPage;
+    Button registerButton;
     CircleImageView profile_image;
     TextView txt_login;
-    Spinner gender_spinner,hand_spinner;
+    Spinner gender_spinner,hand_spinner,glass_spinner,disorder_spinner,disability_spinner;
 
     //
 
@@ -65,10 +65,12 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
 
         mUsername = findViewById (R.id.username_text);
         mAge = findViewById (R.id.age_text);
-//        mGender = findViewById (R.id.gender_text);
+
         gender_spinner = findViewById (R.id.gender_spinner);
         hand_spinner = findViewById (R.id.hand_spinner);
-        nextPage = findViewById (R.id.next_page);
+        glass_spinner = findViewById (R.id.glass_spinner);
+        disorder_spinner = findViewById (R.id.disorder_spinner);
+        disability_spinner = findViewById (R.id.disability_spinner);
 
 
         ArrayAdapter<CharSequence> adaptor = ArrayAdapter.createFromResource (this,R.array.gender,android.R.layout.simple_spinner_item);
@@ -80,6 +82,19 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
         handAdaptor.setDropDownViewResource (android.R.layout.simple_spinner_dropdown_item);
         hand_spinner.setAdapter (handAdaptor);
         hand_spinner.setOnItemSelectedListener (this);
+
+        ArrayAdapter<CharSequence> needAdaptor = ArrayAdapter.createFromResource (this,R.array.need,android.R.layout.simple_spinner_item);
+        needAdaptor.setDropDownViewResource (android.R.layout.simple_spinner_dropdown_item);
+        glass_spinner.setAdapter (needAdaptor);
+        glass_spinner.setOnItemSelectedListener (this);
+
+        ArrayAdapter<CharSequence> haveAdaptor = ArrayAdapter.createFromResource (this,R.array.have,android.R.layout.simple_spinner_item);
+        haveAdaptor .setDropDownViewResource (android.R.layout.simple_spinner_dropdown_item);
+        disorder_spinner.setAdapter (haveAdaptor );
+        disorder_spinner.setOnItemSelectedListener (this);
+
+        disability_spinner.setAdapter (haveAdaptor);
+        disability_spinner.setOnItemSelectedListener (this);
 //        List<String> genders = new ArrayList<>();
 //        genders.add(0,"choose Gender");
 //        genders.add("Male");
@@ -106,12 +121,12 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
 
         SetProfileImage();
         Register();
-        nextPage.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View view){
-                Intent intent = new Intent (RegisterActivity.this, OptionalActivity.class);
-                startActivity(intent);
-            }
-        });
+//        nextPage.setOnClickListener(new View.OnClickListener(){
+//            public void onClick(View view){
+//                Intent intent = new Intent (RegisterActivity.this, OptionalActivity.class);
+//                startActivity(intent);
+//            }
+//        });
     }
 
 
