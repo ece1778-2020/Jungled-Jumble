@@ -4,88 +4,158 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="horizontal"
+    android:orientation="vertical"
     android:gravity="center"
     android:padding="10dp"
     tools:context=".Auth.RegisterActivity">
-    <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/profile_image"
-        android:layout_width="96dp"
-        android:layout_height="96dp"
-        android:src="@drawable/empty_user"
-        app:civ_border_color="#FF000000"
-        app:civ_border_width="2dp" />
 
-    <LinearLayout
-        android:layout_width="400dp"
-        android:layout_height="match_parent"
-        android:layout_marginStart="50dp"
-        android:orientation="vertical">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-        <EditText
-            android:id="@+id/username_text"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="45dp"
-            android:background="@drawable/edittext_background"
-            android:hint="Username"
-            android:padding="10dp" />
-
-
-        <EditText
-            android:id="@+id/age_text"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:background="@drawable/edittext_background"
-            android:hint="Age"
-            android:padding="10dp" />
         <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:padding="10dp"
-            android:layout_marginTop="15dp">
-            <TextView
-                android:layout_width="80dp"
+            android:layout_width="450dp"
+            android:layout_height="match_parent"
+
+            android:layout_gravity="center_horizontal"
+
+            android:orientation="vertical">
+            <de.hdodenhof.circleimageview.CircleImageView
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/profile_image"
+                android:layout_width="96dp"
+                android:layout_height="96dp"
+                android:layout_gravity="center_horizontal"
+                android:src="@drawable/empty_user"
+                app:civ_border_color="#FF000000"
+                app:civ_border_width="2dp" />
+            <EditText
+                android:id="@+id/username_text"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Gender"
-                android:textSize="20sp"/>
-            <Spinner
+                android:layout_marginTop="45dp"
+                android:background="@drawable/edittext_background"
+                android:hint="Username"
+                android:padding="10dp" />
+
+
+            <EditText
+                android:id="@+id/age_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/edittext_background"
+                android:hint="Age"
+                android:padding="10dp" />
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/gender_spinner"/>
+                android:orientation="horizontal"
+                android:padding="10dp"
+                android:layout_marginTop="15dp">
+                <TextView
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:text="Gender"
+                    android:textSize="20sp"/>
+                <Spinner
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/gender_spinner"/>
+                <TextView
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:text="Hand"
+                    android:layout_marginStart="0dp"
+                    android:textSize="20sp"/>
+                <Spinner
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/hand_spinner"/>
+            </LinearLayout>
+
             <TextView
-                android:layout_width="80dp"
-                android:layout_height="wrap_content"
-                android:text="Hand"
-                android:layout_marginStart="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="10dp"
+                android:text="*Optional"
                 android:textSize="20sp"/>
-            <Spinner
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/hand_spinner"/>
+                android:orientation="horizontal"
+                android:padding="10dp"
+                android:layout_marginTop="15dp">
+                <TextView
+                    android:layout_width="10dp"
+                    android:layout_height="wrap_content"
+                    android:text="I"
+                    android:textSize="20sp"/>
+                <Spinner
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:id="@+id/glass_spinner"/>
+                <TextView
+                    android:layout_width="180dp"
+                    android:layout_height="wrap_content"
+                    android:text="glasses or contacts"
+                    android:textSize="20sp"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="10dp"
+                android:layout_marginTop="15dp">
+                <TextView
+                    android:layout_width="10dp"
+                    android:layout_height="wrap_content"
+                    android:text="I"
+                    android:textSize="20sp"/>
+                <Spinner
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:id="@+id/disorder_spinner"/>
+                <TextView
+                    android:layout_width="240dp"
+                    android:layout_height="wrap_content"
+                    android:text="any neurological disorders"
+                    android:textSize="20sp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="10dp"
+                android:layout_marginTop="15dp">
+                <TextView
+                    android:layout_width="10dp"
+                    android:layout_height="wrap_content"
+                    android:text="I"
+                    android:textSize="20sp"/>
+                <Spinner
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:id="@+id/disability_spinner"/>
+                <TextView
+                    android:layout_width="240dp"
+                    android:layout_height="wrap_content"
+                    android:text="any learning disabilities"
+                    android:textSize="20sp"/>
+            </LinearLayout>
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/register"
+                android:text="Register"
+                android:textColor="@color/colorPrimary"
+                android:background="@drawable/edittext_background"
+                android:layout_marginTop="15dp"/>
         </LinearLayout>
-
-
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/register"
-            android:text="Register"
-            android:textColor="@color/colorPrimary"
-            android:background="@drawable/edittext_background"
-            android:layout_marginTop="15dp"/>
-        <Button
-            android:id="@+id/next_page"
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="70dp"
-            android:layout_marginStart="300dp"
-            android:background="@drawable/button_background"
-            android:text="Optional"
-            android:textColor="@color/colorPrimary" />
-    </LinearLayout>
-
+    </ScrollView>
 
 </LinearLayout>
