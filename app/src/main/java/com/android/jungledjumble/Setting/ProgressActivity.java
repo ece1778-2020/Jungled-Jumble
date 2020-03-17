@@ -1,176 +1,382 @@
 package com.android.jungledjumble.Setting;
 
-//package com.truiton.mpchartexample;
 
+import android.Manifest;
+import android.content.Context;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
-//import android.support.v7.app.ActionBarActivity;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+import androidx.core.content.FileProvider;
 
-import com.android.jungledjumble.Auth.StartActivity;
-import com.github.mikephil.charting.components.Legend;
-import com.github.mikephil.charting.components.LegendEntry;
-import com.github.mikephil.charting.components.XAxis;
-import com.github.mikephil.charting.components.YAxis;
-import com.github.mikephil.charting.formatter.StackedValueFormatter;
 import com.android.jungledjumble.R;
 import com.github.mikephil.charting.charts.BarChart;
+import com.github.mikephil.charting.charts.LineChart;
+import com.github.mikephil.charting.components.LegendEntry;
+import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
-import com.github.mikephil.charting.utils.ColorTemplate;
+import com.github.mikephil.charting.data.Entry;
+import com.github.mikephil.charting.data.LineData;
+import com.github.mikephil.charting.data.LineDataSet;
 
-import java.util.ArrayList;
-
-import android.content.Intent;
-import android.os.Bundle;
-//import android.support.v7.app.AppCompatActivity;
-import android.view.View;
-import android.widget.Button;
-import android.widget.TextView;
-
-import com.github.mikephil.charting.charts.BarChart;
-import com.github.mikephil.charting.data.BarData;
-import com.github.mikephil.charting.data.BarDataSet;
-import com.github.mikephil.charting.data.BarEntry;
-import com.github.mikephil.charting.interfaces.datasets.IBarDataSet;
-import com.github.mikephil.charting.utils.ColorTemplate;
-//import com.xxmassdeveloper.mpchartexample.custom.MyValueFormatter;
-
+import java.io.File;
+import java.io.FileOutputStream;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
+import java.util.List;
+import java.util.Locale;
 
+import android.content.Intent;
+import android.util.DisplayMetrics;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.TabHost;
+import android.widget.TextView;
 
 public class ProgressActivity extends AppCompatActivity {
 
-    BarChart chart1;
-    //Button button_Replay;
-    //Button button_Home;
+    LineChart chart1;
+    LineChart chart2;
+    LineChart chart3;
+    BarChart chart4;
+    ImageView imageView6;
+    ImageView imageView5;
+    ImageView imageView7;
 
     TextView textView4;
     TextView textView5;
     TextView textView6;
 
-    int total_val1 =0;
+    int total_val1=0;
     int total_val2=0;
     int total_val3=0;
 
     String username;
+
+    int width ;
+    int height ;
+    String _OSVERSION = System.getProperty("os.version");
+    String _RELEASE = android.os.Build.VERSION.RELEASE;
+    String _DEVICE = android.os.Build.DEVICE;
+    String _MODEL = android.os.Build.MODEL;
+    String _PRODUCT = android.os.Build.PRODUCT;
+    String _BRAND = android.os.Build.BRAND;
+    String _DISPLAY = android.os.Build.DISPLAY;
+    String _CPU_ABI = android.os.Build.CPU_ABI;
+    String _CPU_ABI2 = android.os.Build.CPU_ABI2;
+    String _UNKNOWN = android.os.Build.UNKNOWN;
+    String _HARDWARE = android.os.Build.HARDWARE;
+    String _ID = android.os.Build.ID;
+    String _MANUFACTURER = android.os.Build.MANUFACTURER;
+    String _SERIAL = android.os.Build.SERIAL;
+    String _USER = android.os.Build.USER;
+    String _HOST = android.os.Build.HOST;
+    String currentDate = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(new Date());
+    String currentTime = new SimpleDateFormat("HH:mm:ss", Locale.getDefault()).format(new Date());
+    static final int MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE=0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_progress);
 
+        final TabHost mTabHost = (TabHost)findViewById(R.id.tabHost);
+        mTabHost.setup();
+        //Lets add the first Tab
+        TabHost.TabSpec mSpec = mTabHost.newTabSpec("Daily");
+        mSpec.setContent(R.id.Daily);
+        mSpec.setIndicator("Daily");
+        mTabHost.addTab(mSpec);
+        //Lets add the second Tab
+        mSpec = mTabHost.newTabSpec("Monthly");
+        mSpec.setContent(R.id.Monthly);
+        mSpec.setIndicator("Monthly");
+        mTabHost.addTab(mSpec);
+        //Lets add the third Tab
+        mSpec = mTabHost.newTabSpec("Yearly");
+        mSpec.setContent(R.id.Yearly);
+        mSpec.setIndicator("Yearly");
+        mTabHost.addTab(mSpec);
+
+        mTabHost.setOnTabChangedListener(new TabHost.OnTabChangeListener() {
+            @Override
+            public void onTabChanged(String tabId) {
+                int i = mTabHost.getCurrentTab();
+                if (i == 0) {
+                    // your method 1
+                    chart1.invalidate(); // refresh
+                    chart1.animateXY(200, 300); // animate horizontal and vertical 3000 milliseconds
+                }
+                else if (i ==1) {
+                    // your method 2
+                    chart2.invalidate(); // refresh
+                    chart2.animateXY(200, 300); // animate horizontal and vertical 3000 milliseconds
+                }
+                else if (i ==2) {
+                    // your method 3
+                    chart3.invalidate(); // refresh
+                    chart3.animateXY(200, 300); // animate horizontal and vertical 3000 milliseconds
+                }
+            }
+        });
+
         final Intent intent = getIntent ();
         username = intent.getStringExtra ("username");
 
+        imageView6 = findViewById(R.id.imageView6);
+        imageView5 = findViewById(R.id.imageView5);
+        imageView7 = findViewById(R.id.imageView7);
+
         chart1 = findViewById(R.id.chart1);
-        //button_Replay = findViewById(R.id.button_Replay);
-        //button_Home = findViewById(R.id.button_Home);
+        chart2 = findViewById(R.id.chart2);
+        chart3 = findViewById(R.id.chart3);
+        chart4 = findViewById(R.id.chart4);
 
         textView4 = findViewById(R.id.textView4);
         textView5 = findViewById(R.id.textView5);
         textView6 = findViewById(R.id.textView6);
 
-
-        //ArrayList<BarEntry> yVals1 = new ArrayList<>();
-
-        int numberRounds = 5;
-
         chart1.getDescription().setEnabled(false);
+        chart2.getDescription().setEnabled(false);
+        chart3.getDescription().setEnabled(false);
+        chart4.getDescription().setEnabled(false);
 
-        ArrayList<BarEntry> yVals1 = new ArrayList<BarEntry>();
+        ArrayList<Entry> yVals1 = new ArrayList<Entry>();
+        ArrayList<Entry> yVals2 = new ArrayList<Entry>();
+        ArrayList<Entry> yVals3 = new ArrayList<Entry>();
+        List<BarEntry> yVals4 = new ArrayList<>();
 
-
-
-        for (int i = 1; i <= numberRounds; i++) {
-            //float mult = (numberRounds + 1);
+        for (int i = 1; i <= 5; i++) {
             int val1 = (int) (Math.random()*10);
             int val2 = (int) (Math.random()*100) ;
             int val3 = (int) (Math.random()*100);
-
             total_val1 = total_val1 + val1;
             total_val2 = total_val2 + val2;
             total_val3 = total_val3 + val3;
+            yVals1.add(new Entry(i,val1));
+        }
 
-            yVals1.add(new BarEntry(i,new float[]{val1, val2, val3}));
+        for (int i = 1; i <= 40; i++) {
+            int val1 = (int) (Math.random()*10);
+            int val2 = (int) (Math.random()*100) ;
+            int val3 = (int) (Math.random()*100);
+            total_val1 = total_val1 + val1;
+            total_val2 = total_val2 + val2;
+            total_val3 = total_val3 + val3;
+            yVals2.add(new Entry(i,val1));
+        }
+
+        for (int i = 1; i <= 300; i++) {
+            int val1 = (int) (Math.random()*10);
+            int val2 = (int) (Math.random()*100) ;
+            int val3 = (int) (Math.random()*100);
+            total_val1 = total_val1 + val1;
+            total_val2 = total_val2 + val2;
+            total_val3 = total_val3 + val3;
+            yVals3.add(new Entry(i,val1));
         }
 
 
-        textView4.setText(total_val1 + " Fruits collected!");
-        textView5.setText(total_val2 + " Seconds spent!");
-        textView6.setText(total_val3/(numberRounds) + "% Concentration!");
-
-        BarDataSet set1;
-
-        if (chart1.getData() != null &&
-                chart1.getData().getDataSetCount() > 0) {
-            set1 = (BarDataSet) chart1.getData().getDataSetByIndex(0);
-            set1.setValues(yVals1);
-            chart1.getData().notifyDataChanged();
-            chart1.notifyDataSetChanged();
-        } else {
-            set1 = new BarDataSet(yVals1,"");
-            set1.setDrawIcons(false);
-            set1.setColors(getColors());
-            set1.setStackLabels(new String[]{"Concentration", "Speed", "Performance"});
-            XAxis xLabels = chart1.getXAxis();
-            xLabels.setPosition(XAxis.XAxisPosition.BOTTOM);
-            // xLabels.setPosition(XAxis.XAxisPosition.TOP);
-
-            ArrayList<IBarDataSet> dataSets = new ArrayList<IBarDataSet>();
-            dataSets.add(set1);
-
-            BarData data = new BarData(dataSets);
-            data.setValueFormatter(new StackedValueFormatter(false, "", 1));
-            data.setValueTextColor(Color.WHITE);
-
-
-       /*     LegendEntry legendEntryA = new LegendEntry();
-            legendEntryA.label = "A";
-            legendEntryA.formColor = Color.GREEN;
-
-*/
-
-        /*    LegendEntry legendEntryB= new LegendEntry();
-            legendEntryA.label = "B";
-            legendEntryA.formColor = Color.BLACK;
-
-            LegendEntry legendEntryC = new LegendEntry();
-            legendEntryA.label = "C";
-            legendEntryA.formColor = Color.BLUE;
-
-            LegendEntry legendEntryD = new LegendEntry();
-            legendEntryA.label = "D";
-            legendEntryA.formColor = Color.RED;
-
-            Legend legend = chart1.getLegend();
-            legend.setCustom(Arrays.asList(legendEntryA, legendEntryB, legendEntryC, legendEntryD));*/
-            chart1.animateXY(500, 500);
-            chart1.setData(data);
+        for (int i = 1; i <= 2; i++) {
+            int val1 = (int) (Math.random()*10);
+            int val2 = (int) (Math.random()*100) ;
+            int val3 = (int) (Math.random()*100);
+            total_val1 = total_val1 + val1;
+            total_val2 = total_val2 + val2;
+            total_val3 = total_val3 + val3;
+            yVals4.add(new BarEntry(i,val1));
         }
 
-        chart1.setFitBars(true);
-        chart1.invalidate();
+        LineDataSet dataSet1 = new LineDataSet(yVals1, "Score"); // add entries to dataset
+        LineDataSet dataSet2 = new LineDataSet(yVals2, "Score"); // add entries to dataset
+        LineDataSet dataSet3 = new LineDataSet(yVals3, "Score"); // add entries to dataset
+        BarDataSet dataSet4 = new BarDataSet(yVals4, "Average"); // add entries to dataset
+        dataSet4.setColors(Color.rgb(0, 190, 0),Color.rgb(133, 87, 35));
+
+        dataSet1.setColor(Color.rgb(0, 190, 0));
+        dataSet1.setCircleColor(Color.rgb(0, 190, 0));
+        LineData lineData1 = new LineData(dataSet1);
+
+        dataSet2.setColor(Color.rgb(0, 190, 0));
+        dataSet2.setCircleColor(Color.rgb(0, 190, 0));
+        LineData lineData2 = new LineData(dataSet2);
+
+        dataSet3.setColor(Color.rgb(0, 190, 0));
+        dataSet3.setCircleColor(Color.rgb(0, 190, 0));
+        LineData lineData3 = new LineData(dataSet3);
+
+        BarData BarData = new BarData(dataSet4);
+        BarData.setBarWidth(0.5f); // set custom bar width
+
+        LegendEntry legendEntryA = new LegendEntry();
+        legendEntryA.label = "Your's";
+        legendEntryA.formColor = Color.rgb(0, 190, 0);
+        LegendEntry legendEntryB = new LegendEntry();
+        legendEntryB.label = "Others";
+        legendEntryB.formColor = Color.rgb(133, 87, 35);
+
+        chart4.getLegend().setCustom(Arrays.asList(legendEntryA, legendEntryB));
+        chart1.setData(lineData1);
+        chart1.invalidate(); // refresh
+        chart1.animateXY(200, 300); // animate horizontal and vertical 3000 milliseconds
+
+        chart2.setData(lineData2);
+        chart2.setScaleMinima(10f, 1f);
+        chart2.moveViewToAnimated(40, 0, YAxis.AxisDependency.LEFT, 2000);
+        chart2.invalidate(); // refresh
+        chart2.animateXY(200, 300); // animate horizontal and vertical 3000 milliseconds
+
+        chart3.setData(lineData3);
+        chart3.setScaleMinima(20f, 1f);
+        chart3.moveViewToAnimated(300, 0, YAxis.AxisDependency.LEFT, 2000);
+        chart3.invalidate(); // refresh
+        chart3.animateXY(200, 300); // animate horizontal and vertical 3000 milliseconds
+
+        chart4.setData(BarData);
+        chart4.invalidate(); // refresh
+        chart4.setFitBars(true); // make the x-axis fit exactly all bars
+        chart4.animateXY(200, 300); // animate horizontal and vertical 3000 milliseconds
+
+
+        imageView6.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View arg0) {
+
+                imageView7.bringToFront();
+                textView6.bringToFront();
+                textView5.bringToFront();
+                DisplayMetrics displayMetrics = new DisplayMetrics();
+                getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+                width = displayMetrics.widthPixels;
+                height = displayMetrics.heightPixels;
+                currentDate = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(new Date());
+                currentTime = new SimpleDateFormat("HH:mm:ss", Locale.getDefault()).format(new Date());
+
+
+                // Here, thisActivity is the current activity
+                if (ContextCompat.checkSelfPermission(ProgressActivity.this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                        != PackageManager.PERMISSION_GRANTED) {
+                    // Permission is not granted
+                    // Should we show an explanation?
+                    if (ActivityCompat.shouldShowRequestPermissionRationale(ProgressActivity.this, Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+                        // Show an explanation to the user *asynchronously* -- don't block
+                        // this thread waiting for the user's response! After the user
+                        // sees the explanation, try again to request the permission.
+
+                        ActivityCompat.requestPermissions(ProgressActivity.this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE);
+
+                    } else {
+                        // No explanation needed; request the permission
+                        ActivityCompat.requestPermissions(ProgressActivity.this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE);
+
+                        // MY_PERMISSIONS_REQUEST_READ_CONTACTS is an
+                        // app-defined int constant. The callback method gets the
+                        // result of the request.
+                    }
+                } else {
+                    // Permission has already been granted
+
+                    //generate data
+                    StringBuilder data = new StringBuilder();
+                    data.append("Number,deviceID,deviceModel,deviceRes,userID,age,gender,handedness,userPerf,session,sessionDate,sessionPerf,trialNum,trialStartTime,trialAnswer,trialCond,trialResp,trialRespTime,trialEndTime");
+                    for (int i = 1; i <= 40; i++) {
+                        data.append("\n" + i + "," + _ID + "," + _MANUFACTURER + " " + _MODEL + "," + width + " x " + height + "," + "79004" + "," + "23" + "," + "-1" + "," + "1" + "," + "0.92" + "," + "1" + "," + currentDate + "," + "0.95" + "," + "1" + "," + "1" + "," + "1" + "," + "0" + "," + "1" + "," + "1.5" + "," + "2");
+                    }
+                    try {
+
+                        //saving the file into device
+                        FileOutputStream out = openFileOutput("data.csv", Context.MODE_PRIVATE);
+                        out.write((data.toString()).getBytes());
+                        out.close();
+
+                        //exporting
+                        Context context = getApplicationContext();
+                        File filelocation = new File(getFilesDir(), "data.csv");
+                        Uri path = FileProvider.getUriForFile(context, "com.android.jungledjumble.fileprovider", filelocation);
+                        Intent fileIntent = new Intent(Intent.ACTION_SEND);
+                        fileIntent.setType("text/csv");
+                        fileIntent.putExtra(Intent.EXTRA_SUBJECT, "Data");
+                        fileIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+                        fileIntent.putExtra(Intent.EXTRA_STREAM, path);
+                        startActivity(Intent.createChooser(fileIntent, "Send mail"));
+                        imageView6.bringToFront();
+                        textView6.bringToFront();
+                        textView5.bringToFront();
+
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        });
 
 
 
 
+        imageView5.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View arg0) {
 
+
+
+            }
+        });
 
     }
 
-    private int[] getColors() {
 
-        // have as many colors as stack-values per entry
-        int[] colors = new int[3];
+    @Override
+    public void onRequestPermissionsResult(int requestCode,
+                                           String[] permissions, int[] grantResults) {
+        switch (requestCode) {
+            case MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE: {
+                // If request is cancelled, the result arrays are empty.
+                if (grantResults.length > 0
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    // permission was granted, yay! Do the
+                    // contacts-related task you need to do.
 
-        System.arraycopy(ColorTemplate.JOYFUL_COLORS, 0, colors, 0, 3);
-
-
-        return colors;
+                    //generate data
+                    StringBuilder data = new StringBuilder();
+                    data.append("Number,deviceID,deviceModel,deviceRes,userID,age,gender,handedness,userPerf,session,sessionDate,sessionPerf,trialNum,trialStartTime,trialAnswer,trialCond,trialResp,trialRespTime,trialEndTime");
+                    for (int i = 1; i <= 40; i++) {
+                        data.append("\n" + i + "," + _ID + "," + _MANUFACTURER + " " + _MODEL + "," + width + " x " + height + "," + "79004" + "," + "23" + "," + "-1" + "," + "1" + "," + "0.92" + "," + "1" + "," + currentDate + "," + "0.95" + "," + "1" + "," + "1" + "," + "1" + "," + "0" + "," + "1" + "," + "1.5" + "," + "2");
+                    }
+                    try {
+                        //saving the file into device
+                        FileOutputStream out = openFileOutput("data.csv", Context.MODE_PRIVATE);
+                        out.write((data.toString()).getBytes());
+                        out.close();
+                        //exporting
+                        Context context = getApplicationContext();
+                        File filelocation = new File(getFilesDir(), "data.csv");
+                        Uri path = FileProvider.getUriForFile(context, "com.android.jungledjumble.fileprovider", filelocation);
+                        Intent fileIntent = new Intent(Intent.ACTION_SEND);
+                        fileIntent.setType("text/csv");
+                        fileIntent.putExtra(Intent.EXTRA_SUBJECT, "Data");
+                        fileIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+                        fileIntent.putExtra(Intent.EXTRA_STREAM, path);
+                        startActivity(Intent.createChooser(fileIntent, "Send mail"));
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                } else {
+                    // permission denied, boo! Disable the
+                    // functionality that depends on this permission.
+                }
+                return;
+            }
+            // other 'case' lines to check for other
+            // permissions this app might request.
+        }
     }
+
+
 
 }
