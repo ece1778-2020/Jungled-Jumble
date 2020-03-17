@@ -107,6 +107,7 @@ public class HomeActivity extends AppCompatActivity {
         }catch (Exception e){
             userResults = new UserResults (0,0,0,"","","","");
         }
+//        Log.d("test",String.valueOf (choices));
         username= intent.getStringExtra ("username");
         if (username == null){username="";}
 
