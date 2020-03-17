@@ -31,6 +31,7 @@ import com.android.jungledjumble.Utils.UserAdaptor;
 import com.android.jungledjumble.Utils.Utils;
 import com.android.jungledjumble.Models.Sizes;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -50,7 +51,7 @@ public class HomeActivity extends AppCompatActivity {
     private long tEnd;
     private long tDelta;
     private double elapsedSeconds;
-    double[] sizes_large,sizes_small;
+    int[] sizes_large,sizes_small;
 
     TextView textView_whichtree;
     TextView textView_countdown;
@@ -81,12 +82,13 @@ public class HomeActivity extends AppCompatActivity {
 
 //        sizes = new Sizes();
 //        double [][] mat = sizes.getMat ();
-        final ArrayList<Integer> indices = intent.getIntegerArrayListExtra("indices");
-
-        Pair pair = utils.GetOrangeSizes (indices);
-        sizes_large = pair.getLargeSizes ();
-        sizes_small = pair.getSmallSizes ();
-        Log.d(TAG,sizes_large.toString ()+' '+sizes_small.toString ());
+//        final ArrayList<Integer> indices = intent.getIntegerArrayListExtra("indices");
+//
+//        Pair pair = utils.GetOrangeSizes (indices);
+//        sizes_large = pair.getLargeSizes ();
+//        sizes_small = pair.getSmallSizes ();
+//        Log.d(TAG,sizes_large.toString ()+' '+sizes_small.toString ());
+        final ArrayList<Integer> range = intent.getIntegerArrayListExtra ("range");
 
         //************************
         // Level: the current level of the game
@@ -192,10 +194,12 @@ public class HomeActivity extends AppCompatActivity {
 
         }
 
+        int[] array = utils.genOrangeSizes (range.get(0),range.get(1),100,160,8);
+        Log.d(TAG,Arrays.toString (array));
+        sizes_small = Arrays.copyOfRange (array,0,12);
+        sizes_large = Arrays.copyOfRange (array,12,24);
         // Update the results
         userResults.updateLevel ();
-
-
 
         // Display the oranges
         orangeViewLeft = findViewById (R.id.oranges);
@@ -211,6 +215,7 @@ public class HomeActivity extends AppCompatActivity {
         // Random selection is a value of either 0 or 1 that represents which side will be larger
         Random r = new Random ();
         int randomSelection = r.nextInt(2);
+
         
         if (randomSelection == 0){
             orangeViewLeft.setAdapter (new OrangeAdaptor (HomeActivity.this,sizes_small,level));
@@ -221,25 +226,9 @@ public class HomeActivity extends AppCompatActivity {
         }
         larger_side = 1 - randomSelection;
 
-
-//
-//
-//        Integer[] mSizesListRight = utils.getOrangeSizes (1,3);
-//        orangeViewRight.setAdapter (new OrangeAdaptor (HomeActivity.this,mSizesListRight,level));
-
-
         //Timer starts
         tStart = System.currentTimeMillis();
 
-
-        // Determine which choice is correct
-//        int sumLeft = utils.getSum (mSizesListLeft);
-//        int sumRight = utils.getSum (mSizesListRight);
-//        if (sumLeft<sumRight){
-//            larger_side = 1;
-//        }else{
-//            larger_side = 0;
-//        }
         left.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
 
@@ -265,7 +254,7 @@ public class HomeActivity extends AppCompatActivity {
                     intent.putExtra ("correct_choices",userResults.getCorrect_choices ());
                     intent.putExtra ("points",String.valueOf (userResults.getPoints ()));
                     intent.putExtra ("username",username);
-                    intent.putIntegerArrayListExtra ("indices",(ArrayList<Integer>) indices);
+                    intent.putIntegerArrayListExtra ("range",(ArrayList<Integer>) range);
                     startActivity(intent);
                 }else{
                     Intent intent = new Intent(HomeActivity.this,ReturnActivity.class);
@@ -274,7 +263,15 @@ public class HomeActivity extends AppCompatActivity {
                     intent.putExtra ("choices",userResults.getChoices ());
                     intent.putExtra ("correct_choices",userResults.getCorrect_choices ());
                     intent.putExtra ("username",username);
-                    intent.putIntegerArrayListExtra ("indices",(ArrayList<Integer>) indices);
+
+                    if (range.get(0)+3>range.get (1)){
+                        intent.putExtra ("finished",1);
+                    }else{
+                        range.set(0,range.get (0)+1);
+                        range.set(1,range.get (1)-1);
+                        intent.putExtra ("finished",0);
+                    }
+                    intent.putIntegerArrayListExtra ("range",(ArrayList<Integer>) range);
                     startActivity(intent);
                 }
             }
@@ -305,7 +302,7 @@ public class HomeActivity extends AppCompatActivity {
                     intent.putExtra ("correct_choices",userResults.getCorrect_choices ());
                     intent.putExtra ("points",String.valueOf (userResults.getPoints ()));
                     intent.putExtra ("username",username);
-                    intent.putIntegerArrayListExtra ("indices",(ArrayList<Integer>) indices);
+                    intent.putIntegerArrayListExtra ("range",(ArrayList<Integer>) range);
                     startActivity(intent);
                 }else{
                     Intent intent = new Intent(HomeActivity.this,ReturnActivity.class);
@@ -314,7 +311,14 @@ public class HomeActivity extends AppCompatActivity {
                     intent.putExtra ("choices",userResults.getChoices ());
                     intent.putExtra ("correct_choices",userResults.getCorrect_choices ());
                     intent.putExtra ("username",username);
-                    intent.putIntegerArrayListExtra ("indices",(ArrayList<Integer>) indices);
+                    if (range.get(0)+3>range.get (1)){
+                        intent.putExtra ("finished",1);
+                    }else{
+                        range.set(0,range.get (0)+1);
+                        range.set(1,range.get (1)-1);
+                        intent.putExtra ("finished",0);
+                    }
+                    intent.putIntegerArrayListExtra ("range",(ArrayList<Integer>) range);
                     startActivity(intent);
                 }
             }
