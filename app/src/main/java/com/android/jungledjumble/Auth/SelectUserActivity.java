@@ -12,6 +12,9 @@ import android.widget.ImageView;
 import com.android.jungledjumble.Main.HomeActivity;
 import com.android.jungledjumble.R;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class SelectUserActivity extends AppCompatActivity {
     ImageView guest, existing_user;
     @Override
@@ -27,7 +30,14 @@ public class SelectUserActivity extends AppCompatActivity {
             public void onClick(View view){
 
                 click_sound.start();
-                startActivity(new Intent (SelectUserActivity.this, HomeActivity.class));
+                Intent intent = new Intent(SelectUserActivity.this, HomeActivity.class);
+
+                List<Integer> range = new ArrayList<Integer> ();
+                range.add(115);
+                range.add(130);
+                intent.putIntegerArrayListExtra ("range",(ArrayList<Integer>) range);
+
+                startActivity(intent);
             }
         });
 

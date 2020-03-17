@@ -84,20 +84,36 @@ public class ReturnActivity extends AppCompatActivity {
             }
 
         }else{
-            Toast.makeText (this, "You lose the game...", Toast.LENGTH_SHORT).show ();
+//            Toast.makeText (this, "You lose the game...", Toast.LENGTH_SHORT).show ();
         }
 
         firebaseUtils.updateResults (username, choices,correct_choices);
 
 
         fruitsCollected.setText (String.valueOf(points)+" fruits collected");
-        correctChoiceRate.setText (String.valueOf((int) (Math.random()*100))+"% "+"correct choice");
 
+//        correctChoiceRate.setText (String.valueOf((int) (Math.random()*100))+"% "+"correct choice");
+
+        int n = choices.length ();
+        int count = 0;
+        for (int i=0;i<n;i++){
+            if (choices.charAt (i) == correct_choices.charAt (i)){
+                count ++;
+            }
+        }
+        double accRate = 1d * count * 100 / n;
+        correctChoiceRate.setText (String.valueOf((int) accRate)+"% "+"correct choice");
 
         replay.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
                 Intent intent = new Intent (ReturnActivity.this, HomeActivity.class);
                 intent.putExtra ("username",username);
+                List<Integer> range = new ArrayList<Integer> ();
+                range.add(115);
+                range.add(130);
+                intent.putIntegerArrayListExtra ("range",(ArrayList<Integer>) range);
+
+
                 List<Integer> indices = new ArrayList<Integer> ();
 
                 for (int i=0;i<10;i++){

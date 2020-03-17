@@ -8,6 +8,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
+import com.android.jungledjumble.Auth.SelectUserActivity;
 import com.android.jungledjumble.Main.HomeActivity;
 import com.android.jungledjumble.Models.User;
 
@@ -27,7 +28,9 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.StorageTask;
 import com.google.firebase.storage.UploadTask;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.io.File;
 
@@ -81,6 +84,12 @@ public class FirebaseUtils {
                         uploadNewUserData (new User(username,age,gender,ts,downloadUri,"",""));
                         Intent intent = new Intent(mActivity, HomeActivity.class);
                         intent.putExtra ("username",username);
+
+                        List<Integer> range = new ArrayList<Integer> ();
+                        range.add(115);
+                        range.add(130);
+                        intent.putIntegerArrayListExtra ("range",(ArrayList<Integer>) range);
+
                         mActivity.startActivity(intent);
                     } else {
                         // Handle failures
