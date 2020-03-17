@@ -13,6 +13,7 @@ import android.widget.ImageView;
 import com.android.jungledjumble.R;
 import com.android.jungledjumble.Setting.ProgressActivity;
 import com.android.jungledjumble.Setting.SettingsAcitivity;
+import com.android.jungledjumble.Utils.Utils;
 import com.google.firebase.auth.FirebaseUser;
 
 public class StartActivity extends AppCompatActivity {
@@ -34,7 +35,8 @@ public class StartActivity extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
-
+        Utils utils = new Utils(this);
+        utils.hideSystemUI ();
         play = findViewById(R.id.play_button);
         settings = findViewById(R.id.settings_button);
         data = findViewById(R.id.data_button);

@@ -35,5 +35,13 @@
         app:layout_constraintTop_toTopOf="parent"
         android:src="@drawable/user" />
 
-
+    <ImageView
+        android:id="@+id/back"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="300dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:src="@drawable/temp_button" />
 </androidx.constraintlayout.widget.ConstraintLayout>

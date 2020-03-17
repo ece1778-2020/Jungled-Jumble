@@ -11,12 +11,14 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Gallery;
+import android.widget.ImageView;
 
 import com.android.jungledjumble.Main.HomeActivity;
 import com.android.jungledjumble.Main.ReturnActivity;
 import com.android.jungledjumble.R;
 import com.android.jungledjumble.Models.User;
 import com.android.jungledjumble.Utils.UserAdaptor;
+import com.android.jungledjumble.Utils.Utils;
 import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -38,6 +40,7 @@ public class UserListActivity extends AppCompatActivity implements UserAdaptor.O
     FirebaseFirestore db;
     DocumentReference docRef;
     private Button new_user;
+    ImageView back;
 
     final static String TAG = "UserListActivity";
 
@@ -47,8 +50,10 @@ public class UserListActivity extends AppCompatActivity implements UserAdaptor.O
         setContentView (R.layout.activity_user_list);
         db = FirebaseFirestore.getInstance ();
         new_user = findViewById (R.id.new_user);
+        back = findViewById (R.id.back);
 
-
+        Utils utils = new Utils(this);
+        utils.hideSystemUI ();
         //Retrieve the profile
         final RecyclerView recycleView = findViewById (R.id.user_list);
         recycleView.setLayoutManager (
@@ -93,6 +98,11 @@ public class UserListActivity extends AppCompatActivity implements UserAdaptor.O
             public void onClick(View view){
                 Intent intent = new Intent (UserListActivity.this, RegisterActivity.class);
                 startActivity(intent);
+            }
+        });
+        back.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View view){
+                startActivity(new Intent (UserListActivity.this, StartActivity.class));
             }
         });
     }

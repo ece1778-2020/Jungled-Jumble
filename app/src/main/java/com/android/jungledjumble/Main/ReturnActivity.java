@@ -17,6 +17,7 @@ import com.android.jungledjumble.Auth.StartActivity;
 import com.android.jungledjumble.Models.UserResults;
 import com.android.jungledjumble.R;
 import com.android.jungledjumble.Utils.FirebaseUtils;
+import com.android.jungledjumble.Utils.Utils;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -29,6 +30,7 @@ public class ReturnActivity extends AppCompatActivity {
     UserResults userResults;
     String username, choices,correct_choices;
     private FirebaseUtils firebaseUtils;
+    private Utils utils;
     //Button button_charts;
     MediaPlayer background_sound;
 
@@ -43,6 +45,7 @@ public class ReturnActivity extends AppCompatActivity {
         fruitsCollected = findViewById (R.id.fruits_collected);
         correctChoiceRate = findViewById (R.id.correct_choice);
         firebaseUtils = new FirebaseUtils (ReturnActivity.this);
+        utils = new Utils (ReturnActivity.this);
         // button_charts = findViewById(R.id.button_charts);
 
         // final MediaPlayer background_sound = MediaPlayer.create(this, R.raw.mixed_demo);
@@ -56,7 +59,7 @@ public class ReturnActivity extends AppCompatActivity {
         //
         background_sound.start();
 
-        
+        utils.hideSystemUI ();
         Intent intent = getIntent ();
         points = Integer.parseInt (intent.getStringExtra ("correct_choice_rate"));
         Log.d("test",String.valueOf (points));
@@ -69,18 +72,18 @@ public class ReturnActivity extends AppCompatActivity {
         final ArrayList<Integer> range = intent.getIntegerArrayListExtra ("range");
 
 
-        int n = choices.length ();
-        int count = 0;
-        for (int i=0;i<n;i++){
-            if (choices.charAt (i) == correct_choices.charAt (i)){
-                count ++;
-            }
-        }
-        double accRate = 1d * count * 100 / n;
+//        int n = choices.length ();
+//        int count = 0;
+//        for (int i=0;i<n;i++){
+//            if (choices.charAt (i) == correct_choices.charAt (i)){
+//                count ++;
+//            }
+//        }
+//        double accRate = 1d * count * 100 / n;
 
         int updateSize = 5;
-        if ((int) accRate> 59){
-            if (range.get(0)+2*updateSize+1>range.get (1)){
+        if ((int) points> 59){
+            if (range.get(0)+2*updateSize>range.get (1)){
                 Toast.makeText (this, "You finised the game!", Toast.LENGTH_SHORT).show ();
             }else{
                 Toast.makeText (this, "Next Level!", Toast.LENGTH_SHORT).show ();
@@ -99,9 +102,9 @@ public class ReturnActivity extends AppCompatActivity {
 
         firebaseUtils.updateResults (username, choices,correct_choices);
         
-        fruitsCollected.setText (String.valueOf(points)+" fruits collected");
+        fruitsCollected.setText (utils.AccToFruits (points)+" fruits collected");
 
-        correctChoiceRate.setText (String.valueOf((int) accRate)+"% "+"correct choice");
+        correctChoiceRate.setText (String.valueOf((int) points)+"% "+"correct choice");
 
         replay.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
@@ -121,8 +124,6 @@ public class ReturnActivity extends AppCompatActivity {
                 startActivity(new Intent (ReturnActivity.this, StartActivity.class));
             }
         });
-
-
 
     }
 }
