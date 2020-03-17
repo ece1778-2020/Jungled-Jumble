@@ -66,10 +66,19 @@ public class ReturnActivity extends AppCompatActivity {
         correct_choices = intent.getStringExtra ("correct_choices");
         userResults = new UserResults (level,points,rewards,choices,correct_choices,"","");
 
+        int n = choices.length ();
+        int count = 0;
+        for (int i=0;i<n;i++){
+            if (choices.charAt (i) == correct_choices.charAt (i)){
+                count ++;
+            }
+        }
+        double accRate = 1d * count * 100 / n;
+
         final ArrayList<Integer> range = intent.getIntegerArrayListExtra ("range");
 
 
-        if (points > 59){
+        if ((int) accRate > 59){
             if (range.get(0)+3>range.get (1)){
                 Toast.makeText (this, "You finised the game!", Toast.LENGTH_SHORT).show ();
             }else{
@@ -84,14 +93,14 @@ public class ReturnActivity extends AppCompatActivity {
             }
 
         }else{
-            Toast.makeText (this, "You lose the game...", Toast.LENGTH_SHORT).show ();
+//            Toast.makeText (this, "You lose the game...", Toast.LENGTH_SHORT).show ();
         }
 
         firebaseUtils.updateResults (username, choices,correct_choices);
 
 
         fruitsCollected.setText (String.valueOf(points)+" fruits collected");
-        correctChoiceRate.setText (String.valueOf((int) (Math.random()*100))+"% "+"correct choice");
+        correctChoiceRate.setText (String.valueOf((int) accRate )+"% "+"correct choice");
 
 
         replay.setOnClickListener(new View.OnClickListener(){
