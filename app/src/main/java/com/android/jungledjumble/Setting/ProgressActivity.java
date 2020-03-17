@@ -117,12 +117,12 @@ public class ProgressActivity extends AppCompatActivity {
                     chart1.animateXY(200, 300); // animate horizontal and vertical 3000 milliseconds
                 }
                 else if (i ==1) {
-                    //  your method 2
+                    //your method 2
                     chart2.invalidate(); // refresh
                     chart2.animateXY(200, 300); // animate horizontal and vertical 3000 milliseconds
                 }
                 else if (i ==2) {
-                    // your method 3
+                    //your method 3
                     chart3.invalidate(); // refresh
                     chart3.animateXY(200, 300); // animate horizontal and vertical 3000 milliseconds
                 }
