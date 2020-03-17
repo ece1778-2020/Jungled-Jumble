@@ -99,9 +99,9 @@ public class ReturnActivity extends AppCompatActivity {
 
         firebaseUtils.updateResults (username, choices,correct_choices);
         
-        fruitsCollected.setText (String.valueOf(points)+" fruits collected");
+        fruitsCollected.setText (String.valueOf(points)+ " Points collected!");
 
-        correctChoiceRate.setText (String.valueOf((int) accRate)+"% "+"correct choice");
+        correctChoiceRate.setText (String.valueOf((int) accRate)+"% "+" Correct choices!");
 
         replay.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){

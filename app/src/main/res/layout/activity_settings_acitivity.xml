@@ -83,11 +83,11 @@
         app:layout_constraintVertical_bias="0.114" />
 
     <ImageView
+        android:id="@+id/settings_background"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/settings_background"
         android:scaleType="centerCrop"
-        android:src="@drawable/settings_background"/>
+        android:src="@drawable/settings_background" />
 
     <ImageView
         android:id="@+id/settings_cancel_button"
@@ -98,7 +98,7 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
         android:scaleType="centerInside"
-        android:src="@drawable/cancel_button"
+        android:src="@drawable/settings_cancel_button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.921"
@@ -176,62 +176,36 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.526" />
 
-    <ImageView
-        android:id="@+id/credits_button"
-        android:layout_width="200dp"
-        android:layout_height="70dp"
-        android:scaleType="fitCenter"
-        android:src="@drawable/forresearchers_button"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.74"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.87" />
-
-    <ImageView
-        android:id="@+id/how_to_play_button"
-        android:layout_width="200dp"
-        android:layout_height="70dp"
-        android:scaleType="fitCenter"
-        android:src="@drawable/forresearchers_button"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.27"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.87" />
-
     <TextView
         android:id="@+id/how_to_play_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="1dp"
-        android:fontFamily="@font/skranji"
+        android:fontFamily="@font/montserrat_bold"
         android:text="HOW TO PLAY"
         android:textColor="#000000"
         android:textSize="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.296"
+        app:layout_constraintHorizontal_bias="0.15"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.825" />
+        app:layout_constraintVertical_bias="0.85" />
 
     <TextView
         android:id="@+id/credits_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="1dp"
-        android:fontFamily="@font/skranji"
+        android:fontFamily="@font/montserrat_bold"
         android:text="CREDITS"
         android:textColor="#000000"
         android:textSize="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.6855"
+        app:layout_constraintHorizontal_bias="0.85"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.825" />
+        app:layout_constraintVertical_bias="0.85" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
