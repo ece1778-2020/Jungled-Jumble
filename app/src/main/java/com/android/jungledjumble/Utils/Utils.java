@@ -25,6 +25,8 @@ public class Utils {
         return r.nextInt((max - min) + 1) + min;
     }
 
+
+
     public Pair GetOrangeSizes(final ArrayList<Integer> indices){
         Sizes sizes = new Sizes ();
         double [][] mat = sizes.getMat ();
@@ -60,6 +62,61 @@ public class Utils {
         return pair;
     }
 
+
+    public List<Integer> n_random(int targetSum, int num, int min, int max){
+        Random r = new Random();
+        List<Integer> load = new ArrayList<>();
+
+        //random numbers
+        int sum = 0;
+        for (int i=0;i<num;i++){
+            int next = r.nextInt (max-min+1);
+            load.add(next);
+            sum += next;
+        }
+
+        //scale to the desired target sum
+        double scale = 1d * (targetSum-min*num) / sum;
+        sum = 0;
+        for (int i = 0; i < num; i++) {
+            load.set(i, (int) (load.get(i) * scale + min));
+            sum += load.get(i);
+        }
+
+        //take rounding issues into account
+        while(sum++ < targetSum) {
+            int i = r.nextInt(num);
+            load.set(i, load.get(i) + 1);
+        }
+        return load;
+    }
+
+    public int[] genOrangeSizes(int meanS, int meanL, int min, int max, int num){
+
+        List<Integer> sizeS = n_random (meanS*num,num,min,max);
+        List<Integer> sizeL = n_random (meanL*num,num,min,max);
+
+        int[] array = new int[24];
+
+        int i = 0,j= 0;
+        while (i<12){
+            if (!(i == 0 || i==3 || i==8 ||i ==11)){
+                array[i] = sizeS.get (j);
+                j ++;
+            }
+            i ++;
+        }
+        j =0;
+        while (i<24){
+            if (!(i == 12 || i==15 || i==20 ||i ==23)){
+                array[i] = sizeL.get (j);
+                j ++;
+            }
+            i ++;
+        }
+
+        return array;
+    }
 
     public Integer[] getOrangeSizes_old2(int min, int max){
         int total = 12;

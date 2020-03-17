@@ -26,14 +26,14 @@ import java.util.List;
 
 public class OrangeAdaptor extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private Context mContext;
-    private double[] mSizesList;
+    private int[] mSizesList;
     private int level;
     private View view;
 
     private final static String TAG = "OrangeAdaptor";
 
 
-    public OrangeAdaptor(Context mContext, double[] mSizesList, int level){
+    public OrangeAdaptor(Context mContext, int[] mSizesList, int level){
         this.mContext = mContext;
         this.mSizesList = mSizesList;
         this.level = level;
@@ -43,21 +43,6 @@ public class OrangeAdaptor extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         view = LayoutInflater.from (mContext).inflate (R.layout.orange_large_item, parent, false);
-
-//        RelativeLayout container = (RelativeLayout) view.findViewById (R.id.large_orange_whole);
-//        container.setLayoutParams (new ViewGroup.LayoutParams (
-//                ViewGroup.LayoutParams.WRAP_CONTENT,
-//                ViewGroup.LayoutParams.WRAP_CONTENT
-//        ));
-//        ImageView field = new ImageView (this.mContext);
-//
-//        LinearLayout.LayoutParams lay = new LinearLayout.LayoutParams ((int) 150, (int) 150);
-//        lay.gravity = Gravity.CENTER_HORIZONTAL;
-//        int id = 1;
-//        field.setId (id);
-//        field.setLayoutParams (lay);
-//        container.addView (field);
-
 
         return new OrangeAdaptor.LargeOrangeViewHolder (view);
     }
@@ -80,7 +65,7 @@ public class OrangeAdaptor extends RecyclerView.Adapter<RecyclerView.ViewHolder>
             view = itemView;
 
         }
-        void setOrange(double size,Context context){
+        void setOrange(Integer size,Context context){
 
             RelativeLayout container = (RelativeLayout) view.findViewById (R.id.large_orange_whole);
             container.setLayoutParams (new ViewGroup.LayoutParams (
@@ -88,9 +73,9 @@ public class OrangeAdaptor extends RecyclerView.Adapter<RecyclerView.ViewHolder>
                     ViewGroup.LayoutParams.WRAP_CONTENT
             ));
             ImageView field = new ImageView (context);
-            double size_d = size*60;
-            Log.d("test",String.valueOf ((int)size_d));
-            LinearLayout.LayoutParams lay = new LinearLayout.LayoutParams ((int) size_d, (int) size_d);
+//            double size_d = size*60;
+//            Log.d("test",String.valueOf ((int)size_d));
+            LinearLayout.LayoutParams lay = new LinearLayout.LayoutParams ((int) size, (int) size);
             lay.gravity = Gravity.CENTER_HORIZONTAL;
             int id = 1;
             field.setId (id);

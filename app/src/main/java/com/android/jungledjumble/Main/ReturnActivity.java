@@ -5,10 +5,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.jungledjumble.Auth.StartActivity;
 import com.android.jungledjumble.Models.UserResults;
@@ -28,7 +30,6 @@ public class ReturnActivity extends AppCompatActivity {
     private FirebaseUtils firebaseUtils;
     //Button button_charts;
     MediaPlayer background_sound;
-
 
     final static String TAG = "ReturnActivity";
     @Override
@@ -56,13 +57,35 @@ public class ReturnActivity extends AppCompatActivity {
 
 
 
-        final Intent intent = getIntent ();
+        Intent intent = getIntent ();
         points = Integer.parseInt (intent.getStringExtra ("correct_choice_rate"));
+        Log.d("test",String.valueOf (points));
         rewards = Integer.parseInt (intent.getStringExtra ("rewards"));
         username = intent.getStringExtra ("username");
         choices = intent.getStringExtra ("choices");
         correct_choices = intent.getStringExtra ("correct_choices");
         userResults = new UserResults (level,points,rewards,choices,correct_choices,"","");
+
+        final ArrayList<Integer> range = intent.getIntegerArrayListExtra ("range");
+
+
+        if (points > 59){
+            if (range.get(0)+3>range.get (1)){
+                Toast.makeText (this, "You finised the game!", Toast.LENGTH_SHORT).show ();
+            }else{
+                Toast.makeText (this, "Next Level!", Toast.LENGTH_SHORT).show ();
+                range.set(0,range.get (0)+1);
+                range.set(1,range.get (1)-1);
+                intent = new Intent (ReturnActivity.this, HomeActivity.class);
+                intent.putExtra ("username",username);
+                List<Integer> indices = new ArrayList<Integer> ();
+                intent.putIntegerArrayListExtra ("range", range);
+                startActivity(intent);
+            }
+
+        }else{
+            Toast.makeText (this, "You lose the game...", Toast.LENGTH_SHORT).show ();
+        }
 
         firebaseUtils.updateResults (username, choices,correct_choices);
 

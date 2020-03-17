@@ -102,15 +102,18 @@ public class UserListActivity extends AppCompatActivity implements UserAdaptor.O
         Intent intent = new Intent(UserListActivity.this, HomeActivity.class);
         intent.putExtra ("username",user.getUsername ());
 
-        List<Integer> indices = new ArrayList<Integer>();
+//        List<Integer> indices = new ArrayList<Integer>();
 
-        for (int i=0;i<10;i++){
-            for (int j=0;j<4;j++){
-                indices.add(i);
-            }
-        }
-        Collections.shuffle (indices);
-        intent.putIntegerArrayListExtra ("indices",(ArrayList<Integer>) indices);
+//        for (int i=0;i<10;i++){
+//            for (int j=0;j<4;j++){
+//                indices.add(i);
+//            }
+//        }
+//        Collections.shuffle (indices);
+        List<Integer> range = new ArrayList<Integer>();
+        range.add(115);
+        range.add(130);
+        intent.putIntegerArrayListExtra ("range",(ArrayList<Integer>) range);
 
 
 

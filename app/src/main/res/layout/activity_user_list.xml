@@ -6,21 +6,26 @@
     android:layout_height="match_parent"
     tools:context=".Auth.UserListActivity">
 
+    <Button
+        android:id="@+id/new_user"
+        android:layout_width="260dp"
+        android:layout_height="wrap_content"
+
+        android:layout_marginTop="0dp"
+        android:layout_marginStart="60dp"
+        android:background="@drawable/button_background"
+        android:text="  +New User"
+        android:textColor="@color/colorBlack"
+        android:textSize="40sp"/>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/user_list"
         android:layout_width="match_parent"
-        android:layout_height="375dp" />
+        android:layout_height="375dp"
+        android:layout_marginTop="10dp"
+        android:layout_below="@id/new_user"/>
 
-    <Button
-        android:id="@+id/new_user"
-        android:layout_width="120dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/user_list"
-        android:layout_marginTop="-40dp"
-        android:background="@drawable/button_background"
-        android:text="New User"
-        android:textColor="@color/colorBlack"
-        android:textStyle="bold" />
+
 
 
 </RelativeLayout>
