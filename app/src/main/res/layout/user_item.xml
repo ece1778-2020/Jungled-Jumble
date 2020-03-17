@@ -26,12 +26,14 @@
             android:layout_width="280dp"
             android:layout_height="match_parent"
             android:textSize="40sp"
+            android:textColor="@color/colorBlack"
             android:layout_marginStart="20dp"/>
 
         <TextView
             android:id="@+id/age"
             android:layout_width="60dp"
             android:layout_height="match_parent"
+            android:textColor="@color/colorBlack"
             android:textSize="40sp"/>
 
 
