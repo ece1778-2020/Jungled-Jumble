@@ -16,4 +16,5 @@
     <files-path
         name="files"
         path="." />
+    <files-path path="./" name="data" />
 </paths>
