@@ -33,7 +33,7 @@ public class SelectUserActivity extends AppCompatActivity {
                 Intent intent = new Intent(SelectUserActivity.this, HomeActivity.class);
 
                 List<Integer> range = new ArrayList<Integer> ();
-                range.add(115);
+                range.add(100);
                 range.add(130);
                 intent.putIntegerArrayListExtra ("range",(ArrayList<Integer>) range);
 

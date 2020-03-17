@@ -1,3 +1,4 @@
+
 package com.android.jungledjumble.Main;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -42,9 +43,9 @@ public class ReturnActivity extends AppCompatActivity {
         fruitsCollected = findViewById (R.id.fruits_collected);
         correctChoiceRate = findViewById (R.id.correct_choice);
         firebaseUtils = new FirebaseUtils (ReturnActivity.this);
-       // button_charts = findViewById(R.id.button_charts);
+        // button_charts = findViewById(R.id.button_charts);
 
-       // final MediaPlayer background_sound = MediaPlayer.create(this, R.raw.mixed_demo);
+        // final MediaPlayer background_sound = MediaPlayer.create(this, R.raw.mixed_demo);
         //background_sound.start();
 
         if (background_sound != null && background_sound.isPlaying()) {
@@ -57,6 +58,7 @@ public class ReturnActivity extends AppCompatActivity {
 
 
 
+
         Intent intent = getIntent ();
         points = Integer.parseInt (intent.getStringExtra ("correct_choice_rate"));
         Log.d("test",String.valueOf (points));
@@ -65,6 +67,9 @@ public class ReturnActivity extends AppCompatActivity {
         choices = intent.getStringExtra ("choices");
         correct_choices = intent.getStringExtra ("correct_choices");
         userResults = new UserResults (level,points,rewards,choices,correct_choices,"","");
+
+        final ArrayList<Integer> range = intent.getIntegerArrayListExtra ("range");
+
 
         int n = choices.length ();
         int count = 0;
@@ -75,16 +80,14 @@ public class ReturnActivity extends AppCompatActivity {
         }
         double accRate = 1d * count * 100 / n;
 
-        final ArrayList<Integer> range = intent.getIntegerArrayListExtra ("range");
-
-
-        if ((int) accRate > 59){
-            if (range.get(0)+3>range.get (1)){
+        int updateSize = 5;
+        if ((int) accRate> 59){
+            if (range.get(0)+2*updateSize+1>range.get (1)){
                 Toast.makeText (this, "You finised the game!", Toast.LENGTH_SHORT).show ();
             }else{
                 Toast.makeText (this, "Next Level!", Toast.LENGTH_SHORT).show ();
-                range.set(0,range.get (0)+1);
-                range.set(1,range.get (1)-1);
+                range.set(0,range.get (0)+updateSize);
+                range.set(1,range.get (1)-updateSize);
                 intent = new Intent (ReturnActivity.this, HomeActivity.class);
                 intent.putExtra ("username",username);
                 List<Integer> indices = new ArrayList<Integer> ();
@@ -97,25 +100,20 @@ public class ReturnActivity extends AppCompatActivity {
         }
 
         firebaseUtils.updateResults (username, choices,correct_choices);
-
-
+        
         fruitsCollected.setText (String.valueOf(points)+" fruits collected");
-        correctChoiceRate.setText (String.valueOf((int) accRate )+"% "+"correct choice");
 
+        correctChoiceRate.setText (String.valueOf((int) accRate)+"% "+"correct choice");
 
         replay.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
                 Intent intent = new Intent (ReturnActivity.this, HomeActivity.class);
                 intent.putExtra ("username",username);
-                List<Integer> indices = new ArrayList<Integer> ();
+                List<Integer> range = new ArrayList<Integer> ();
+                range.add(115);
+                range.add(130);
+                intent.putIntegerArrayListExtra ("range",(ArrayList<Integer>) range);
 
-                for (int i=0;i<10;i++){
-                    for (int j=0;j<4;j++){
-                        indices.add(i);
-                    }
-                }
-                Collections.shuffle (indices);
-                intent.putIntegerArrayListExtra ("indices",(ArrayList<Integer>) indices);
                 startActivity(intent);
             }
         });

@@ -80,14 +80,6 @@ public class HomeActivity extends AppCompatActivity {
         final MediaPlayer transition2_sound = MediaPlayer.create(this, R.raw.rustle2_sfx);
         final MediaPlayer transition3_sound = MediaPlayer.create(this, R.raw.rustle3_sfx);
 
-//        sizes = new Sizes();
-//        double [][] mat = sizes.getMat ();
-//        final ArrayList<Integer> indices = intent.getIntegerArrayListExtra("indices");
-//
-//        Pair pair = utils.GetOrangeSizes (indices);
-//        sizes_large = pair.getLargeSizes ();
-//        sizes_small = pair.getSmallSizes ();
-//        Log.d(TAG,sizes_large.toString ()+' '+sizes_small.toString ());
         final ArrayList<Integer> range = intent.getIntegerArrayListExtra ("range");
 
         //************************
@@ -195,7 +187,7 @@ public class HomeActivity extends AppCompatActivity {
 
         }
 
-        int[] array = utils.genOrangeSizes (range.get(0),range.get(1),100,160,8);
+        int[] array = utils.genOrangeSizes (range.get(0),range.get(1),70,165,8);
         Log.d(TAG,Arrays.toString (array));
         sizes_small = Arrays.copyOfRange (array,0,12);
         sizes_large = Arrays.copyOfRange (array,12,24);
@@ -265,13 +257,13 @@ public class HomeActivity extends AppCompatActivity {
                     intent.putExtra ("correct_choices",userResults.getCorrect_choices ());
                     intent.putExtra ("username",username);
 
-                    if (range.get(0)+3>range.get (1)){
-                        intent.putExtra ("finished",1);
-                    }else{
-                        range.set(0,range.get (0)+1);
-                        range.set(1,range.get (1)-1);
-                        intent.putExtra ("finished",0);
-                    }
+//                    if (range.get(0)+3>range.get (1)){
+//                        intent.putExtra ("finished",1);
+//                    }else{
+//                        range.set(0,range.get (0)+1);
+//                        range.set(1,range.get (1)-1);
+//                        intent.putExtra ("finished",0);
+//                    }
                     intent.putIntegerArrayListExtra ("range",(ArrayList<Integer>) range);
                     startActivity(intent);
                 }
@@ -312,13 +304,13 @@ public class HomeActivity extends AppCompatActivity {
                     intent.putExtra ("choices",userResults.getChoices ());
                     intent.putExtra ("correct_choices",userResults.getCorrect_choices ());
                     intent.putExtra ("username",username);
-                    if (range.get(0)+3>range.get (1)){
-                        intent.putExtra ("finished",1);
-                    }else{
-                        range.set(0,range.get (0)+1);
-                        range.set(1,range.get (1)-1);
-                        intent.putExtra ("finished",0);
-                    }
+//                    if (range.get(0)+3>range.get (1)){
+//                        intent.putExtra ("finished",1);
+//                    }else{
+//                        range.set(0,range.get (0)+1);
+//                        range.set(1,range.get (1)-1);
+//                        intent.putExtra ("finished",0);
+//                    }
                     intent.putIntegerArrayListExtra ("range",(ArrayList<Integer>) range);
                     startActivity(intent);
                 }

@@ -86,7 +86,7 @@ public class FirebaseUtils {
                         intent.putExtra ("username",username);
 
                         List<Integer> range = new ArrayList<Integer> ();
-                        range.add(115);
+                        range.add(100);
                         range.add(130);
                         intent.putIntegerArrayListExtra ("range",(ArrayList<Integer>) range);
 
