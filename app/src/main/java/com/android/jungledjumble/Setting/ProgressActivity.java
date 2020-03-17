@@ -334,8 +334,9 @@ public class ProgressActivity extends AppCompatActivity {
         cancel_button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View arg0) {
                 background_sound.pause();
+                background_sound.pause();
                 startActivity(new Intent (ProgressActivity.this, StartActivity.class));
-
+//Comment 1
             }
         });
 
