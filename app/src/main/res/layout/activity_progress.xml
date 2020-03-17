@@ -8,21 +8,21 @@
     tools:context=".Setting.ProgressActivity">
 
     <ImageView
-        android:id="@+id/imageView4"
+        android:id="@+id/green_background"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scaleType="center"
         android:src="@drawable/green_background" />
 
     <ImageView
-        android:id="@+id/imageView3"
+        android:id="@+id/brown_background"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scaleType="fitCenter"
         android:src="@drawable/brown_background" />
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/title_background"
         android:layout_width="250dp"
         android:layout_height="80dp"
         android:scaleType="fitCenter"
@@ -34,7 +34,7 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <ImageView
-        android:id="@+id/imageView7"
+        android:id="@+id/forresearchers2_button"
         android:layout_width="200dp"
         android:layout_height="70dp"
         android:scaleType="fitCenter"
@@ -47,7 +47,7 @@
         app:layout_constraintVertical_bias="0.88" />
 
     <ImageView
-        android:id="@+id/imageView6"
+        android:id="@+id/forresearchers_button"
         android:layout_width="200dp"
         android:layout_height="70dp"
         android:scaleType="fitCenter"
@@ -60,7 +60,7 @@
         app:layout_constraintVertical_bias="0.88" />
 
     <ImageView
-        android:id="@+id/imageView5"
+        android:id="@+id/cancel_button"
         android:layout_width="76dp"
         android:layout_height="76dp"
         android:layout_marginTop="5dp"
@@ -75,7 +75,7 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/leaf_background"
         android:layout_width="match_parent"
         android:layout_height="180dp"
         android:scaleType="centerCrop"
@@ -87,7 +87,7 @@
         app:layout_constraintVertical_bias="1.0" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/data_title"
         android:layout_width="139dp"
         android:layout_height="69dp"
         android:fontFamily="@font/skranji"
@@ -102,7 +102,7 @@
         app:layout_constraintVertical_bias="0.02" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/average_title"
         android:layout_width="wrap_content"
         android:layout_height="93dp"
         android:fontFamily="@font/skranji"
@@ -118,7 +118,7 @@
         app:layout_constraintVertical_bias="0.42000002" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/totalscore_title"
         android:layout_width="wrap_content"
         android:layout_height="93dp"
         android:fontFamily="@font/skranji"
@@ -134,7 +134,7 @@
         app:layout_constraintVertical_bias="0.52" />
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/time_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/skranji"
@@ -148,22 +148,22 @@
         app:layout_constraintVertical_bias="0.88" />
 
     <TextView
-        android:id="@+id/textView5"
+        android:id="@+id/for_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/skranji"
         android:text="FOR"
         android:textColor="#000000"
         android:textSize="10dp"
-        app:layout_constraintBottom_toBottomOf="@+id/textView6"
-        app:layout_constraintEnd_toStartOf="@+id/textView6"
+        app:layout_constraintBottom_toBottomOf="@+id/researchers_title"
+        app:layout_constraintEnd_toStartOf="@+id/researchers_title"
         app:layout_constraintHorizontal_bias="0.99"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0" />
 
     <TextView
-        android:id="@+id/textView6"
+        android:id="@+id/researchers_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/skranji"
@@ -188,7 +188,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.25"
         app:layout_constraintStart_toEndOf="@+id/tabHost"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2"
+        app:layout_constraintTop_toBottomOf="@+id/data_title"
         app:layout_constraintVertical_bias="0.0" />
 
     <TabHost
@@ -202,7 +202,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.14"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2"
+        app:layout_constraintTop_toBottomOf="@+id/data_title"
         app:layout_constraintVertical_bias="0.0">
 
         <LinearLayout

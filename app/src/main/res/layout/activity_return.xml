@@ -1,64 +1,203 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/relativeLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     tools:context=".Main.ReturnActivity">
 
     <ImageView
-        android:id="@+id/all_done"
+        android:id="@+id/green_background"
         android:layout_width="match_parent"
-        android:layout_height="170dp"
-        android:layout_marginStart="0dp"
-        android:layout_marginTop="50dp"
-        android:src="@drawable/all_done" />
+        android:layout_height="match_parent"
+        android:scaleType="center"
+        android:src="@drawable/green_background" />
 
-    <LinearLayout
-        android:layout_width="wrap_content"
+    <ImageView
+        android:id="@+id/brown_background"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="fitCenter"
+        android:src="@drawable/brown_background" />
+
+    <ImageView
+        android:id="@+id/cancel_button"
+        android:layout_width="76dp"
+        android:layout_height="76dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="15dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/cancel_button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <ImageView
+        android:id="@+id/nicejob_background"
+        android:layout_width="481dp"
+        android:layout_height="416dp"
+        android:scaleType="fitStart"
+        android:src="@drawable/nicejob_background"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.046"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <ImageView
+        android:id="@+id/leaf_background"
+        android:layout_width="match_parent"
+        android:layout_height="180dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/leaf_background"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <ImageView
+        android:id="@+id/replay"
+        android:layout_width="70dp"
         android:layout_height="70dp"
-        android:orientation="horizontal">
+        android:scaleType="centerCrop"
+        android:src="@drawable/replay_button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.181"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.88" />
 
-        <TextView
-            android:id="@+id/fruits_collected"
-            android:layout_width="400dp"
-            android:layout_height="70dp"
-            android:layout_marginStart="50dp"
-            android:layout_marginTop="0dp"
-            android:textSize="43sp"
-            android:text="0 fruits collected"
-            android:textStyle="bold"
-            android:textColor="@color/colorBlack"/>
-        <ImageView
-            android:id="@+id/replay"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:src="@drawable/replay" />
-
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="wrap_content"
+    <ImageView
+        android:id="@+id/menu"
+        android:layout_width="70dp"
         android:layout_height="70dp"
-        android:orientation="horizontal">
+        android:scaleType="centerCrop"
+        android:src="@drawable/home_button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.499"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.88" />
 
-        <TextView
-            android:id="@+id/correct_choice"
-            android:layout_width="400dp"
-            android:layout_height="70dp"
-            android:layout_marginStart="50dp"
-            android:layout_marginTop="0dp"
-            android:textSize="43sp"
-            android:text="0% correct choice"
-            android:textStyle="bold"
-            android:textColor="@color/colorBlack"/>
+    <ImageView
+        android:id="@+id/plots_button"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/plots_button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.349"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.88" />
 
-        <ImageView
-            android:id="@+id/menu"
-            android:layout_width="215dp"
-            android:layout_height="match_parent"
-            android:src="@drawable/menu"
-            android:layout_marginStart="0dp"/>
-    </LinearLayout>
+    <TextView
+        android:id="@+id/correct_choice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/skranji"
+        android:rotation="-10"
+        android:text="17%"
+        android:textAlignment="center"
+        android:textColor="#50C878"
+        android:textSize="66sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.81"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.8" />
 
-</LinearLayout>
+    <TextView
+        android:id="@+id/fruits_collected"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/skranji"
+        android:rotation="-10"
+        android:text="17"
+        android:textAlignment="center"
+        android:textColor="#FDA50F"
+        android:textSize="66sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.8"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.165" />
+
+    <TextView
+        android:id="@+id/fruits_collected_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="1dp"
+        android:fontFamily="@font/skranji"
+        android:text="FRUITS\nCOLLECTED!"
+        android:textColor="#000000"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.89"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.404" />
+
+    <TextView
+        android:id="@+id/correct_choice_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="1dp"
+        android:fontFamily="@font/skranji"
+        android:text="CORRECT!"
+        android:textColor="#000000"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.88"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.86" />
+
+    <TextView
+        android:id="@+id/nice_text"
+        android:layout_width="145dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/skranji"
+        android:rotation="-20"
+        android:text="NICE"
+        android:textAlignment="center"
+        android:textColor="#000000"
+        android:textSize="66sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.21"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.07999998" />
+
+    <TextView
+        android:id="@+id/job_text"
+        android:layout_width="204dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/skranji"
+        android:rotation="20"
+        android:text="JOB"
+        android:textAlignment="center"
+        android:textColor="#000000"
+        android:textSize="66sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.49"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.07999998" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

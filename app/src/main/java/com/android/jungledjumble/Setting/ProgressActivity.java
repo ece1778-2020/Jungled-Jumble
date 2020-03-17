@@ -5,6 +5,7 @@ import android.Manifest;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
+import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -13,6 +14,8 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
 
+import com.android.jungledjumble.Auth.StartActivity;
+import com.android.jungledjumble.Main.ReturnActivity;
 import com.android.jungledjumble.R;
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.LineChart;
@@ -47,13 +50,13 @@ public class ProgressActivity extends AppCompatActivity {
     LineChart chart2;
     LineChart chart3;
     BarChart chart4;
-    ImageView imageView6;
-    ImageView imageView5;
-    ImageView imageView7;
+    ImageView forresearchers_button;
+    ImageView cancel_button;
+    ImageView forresearchers2_button;
 
-    TextView textView4;
-    TextView textView5;
-    TextView textView6;
+
+    TextView researchers_title;
+    TextView for_title;
 
     int total_val1=0;
     int total_val2=0;
@@ -82,11 +85,18 @@ public class ProgressActivity extends AppCompatActivity {
     String currentDate = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(new Date());
     String currentTime = new SimpleDateFormat("HH:mm:ss", Locale.getDefault()).format(new Date());
     static final int MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE=0;
-
+    MediaPlayer background_sound;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_progress);
+
+
+        background_sound = MediaPlayer.create(this, R.raw.mixed_demo);
+        if (!background_sound.isPlaying()) {
+            background_sound.start();
+        }
+
 
         final TabHost mTabHost = (TabHost)findViewById(R.id.tabHost);
         mTabHost.setup();
@@ -132,18 +142,18 @@ public class ProgressActivity extends AppCompatActivity {
         final Intent intent = getIntent ();
         username = intent.getStringExtra ("username");
 
-        imageView6 = findViewById(R.id.imageView6);
-        imageView5 = findViewById(R.id.imageView5);
-        imageView7 = findViewById(R.id.imageView7);
+        forresearchers_button = findViewById(R.id.forresearchers_button);
+        cancel_button = findViewById(R.id.cancel_button);
+        forresearchers2_button = findViewById(R.id.forresearchers2_button);
 
         chart1 = findViewById(R.id.chart1);
         chart2 = findViewById(R.id.chart2);
         chart3 = findViewById(R.id.chart3);
         chart4 = findViewById(R.id.chart4);
 
-        textView4 = findViewById(R.id.textView4);
-        textView5 = findViewById(R.id.textView5);
-        textView6 = findViewById(R.id.textView6);
+
+        researchers_title = findViewById(R.id.researchers_title);
+        for_title = findViewById(R.id.for_title);
 
         chart1.getDescription().setEnabled(false);
         chart2.getDescription().setEnabled(false);
@@ -247,12 +257,12 @@ public class ProgressActivity extends AppCompatActivity {
         chart4.animateXY(200, 300); // animate horizontal and vertical 3000 milliseconds
 
 
-        imageView6.setOnClickListener(new View.OnClickListener() {
+        forresearchers_button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View arg0) {
 
-                imageView7.bringToFront();
-                textView6.bringToFront();
-                textView5.bringToFront();
+                forresearchers2_button.bringToFront();
+                researchers_title.bringToFront();
+                for_title.bringToFront();
                 DisplayMetrics displayMetrics = new DisplayMetrics();
                 getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
                 width = displayMetrics.widthPixels;
@@ -307,9 +317,9 @@ public class ProgressActivity extends AppCompatActivity {
                         fileIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
                         fileIntent.putExtra(Intent.EXTRA_STREAM, path);
                         startActivity(Intent.createChooser(fileIntent, "Send mail"));
-                        imageView6.bringToFront();
-                        textView6.bringToFront();
-                        textView5.bringToFront();
+                        forresearchers_button.bringToFront();
+                        researchers_title.bringToFront();
+                        for_title.bringToFront();
 
                     } catch (Exception e) {
                         e.printStackTrace();
@@ -321,13 +331,17 @@ public class ProgressActivity extends AppCompatActivity {
 
 
 
-        imageView5.setOnClickListener(new View.OnClickListener() {
+        cancel_button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View arg0) {
-
-
+                background_sound.pause();
+                startActivity(new Intent (ProgressActivity.this, StartActivity.class));
 
             }
         });
+
+
+
+
 
     }
 

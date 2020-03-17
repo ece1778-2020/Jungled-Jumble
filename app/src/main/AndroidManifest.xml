@@ -52,10 +52,6 @@
         <activity
             android:name=".Main.HomeActivity"
             android:screenOrientation="landscape" />
-
-        <activity
-            android:name=".Main.UserResults_Charts"
-            android:screenOrientation="landscape" />
         <activity
             android:name=".Auth.StartActivity"
             android:screenOrientation="landscape">
