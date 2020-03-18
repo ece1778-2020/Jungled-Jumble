@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scaleType="fitXY"
-        android:src="@drawable/whosplaying_background" />
+        android:src="@drawable/user_select_background" />
     <ImageView
         android:id="@+id/existing_user"
         android:layout_width="180dp"

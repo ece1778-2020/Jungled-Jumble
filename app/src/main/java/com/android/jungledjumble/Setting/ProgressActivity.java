@@ -17,6 +17,7 @@ import androidx.core.content.FileProvider;
 import com.android.jungledjumble.Auth.StartActivity;
 import com.android.jungledjumble.Main.ReturnActivity;
 import com.android.jungledjumble.R;
+import com.android.jungledjumble.Utils.Utils;
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.LegendEntry;
@@ -91,6 +92,8 @@ public class ProgressActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_progress);
 
+        Utils utils = new Utils(this);
+        utils.hideSystemUI ();
 
         background_sound = MediaPlayer.create(this, R.raw.mixed_demo);
         if (!background_sound.isPlaying()) {

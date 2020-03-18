@@ -43,7 +43,7 @@ import java.util.Random;
 
 public class HomeActivity extends AppCompatActivity {
     private Utils utils;
-    ImageView left,right,quit;
+    ImageView left,right,quit, cancel_button;
     RecyclerView orangeViewLeft, orangeViewRight;
     private int level,points,rewards;
     private String choices, correct_choices;
@@ -72,7 +72,7 @@ public class HomeActivity extends AppCompatActivity {
         left = findViewById (R.id.left);
         right = findViewById (R.id.right);
         quit = findViewById (R.id.quit);
-
+        cancel_button= findViewById (R.id.cancel_button);
         Intent intent = getIntent ();
 
         textView_whichtree = findViewById (R.id.textView_whichtree);
@@ -323,7 +323,13 @@ public class HomeActivity extends AppCompatActivity {
                 startActivity(new Intent (HomeActivity.this, StartActivity.class));
             }
         });
+        cancel_button.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View view){
 
+                click_sound.start();
+                startActivity(new Intent (HomeActivity.this, StartActivity.class));
+            }
+        });
 
     }
 

@@ -18,6 +18,7 @@ import com.android.jungledjumble.Models.UserResults;
 import com.android.jungledjumble.R;
 import com.android.jungledjumble.Setting.ProgressActivity;
 import com.android.jungledjumble.Utils.FirebaseUtils;
+import com.android.jungledjumble.Utils.Utils;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -25,7 +26,7 @@ import java.util.List;
 
 public class ReturnActivity extends AppCompatActivity {
     ImageView replay, menu,plots_button, cancel_button;
-    TextView fruitsCollected, correctChoiceRate;
+    TextView fruitsCollected, correctChoiceRate, points_collected;
     int level,points,rewards;
     UserResults userResults;
     String username, choices,correct_choices;
@@ -39,11 +40,16 @@ public class ReturnActivity extends AppCompatActivity {
         super.onCreate (savedInstanceState);
         setContentView (R.layout.activity_return);
 
+
+        Utils utils = new Utils(this);
+        utils.hideSystemUI ();
+
         replay = findViewById (R.id.replay);
         menu = findViewById (R.id.menu);
         plots_button = findViewById (R.id.plots_button);
         cancel_button = findViewById (R.id.cancel_button);
         fruitsCollected = findViewById (R.id.fruits_collected);
+        points_collected= findViewById (R.id.points_collected);
         correctChoiceRate = findViewById (R.id.correct_choice);
         firebaseUtils = new FirebaseUtils (ReturnActivity.this);
         // button_charts = findViewById(R.id.button_charts);
@@ -103,7 +109,7 @@ public class ReturnActivity extends AppCompatActivity {
         firebaseUtils.updateResults (username, choices,correct_choices);
         
         fruitsCollected.setText (String.valueOf(points));
-
+        points_collected.setText (String.valueOf(points));
         correctChoiceRate.setText (String.valueOf((int) accRate)+"%");
 
         replay.setOnClickListener(new View.OnClickListener(){

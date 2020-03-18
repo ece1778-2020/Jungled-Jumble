@@ -25,10 +25,13 @@ public class SelectUserActivity extends AppCompatActivity {
 
         guest = findViewById (R.id.new_user);
         existing_user = findViewById (R.id.existing_user);
-        back = findViewById (R.id.back);
+        //back = findViewById (R.id.back);
         final MediaPlayer click_sound = MediaPlayer.create(this, R.raw.blip_annabel);
+
         Utils utils = new Utils(this);
         utils.hideSystemUI ();
+
+
         guest.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
 
@@ -51,12 +54,12 @@ public class SelectUserActivity extends AppCompatActivity {
                 startActivity(new Intent (SelectUserActivity.this, UserListActivity.class));
             }
         });
-        back.setOnClickListener(new View.OnClickListener(){
+   /*     back.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
 
                 click_sound.start();
                 startActivity(new Intent (SelectUserActivity.this, StartActivity.class));
             }
-        });
+        });*/
     }
 }
