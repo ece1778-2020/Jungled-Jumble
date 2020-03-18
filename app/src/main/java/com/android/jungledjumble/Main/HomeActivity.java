@@ -55,11 +55,11 @@ public class HomeActivity extends AppCompatActivity {
     private long tDelta;
     private double elapsedSeconds;
     int[] sizes_large,sizes_small;
-
+    double accRate;
     TextView textView_whichtree;
     TextView textView_countdown;
     int countdown = 5;
-
+    String next_level_boolean;
     private int larger_side;
     private static int TOTAL_LEVELS = 5;
     private final String TAG = "HomeActivity";
@@ -102,6 +102,7 @@ public class HomeActivity extends AppCompatActivity {
             rewards = Integer.parseInt (intent.getStringExtra ("rewards"));
             choices = intent.getStringExtra ("choices");
             correct_choices = intent.getStringExtra ("correct_choices");
+            next_level_boolean = intent.getStringExtra("next_level_boolean");
             userResults = new UserResults (level,points,rewards,choices,correct_choices,"","");
         }catch (Exception e){
             userResults = new UserResults (0,0,0,"","","","");
@@ -110,7 +111,7 @@ public class HomeActivity extends AppCompatActivity {
         username= intent.getStringExtra ("username");
         if (username == null){username="";}
 
-        if (userResults.getLevel ()==0){
+        if (userResults.getLevel ()==0 && next_level_boolean == "1"){
             Toast.makeText (this, "Welcome "+username+"!", Toast.LENGTH_SHORT).show ();
 
             //background_sound.start();

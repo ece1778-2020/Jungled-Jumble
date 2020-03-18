@@ -33,7 +33,8 @@ public class ReturnActivity extends AppCompatActivity {
     private FirebaseUtils firebaseUtils;
     //Button button_charts;
     MediaPlayer background_sound;
-
+    double accRate;
+    String next_level_boolean;
     final static String TAG = "ReturnActivity";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +44,7 @@ public class ReturnActivity extends AppCompatActivity {
 
         Utils utils = new Utils(this);
         utils.hideSystemUI ();
+
 
         replay = findViewById (R.id.replay);
         menu = findViewById (R.id.menu);
@@ -85,7 +87,7 @@ public class ReturnActivity extends AppCompatActivity {
                 count ++;
             }
         }
-        double accRate = 1d * count * 100 / n;
+         accRate = 1d * count * 100 / n;
 
         int updateSize = 5;
         if ((int) accRate> 59){
@@ -99,6 +101,8 @@ public class ReturnActivity extends AppCompatActivity {
                 intent.putExtra ("username",username);
                 List<Integer> indices = new ArrayList<Integer> ();
                 intent.putIntegerArrayListExtra ("range", range);
+                next_level_boolean = "1";
+                intent.putExtra("next_level_boolean", next_level_boolean);
                 startActivity(intent);
             }
 
@@ -133,7 +137,10 @@ public class ReturnActivity extends AppCompatActivity {
 
         plots_button.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
-                startActivity(new Intent (ReturnActivity.this, ProgressActivity.class));
+                Intent intent = new Intent(ReturnActivity.this,ProgressActivity.class);
+                intent.putExtra("accRate", accRate);
+                startActivity(intent);
+
             }
         });
         cancel_button.setOnClickListener(new View.OnClickListener(){
