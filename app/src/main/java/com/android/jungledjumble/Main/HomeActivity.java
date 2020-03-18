@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.AnimationSet;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -43,7 +44,7 @@ import java.util.Random;
 
 public class HomeActivity extends AppCompatActivity {
     private Utils utils;
-    ImageView left,right,quit, cancel_button;
+    ImageView left,right,quit, cancel_button, pause_button, continue_pause, restart_pause, quit_pause;
     RecyclerView orangeViewLeft, orangeViewRight;
     private int level,points,rewards;
     private String choices, correct_choices;
@@ -63,6 +64,7 @@ public class HomeActivity extends AppCompatActivity {
     private int larger_side;
     private static int TOTAL_LEVELS = 5;
     private final String TAG = "HomeActivity";
+    FrameLayout frameLay3;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate (savedInstanceState);
@@ -73,6 +75,11 @@ public class HomeActivity extends AppCompatActivity {
         right = findViewById (R.id.right);
         quit = findViewById (R.id.quit);
         cancel_button= findViewById (R.id.cancel_button);
+        pause_button= findViewById (R.id.pause_button);
+        continue_pause= findViewById (R.id.continue_pause);
+        restart_pause= findViewById (R.id.restart_pause);
+        quit_pause= findViewById (R.id.quit_pause);
+        frameLay3= findViewById (R.id.frameLay3);
         Intent intent = getIntent ();
 
         textView_whichtree = findViewById (R.id.textView_whichtree);
@@ -328,6 +335,47 @@ public class HomeActivity extends AppCompatActivity {
             public void onClick(View view){
 
                 click_sound.start();
+                startActivity(new Intent (HomeActivity.this, StartActivity.class));
+            }
+        });
+
+        pause_button.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View view){
+                frameLay3.bringToFront();
+                frameLay3.setVisibility(View.VISIBLE);
+
+            }
+        });
+
+        restart_pause.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View view){
+
+                frameLay3.setVisibility(View.GONE);
+                Intent intent = new Intent (HomeActivity.this, HomeActivity.class);
+                intent.putExtra ("username",username);
+                List<Integer> range = new ArrayList<Integer> ();
+                range.add(115);
+                range.add(130);
+
+                intent.putIntegerArrayListExtra ("range",(ArrayList<Integer>) range);
+
+                startActivity(intent);
+            }
+        });
+
+        continue_pause.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View view){
+
+                //frameLay3.bringToFront();
+                frameLay3.setVisibility(View.GONE);
+
+            }
+        });
+
+        quit_pause.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View view){
+
+                //frameLay3.setVisibility(View.GONE);
                 startActivity(new Intent (HomeActivity.this, StartActivity.class));
             }
         });
