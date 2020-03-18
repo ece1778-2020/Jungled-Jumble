@@ -5,6 +5,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
@@ -20,6 +21,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.jungledjumble.Auth.RegisterActivity;
+import com.android.jungledjumble.Auth.SelectUserActivity;
+import com.android.jungledjumble.Auth.StartActivity;
 import com.android.jungledjumble.Models.Pair;
 import com.android.jungledjumble.Models.UserResults;
 import com.android.jungledjumble.R;
@@ -40,7 +43,7 @@ import java.util.Random;
 
 public class HomeActivity extends AppCompatActivity {
     private Utils utils;
-    ImageView left,right;
+    ImageView left,right,quit;
     RecyclerView orangeViewLeft, orangeViewRight;
     private int level,points,rewards;
     private String choices, correct_choices;
@@ -68,6 +71,7 @@ public class HomeActivity extends AppCompatActivity {
         utils = new Utils (HomeActivity.this);
         left = findViewById (R.id.left);
         right = findViewById (R.id.right);
+        quit = findViewById (R.id.quit);
 
         Intent intent = getIntent ();
 
@@ -81,6 +85,9 @@ public class HomeActivity extends AppCompatActivity {
         final MediaPlayer transition3_sound = MediaPlayer.create(this, R.raw.rustle3_sfx);
 
         final ArrayList<Integer> range = intent.getIntegerArrayListExtra ("range");
+
+
+        utils.hideSystemUI ();
 
         //************************
         // Level: the current level of the game
@@ -188,7 +195,7 @@ public class HomeActivity extends AppCompatActivity {
         }
 
         int[] array = utils.genOrangeSizes (range.get(0),range.get(1),70,165,8);
-        Log.d(TAG,Arrays.toString (array));
+        Log.d(TAG,Arrays.toString (array)+String.valueOf (range.get (0))+range.get (1));
         sizes_small = Arrays.copyOfRange (array,0,12);
         sizes_large = Arrays.copyOfRange (array,12,24);
         // Update the results
@@ -257,13 +264,6 @@ public class HomeActivity extends AppCompatActivity {
                     intent.putExtra ("correct_choices",userResults.getCorrect_choices ());
                     intent.putExtra ("username",username);
 
-//                    if (range.get(0)+3>range.get (1)){
-//                        intent.putExtra ("finished",1);
-//                    }else{
-//                        range.set(0,range.get (0)+1);
-//                        range.set(1,range.get (1)-1);
-//                        intent.putExtra ("finished",0);
-//                    }
                     intent.putIntegerArrayListExtra ("range",(ArrayList<Integer>) range);
                     startActivity(intent);
                 }
@@ -316,7 +316,13 @@ public class HomeActivity extends AppCompatActivity {
                 }
             }
         });
+        quit.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View view){
 
+                click_sound.start();
+                startActivity(new Intent (HomeActivity.this, StartActivity.class));
+            }
+        });
 
 
     }

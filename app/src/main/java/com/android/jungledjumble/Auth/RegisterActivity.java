@@ -33,6 +33,7 @@ import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 import com.android.jungledjumble.BuildConfig;
+import com.android.jungledjumble.Utils.Utils;
 import com.bumptech.glide.Glide;
 
 public class RegisterActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
@@ -72,6 +73,8 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
         disorder_spinner = findViewById (R.id.disorder_spinner);
         disability_spinner = findViewById (R.id.disability_spinner);
 
+        Utils utils = new Utils(this);
+        utils.hideSystemUI ();
 
         ArrayAdapter<CharSequence> adaptor = ArrayAdapter.createFromResource (this,R.array.gender,android.R.layout.simple_spinner_item);
         adaptor.setDropDownViewResource (android.R.layout.simple_spinner_dropdown_item);
