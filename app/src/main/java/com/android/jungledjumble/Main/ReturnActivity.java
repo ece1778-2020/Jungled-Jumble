@@ -16,6 +16,7 @@ import android.widget.Toast;
 import com.android.jungledjumble.Auth.StartActivity;
 import com.android.jungledjumble.Models.UserResults;
 import com.android.jungledjumble.R;
+import com.android.jungledjumble.Setting.ProgressActivity;
 import com.android.jungledjumble.Utils.FirebaseUtils;
 
 import java.util.ArrayList;
@@ -23,7 +24,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class ReturnActivity extends AppCompatActivity {
-    ImageView replay, menu;
+    ImageView replay, menu,plots_button, cancel_button;
     TextView fruitsCollected, correctChoiceRate;
     int level,points,rewards;
     UserResults userResults;
@@ -40,6 +41,8 @@ public class ReturnActivity extends AppCompatActivity {
 
         replay = findViewById (R.id.replay);
         menu = findViewById (R.id.menu);
+        plots_button = findViewById (R.id.plots_button);
+        cancel_button = findViewById (R.id.cancel_button);
         fruitsCollected = findViewById (R.id.fruits_collected);
         correctChoiceRate = findViewById (R.id.correct_choice);
         firebaseUtils = new FirebaseUtils (ReturnActivity.this);
@@ -99,9 +102,9 @@ public class ReturnActivity extends AppCompatActivity {
 
         firebaseUtils.updateResults (username, choices,correct_choices);
         
-        fruitsCollected.setText (String.valueOf(points)+ " Points collected!");
+        fruitsCollected.setText (String.valueOf(points));
 
-        correctChoiceRate.setText (String.valueOf((int) accRate)+"% "+" Correct choices!");
+        correctChoiceRate.setText (String.valueOf((int) accRate)+"%");
 
         replay.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
@@ -122,7 +125,15 @@ public class ReturnActivity extends AppCompatActivity {
             }
         });
 
-
-
+        plots_button.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View view){
+                startActivity(new Intent (ReturnActivity.this, ProgressActivity.class));
+            }
+        });
+        cancel_button.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View view){
+                startActivity(new Intent (ReturnActivity.this, StartActivity.class));
+            }
+        });
     }
 }
