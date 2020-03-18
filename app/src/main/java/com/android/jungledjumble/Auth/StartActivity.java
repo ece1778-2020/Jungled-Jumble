@@ -35,9 +35,9 @@ public class StartActivity extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_start);
         Utils utils = new Utils(this);
         utils.hideSystemUI ();
+        setContentView(R.layout.activity_start);
         play = findViewById(R.id.play_button);
         settings = findViewById(R.id.settings_button);
         data = findViewById(R.id.data_button);
@@ -53,8 +53,6 @@ public class StartActivity extends AppCompatActivity {
         play.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-
-
                 click_sound.start();
                 background_sound.pause();
                 startActivity(new Intent(StartActivity.this, SelectUserActivity.class));

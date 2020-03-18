@@ -13,26 +13,26 @@
         android:layout_height="match_parent"
         android:scaleType="fitXY"
         android:src="@drawable/whosplaying_background" />
+
     <ImageView
         android:id="@+id/existing_user"
         android:layout_width="180dp"
         android:layout_height="180dp"
-        android:layout_marginStart="180dp"
-        android:layout_marginTop="196dp"
+        android:layout_marginStart="376dp"
+        android:layout_marginTop="128dp"
         android:src="@drawable/user_button"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
     <ImageView
         android:id="@+id/new_user"
         android:layout_width="180dp"
         android:layout_height="180dp"
-        android:layout_marginStart="84dp"
-        android:layout_marginTop="104dp"
+        android:layout_marginStart="108dp"
+        android:layout_marginTop="128dp"
         android:src="@drawable/guest_button"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -51,12 +51,12 @@ public class SelectUserActivity extends AppCompatActivity {
                 startActivity(new Intent (SelectUserActivity.this, UserListActivity.class));
             }
         });
-        back.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View view){
-
-                click_sound.start();
-                startActivity(new Intent (SelectUserActivity.this, StartActivity.class));
-            }
-        });
+//        back.setOnClickListener(new View.OnClickListener(){
+//            public void onClick(View view){
+//
+//                click_sound.start();
+//                startActivity(new Intent (SelectUserActivity.this, StartActivity.class));
+//            }
+//        });
     }
 }
