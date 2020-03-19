@@ -17,6 +17,7 @@ import androidx.core.content.FileProvider;
 import com.android.jungledjumble.Auth.StartActivity;
 import com.android.jungledjumble.Main.ReturnActivity;
 import com.android.jungledjumble.R;
+import com.android.jungledjumble.Utils.Utils;
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.LegendEntry;
@@ -27,9 +28,13 @@ import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
+import com.github.mikephil.charting.formatter.IValueFormatter;
+import com.github.mikephil.charting.formatter.ValueFormatter;
+import com.github.mikephil.charting.utils.ViewPortHandler;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -43,6 +48,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TabHost;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class ProgressActivity extends AppCompatActivity {
 
@@ -53,7 +59,7 @@ public class ProgressActivity extends AppCompatActivity {
     ImageView forresearchers_button;
     ImageView cancel_button;
     ImageView forresearchers2_button;
-
+TextView time_title;
 
     TextView researchers_title;
     TextView for_title;
@@ -61,9 +67,12 @@ public class ProgressActivity extends AppCompatActivity {
     int total_val1=0;
     int total_val2=0;
     int total_val3=0;
-
+    int hour;
+    int minute;
+    int second;
     String username;
-
+    double accRate;
+    int int_accRate;
     int width ;
     int height ;
     String _OSVERSION = System.getProperty("os.version");
@@ -91,12 +100,37 @@ public class ProgressActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_progress);
 
+        Utils utils = new Utils(this);
+        utils.hideSystemUI ();
+
+        try {
+            Intent intent = getIntent();
+            accRate = intent.getDoubleExtra("accRate", 10.0);
+
+            int_accRate = (int)(accRate/10);
+            //Toast.makeText (this, " " + int_accRate, Toast.LENGTH_SHORT).show ();
+
+
+
+            String[] timef=currentTime.split(":");
+
+             hour=Integer.parseInt(timef[0]);
+             minute=Integer.parseInt(timef[1]);
+             second=Integer.parseInt(timef[2]);
+
+
+
+
+        }catch(Exception e){
+
+
+        }
 
         background_sound = MediaPlayer.create(this, R.raw.mixed_demo);
         if (!background_sound.isPlaying()) {
             background_sound.start();
         }
-
+        time_title=findViewById(R.id.time_title);
 
         final TabHost mTabHost = (TabHost)findViewById(R.id.tabHost);
         mTabHost.setup();
@@ -122,16 +156,20 @@ public class ProgressActivity extends AppCompatActivity {
                 int i = mTabHost.getCurrentTab();
                 if (i == 0) {
 
+                    time_title.setText("TIME (Hours)");
                     // your method 1
                     chart1.invalidate(); // refresh
                     chart1.animateXY(200, 300); // animate horizontal and vertical 3000 milliseconds
                 }
                 else if (i ==1) {
+
+                    time_title.setText("TIME (Days)");
                     //your method 2
                     chart2.invalidate(); // refresh
                     chart2.animateXY(200, 300); // animate horizontal and vertical 3000 milliseconds
                 }
                 else if (i ==2) {
+                    time_title.setText("TIME (Months)");
                     //your method 3
                     chart3.invalidate(); // refresh
                     chart3.animateXY(200, 300); // animate horizontal and vertical 3000 milliseconds
@@ -165,17 +203,53 @@ public class ProgressActivity extends AppCompatActivity {
         ArrayList<Entry> yVals3 = new ArrayList<Entry>();
         List<BarEntry> yVals4 = new ArrayList<>();
 
-        for (int i = 1; i <= 5; i++) {
-            int val1 = (int) (Math.random()*10);
-            int val2 = (int) (Math.random()*100) ;
-            int val3 = (int) (Math.random()*100);
-            total_val1 = total_val1 + val1;
-            total_val2 = total_val2 + val2;
-            total_val3 = total_val3 + val3;
-            yVals1.add(new Entry(i,val1));
+        for (int i = 0; i <= 24; i++) {
+
+            if (i == hour){
+
+                yVals1.add(new Entry(i,int_accRate));
+                //break;
+            }else if (i<hour){
+
+                if (i == 0){yVals1.add(new Entry(i,5));}
+                else if (i == 1){ yVals1.add(new Entry(i,5));}
+                else if (i == 2){yVals1.add(new Entry(i,8));}
+                else if (i == 3){yVals1.add(new Entry(i,3));}
+                else if (i == 4){yVals1.add(new Entry(i,4));}
+                else if (i == 5){yVals1.add(new Entry(i,9));}
+                else if (i == 6){yVals1.add(new Entry(i,10));}
+                else if (i == 7){yVals1.add(new Entry(i,2));}
+                else if (i == 8){yVals1.add(new Entry(i,2));}
+                else if (i == 9){yVals1.add(new Entry(i,4));}
+                else if (i == 10){yVals1.add(new Entry(i,6));}
+                else if (i == 11){yVals1.add(new Entry(i,3));}
+                else if (i == 12){yVals1.add(new Entry(i,3));}
+                else if (i == 13){yVals1.add(new Entry(i,2));}
+                else if (i == 14){yVals1.add(new Entry(i,5));}
+                else if (i == 15){yVals1.add(new Entry(i,7));}
+                else if (i == 16){yVals1.add(new Entry(i,7));}
+                else if (i == 17){yVals1.add(new Entry(i,8));}
+                else if (i == 18){yVals1.add(new Entry(i,4));}
+                else if (i == 19){yVals1.add(new Entry(i,3));}
+                else if (i == 20){yVals1.add(new Entry(i,6));}
+                else if (i == 21){yVals1.add(new Entry(i,10));}
+                else if (i == 22){yVals1.add(new Entry(i,7));}
+                else if (i == 23){yVals1.add(new Entry(i,5));}
+                else if (i == 24){yVals1.add(new Entry(i,2));}
+                //int val1 = (int) (Math.random()*10);
+                //total_val1 = total_val1 + val1;
+                //yVals1.add(new Entry(i,val1));
+                }
+                else if (i>hour){
+
+                yVals1.add(new Entry(i,0));
+
+            }
+
+
         }
 
-        for (int i = 1; i <= 40; i++) {
+        for (int i = 1; i <= 30; i++) {
             int val1 = (int) (Math.random()*10);
             int val2 = (int) (Math.random()*100) ;
             int val3 = (int) (Math.random()*100);
@@ -185,7 +259,7 @@ public class ProgressActivity extends AppCompatActivity {
             yVals2.add(new Entry(i,val1));
         }
 
-        for (int i = 1; i <= 300; i++) {
+        for (int i = 1; i <= 12; i++) {
             int val1 = (int) (Math.random()*10);
             int val2 = (int) (Math.random()*100) ;
             int val3 = (int) (Math.random()*100);
@@ -206,15 +280,22 @@ public class ProgressActivity extends AppCompatActivity {
             yVals4.add(new BarEntry(i,val1));
         }
 
+
+
         LineDataSet dataSet1 = new LineDataSet(yVals1, "Score"); // add entries to dataset
         LineDataSet dataSet2 = new LineDataSet(yVals2, "Score"); // add entries to dataset
         LineDataSet dataSet3 = new LineDataSet(yVals3, "Score"); // add entries to dataset
         BarDataSet dataSet4 = new BarDataSet(yVals4, "Average"); // add entries to dataset
+
+
+
         dataSet4.setColors(Color.rgb(0, 190, 0),Color.rgb(133, 87, 35));
 
         dataSet1.setColor(Color.rgb(0, 190, 0));
         dataSet1.setCircleColor(Color.rgb(0, 190, 0));
         LineData lineData1 = new LineData(dataSet1);
+
+
 
         dataSet2.setColor(Color.rgb(0, 190, 0));
         dataSet2.setCircleColor(Color.rgb(0, 190, 0));
@@ -234,20 +315,36 @@ public class ProgressActivity extends AppCompatActivity {
         legendEntryB.label = "Others";
         legendEntryB.formColor = Color.rgb(133, 87, 35);
 
+
+        lineData1.setValueFormatter(formatter);
+        lineData2.setValueFormatter(formatter);
+        lineData3.setValueFormatter(formatter);
+        BarData.setValueFormatter(formatter);
+
+        chart1.getXAxis().setGranularity(1f);
+        chart2.getXAxis().setGranularity(1f);
+        chart3.getXAxis().setGranularity(1f);
+        chart4.getXAxis().setGranularity(1f);
+
+        chart1.getAxis(YAxis.AxisDependency.RIGHT).setGranularity(1f);
+        chart2.getAxis(YAxis.AxisDependency.RIGHT).setGranularity(1f);
+        chart3.getAxis(YAxis.AxisDependency.RIGHT).setGranularity(1f);
+        chart4.getAxis(YAxis.AxisDependency.RIGHT).setGranularity(1f);
+
         chart4.getLegend().setCustom(Arrays.asList(legendEntryA, legendEntryB));
         chart1.setData(lineData1);
         chart1.invalidate(); // refresh
         chart1.animateXY(200, 300); // animate horizontal and vertical 3000 milliseconds
 
         chart2.setData(lineData2);
-        chart2.setScaleMinima(10f, 1f);
-        chart2.moveViewToAnimated(40, 0, YAxis.AxisDependency.LEFT, 2000);
+        //chart2.setScaleMinima(10f, 1f);
+        //chart2.moveViewToAnimated(40, 0, YAxis.AxisDependency.LEFT, 2000);
         chart2.invalidate(); // refresh
         chart2.animateXY(200, 300); // animate horizontal and vertical 3000 milliseconds
 
         chart3.setData(lineData3);
-        chart3.setScaleMinima(20f, 1f);
-        chart3.moveViewToAnimated(300, 0, YAxis.AxisDependency.LEFT, 2000);
+        //chart3.setScaleMinima(20f, 1f);
+        //chart3.moveViewToAnimated(300, 0, YAxis.AxisDependency.LEFT, 2000);
         chart3.invalidate(); // refresh
         chart3.animateXY(200, 300); // animate horizontal and vertical 3000 milliseconds
 
@@ -346,6 +443,13 @@ public class ProgressActivity extends AppCompatActivity {
 
     }
 
+
+    ValueFormatter formatter = new ValueFormatter() {
+        @Override
+        public String getFormattedValue(float value) {
+            return "" + ((int) value);
+        }
+    };
 
     @Override
     public void onRequestPermissionsResult(int requestCode,

@@ -11,13 +11,14 @@ import android.widget.ImageView;
 
 import com.android.jungledjumble.Main.HomeActivity;
 import com.android.jungledjumble.R;
+import com.android.jungledjumble.Setting.SettingsAcitivity;
 import com.android.jungledjumble.Utils.Utils;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class SelectUserActivity extends AppCompatActivity {
-    ImageView guest, existing_user,back;
+    ImageView guest, existing_user,settings_cancel_button;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate (savedInstanceState);
@@ -25,10 +26,14 @@ public class SelectUserActivity extends AppCompatActivity {
 
         guest = findViewById (R.id.new_user);
         existing_user = findViewById (R.id.existing_user);
-        back = findViewById (R.id.back);
+        settings_cancel_button= findViewById (R.id.settings_cancel_button);
+        //back = findViewById (R.id.back);
         final MediaPlayer click_sound = MediaPlayer.create(this, R.raw.blip_annabel);
+
         Utils utils = new Utils(this);
         utils.hideSystemUI ();
+
+
         guest.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
 
@@ -51,12 +56,13 @@ public class SelectUserActivity extends AppCompatActivity {
                 startActivity(new Intent (SelectUserActivity.this, UserListActivity.class));
             }
         });
-//        back.setOnClickListener(new View.OnClickListener(){
-//            public void onClick(View view){
-//
-//                click_sound.start();
-//                startActivity(new Intent (SelectUserActivity.this, StartActivity.class));
-//            }
-//        });
+
+        settings_cancel_button.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View view){
+                //background_sound.pause();
+                startActivity(new Intent (SelectUserActivity.this, StartActivity.class));
+            }
+        });
+
     }
 }

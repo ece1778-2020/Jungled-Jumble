@@ -6,12 +6,19 @@
     android:layout_height="match_parent"
     tools:context=".Auth.UserListActivity">
 
+
+    <ImageView
+        android:id="@+id/green_background"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="fitXY"
+        android:src="@drawable/user_select_background_plain" />
+
     <Button
         android:id="@+id/new_user"
         android:layout_width="260dp"
         android:layout_height="wrap_content"
-
-        android:layout_marginTop="0dp"
+        android:layout_marginTop="15dp"
         android:layout_marginStart="60dp"
         android:background="@drawable/button_background"
         android:text="  +New User"
@@ -26,14 +33,24 @@
         android:layout_below="@id/new_user"/>
 
     <ImageView
-        android:id="@+id/back"
+        android:id="@+id/back1"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_marginStart="0dp"
         android:layout_marginTop="300dp"
+        android:src="@drawable/temp_button"
+        android:visibility="gone"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:src="@drawable/temp_button" />
+        app:layout_constraintTop_toTopOf="parent" />
 
+
+    <ImageView
+        android:id="@+id/back"
+        android:layout_width="76dp"
+        android:layout_height="76dp"
+        android:layout_marginStart="680dp"
+        android:layout_marginTop="0dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/settings_cancel_button" />
 
 </RelativeLayout>

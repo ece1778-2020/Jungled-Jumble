@@ -109,13 +109,92 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.7" />
+
     <ImageView
         android:id="@+id/quit"
         android:layout_width="70dp"
         android:layout_height="70dp"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="0dp"
+        android:src="@drawable/quit_button_text"
+        android:visibility="invisible"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/cancel_button"
+        android:layout_width="46dp"
+        android:layout_height="46dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="10dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/settings_cancel_button"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:src="@drawable/quit_button_text" />
+        app:layout_constraintVertical_bias="0.0" />
+
+
+    <ImageView
+        android:id="@+id/pause_button"
+        android:layout_width="66dp"
+        android:layout_height="66dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/pause_button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <FrameLayout
+        android:id="@+id/frameLay3"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#FFFFFF"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/paused_background"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="fitXY"
+            android:src="@drawable/paused_background" />
+
+        <ImageView
+            android:id="@+id/continue_pause"
+            android:layout_width="145dp"
+            android:layout_height="145dp"
+            android:layout_marginStart="295dp"
+            android:layout_marginTop="120dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/continue_pause" />
+
+        <ImageView
+            android:id="@+id/restart_pause"
+            android:layout_width="145dp"
+            android:layout_height="145dp"
+            android:layout_marginStart="115dp"
+            android:layout_marginTop="120dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/restart_pause" />
+
+        <ImageView
+            android:id="@+id/quit_pause"
+            android:layout_width="145dp"
+            android:layout_height="145dp"
+            android:layout_marginStart="485dp"
+            android:layout_marginTop="120dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/quit_pause" />
+
+    </FrameLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.android.jungledjumble.Auth.StartActivity;
 import com.android.jungledjumble.R;
+import com.android.jungledjumble.Utils.Utils;
 
 public class SettingsAcitivity extends AppCompatActivity {
 
@@ -24,7 +25,8 @@ public class SettingsAcitivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate (savedInstanceState);
         setContentView (R.layout.activity_settings_acitivity);
-
+        Utils utils = new Utils(this);
+        utils.hideSystemUI ();
         background_sound = MediaPlayer.create(this, R.raw.mixed_demo);
         if (!background_sound.isPlaying()) {
             background_sound.start();
