@@ -19,6 +19,7 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class StartActivity extends AppCompatActivity {
     ImageView play,settings, data;
+    int fruits;
     TextView points;
     FirebaseUser firebaseUser;
     MediaPlayer background_sound;
@@ -45,7 +46,11 @@ public class StartActivity extends AppCompatActivity {
         data = findViewById(R.id.data_button);
         points = findViewById (R.id.number);
 
-        points.setText ("0");
+
+        Intent intent = getIntent ();
+        fruits = intent.getIntExtra ("fruits",0);
+        points.setText (String.valueOf (fruits));
+
 
         final MediaPlayer click_sound = MediaPlayer.create(this, R.raw.blip_annabel);
 

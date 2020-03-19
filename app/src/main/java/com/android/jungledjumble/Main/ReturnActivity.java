@@ -27,7 +27,7 @@ import java.util.List;
 public class ReturnActivity extends AppCompatActivity {
     ImageView replay, menu,plots_button, cancel_button;
     TextView fruitsCollected, correctChoiceRate, points_collected;
-    int level,points,rewards;
+    int level,points,rewards,fruits;
     UserResults userResults;
     String username, choices,correct_choices;
     private FirebaseUtils firebaseUtils;
@@ -77,6 +77,8 @@ public class ReturnActivity extends AppCompatActivity {
         correct_choices = intent.getStringExtra ("correct_choices");
         userResults = new UserResults (level,points,rewards,choices,correct_choices,"","");
 
+        fruits = intent.getIntExtra ("fruits",0);
+
         final ArrayList<Integer> range = intent.getIntegerArrayListExtra ("range");
 
 
@@ -88,6 +90,9 @@ public class ReturnActivity extends AppCompatActivity {
             }
         }
          accRate = 1d * count * 100 / n;
+
+        int cur_fruits = utils.AccToFruits (points);
+        fruits = fruits + cur_fruits;
 
         int updateSize = 5;
         if ((int) accRate> 59){
@@ -101,6 +106,7 @@ public class ReturnActivity extends AppCompatActivity {
                 intent.putExtra ("username",username);
                 List<Integer> indices = new ArrayList<Integer> ();
                 intent.putIntegerArrayListExtra ("range", range);
+                intent.putExtra ("fruits",fruits);
                 next_level_boolean = "1";
                 intent.putExtra("next_level_boolean", next_level_boolean);
                 startActivity(intent);
@@ -111,8 +117,9 @@ public class ReturnActivity extends AppCompatActivity {
         }
 
         firebaseUtils.updateResults (username, choices,correct_choices);
-        
-        fruitsCollected.setText (String.valueOf(points));
+
+
+        fruitsCollected.setText (String.valueOf (cur_fruits));
         points_collected.setText (String.valueOf(points));
         correctChoiceRate.setText (String.valueOf((int) accRate)+"%");
 
@@ -124,14 +131,17 @@ public class ReturnActivity extends AppCompatActivity {
                 range.add(115);
                 range.add(130);
                 intent.putIntegerArrayListExtra ("range",(ArrayList<Integer>) range);
-
+                intent.putExtra ("fruits",fruits);
                 startActivity(intent);
             }
         });
 
         menu.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
-                startActivity(new Intent (ReturnActivity.this, StartActivity.class));
+                Intent intent = new Intent (ReturnActivity.this, StartActivity.class);
+                intent.putExtra ("fruits",fruits);
+                startActivity(intent);
+
             }
         });
 
@@ -145,7 +155,9 @@ public class ReturnActivity extends AppCompatActivity {
         });
         cancel_button.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
-                startActivity(new Intent (ReturnActivity.this, StartActivity.class));
+                Intent intent = new Intent (ReturnActivity.this, StartActivity.class);
+                intent.putExtra ("fruits",fruits);
+                startActivity(intent);
             }
         });
     }

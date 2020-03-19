@@ -46,7 +46,7 @@ public class HomeActivity extends AppCompatActivity {
     private Utils utils;
     ImageView left,right,quit, cancel_button, pause_button, continue_pause, restart_pause, quit_pause;
     RecyclerView orangeViewLeft, orangeViewRight;
-    private int level,points,rewards;
+    private int level,points,rewards,fruits;
     private String choices, correct_choices;
     private UserResults userResults;
     private Sizes sizes;
@@ -56,7 +56,7 @@ public class HomeActivity extends AppCompatActivity {
     private long tDelta;
     private double elapsedSeconds;
     int[] sizes_large,sizes_small;
-    double accRate;
+
     TextView textView_whichtree;
     TextView textView_countdown;
     int countdown = 5;
@@ -114,9 +114,13 @@ public class HomeActivity extends AppCompatActivity {
         }catch (Exception e){
             userResults = new UserResults (0,0,0,"","","","");
         }
-//        Log.d("test",String.valueOf (choices));
+
         username= intent.getStringExtra ("username");
         if (username == null){username="";}
+
+        fruits = intent.getIntExtra ("fruits",0);
+
+
 
         if (userResults.getLevel ()==0 && next_level_boolean == "1"){
             Toast.makeText (this, "Welcome "+username+"!", Toast.LENGTH_SHORT).show ();
@@ -262,8 +266,10 @@ public class HomeActivity extends AppCompatActivity {
                     intent.putExtra ("correct_choices",userResults.getCorrect_choices ());
                     intent.putExtra ("points",String.valueOf (userResults.getPoints ()));
                     intent.putExtra ("username",username);
+                    intent.putExtra ("fruits",fruits);
                     intent.putIntegerArrayListExtra ("range",(ArrayList<Integer>) range);
                     startActivity(intent);
+                    overridePendingTransition(0, 0);
                 }else{
                     Intent intent = new Intent(HomeActivity.this,ReturnActivity.class);
                     intent.putExtra ("rewards",String.valueOf (userResults.getRewards ()));  // MODIFY THIS LINE LATER!!!
@@ -271,7 +277,7 @@ public class HomeActivity extends AppCompatActivity {
                     intent.putExtra ("choices",userResults.getChoices ());
                     intent.putExtra ("correct_choices",userResults.getCorrect_choices ());
                     intent.putExtra ("username",username);
-
+                    intent.putExtra ("fruits",fruits);
                     intent.putIntegerArrayListExtra ("range",(ArrayList<Integer>) range);
                     startActivity(intent);
                 }
@@ -303,8 +309,10 @@ public class HomeActivity extends AppCompatActivity {
                     intent.putExtra ("correct_choices",userResults.getCorrect_choices ());
                     intent.putExtra ("points",String.valueOf (userResults.getPoints ()));
                     intent.putExtra ("username",username);
+                    intent.putExtra ("fruits",fruits);
                     intent.putIntegerArrayListExtra ("range",(ArrayList<Integer>) range);
                     startActivity(intent);
+                    overridePendingTransition(0, 0);
                 }else{
                     Intent intent = new Intent(HomeActivity.this,ReturnActivity.class);
                     intent.putExtra ("rewards",String.valueOf (userResults.getRewards ()));  // MODIFY THIS LINE LATER!!!
@@ -312,13 +320,7 @@ public class HomeActivity extends AppCompatActivity {
                     intent.putExtra ("choices",userResults.getChoices ());
                     intent.putExtra ("correct_choices",userResults.getCorrect_choices ());
                     intent.putExtra ("username",username);
-//                    if (range.get(0)+3>range.get (1)){
-//                        intent.putExtra ("finished",1);
-//                    }else{
-//                        range.set(0,range.get (0)+1);
-//                        range.set(1,range.get (1)-1);
-//                        intent.putExtra ("finished",0);
-//                    }
+                    intent.putExtra ("fruits",fruits);
                     intent.putIntegerArrayListExtra ("range",(ArrayList<Integer>) range);
                     startActivity(intent);
                 }
