@@ -70,7 +70,7 @@
         android:layout_alignParentBottom="true"
         android:layout_marginEnd="25dp"
         android:scaleType="centerInside"
-        android:src="@drawable/settings_cancel_button"
+        android:src="@drawable/cancel_button_setting"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
