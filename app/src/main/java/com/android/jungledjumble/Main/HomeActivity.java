@@ -360,7 +360,6 @@ public class HomeActivity extends AppCompatActivity {
                 range.add(130);
 
                 intent.putIntegerArrayListExtra ("range",(ArrayList<Integer>) range);
-
                 startActivity(intent);
             }
         });

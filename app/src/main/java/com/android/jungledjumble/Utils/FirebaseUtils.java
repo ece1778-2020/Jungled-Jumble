@@ -60,6 +60,9 @@ public class FirebaseUtils {
     }
 
     public void signUp(final String username, final String age, final String gender, final File photoFile) {
+        final List<Integer> range = new ArrayList<Integer> ();
+        range.add(100);
+        range.add(130);
         if (photoFile != null){
             Uri imageUri = Uri.fromFile (photoFile);
             final StorageReference fireReference = mStorageRef.child (userID + "/" + "displayPic.jpg");
@@ -85,9 +88,7 @@ public class FirebaseUtils {
                         Intent intent = new Intent(mActivity, HomeActivity.class);
                         intent.putExtra ("username",username);
 
-                        List<Integer> range = new ArrayList<Integer> ();
-                        range.add(100);
-                        range.add(130);
+
                         intent.putIntegerArrayListExtra ("range",(ArrayList<Integer>) range);
 
                         mActivity.startActivity(intent);
@@ -103,6 +104,7 @@ public class FirebaseUtils {
             uploadNewUserData (new User(username,age,gender,ts,"","",""));
             Intent intent = new Intent(mActivity, HomeActivity.class);
             intent.putExtra ("username",username);
+            intent.putIntegerArrayListExtra ("range",(ArrayList<Integer>) range);
             mActivity.startActivity(intent);
         }
     }

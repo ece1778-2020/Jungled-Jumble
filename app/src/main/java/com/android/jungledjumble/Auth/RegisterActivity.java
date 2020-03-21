@@ -98,27 +98,6 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
 
         disability_spinner.setAdapter (haveAdaptor);
         disability_spinner.setOnItemSelectedListener (this);
-//        List<String> genders = new ArrayList<>();
-//        genders.add(0,"choose Gender");
-//        genders.add("Male");
-//        genders.add("Female");
-//        ArrayAdapter<String> dataAdaptor;
-//        dataAdaptor = new ArrayAdapter(this, android.R.layout.simple_spinner_item);
-//
-//        dataAdaptor.setDropDownViewResource (android.R.layout.simple_spinner_dropdown_item);
-//
-//        gender_spinner.setAdapter (dataAdaptor);
-//
-//        gender_spinner.setOnItemClickListener (new AdapterView.OnItemClickListener () {
-//            @Override
-//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                if (parent.getItemAtPosition(position).equals ("Choose Gender")){
-//
-//                }else{
-//                    gender = parent.getItemAtPosition (position).toString ();
-//                }
-//            }
-//        });
 
         firebaseUtils = new FirebaseUtils (RegisterActivity.this);
 

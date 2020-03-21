@@ -12,7 +12,10 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scaleType="fitXY"
-        android:src="@drawable/user_select_background" />
+        android:src="@drawable/user_select_background"
+        tools:layout_editor_absoluteX="25dp"
+        tools:layout_editor_absoluteY="0dp" />
+
     <ImageView
         android:id="@+id/existing_user"
         android:layout_width="180dp"
@@ -31,6 +34,32 @@
         android:background="@drawable/guest_button"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/user_list"
+        android:layout_width="307dp"
+        android:layout_height="247dp"
+        android:layout_marginEnd="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.673"
+        app:layout_constraintStart_toEndOf="@+id/new_user"
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="@drawable/user_border"
+        app:layout_constraintVertical_bias="0.645" />
+
+
+    <ImageView
+        android:layout_width="85dp"
+        android:layout_height="85dp"
+        android:src="@mipmap/ic_add"
+        android:id="@+id/add_user"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.887"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.818" />
 
     <ImageView
         android:id="@+id/settings_cancel_button"
