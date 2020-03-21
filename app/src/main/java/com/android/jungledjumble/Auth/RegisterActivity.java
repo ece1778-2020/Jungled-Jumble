@@ -44,6 +44,7 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
     TextView txt_login;
     Spinner gender_spinner,hand_spinner,glass_spinner,disorder_spinner,disability_spinner;
 
+
     //
 
     private FirebaseUtils firebaseUtils;
@@ -81,6 +82,7 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
         gender_spinner.setAdapter (adaptor);
         gender_spinner.setOnItemSelectedListener (this);
 
+
         ArrayAdapter<CharSequence> handAdaptor = ArrayAdapter.createFromResource (this,R.array.hand,android.R.layout.simple_spinner_item);
         handAdaptor.setDropDownViewResource (android.R.layout.simple_spinner_dropdown_item);
         hand_spinner.setAdapter (handAdaptor);
@@ -100,6 +102,9 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
         disability_spinner.setOnItemSelectedListener (this);
 
         firebaseUtils = new FirebaseUtils (RegisterActivity.this);
+
+
+
 
         SetProfileImage();
         Register();
@@ -176,12 +181,18 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
                 String str_age = mAge.getText ().toString ();
 //                String str_gender = mGender.getText ().toString ();
                 String str_gender = gender_spinner.getSelectedItem ().toString ();
+
+                String str_hand = hand_spinner.getSelectedItem ().toString ();
+                String str_glass = glass_spinner.getSelectedItem ().toString ();
+                String str_disorder = disorder_spinner.getSelectedItem ().toString ();
+                String str_disability = disability_spinner.getSelectedItem ().toString ();
+
                 if (Integer.parseInt (str_age) < 0) {
                     Toast.makeText (RegisterActivity.this, "Found missing fields!", Toast.LENGTH_SHORT).show ();
                     mAge.setText ("");
                     pd.dismiss ();
                 } else {
-                    firebaseUtils.signUp (str_username,str_age,str_gender,photoFile);
+                    firebaseUtils.signUp (str_username,str_age,str_gender,photoFile,str_hand,str_glass,str_disorder,str_disability);
                     pd.dismiss();
                 }
             }
