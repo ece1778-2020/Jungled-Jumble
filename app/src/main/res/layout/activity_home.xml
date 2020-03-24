@@ -26,7 +26,7 @@
             android:layout_height="210dp"
             app:layout_constraintStart_toStartOf = "parent"
             app:layout_constraintTop_toTopOf = "parent"
-            android:layout_marginStart="30dp"
+            android:layout_marginStart="40dp"
             android:layout_marginTop="80dp"/>
         <ImageView
             android:layout_width="370dp"
@@ -59,7 +59,7 @@
             android:layout_height="210dp"
             app:layout_constraintStart_toStartOf = "parent"
             app:layout_constraintTop_toTopOf = "parent"
-            android:layout_marginStart="30dp"
+            android:layout_marginStart="50dp"
             android:layout_marginTop="80dp"/>
         <ImageView
             android:layout_width="370dp"

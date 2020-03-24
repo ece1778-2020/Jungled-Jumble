@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.android.jungledjumble.R;
 import com.android.jungledjumble.Setting.ProgressActivity;
@@ -18,6 +19,8 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class StartActivity extends AppCompatActivity {
     ImageView play,settings, data;
+    int fruits;
+    TextView points;
     FirebaseUser firebaseUser;
     MediaPlayer background_sound;
     @Override
@@ -35,13 +38,18 @@ public class StartActivity extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_start);
         Utils utils = new Utils(this);
         utils.hideSystemUI ();
+        setContentView(R.layout.activity_start);
         play = findViewById(R.id.play_button);
         settings = findViewById(R.id.settings_button);
         data = findViewById(R.id.data_button);
+        points = findViewById (R.id.number);
 
+
+        Intent intent = getIntent ();
+        fruits = intent.getIntExtra ("fruits",0);
+        points.setText (String.valueOf (fruits));
 
 
         final MediaPlayer click_sound = MediaPlayer.create(this, R.raw.blip_annabel);
@@ -53,8 +61,6 @@ public class StartActivity extends AppCompatActivity {
         play.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-
-
                 click_sound.start();
                 background_sound.pause();
                 startActivity(new Intent(StartActivity.this, SelectUserActivity.class));

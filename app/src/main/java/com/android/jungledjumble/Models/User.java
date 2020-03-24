@@ -8,8 +8,14 @@ public class User {
     private String timestamp;
     private String choices;
     private String correct_choices;
+    private String hand;
+    private String glass;
+    private String disorder;
+    private String disability;
 
-    public User(String username, String age, String gender, String timestamp, String profile_image, String choices, String correct_choices) {
+
+    public User(String username, String age, String gender, String hand, String glass,String disorder,String disability,
+                String timestamp, String profile_image, String choices, String correct_choices) {
         this.username = username;
         this.age = age;
         this.gender = gender;
@@ -17,6 +23,10 @@ public class User {
         this.timestamp = timestamp;
         this.choices = choices;
         this.correct_choices = correct_choices;
+        this.hand = hand;
+        this.glass = glass;
+        this.disorder = disorder;
+        this.disability = disability;
     }
 
     public User() {
@@ -68,6 +78,46 @@ public class User {
 
     public void setChoices(String choices) {
         this.choices = choices;
+    }
+
+    public String getCorrect_choices() {
+        return correct_choices;
+    }
+
+    public void setCorrect_choices(String correct_choices) {
+        this.correct_choices = correct_choices;
+    }
+
+    public String getHand() {
+        return hand;
+    }
+
+    public void setHand(String hand) {
+        this.hand = hand;
+    }
+
+    public String getGlass() {
+        return glass;
+    }
+
+    public void setGlass(String glass) {
+        this.glass = glass;
+    }
+
+    public String getDisorder() {
+        return disorder;
+    }
+
+    public void setDisorder(String disorder) {
+        this.disorder = disorder;
+    }
+
+    public String getDisability() {
+        return disability;
+    }
+
+    public void setDisability(String disability) {
+        this.disability = disability;
     }
 
     @Override

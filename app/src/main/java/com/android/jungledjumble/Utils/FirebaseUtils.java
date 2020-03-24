@@ -59,7 +59,10 @@ public class FirebaseUtils {
         }
     }
 
-    public void signUp(final String username, final String age, final String gender, final File photoFile) {
+    public void signUp(final String username, final String age, final String gender, final File photoFile,final String hand,final String glass, final String disorder, final String disability) {
+        final List<Integer> range = new ArrayList<Integer> ();
+        range.add(100);
+        range.add(130);
         if (photoFile != null){
             Uri imageUri = Uri.fromFile (photoFile);
             final StorageReference fireReference = mStorageRef.child (userID + "/" + "displayPic.jpg");
@@ -81,13 +84,11 @@ public class FirebaseUtils {
                     if (task.isSuccessful()) {
                         downloadUri = task.getResult().toString ();
                         String ts = getTimestamp ();
-                        uploadNewUserData (new User(username,age,gender,ts,downloadUri,"",""));
+                        uploadNewUserData (new User(username,age,gender,hand,glass,disorder,disability,ts,downloadUri,"",""));
                         Intent intent = new Intent(mActivity, HomeActivity.class);
                         intent.putExtra ("username",username);
 
-                        List<Integer> range = new ArrayList<Integer> ();
-                        range.add(100);
-                        range.add(130);
+
                         intent.putIntegerArrayListExtra ("range",(ArrayList<Integer>) range);
 
                         mActivity.startActivity(intent);
@@ -100,9 +101,10 @@ public class FirebaseUtils {
 
         }else{
             String ts = getTimestamp ();
-            uploadNewUserData (new User(username,age,gender,ts,"","",""));
+            uploadNewUserData (new User(username,age,gender,hand,glass,disorder,disability,ts,"","",""));
             Intent intent = new Intent(mActivity, HomeActivity.class);
             intent.putExtra ("username",username);
+            intent.putIntegerArrayListExtra ("range",(ArrayList<Integer>) range);
             mActivity.startActivity(intent);
         }
     }
