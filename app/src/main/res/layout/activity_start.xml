@@ -90,7 +90,7 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="27dp"
         android:scaleType="fitCenter"
         android:text="0"
         android:textAlignment="center"
