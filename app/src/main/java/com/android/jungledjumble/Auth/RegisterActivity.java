@@ -43,7 +43,7 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
     CircleImageView profile_image;
     TextView txt_login;
     Spinner gender_spinner,hand_spinner,glass_spinner,disorder_spinner,disability_spinner;
-
+    int fruit_type;
 
     //
 
@@ -103,7 +103,8 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
 
         firebaseUtils = new FirebaseUtils (RegisterActivity.this);
 
-
+        Intent intent = getIntent ();
+        fruit_type = intent.getIntExtra ("fruit_type",0);
 
 
         SetProfileImage();
@@ -192,7 +193,7 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
                     mAge.setText ("");
                     pd.dismiss ();
                 } else {
-                    firebaseUtils.signUp (str_username,str_age,str_gender,photoFile,str_hand,str_glass,str_disorder,str_disability);
+                    firebaseUtils.signUp (str_username,str_age,str_gender,photoFile,str_hand,str_glass,str_disorder,str_disability,fruit_type);
                     pd.dismiss();
                 }
             }

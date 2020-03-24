@@ -56,6 +56,7 @@ public class HomeActivity extends AppCompatActivity {
     private long tDelta;
     private double elapsedSeconds;
     int[] sizes_large,sizes_small;
+    int fruitType;
 
     TextView textView_whichtree;
     TextView textView_countdown;
@@ -119,7 +120,8 @@ public class HomeActivity extends AppCompatActivity {
         if (username == null){username="";}
 
         fruits = intent.getIntExtra ("fruits",0);
-
+        fruitType = intent.getIntExtra ("fruit_type",0);
+        Log.d("test",String.valueOf (fruitType));
 
 
         if (userResults.getLevel ()==0 && next_level_boolean == "1"){
@@ -230,11 +232,11 @@ public class HomeActivity extends AppCompatActivity {
 
         
         if (randomSelection == 0){
-            orangeViewLeft.setAdapter (new OrangeAdaptor (HomeActivity.this,sizes_small,level));
-            orangeViewRight.setAdapter (new OrangeAdaptor (HomeActivity.this,sizes_large,level));
+            orangeViewLeft.setAdapter (new OrangeAdaptor (HomeActivity.this,sizes_small,fruitType));
+            orangeViewRight.setAdapter (new OrangeAdaptor (HomeActivity.this,sizes_large,fruitType));
         }else{
-            orangeViewLeft.setAdapter (new OrangeAdaptor (HomeActivity.this,sizes_large,level));
-            orangeViewRight.setAdapter (new OrangeAdaptor (HomeActivity.this,sizes_small,level));
+            orangeViewLeft.setAdapter (new OrangeAdaptor (HomeActivity.this,sizes_large,fruitType));
+            orangeViewRight.setAdapter (new OrangeAdaptor (HomeActivity.this,sizes_small,fruitType));
         }
         larger_side = 1 - randomSelection;
 
@@ -268,6 +270,7 @@ public class HomeActivity extends AppCompatActivity {
                     intent.putExtra ("username",username);
                     intent.putExtra ("fruits",fruits);
                     intent.putIntegerArrayListExtra ("range",(ArrayList<Integer>) range);
+                    intent.putExtra ("fruit_type",fruitType);
                     startActivity(intent);
                     overridePendingTransition(0, 0);
                 }else{
@@ -279,6 +282,7 @@ public class HomeActivity extends AppCompatActivity {
                     intent.putExtra ("username",username);
                     intent.putExtra ("fruits",fruits);
                     intent.putIntegerArrayListExtra ("range",(ArrayList<Integer>) range);
+                    intent.putExtra ("fruit_type",fruitType);
                     startActivity(intent);
                 }
             }
@@ -311,6 +315,7 @@ public class HomeActivity extends AppCompatActivity {
                     intent.putExtra ("username",username);
                     intent.putExtra ("fruits",fruits);
                     intent.putIntegerArrayListExtra ("range",(ArrayList<Integer>) range);
+                    intent.putExtra ("fruit_type",fruitType);
                     startActivity(intent);
                     overridePendingTransition(0, 0);
                 }else{
@@ -322,6 +327,7 @@ public class HomeActivity extends AppCompatActivity {
                     intent.putExtra ("username",username);
                     intent.putExtra ("fruits",fruits);
                     intent.putIntegerArrayListExtra ("range",(ArrayList<Integer>) range);
+                    intent.putExtra ("fruit_type",fruitType);
                     startActivity(intent);
                 }
             }

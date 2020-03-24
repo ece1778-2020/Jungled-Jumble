@@ -27,7 +27,7 @@ import java.util.List;
 public class ReturnActivity extends AppCompatActivity {
     ImageView replay, menu,plots_button, cancel_button;
     TextView fruitsCollected, correctChoiceRate, points_collected;
-    int level,points,rewards,fruits;
+    int level,points,rewards,fruits,fruitType;
     UserResults userResults;
     String username, choices,correct_choices;
     private FirebaseUtils firebaseUtils;
@@ -78,6 +78,7 @@ public class ReturnActivity extends AppCompatActivity {
         userResults = new UserResults (level,points,rewards,choices,correct_choices,"","");
 
         fruits = intent.getIntExtra ("fruits",0);
+        fruitType = intent.getIntExtra ("fruit_type",0);
 
         final ArrayList<Integer> range = intent.getIntegerArrayListExtra ("range");
 
@@ -109,6 +110,7 @@ public class ReturnActivity extends AppCompatActivity {
                 intent.putExtra ("fruits",fruits);
                 next_level_boolean = "1";
                 intent.putExtra("next_level_boolean", next_level_boolean);
+                intent.putExtra ("fruit_type",fruitType);
                 startActivity(intent);
             }
 
@@ -132,6 +134,7 @@ public class ReturnActivity extends AppCompatActivity {
                 range.add(130);
                 intent.putIntegerArrayListExtra ("range",(ArrayList<Integer>) range);
                 intent.putExtra ("fruits",fruits);
+                intent.putExtra ("fruit_type",fruitType);
                 startActivity(intent);
             }
         });

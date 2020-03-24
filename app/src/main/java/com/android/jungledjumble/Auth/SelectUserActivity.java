@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.media.Image;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.Log;
@@ -15,6 +16,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 
 import com.android.jungledjumble.Main.HomeActivity;
+import com.android.jungledjumble.Models.GlobalClass;
 import com.android.jungledjumble.Models.User;
 import com.android.jungledjumble.R;
 import com.android.jungledjumble.Setting.SettingsAcitivity;
@@ -34,7 +36,12 @@ import java.util.Map;
 
 public class SelectUserActivity extends AppCompatActivity implements UserAdaptor.OnClickUserListener{
     ImageView settings_cancel_button, existing_user,add_user;
+    ImageView left_arrow, right_arrow, orange, grape, banana;
     Button guest;
+    Integer fruit_selection;
+    GlobalClass globalClass;
+
+    Map<Integer, ImageView> fruit_map;
 
     FirebaseFirestore db;
     final static String TAG = "SelectUserActivity";
@@ -47,6 +54,40 @@ public class SelectUserActivity extends AppCompatActivity implements UserAdaptor
         existing_user = findViewById (R.id.existing_user);
         add_user = findViewById (R.id.add_user);
         settings_cancel_button= findViewById (R.id.settings_cancel_button);
+        globalClass = new GlobalClass ();
+
+        left_arrow = findViewById (R.id.left_arrow);
+        right_arrow = findViewById (R.id.right_arrow);
+        orange = findViewById (R.id.orange);
+        banana = findViewById (R.id.banana);
+        grape = findViewById (R.id.grape);
+        fruit_map = new HashMap<Integer, ImageView> ();
+        fruit_map.put(0,orange);
+        fruit_map.put(1,banana);
+        fruit_map.put(2,grape);
+        fruit_selection = 0;
+        banana.setVisibility (View.GONE);
+        grape.setVisibility (View.GONE);
+        left_arrow.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View view){
+                fruit_map.get(fruit_selection).setVisibility (View.GONE);
+                if(fruit_selection == 0){
+                    fruit_selection = 3;
+                }
+                fruit_selection --;
+                fruit_map.get(fruit_selection).setVisibility (View.VISIBLE);
+            }
+        });
+
+        right_arrow.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View view){
+                fruit_map.get(fruit_selection).setVisibility (View.GONE);
+                fruit_selection ++;
+                fruit_selection = fruit_selection % 3;
+                fruit_map.get(fruit_selection).setVisibility (View.VISIBLE);
+            }
+        });
+
         //back = findViewById (R.id.back);
         final MediaPlayer click_sound = MediaPlayer.create(this, R.raw.blip_annabel);
 
@@ -103,10 +144,10 @@ public class SelectUserActivity extends AppCompatActivity implements UserAdaptor
                 Intent intent = new Intent(SelectUserActivity.this, HomeActivity.class);
 
                 List<Integer> range = new ArrayList<Integer> ();
-                range.add(100);
-                range.add(130);
+                range.add(globalClass.getMeanLeft ());
+                range.add(globalClass.getMeanRight ());
                 intent.putIntegerArrayListExtra ("range",(ArrayList<Integer>) range);
-
+                intent.putExtra ("fruit_type",(int)fruit_selection);
                 startActivity(intent);
             }
         });
@@ -114,6 +155,7 @@ public class SelectUserActivity extends AppCompatActivity implements UserAdaptor
         add_user.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
                 Intent intent = new Intent (SelectUserActivity.this, RegisterActivity.class);
+                intent.putExtra ("fruit_type",fruit_selection);
                 startActivity(intent);
             }
         });
@@ -141,9 +183,10 @@ public class SelectUserActivity extends AppCompatActivity implements UserAdaptor
         intent.putExtra ("username",user.getUsername ());
 
         List<Integer> range = new ArrayList<Integer>();
-        range.add(115);
-        range.add(130);
+        range.add(globalClass.getMeanLeft ());
+        range.add(globalClass.getMeanRight ());
         intent.putIntegerArrayListExtra ("range",(ArrayList<Integer>) range);
+        intent.putExtra ("fruit_type",fruit_selection);
 
 
 

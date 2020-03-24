@@ -10,8 +10,10 @@ import androidx.annotation.NonNull;
 
 import com.android.jungledjumble.Auth.SelectUserActivity;
 import com.android.jungledjumble.Main.HomeActivity;
+import com.android.jungledjumble.Models.GlobalClass;
 import com.android.jungledjumble.Models.User;
 
+import com.android.jungledjumble.R;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -59,7 +61,8 @@ public class FirebaseUtils {
         }
     }
 
-    public void signUp(final String username, final String age, final String gender, final File photoFile,final String hand,final String glass, final String disorder, final String disability) {
+    public void signUp(final String username, final String age, final String gender, final File photoFile,final String hand,final String glass,
+                       final String disorder, final String disability, final int fruitType) {
         final List<Integer> range = new ArrayList<Integer> ();
         range.add(100);
         range.add(130);
@@ -87,8 +90,10 @@ public class FirebaseUtils {
                         uploadNewUserData (new User(username,age,gender,hand,glass,disorder,disability,ts,downloadUri,"",""));
                         Intent intent = new Intent(mActivity, HomeActivity.class);
                         intent.putExtra ("username",username);
-
-
+                        intent.putExtra ("fruit_type",fruitType);
+                        GlobalClass globalClass = new GlobalClass ();
+                        range.add(globalClass.getMeanRight ());
+                        range.add(globalClass.getMeanRight ());
                         intent.putIntegerArrayListExtra ("range",(ArrayList<Integer>) range);
 
                         mActivity.startActivity(intent);
@@ -105,6 +110,7 @@ public class FirebaseUtils {
             Intent intent = new Intent(mActivity, HomeActivity.class);
             intent.putExtra ("username",username);
             intent.putIntegerArrayListExtra ("range",(ArrayList<Integer>) range);
+            intent.putExtra ("fruit_type",fruitType);
             mActivity.startActivity(intent);
         }
     }

@@ -1,8 +1,6 @@
 package com.android.jungledjumble.Utils;
 
 import android.content.Context;
-import android.content.Intent;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,42 +12,36 @@ import android.widget.RelativeLayout;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.android.jungledjumble.Auth.RegisterActivity;
-import com.android.jungledjumble.Main.HomeActivity;
-import com.android.jungledjumble.Main.ReturnActivity;
-import com.android.jungledjumble.Models.User;
 import com.android.jungledjumble.R;
 import com.bumptech.glide.Glide;
-import com.google.api.Distribution;
-
-import java.util.List;
 
 public class OrangeAdaptor extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private Context mContext;
     private int[] mSizesList;
-    private int level;
+//    private int level;
     private View view;
-
+    private int fruitType;
     private final static String TAG = "OrangeAdaptor";
 
 
-    public OrangeAdaptor(Context mContext, int[] mSizesList, int level){
+    public OrangeAdaptor(Context mContext, int[] mSizesList, int fruitType){
         this.mContext = mContext;
         this.mSizesList = mSizesList;
-        this.level = level;
+//        this.level = level;
+        this.fruitType = fruitType;
     }
 
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        view = LayoutInflater.from (mContext).inflate (R.layout.orange_large_item, parent, false);
+        view = LayoutInflater.from (mContext).inflate (R.layout.fruit_item, parent, false);
 
         return new OrangeAdaptor.LargeOrangeViewHolder (view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-        ((LargeOrangeViewHolder)holder).setOrange (mSizesList[position],this.mContext);
+        ((LargeOrangeViewHolder)holder).setOrange (mSizesList[position],this.mContext,this.fruitType);
     }
 
     @Override
@@ -65,9 +57,9 @@ public class OrangeAdaptor extends RecyclerView.Adapter<RecyclerView.ViewHolder>
             view = itemView;
 
         }
-        void setOrange(Integer size,Context context){
+        void setOrange(Integer size,Context context, int fruitType){
+            RelativeLayout container = (RelativeLayout) view.findViewById (R.id.fruit);
 
-            RelativeLayout container = (RelativeLayout) view.findViewById (R.id.large_orange_whole);
             container.setLayoutParams (new ViewGroup.LayoutParams (
                     ViewGroup.LayoutParams.WRAP_CONTENT,
                     ViewGroup.LayoutParams.WRAP_CONTENT
@@ -84,8 +76,26 @@ public class OrangeAdaptor extends RecyclerView.Adapter<RecyclerView.ViewHolder>
 
 //            int id = 1;
             OrangeView = itemView.findViewById (id);
+            if(fruitType == 0){
+                Glide.with(mContext).load(R.drawable.orange).into(OrangeView);
+            }else if (fruitType == 1){
+                Glide.with(mContext).load(R.drawable.banana).into(OrangeView);
+            }else if (fruitType == 2){
+                Glide.with(mContext).load(R.drawable.grape).into(OrangeView);
+            }else{
+                Glide.with(mContext).load(R.drawable.grape).into(OrangeView);
+            }
 
-            Glide.with(mContext).load(R.drawable.fruit).into(OrangeView);
+//            switch (fruitType){
+//                case 0:
+//                    Glide.with(mContext).load(R.drawable.orange).into(OrangeView);
+//                case 1:
+//                    Glide.with(mContext).load(R.drawable.grape).into(OrangeView);
+//                case 2:
+//                    Glide.with(mContext).load(R.drawable.banana).into(OrangeView);
+//                default:
+//                    Glide.with(mContext).load(R.drawable.grape).into(OrangeView);
+//            }
         }
 
     }
