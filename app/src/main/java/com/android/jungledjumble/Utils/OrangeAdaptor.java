@@ -82,20 +82,16 @@ public class OrangeAdaptor extends RecyclerView.Adapter<RecyclerView.ViewHolder>
                 Glide.with(mContext).load(R.drawable.banana).into(OrangeView);
             }else if (fruitType == 2){
                 Glide.with(mContext).load(R.drawable.grape).into(OrangeView);
+            }else if (fruitType == 3){
+                Glide.with(mContext).load(R.drawable.orange2).into(OrangeView);
+            }else if (fruitType == 4){
+                Glide.with(mContext).load(R.drawable.pear).into(OrangeView);
+            }else if (fruitType == 5){
+                Glide.with(mContext).load(R.drawable.mango).into(OrangeView);
             }else{
                 Glide.with(mContext).load(R.drawable.grape).into(OrangeView);
             }
-
-//            switch (fruitType){
-//                case 0:
-//                    Glide.with(mContext).load(R.drawable.orange).into(OrangeView);
-//                case 1:
-//                    Glide.with(mContext).load(R.drawable.grape).into(OrangeView);
-//                case 2:
-//                    Glide.with(mContext).load(R.drawable.banana).into(OrangeView);
-//                default:
-//                    Glide.with(mContext).load(R.drawable.grape).into(OrangeView);
-//            }
+            
         }
 
     }

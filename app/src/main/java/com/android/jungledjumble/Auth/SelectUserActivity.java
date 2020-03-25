@@ -36,7 +36,7 @@ import java.util.Map;
 
 public class SelectUserActivity extends AppCompatActivity implements UserAdaptor.OnClickUserListener{
     ImageView settings_cancel_button, existing_user,add_user;
-    ImageView left_arrow, right_arrow, orange, grape, banana;
+    ImageView left_arrow, right_arrow, orange, grape, banana, orange2,pear,mango;
     Button guest;
     Integer fruit_selection;
     GlobalClass globalClass;
@@ -61,18 +61,26 @@ public class SelectUserActivity extends AppCompatActivity implements UserAdaptor
         orange = findViewById (R.id.orange);
         banana = findViewById (R.id.banana);
         grape = findViewById (R.id.grape);
+        orange2 = findViewById (R.id.orange2);
+        pear = findViewById (R.id.pear);
+        mango = findViewById (R.id.mango);
         fruit_map = new HashMap<Integer, ImageView> ();
         fruit_map.put(0,orange);
         fruit_map.put(1,banana);
         fruit_map.put(2,grape);
+        fruit_map.put(3,orange2);
+        fruit_map.put(4,pear);
+        fruit_map.put(5,mango);
         fruit_selection = 0;
-        banana.setVisibility (View.GONE);
-        grape.setVisibility (View.GONE);
+        final int num_fruits = 6;
+        for (int i=1;i<num_fruits;i++){
+            fruit_map.get(i).setVisibility (View.GONE);
+        }
         left_arrow.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
                 fruit_map.get(fruit_selection).setVisibility (View.GONE);
                 if(fruit_selection == 0){
-                    fruit_selection = 3;
+                    fruit_selection = num_fruits;
                 }
                 fruit_selection --;
                 fruit_map.get(fruit_selection).setVisibility (View.VISIBLE);
@@ -83,7 +91,7 @@ public class SelectUserActivity extends AppCompatActivity implements UserAdaptor
             public void onClick(View view){
                 fruit_map.get(fruit_selection).setVisibility (View.GONE);
                 fruit_selection ++;
-                fruit_selection = fruit_selection % 3;
+                fruit_selection = fruit_selection % num_fruits;
                 fruit_map.get(fruit_selection).setVisibility (View.VISIBLE);
             }
         });
