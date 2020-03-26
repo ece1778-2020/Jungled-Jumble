@@ -8,6 +8,8 @@ import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -25,7 +27,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class ReturnActivity extends AppCompatActivity {
-    ImageView replay, menu,plots_button, cancel_button;
+    ImageView replay, menu,plots_button, cancel_button,next_level_pic_right, next_level_pic_left;
     TextView fruitsCollected, correctChoiceRate, points_collected;
     int level,points,rewards,fruits,fruitType;
     UserResults userResults;
@@ -34,7 +36,7 @@ public class ReturnActivity extends AppCompatActivity {
     //Button button_charts;
     MediaPlayer background_sound;
     double accRate;
-    String next_level_boolean;
+
     final static String TAG = "ReturnActivity";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +56,8 @@ public class ReturnActivity extends AppCompatActivity {
         points_collected= findViewById (R.id.points_collected);
         correctChoiceRate = findViewById (R.id.correct_choice);
         firebaseUtils = new FirebaseUtils (ReturnActivity.this);
+        next_level_pic_right= findViewById (R.id.next_level_pic_right);
+        next_level_pic_left= findViewById (R.id.next_level_pic_left);
         // button_charts = findViewById(R.id.button_charts);
 
         // final MediaPlayer background_sound = MediaPlayer.create(this, R.raw.mixed_demo);
@@ -98,8 +102,18 @@ public class ReturnActivity extends AppCompatActivity {
         int updateSize = 5;
         if ((int) accRate> 59){
             if (range.get(0)+2*updateSize+1>range.get (1)){
-                Toast.makeText (this, "You finised the game!", Toast.LENGTH_SHORT).show ();
+                //Toast.makeText (this, "You finised the game!", Toast.LENGTH_SHORT).show ();
             }else{
+
+                next_level_pic_left.setVisibility(View.VISIBLE);
+                Animation RotateLeft = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.rotate_left);
+                next_level_pic_left.startAnimation(RotateLeft);
+
+                next_level_pic_right.setVisibility(View.VISIBLE);
+                Animation RotateRight = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.rotate_right);
+                next_level_pic_right.startAnimation(RotateRight);
+
+
                 Toast.makeText (this, "Next Level!", Toast.LENGTH_SHORT).show ();
                 range.set(0,range.get (0)+updateSize);
                 range.set(1,range.get (1)-updateSize);
@@ -108,8 +122,7 @@ public class ReturnActivity extends AppCompatActivity {
                 List<Integer> indices = new ArrayList<Integer> ();
                 intent.putIntegerArrayListExtra ("range", range);
                 intent.putExtra ("fruits",fruits);
-                next_level_boolean = "1";
-                intent.putExtra("next_level_boolean", next_level_boolean);
+                intent.putExtra("next_level_flag", "Yes");
                 intent.putExtra ("fruit_type",fruitType);
                 startActivity(intent);
             }
