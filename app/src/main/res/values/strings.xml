@@ -53,4 +53,8 @@
     <!--    <string name="register">Register</string>-->
     <string name="privacy_polcy_text">This is where the details of privacy policy should locate, I will add some meaningless text for testing ****************************
     *****************************************************************************************</string>
+
+    <string name="title_activity_credits">Credits</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
 </resources>
