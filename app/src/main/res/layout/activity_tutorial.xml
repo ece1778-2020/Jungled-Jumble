@@ -112,7 +112,7 @@
             android:layout_marginStart="655dp"
             android:layout_marginTop="300dp"
             android:scaleType="fitCenter"
-            android:visibility="visible"
+            android:visibility="gone"
             android:src="@drawable/lives_1" />
 
         <ImageView
@@ -142,6 +142,7 @@
             android:layout_marginStart="655dp"
             android:layout_marginTop="5dp"
             android:scaleType="fitCenter"
+            android:visibility="gone"
             android:src="@drawable/points_game" />
 
         <TextView
@@ -151,7 +152,7 @@
             android:layout_marginStart="715dp"
             android:layout_marginTop="30dp"
             android:fontFamily="@font/skranji"
-            android:text="0"
+            android:text="10"
             android:textAlignment="center"
             android:textColor="#80604D"
             android:textSize="20sp" />
@@ -274,7 +275,7 @@
             android:layout_marginStart="655dp"
             android:layout_marginTop="300dp"
             android:scaleType="fitCenter"
-            android:visibility="visible"
+            android:visibility="gone"
             android:src="@drawable/lives_1" />
 
         <ImageView
@@ -304,6 +305,7 @@
             android:layout_marginStart="655dp"
             android:layout_marginTop="5dp"
             android:scaleType="fitCenter"
+            android:visibility="gone"
             android:src="@drawable/points_game" />
 
         <TextView
