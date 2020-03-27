@@ -1,6 +1,316 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Setting.Credits">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <FrameLayout
+        android:id="@+id/frameLay1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#FFFFFF"
+        android:visibility="visible">
+
+        <ImageView
+            android:id="@+id/credits_background1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="fitXY"
+            android:src="@drawable/credits_background" />
+
+        <TextView
+            android:id="@+id/credits_text1"
+            android:layout_width="585dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="95dp"
+            android:layout_marginTop="95dp"
+            android:fontFamily="sans-serif"
+            android:text="Jumbled Jungle is a mobile game made for the graduate-level course Creative Applications of Mobile Devices (ECE1778) at the University of Toronto. The game is adapted from an experiment exploring visual perception in children by Sweeny, Wurnitsch, Gopnik and Whitney (2003).
+            \n\nOur game aims to test our ability to mentally represent the average size of a group of objects and collect data on how this ability develops as we age. The information collected is anonymized and openly available to guide the development of new research hypotheses in the field of ensemble perception.
+            \n\nIf you’re interested in receiving a copy of this data you can download it from          . The code and development materials are available          . Please contact the creators for permission to distribute, or showcase these materials."
+            android:textAlignment="inherit"
+            android:textColor="#000000"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/credits_text1_1"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginStart="565dp"
+            android:layout_marginTop="229dp"
+            android:fontFamily="sans-serif"
+            android:gravity="center"
+            android:text="here"
+            android:textColor="#000000"
+            android:textIsSelectable="true"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/credits_text1_2"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginStart="368dp"
+            android:layout_marginTop="247dp"
+            android:gravity="center"
+            android:fontFamily="sans-serif"
+            android:text="here"
+            android:textColor="#000000"
+            android:textIsSelectable="true"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/credits_continue1"
+            android:layout_width="65dp"
+            android:layout_height="65dp"
+            android:layout_marginStart="675dp"
+            android:layout_marginTop="310dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/continue_pause" />
+
+        <ImageView
+            android:id="@+id/settings_cancel_button1"
+            android:layout_width="76dp"
+            android:layout_height="76dp"
+            android:layout_marginStart="675dp"
+            android:layout_marginTop="20dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/settings_cancel_button" />
+
+    </FrameLayout>
+
+
+    <FrameLayout
+        android:id="@+id/frameLay2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#FFFFFF"
+        android:visibility="gone">
+
+        <ImageView
+            android:id="@+id/credits_background2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="fitXY"
+            android:src="@drawable/credits_background" />
+
+        <TextView
+            android:id="@+id/credits_text2"
+            android:layout_width="482dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="195dp"
+            android:layout_marginTop="95dp"
+            android:fontFamily="sans-serif-light"
+            android:text="
+            \n\n                                     Programmer.
+            \nI'm a M.Eng student at the University of Toronto. My interest are AI, machine learning and smart devices.
+            \n\n                             Programmer.
+            \nI'm an M.Eng. student at University of Toronto, St. George. My interests are natural language processing, data structure and algorithms.
+            \n\n                                Research spec + visuals.
+            \nI’m a PhD candidate studying visual cognition and perception at the University of Toronto Scarborough. My research interests are virtual and augmented reality, multisensory integration, and haptic perception.
+            "
+            android:textAlignment="inherit"
+            android:textColor="#000000"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/credits_text2_a"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="421dp"
+            android:layout_marginTop="130dp"
+            android:autoLink="email"
+            android:fontFamily="sans-serif-light"
+            android:scaleType="center"
+            android:text="said.banoscuevas@mail.utoronto.ca"
+            android:textAlignment="center"
+            android:textColor="#000000"
+            android:textIsSelectable="true"
+            android:textSize="15sp"
+            android:textStyle="italic" />
+
+        <TextView
+            android:id="@+id/credits_text2_b"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="392dp"
+            android:layout_marginTop="199dp"
+            android:autoLink="email"
+            android:fontFamily="sans-serif-light"
+            android:text="zhaodong.yan@mail.utoronto.ca"
+            android:textAlignment="center"
+            android:textColor="#000000"
+            android:textIsSelectable="true"
+            android:textSize="15sp"
+            android:textStyle="italic" />
+
+        <TextView
+            android:id="@+id/credits_text2_c"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="479dp"
+            android:layout_marginTop="269dp"
+            android:autoLink="email"
+            android:fontFamily="sans-serif-light"
+            android:text="annabel.fan@mail.utoronto.ca"
+            android:textAlignment="center"
+            android:textColor="#000000"
+            android:textIsSelectable="true"
+            android:textSize="15sp"
+            android:textStyle="italic" />
+
+        <TextView
+            android:id="@+id/credits_text2_1"
+            android:layout_width="482dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="195dp"
+            android:layout_marginTop="95dp"
+            android:fontFamily="sans-serif-light"
+            android:text="Jumbled Jungle team"
+            android:textAlignment="inherit"
+            android:textColor="#000000"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/credits_text2_2"
+            android:layout_width="482dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="195dp"
+            android:layout_marginTop="95dp"
+            android:fontFamily="sans-serif-light"
+            android:text="
+            \n\nSaid Banos Cuevas.
+            \n\n
+            \n\nDongling Zhao.
+            \n\n
+            \n\nAnnabel WY Fan.
+            "
+            android:textAlignment="inherit"
+            android:textColor="#000000"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/monkey_face1"
+            android:layout_width="65dp"
+            android:layout_height="65dp"
+            android:layout_marginStart="110dp"
+            android:layout_marginTop="125dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/monkey_face" />
+
+        <ImageView
+            android:id="@+id/monkey_face2"
+            android:layout_width="65dp"
+            android:layout_height="65dp"
+            android:layout_marginStart="110dp"
+            android:layout_marginTop="195dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/monkey_face" />
+
+        <ImageView
+            android:id="@+id/monkey_face3"
+            android:layout_width="65dp"
+            android:layout_height="65dp"
+            android:layout_marginStart="110dp"
+            android:layout_marginTop="265dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/monkey_face" />
+
+        <ImageView
+            android:id="@+id/credits_continue2"
+            android:layout_width="65dp"
+            android:layout_height="65dp"
+            android:layout_marginStart="675dp"
+            android:layout_marginTop="310dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/continue_pause" />
+
+        <ImageView
+            android:id="@+id/settings_cancel_button2"
+            android:layout_width="76dp"
+            android:layout_height="76dp"
+            android:layout_marginStart="675dp"
+            android:layout_marginTop="20dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/settings_cancel_button" />
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/frameLay3"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#FFFFFF"
+        android:visibility="gone">
+
+        <ImageView
+            android:id="@+id/paused_background3"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="fitXY"
+            android:src="@drawable/credits_background" />
+
+        <TextView
+            android:id="@+id/credits_text3"
+            android:layout_width="585dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="95dp"
+            android:layout_marginTop="95dp"
+            android:fontFamily="sans-serif"
+            android:text="The creators would like to thank the teaching team: Dr. Jonathan Rose, Daniel Di Matteo, and Kai Shakiba, as well as our fellow ECE1778 2020 classmates for their feedback throughout the development stages of the application.
+            \n\n
+            \n\n    Copyright @ 2020 by Annabel Wing-Yan Fan, Dongling Zhao, and Said Banos Cuevas.
+            \n                                                               All rights reserved.
+            \n\n
+            \nSweeny, T. D., Wurnitsch, N., Gopnik, A., and Whitney, D. (2015). Ensemble perception of size in 4–5‐year‐old children. Developmental Science, 18(4), 556-568.
+            \nMusic by
+            \nSound effects by
+            "
+            android:textAlignment="inherit"
+            android:textColor="#000000"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/credits_text3_1"
+            android:layout_width="585dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="95dp"
+            android:layout_marginTop="95dp"
+            android:fontFamily="sans-serif"
+            android:text="
+            \n\n\n\n                                                    Thanks for playing our game!
+            \n\n
+            \n
+            \n\nResources
+            "
+            android:textAlignment="inherit"
+            android:textColor="#000000"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/credits_continue3"
+            android:layout_width="65dp"
+            android:layout_height="65dp"
+            android:layout_marginStart="675dp"
+            android:layout_marginTop="310dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/continue_pause" />
+
+        <ImageView
+            android:id="@+id/settings_cancel_button3"
+            android:layout_width="76dp"
+            android:layout_height="76dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/settings_cancel_button"
+            android:layout_marginStart="675dp"
+            android:layout_marginTop="20dp" />
+
+    </FrameLayout>
+
+</RelativeLayout>
