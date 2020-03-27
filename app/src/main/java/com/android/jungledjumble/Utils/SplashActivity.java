@@ -37,7 +37,7 @@ public class SplashActivity extends Activity {
                 startActivity(intent);
                 finish();
             }
-        },4000);
+        },3000);
     }
 
     public void playVideo() {
