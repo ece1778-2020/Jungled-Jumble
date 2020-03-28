@@ -95,6 +95,18 @@ TextView time_title;
     String currentTime = new SimpleDateFormat("HH:mm:ss", Locale.getDefault()).format(new Date());
     static final int MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE=0;
     MediaPlayer background_sound;
+
+    @Override
+    public void onResume(){
+        super.onResume();
+        // put your code here...
+
+        Utils utils = new Utils(this);
+        utils.hideSystemUI ();
+
+    }
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

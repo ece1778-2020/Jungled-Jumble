@@ -96,13 +96,13 @@ public class SettingsAcitivity extends AppCompatActivity {
 
         how_to_play_text.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
-                //startActivity(new Intent (SettingsAcitivity.this, PrivacyPolicyActivity.class));
+                startActivity(new Intent (SettingsAcitivity.this, Tutorial.class));
             }
         });
 
         credits_text.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
-                //startActivity(new Intent (SettingsAcitivity.this, PrivacyPolicyActivity.class));
+                startActivity(new Intent (SettingsAcitivity.this, Credits.class));
             }
         });
 

@@ -7,7 +7,8 @@
     <color name="colorGrey">#bfbfbf</color>
     <color name="colorWhite">#ffffff</color>
     <color name="colorOrangeRed">#900C3F</color>
-
+    <color name="colorLightBlue">#4AE389 </color>
+    <color name="colorPink">#D64AE3 </color>
     <color name="black_overlay">#66000000</color>
 
 </resources>

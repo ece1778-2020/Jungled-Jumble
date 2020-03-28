@@ -61,16 +61,15 @@ public class UserAdaptor extends RecyclerView.Adapter<UserAdaptor.UserViewHolder
 //            profile_image = itemView.findViewById (R.id.profile_image);
             usernameView = itemView.findViewById (R.id.username);
             profileView = itemView.findViewById (R.id.profile_image);
-            ageView = itemView.findViewById (R.id.age);
 
             usernameView.setOnClickListener (this);
             profileView.setOnClickListener (this);
-            ageView.setOnClickListener (this);
+//            ageView.setOnClickListener (this);
         }
 
         void setUser(User user){
             usernameView.setText(user.getUsername ());
-            ageView.setText (user.getAge ());
+//            ageView.setText (user.getAge ());
             Glide.with(mContext).load(user.getProfile_image ()).into(profileView);
         }
 

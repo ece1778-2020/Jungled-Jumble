@@ -16,11 +16,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.DayNight.NoActionBar">
         <activity
-            android:name=".Setting.Credits"
-            android:configChanges="orientation|keyboardHidden|screenSize"
-            android:label="@string/title_activity_credits"
-            android:theme="@style/FullscreenTheme"></activity>
-        <activity
             android:name=".Auth.OptionalActivity"
             android:screenOrientation="landscape" />
         <activity
@@ -28,6 +23,12 @@
             android:screenOrientation="landscape" />
         <activity
             android:name=".Setting.PrivacyPolicyActivity"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".Setting.Tutorial"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".Setting.Credits"
             android:screenOrientation="landscape" />
         <activity
             android:name=".Setting.ProgressActivity"

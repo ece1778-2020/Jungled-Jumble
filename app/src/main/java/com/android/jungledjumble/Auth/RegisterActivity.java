@@ -17,6 +17,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -39,6 +40,7 @@ import com.bumptech.glide.Glide;
 public class RegisterActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
     // Layout
     EditText mUsername, mAge, mGender;
+    ImageView settings_cancel_button;
     Button registerButton;
     CircleImageView profile_image;
     TextView txt_login;
@@ -73,6 +75,7 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
         glass_spinner = findViewById (R.id.glass_spinner);
         disorder_spinner = findViewById (R.id.disorder_spinner);
         disability_spinner = findViewById (R.id.disability_spinner);
+        settings_cancel_button = findViewById (R.id.settings_cancel_button);
 
         Utils utils = new Utils(this);
         utils.hideSystemUI ();
@@ -106,7 +109,12 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
         Intent intent = getIntent ();
         fruit_type = intent.getIntExtra ("fruit_type",0);
 
-
+        settings_cancel_button.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View view){
+                //background_sound.pause();
+                startActivity(new Intent (RegisterActivity.this, SelectUserActivity.class));
+            }
+        });
         SetProfileImage();
         Register();
 //        nextPage.setOnClickListener(new View.OnClickListener(){

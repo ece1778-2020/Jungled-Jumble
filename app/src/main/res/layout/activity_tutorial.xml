@@ -1,0 +1,550 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Setting.Tutorial">
+
+    <FrameLayout
+        android:id="@+id/frameLay1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#FFFFFF"
+        android:visibility="visible">
+
+        <ImageView
+            android:id="@+id/tutorial_1instructions"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="fitXY"
+            android:src="@drawable/tutorial_1instructions" />
+
+  <!--      <ImageView
+            android:id="@+id/settings_cancel_button1"
+            android:layout_width="76dp"
+            android:layout_height="76dp"
+            android:layout_marginStart="675dp"
+            android:layout_marginTop="20dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/settings_cancel_button" />-->
+        <ImageView
+            android:id="@+id/next_level_pic_right1"
+            android:layout_width="1400dp"
+            android:layout_height="1000dp"
+            android:src="@drawable/next_level_pic_right"
+            android:visibility="visible"
+            android:layout_marginStart="292dp"
+            android:layout_marginTop="120dp" />
+
+        <ImageView
+            android:id="@+id/next_level_pic_left1"
+            android:layout_width="1400dp"
+            android:layout_height="1000dp"
+            android:src="@drawable/next_level_pic_left"
+            android:visibility="visible"
+            android:layout_marginStart="-908dp"
+            android:layout_marginTop="120dp" />
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/frameLay2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#FFFFFF"
+        android:visibility="gone">
+
+        <ImageView
+            android:id="@+id/tutorial_1choose"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="fitXY"
+            android:src="@drawable/tutorial_1choose" />
+
+
+
+        <ImageView
+            android:id="@+id/hand_pointing2"
+            android:layout_width="76dp"
+            android:layout_height="76dp"
+            android:layout_marginStart="480dp"
+            android:layout_marginTop="10dp"
+            android:scaleType="fitCenter"
+            android:visibility="gone"
+            android:src="@drawable/hand_pointing" />
+
+        <ImageView
+            android:id="@+id/hand_tapping2"
+            android:layout_width="26dp"
+            android:layout_height="26dp"
+            android:layout_marginStart="482dp"
+            android:layout_marginTop="95dp"
+            android:scaleType="fitCenter"
+            android:visibility="visible"
+            android:src="@drawable/hand_tapping" />
+
+        <ImageView
+            android:id="@+id/left2"
+            android:layout_width="370dp"
+            android:layout_height="470dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/right2"
+            android:layout_width="370dp"
+            android:layout_height="470dp"
+            android:layout_marginStart="410dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!--        <ImageView
+            android:id="@+id/settings_cancel_button2"
+            android:layout_width="76dp"
+            android:layout_height="76dp"
+            android:layout_marginStart="675dp"
+            android:layout_marginTop="20dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/settings_cancel_button" />-->
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/frameLay3"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#FFFFFF"
+        android:visibility="gone">
+
+        <ImageView
+            android:id="@+id/tutorial_1result"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="fitXY"
+            android:src="@drawable/tutorial_1result" />
+
+        <ImageView
+            android:id="@+id/lives_1_3"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginStart="655dp"
+            android:layout_marginTop="300dp"
+            android:scaleType="fitCenter"
+            android:visibility="gone"
+            android:src="@drawable/lives_1" />
+
+        <ImageView
+            android:id="@+id/lives_2_3"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginStart="655dp"
+            android:layout_marginTop="300dp"
+            android:scaleType="fitCenter"
+            android:visibility="gone"
+            android:src="@drawable/lives_2" />
+
+        <ImageView
+            android:id="@+id/lives_3_3"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginStart="655dp"
+            android:layout_marginTop="300dp"
+            android:scaleType="fitCenter"
+            android:visibility="gone"
+            android:src="@drawable/lives_3" />
+
+        <ImageView
+            android:id="@+id/points_game3"
+            android:layout_width="100dp"
+            android:layout_height="80dp"
+            android:layout_marginStart="655dp"
+            android:layout_marginTop="5dp"
+            android:scaleType="fitCenter"
+            android:visibility="gone"
+            android:src="@drawable/points_game" />
+
+        <TextView
+            android:id="@+id/fruits_collected3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="715dp"
+            android:layout_marginTop="30dp"
+            android:fontFamily="@font/skranji"
+            android:text="10"
+            android:textAlignment="center"
+            android:textColor="#80604D"
+            android:textSize="20sp" />
+
+        <ImageView
+            android:id="@+id/next_level_pic_right3"
+            android:layout_width="1400dp"
+            android:layout_height="1000dp"
+            android:src="@drawable/next_level_pic_right"
+            android:visibility="visible"
+            android:layout_marginStart="292dp"
+            android:layout_marginTop="120dp" />
+
+        <ImageView
+            android:id="@+id/next_level_pic_left3"
+            android:layout_width="1400dp"
+            android:layout_height="1000dp"
+            android:src="@drawable/next_level_pic_left"
+            android:visibility="visible"
+            android:layout_marginStart="-908dp"
+            android:layout_marginTop="120dp" />
+
+        <!--        <ImageView
+            android:id="@+id/settings_cancel_button3"
+            android:layout_width="76dp"
+            android:layout_height="76dp"
+            android:layout_marginStart="675dp"
+            android:layout_marginTop="20dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/settings_cancel_button" />-->
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/frameLay4"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#FFFFFF"
+        android:visibility="gone">
+
+        <ImageView
+            android:id="@+id/tutorial_2instructions"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="fitXY"
+            android:src="@drawable/tutorial_2instructions" />
+
+        <!--       <ImageView
+            android:id="@+id/settings_cancel_button4"
+            android:layout_width="76dp"
+            android:layout_height="76dp"
+            android:layout_marginStart="675dp"
+            android:layout_marginTop="20dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/settings_cancel_button" />-->
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/frameLay5"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#FFFFFF"
+        android:visibility="gone">
+
+        <ImageView
+            android:id="@+id/tutorial_2choose"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="fitXY"
+            android:src="@drawable/tutorial_2choose" />
+
+        <ImageView
+            android:id="@+id/hand_pointing5"
+            android:layout_width="76dp"
+            android:layout_height="76dp"
+            android:layout_marginStart="263dp"
+            android:layout_marginTop="10dp"
+            android:scaleType="fitCenter"
+            android:visibility="gone"
+            android:src="@drawable/hand_pointing" />
+
+        <ImageView
+            android:id="@+id/hand_tapping5"
+            android:layout_width="26dp"
+            android:layout_height="26dp"
+            android:layout_marginStart="265dp"
+            android:layout_marginTop="95dp"
+            android:scaleType="fitCenter"
+            android:visibility="gone"
+            android:src="@drawable/hand_tapping" />
+
+
+
+        <ImageView
+            android:id="@+id/left5"
+            android:layout_width="370dp"
+            android:layout_height="470dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/right5"
+            android:layout_width="370dp"
+            android:layout_height="470dp"
+            android:layout_marginStart="410dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!--       <ImageView
+            android:id="@+id/settings_cancel_button5"
+            android:layout_width="76dp"
+            android:layout_height="76dp"
+            android:layout_marginStart="675dp"
+            android:layout_marginTop="20dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/settings_cancel_button" />-->
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/frameLay6"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#FFFFFF"
+        android:visibility="gone">
+
+        <ImageView
+            android:id="@+id/tutorial_2result"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="fitXY"
+            android:src="@drawable/tutorial_2result" />
+
+
+        <ImageView
+            android:id="@+id/lives_1_6"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginStart="655dp"
+            android:layout_marginTop="300dp"
+            android:scaleType="fitCenter"
+            android:visibility="gone"
+            android:src="@drawable/lives_1" />
+
+        <ImageView
+            android:id="@+id/lives_2_6"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginStart="655dp"
+            android:layout_marginTop="300dp"
+            android:scaleType="fitCenter"
+            android:visibility="gone"
+            android:src="@drawable/lives_2" />
+
+        <ImageView
+            android:id="@+id/lives_3_6"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginStart="655dp"
+            android:layout_marginTop="300dp"
+            android:scaleType="fitCenter"
+            android:visibility="gone"
+            android:src="@drawable/lives_3" />
+
+        <ImageView
+            android:id="@+id/points_game6"
+            android:layout_width="100dp"
+            android:layout_height="80dp"
+            android:layout_marginStart="655dp"
+            android:layout_marginTop="5dp"
+            android:scaleType="fitCenter"
+            android:visibility="gone"
+            android:src="@drawable/points_game" />
+
+        <TextView
+            android:id="@+id/fruits_collected6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="715dp"
+            android:layout_marginTop="30dp"
+            android:fontFamily="@font/skranji"
+            android:text="0"
+            android:textAlignment="center"
+            android:textColor="#80604D"
+            android:textSize="20sp" />
+
+        <!--        <ImageView
+            android:id="@+id/settings_cancel_button6"
+            android:layout_width="76dp"
+            android:layout_height="76dp"
+            android:layout_marginStart="675dp"
+            android:layout_marginTop="20dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/settings_cancel_button" />-->
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/frameLay7"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#FFFFFF"
+        android:visibility="gone">
+
+        <ImageView
+            android:id="@+id/tutorial_3instructions"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="fitXY"
+            android:src="@drawable/tutorial_3instructions" />
+
+        <!--        <ImageView
+            android:id="@+id/settings_cancel_button7"
+            android:layout_width="76dp"
+            android:layout_height="76dp"
+            android:layout_marginStart="675dp"
+            android:layout_marginTop="20dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/settings_cancel_button" />-->
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/frameLay8"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#FFFFFF"
+        android:visibility="gone">
+
+        <ImageView
+            android:id="@+id/tutorial_3choose"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="fitXY"
+            android:src="@drawable/tutorial_3choose" />
+
+        <ImageView
+            android:id="@+id/hand_pointing8"
+            android:layout_width="76dp"
+            android:layout_height="76dp"
+            android:layout_marginStart="263dp"
+            android:layout_marginTop="10dp"
+            android:scaleType="fitCenter"
+            android:visibility="gone"
+            android:src="@drawable/hand_pointing" />
+
+        <ImageView
+            android:id="@+id/hand_tapping8"
+            android:layout_width="26dp"
+            android:layout_height="26dp"
+            android:layout_marginStart="265dp"
+            android:layout_marginTop="95dp"
+            android:scaleType="fitCenter"
+            android:visibility="gone"
+            android:src="@drawable/hand_tapping" />
+
+
+
+        <ImageView
+            android:id="@+id/left8"
+            android:layout_width="370dp"
+            android:layout_height="470dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/right8"
+            android:layout_width="370dp"
+            android:layout_height="470dp"
+            android:layout_marginStart="410dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!--        <ImageView
+            android:id="@+id/settings_cancel_button8"
+            android:layout_width="76dp"
+            android:layout_height="76dp"
+            android:layout_marginStart="675dp"
+            android:layout_marginTop="20dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/settings_cancel_button" />-->
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/frameLay9"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#FFFFFF"
+        android:visibility="gone">
+
+        <ImageView
+            android:id="@+id/tutorial_3result"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="fitXY"
+            android:src="@drawable/tutorial_3result" />
+
+<!--        <ImageView
+            android:id="@+id/lives_1_9"
+            android:layout_width="76dp"
+            android:layout_height="76dp"
+            android:layout_marginStart="675dp"
+            android:layout_marginTop="315dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/lives_1" />
+
+        <ImageView
+            android:id="@+id/lives_2_9"
+            android:layout_width="76dp"
+            android:layout_height="76dp"
+            android:layout_marginStart="675dp"
+            android:layout_marginTop="315dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/lives_2" />
+
+        <ImageView
+            android:id="@+id/lives_3_9"
+            android:layout_width="76dp"
+            android:layout_height="76dp"
+            android:layout_marginStart="675dp"
+            android:layout_marginTop="315dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/lives_3" />
+
+        <ImageView
+            android:id="@+id/points_game9"
+            android:layout_width="76dp"
+            android:layout_height="76dp"
+            android:layout_marginStart="675dp"
+            android:layout_marginTop="10dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/points_game" />
+
+        <TextView
+            android:id="@+id/fruits_collected9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="715dp"
+            android:layout_marginTop="33dp"
+            android:fontFamily="@font/skranji"
+            android:text="0"
+            android:textAlignment="center"
+            android:textColor="#80604D"
+            android:textSize="20sp" />-->
+
+        <!--     <ImageView
+            android:id="@+id/settings_cancel_button9"
+            android:layout_width="76dp"
+            android:layout_height="76dp"
+            android:layout_marginStart="675dp"
+            android:layout_marginTop="20dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/settings_cancel_button" />-->
+        <ImageView
+            android:id="@+id/next_level_pic_right9"
+            android:layout_width="1400dp"
+            android:layout_height="1000dp"
+            android:src="@drawable/next_level_pic_right"
+            android:visibility="visible"
+            android:layout_marginStart="292dp"
+            android:layout_marginTop="120dp" />
+
+        <ImageView
+            android:id="@+id/next_level_pic_left9"
+            android:layout_width="1400dp"
+            android:layout_height="1000dp"
+            android:src="@drawable/next_level_pic_left"
+            android:visibility="visible"
+            android:layout_marginStart="-908dp"
+            android:layout_marginTop="120dp" />
+
+    </FrameLayout>
+
+</RelativeLayout>
