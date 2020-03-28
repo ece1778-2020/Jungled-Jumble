@@ -13,8 +13,8 @@
         android:layout_height="match_parent"
         android:scaleType="fitXY"
         android:src="@drawable/user_select_background"
-        tools:layout_editor_absoluteX="25dp"
-        tools:layout_editor_absoluteY="0dp" />
+        tools:layout_editor_absoluteX="36dp"
+        tools:layout_editor_absoluteY="18dp" />
 
     <ImageView
         android:id="@+id/existing_user"
@@ -25,40 +25,56 @@
         android:src="@drawable/user_button"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-    <Button
+    <ImageView
         android:id="@+id/new_user"
         android:layout_width="180dp"
         android:layout_height="180dp"
         android:layout_marginStart="84dp"
         android:layout_marginTop="104dp"
-        android:background="@drawable/guest_button"
+        android:background="@drawable/guest_default_button"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+    <ImageView
+        android:id="@+id/new_user_active"
+        android:layout_width="180dp"
+        android:layout_height="180dp"
+        android:layout_marginStart="84dp"
+        android:layout_marginTop="104dp"
+        android:background="@drawable/guest_selected_button"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <ImageView
+        android:id="@+id/existing_user_active"
+        android:layout_width="180dp"
+        android:layout_height="180dp"
+        android:layout_marginStart="180dp"
+        android:layout_marginTop="196dp"
+        android:src="@drawable/user_selected"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/user_list"
-        android:layout_width="320dp"
-        android:layout_height="230dp"
+        android:layout_width="358dp"
+        android:layout_height="214dp"
         android:background="@drawable/user_border"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.673"
+        app:layout_constraintHorizontal_bias="0.31"
         app:layout_constraintStart_toEndOf="@+id/existing_user"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.645" />
-
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/add_user"
-        android:layout_width="85dp"
-        android:layout_height="85dp"
+        android:layout_width="73dp"
+        android:layout_height="70dp"
         android:src="@mipmap/ic_add"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.975"
+        app:layout_constraintHorizontal_bias="0.936"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.803" />
+        app:layout_constraintVertical_bias="0.673" />
 
     <ImageView
         android:id="@+id/orange"

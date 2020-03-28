@@ -35,9 +35,8 @@ import java.util.List;
 import java.util.Map;
 
 public class SelectUserActivity extends AppCompatActivity implements UserAdaptor.OnClickUserListener{
-    ImageView settings_cancel_button, existing_user,add_user;
+    ImageView settings_cancel_button, existing_user,add_user, guest, existing_user_active,guest_active;
     ImageView left_arrow, right_arrow, orange, grape, banana, orange2,pear,mango;
-    Button guest;
     Integer fruit_selection;
     GlobalClass globalClass;
 
@@ -51,10 +50,16 @@ public class SelectUserActivity extends AppCompatActivity implements UserAdaptor
         setContentView (R.layout.activity_select_user);
         db = FirebaseFirestore.getInstance ();
         guest = findViewById (R.id.new_user);
+        guest_active = findViewById (R.id.new_user_active);
         existing_user = findViewById (R.id.existing_user);
+        existing_user_active = findViewById (R.id.existing_user_active);
         add_user = findViewById (R.id.add_user);
+
         settings_cancel_button= findViewById (R.id.settings_cancel_button);
         globalClass = new GlobalClass ();
+
+        guest.setVisibility (View.GONE);
+        existing_user_active.setVisibility (View.GONE);
 
         left_arrow = findViewById (R.id.left_arrow);
         right_arrow = findViewById (R.id.right_arrow);
@@ -103,6 +108,8 @@ public class SelectUserActivity extends AppCompatActivity implements UserAdaptor
         utils.hideSystemUI ();
 
         final RecyclerView recycleView = findViewById (R.id.user_list);
+        recycleView.setVisibility (View.GONE);
+        add_user.setVisibility (View.GONE);
         recycleView.setLayoutManager (
                 new LinearLayoutManager (this)
         );
@@ -145,7 +152,7 @@ public class SelectUserActivity extends AppCompatActivity implements UserAdaptor
                     }
                 });
 
-        guest.setOnClickListener(new View.OnClickListener(){
+        guest_active.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
 
                 click_sound.start();
@@ -157,6 +164,16 @@ public class SelectUserActivity extends AppCompatActivity implements UserAdaptor
                 intent.putIntegerArrayListExtra ("range",(ArrayList<Integer>) range);
                 intent.putExtra ("fruit_type",(int)fruit_selection);
                 startActivity(intent);
+            }
+        });
+
+        guest.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View view){
+                guest_active.setVisibility (View.VISIBLE);
+                guest.setVisibility (View.GONE);
+                existing_user_active.setVisibility (View.GONE);
+                recycleView.setVisibility (View.GONE);
+                add_user.setVisibility (View.GONE);
             }
         });
 
@@ -172,7 +189,22 @@ public class SelectUserActivity extends AppCompatActivity implements UserAdaptor
             public void onClick(View view){
 
                 click_sound.start();
-                startActivity(new Intent (SelectUserActivity.this, UserListActivity.class));
+                guest_active.setVisibility (View.GONE);
+                guest.setVisibility (View.VISIBLE);
+                existing_user_active.setVisibility (View.VISIBLE);
+//                startActivity(new Intent (SelectUserActivity.this, UserListActivity.class));
+                recycleView.setVisibility (View.VISIBLE);
+                add_user.setVisibility (View.VISIBLE);
+            }
+        });
+
+        existing_user_active.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View view){
+
+                recycleView.setVisibility (View.GONE);
+                add_user.setVisibility (View.GONE);
+                guest_active.setVisibility (View.VISIBLE);
+                existing_user_active.setVisibility (View.GONE);
             }
         });
 
