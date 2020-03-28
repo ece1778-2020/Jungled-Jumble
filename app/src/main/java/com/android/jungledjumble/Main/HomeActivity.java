@@ -51,6 +51,8 @@ import java.util.Random;
 public class HomeActivity extends AppCompatActivity {
     private Utils utils;
     ImageView left,right,quit, cancel_button, pause_button, continue_pause, restart_pause, quit_pause, next_level_pic_right, next_level_pic_left, monkey_back, monkey_back_right, monkey_back_left, oranges_translation_right, oranges_translation_left;
+    ImageView points_button,lives_1,lives_2,lives_3;
+    TextView fruits_collected;
     RecyclerView orangeViewLeft, orangeViewRight;
     private int level,points,rewards,fruits;
     private String choices, correct_choices;
@@ -97,6 +99,12 @@ public class HomeActivity extends AppCompatActivity {
         monkey_back = findViewById (R.id.monkey_back);
         monkey_back_right= findViewById (R.id.monkey_back_right);
         monkey_back_left= findViewById (R.id.monkey_back_left);
+
+        points_button= findViewById (R.id.points_button);
+        lives_1= findViewById (R.id.lives_1);
+        lives_2= findViewById (R.id.lives_2);
+        lives_3= findViewById (R.id.lives_3);
+        fruits_collected= findViewById (R.id.fruits_collected);
 
         oranges_translation_right= findViewById (R.id.oranges_translation_right);
         oranges_translation_left= findViewById (R.id.oranges_translation_left);
@@ -172,7 +180,20 @@ public class HomeActivity extends AppCompatActivity {
 
 
 
+            points_button.setVisibility(View.GONE);
+            lives_3.setVisibility(View.GONE);
+            fruits_collected.setVisibility(View.GONE);
 
+            Animation TranslateInto = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.translate_into);
+
+            points_button.setVisibility(View.VISIBLE);
+            points_button.startAnimation(TranslateInto);
+
+            lives_3.setVisibility(View.VISIBLE);
+            lives_3.startAnimation(TranslateInto);
+
+            fruits_collected.setVisibility(View.VISIBLE);
+            fruits_collected.startAnimation(TranslateInto);
 
 
 

@@ -88,18 +88,20 @@ TextView fruits_collected3,fruits_collected6;
         next_level_pic_left3 = findViewById (R.id.next_level_pic_left3);
         next_level_pic_left9 = findViewById (R.id.next_level_pic_left9);
 
+        next_level_pic_right1.setVisibility(View.VISIBLE);
+        Animation RotateRight = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.rotate_right);
+        next_level_pic_right1.startAnimation(RotateRight);
+        next_level_pic_left1.setVisibility(View.VISIBLE);
+        Animation RotateLeft = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.rotate_left);
+        next_level_pic_left1.startAnimation(RotateLeft);
+
         final Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 // Do something after delay
 
-                next_level_pic_right1.setVisibility(View.VISIBLE);
-                Animation RotateRight = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.rotate_right);
-                next_level_pic_right1.startAnimation(RotateRight);
-                next_level_pic_left1.setVisibility(View.VISIBLE);
-                Animation RotateLeft = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.rotate_left);
-                next_level_pic_left1.startAnimation(RotateLeft);
+
 
 
                 frameLay1.setVisibility(View.GONE);
@@ -135,7 +137,7 @@ TextView fruits_collected3,fruits_collected6;
                 });
 
             }
-        }, 2000);
+        }, 3000);
 
 
 
@@ -321,9 +323,17 @@ TextView fruits_collected3,fruits_collected6;
 
         left8.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
-
+                next_level_pic_right9.setVisibility(View.VISIBLE);
+                Animation RotateRight = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.rotate_right);
+                next_level_pic_right9.startAnimation(RotateRight);
+                next_level_pic_left9.setVisibility(View.VISIBLE);
+                Animation RotateLeft = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.rotate_left);
+                next_level_pic_left9.startAnimation(RotateLeft);
                 frameLay8.setVisibility(View.GONE);
                 frameLay9.setVisibility(View.VISIBLE);
+
+
+
 
                 final Handler handler = new Handler();
                 handler.postDelayed(new Runnable() {
@@ -331,12 +341,7 @@ TextView fruits_collected3,fruits_collected6;
                     public void run() {
                         // Do something after delay
 
-                        next_level_pic_right9.setVisibility(View.VISIBLE);
-                        Animation RotateRight = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.rotate_right);
-                        next_level_pic_right9.startAnimation(RotateRight);
-                        next_level_pic_left9.setVisibility(View.VISIBLE);
-                        Animation RotateLeft = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.rotate_left);
-                        next_level_pic_left9.startAnimation(RotateLeft);
+
 
                         startActivity(new Intent (Tutorial.this, StartActivity.class));
 
