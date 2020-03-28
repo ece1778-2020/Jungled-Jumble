@@ -28,6 +28,23 @@
             android:layout_marginTop="20dp"
             android:scaleType="fitCenter"
             android:src="@drawable/settings_cancel_button" />-->
+        <ImageView
+            android:id="@+id/next_level_pic_right1"
+            android:layout_width="1400dp"
+            android:layout_height="1000dp"
+            android:src="@drawable/next_level_pic_right"
+            android:visibility="visible"
+            android:layout_marginStart="292dp"
+            android:layout_marginTop="120dp" />
+
+        <ImageView
+            android:id="@+id/next_level_pic_left1"
+            android:layout_width="1400dp"
+            android:layout_height="1000dp"
+            android:src="@drawable/next_level_pic_left"
+            android:visibility="visible"
+            android:layout_marginStart="-908dp"
+            android:layout_marginTop="120dp" />
 
     </FrameLayout>
 
@@ -45,25 +62,27 @@
             android:scaleType="fitXY"
             android:src="@drawable/tutorial_1choose" />
 
-        <ImageView
-            android:id="@+id/hand_tapping2"
-            android:layout_width="76dp"
-            android:layout_height="76dp"
-            android:layout_marginStart="500dp"
-            android:layout_marginTop="10dp"
-            android:scaleType="fitCenter"
-            android:visibility="visible"
-            android:src="@drawable/hand_tapping" />
+
 
         <ImageView
             android:id="@+id/hand_pointing2"
             android:layout_width="76dp"
             android:layout_height="76dp"
-            android:layout_marginStart="500dp"
+            android:layout_marginStart="480dp"
             android:layout_marginTop="10dp"
             android:scaleType="fitCenter"
             android:visibility="gone"
             android:src="@drawable/hand_pointing" />
+
+        <ImageView
+            android:id="@+id/hand_tapping2"
+            android:layout_width="26dp"
+            android:layout_height="26dp"
+            android:layout_marginStart="482dp"
+            android:layout_marginTop="95dp"
+            android:scaleType="fitCenter"
+            android:visibility="visible"
+            android:src="@drawable/hand_tapping" />
 
         <ImageView
             android:id="@+id/left2"
@@ -157,6 +176,24 @@
             android:textColor="#80604D"
             android:textSize="20sp" />
 
+        <ImageView
+            android:id="@+id/next_level_pic_right3"
+            android:layout_width="1400dp"
+            android:layout_height="1000dp"
+            android:src="@drawable/next_level_pic_right"
+            android:visibility="visible"
+            android:layout_marginStart="292dp"
+            android:layout_marginTop="120dp" />
+
+        <ImageView
+            android:id="@+id/next_level_pic_left3"
+            android:layout_width="1400dp"
+            android:layout_height="1000dp"
+            android:src="@drawable/next_level_pic_left"
+            android:visibility="visible"
+            android:layout_marginStart="-908dp"
+            android:layout_marginTop="120dp" />
+
         <!--        <ImageView
             android:id="@+id/settings_cancel_button3"
             android:layout_width="76dp"
@@ -208,24 +245,26 @@
             android:src="@drawable/tutorial_2choose" />
 
         <ImageView
-            android:id="@+id/hand_tapping5"
-            android:layout_width="76dp"
-            android:layout_height="76dp"
-            android:layout_marginStart="225dp"
-            android:layout_marginTop="10dp"
-            android:scaleType="fitCenter"
-            android:visibility="gone"
-            android:src="@drawable/hand_tapping" />
-
-        <ImageView
             android:id="@+id/hand_pointing5"
             android:layout_width="76dp"
             android:layout_height="76dp"
-            android:layout_marginStart="225dp"
+            android:layout_marginStart="263dp"
             android:layout_marginTop="10dp"
             android:scaleType="fitCenter"
             android:visibility="gone"
             android:src="@drawable/hand_pointing" />
+
+        <ImageView
+            android:id="@+id/hand_tapping5"
+            android:layout_width="26dp"
+            android:layout_height="26dp"
+            android:layout_marginStart="265dp"
+            android:layout_marginTop="95dp"
+            android:scaleType="fitCenter"
+            android:visibility="gone"
+            android:src="@drawable/hand_tapping" />
+
+
 
         <ImageView
             android:id="@+id/left5"
@@ -371,24 +410,26 @@
             android:src="@drawable/tutorial_3choose" />
 
         <ImageView
-            android:id="@+id/hand_tapping8"
-            android:layout_width="76dp"
-            android:layout_height="76dp"
-            android:layout_marginStart="225dp"
-            android:layout_marginTop="10dp"
-            android:scaleType="fitCenter"
-            android:visibility="gone"
-            android:src="@drawable/hand_tapping" />
-
-        <ImageView
             android:id="@+id/hand_pointing8"
             android:layout_width="76dp"
             android:layout_height="76dp"
-            android:layout_marginStart="225dp"
+            android:layout_marginStart="263dp"
             android:layout_marginTop="10dp"
             android:scaleType="fitCenter"
             android:visibility="gone"
             android:src="@drawable/hand_pointing" />
+
+        <ImageView
+            android:id="@+id/hand_tapping8"
+            android:layout_width="26dp"
+            android:layout_height="26dp"
+            android:layout_marginStart="265dp"
+            android:layout_marginTop="95dp"
+            android:scaleType="fitCenter"
+            android:visibility="gone"
+            android:src="@drawable/hand_tapping" />
+
+
 
         <ImageView
             android:id="@+id/left8"
@@ -486,7 +527,23 @@
             android:layout_marginTop="20dp"
             android:scaleType="fitCenter"
             android:src="@drawable/settings_cancel_button" />-->
+        <ImageView
+            android:id="@+id/next_level_pic_right9"
+            android:layout_width="1400dp"
+            android:layout_height="1000dp"
+            android:src="@drawable/next_level_pic_right"
+            android:visibility="visible"
+            android:layout_marginStart="292dp"
+            android:layout_marginTop="120dp" />
 
+        <ImageView
+            android:id="@+id/next_level_pic_left9"
+            android:layout_width="1400dp"
+            android:layout_height="1000dp"
+            android:src="@drawable/next_level_pic_left"
+            android:visibility="visible"
+            android:layout_marginStart="-908dp"
+            android:layout_marginTop="120dp" />
 
     </FrameLayout>
 
