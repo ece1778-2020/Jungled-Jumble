@@ -25,7 +25,7 @@
             android:layout_width="585dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="95dp"
-            android:layout_marginTop="95dp"
+            android:layout_marginTop="110dp"
             android:fontFamily="sans-serif"
             android:text="Jumbled Jungle is a mobile game made for the graduate-level course Creative Applications of Mobile Devices (ECE1778) at the University of Toronto. The game is adapted from an experiment exploring visual perception in children by Sweeny, Wurnitsch, Gopnik and Whitney (2003).
             \n\nOur game aims to test our ability to mentally represent the average size of a group of objects and collect data on how this ability develops as we age. The information collected is anonymized and openly available to guide the development of new research hypotheses in the field of ensemble perception.
@@ -39,7 +39,7 @@
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_marginStart="565dp"
-            android:layout_marginTop="229dp"
+            android:layout_marginTop="244dp"
             android:fontFamily="sans-serif"
             android:gravity="center"
             android:text="here"
@@ -53,7 +53,7 @@
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_marginStart="368dp"
-            android:layout_marginTop="247dp"
+            android:layout_marginTop="262dp"
             android:gravity="center"
             android:fontFamily="sans-serif"
             android:text="here"
@@ -64,12 +64,12 @@
 
         <ImageView
             android:id="@+id/credits_continue1"
-            android:layout_width="65dp"
-            android:layout_height="65dp"
+            android:layout_width="85dp"
+            android:layout_height="85dp"
             android:layout_marginStart="675dp"
-            android:layout_marginTop="310dp"
+            android:layout_marginTop="285dp"
             android:scaleType="fitCenter"
-            android:src="@drawable/continue_pause" />
+            android:src="@drawable/button_arrow_right" />
 
         <ImageView
             android:id="@+id/settings_cancel_button1"
@@ -88,7 +88,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#FFFFFF"
-        android:visibility="gone">
+        android:visibility="visible">
 
         <ImageView
             android:id="@+id/credits_background2"
@@ -102,7 +102,7 @@
             android:layout_width="482dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="195dp"
-            android:layout_marginTop="95dp"
+            android:layout_marginTop="105dp"
             android:fontFamily="sans-serif-light"
             android:text="
             \n\n                                     Programmer.
@@ -121,7 +121,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="421dp"
-            android:layout_marginTop="130dp"
+            android:layout_marginTop="140dp"
             android:autoLink="email"
             android:fontFamily="sans-serif-light"
             android:scaleType="center"
@@ -137,7 +137,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="392dp"
-            android:layout_marginTop="199dp"
+            android:layout_marginTop="209dp"
             android:autoLink="email"
             android:fontFamily="sans-serif-light"
             android:text="zhaodong.yan@mail.utoronto.ca"
@@ -152,7 +152,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="479dp"
-            android:layout_marginTop="269dp"
+            android:layout_marginTop="279dp"
             android:autoLink="email"
             android:fontFamily="sans-serif-light"
             android:text="annabel.fan@mail.utoronto.ca"
@@ -167,7 +167,7 @@
             android:layout_width="482dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="195dp"
-            android:layout_marginTop="95dp"
+            android:layout_marginTop="105dp"
             android:fontFamily="sans-serif-light"
             android:text="Jumbled Jungle team"
             android:textAlignment="inherit"
@@ -180,7 +180,7 @@
             android:layout_width="482dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="195dp"
-            android:layout_marginTop="95dp"
+            android:layout_marginTop="105dp"
             android:fontFamily="sans-serif-light"
             android:text="
             \n\nSaid Banos Cuevas.
@@ -196,39 +196,39 @@
 
         <ImageView
             android:id="@+id/monkey_face1"
-            android:layout_width="65dp"
-            android:layout_height="65dp"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
             android:layout_marginStart="110dp"
-            android:layout_marginTop="125dp"
-            android:scaleType="centerCrop"
-            android:src="@drawable/monkey_face" />
+            android:layout_marginTop="135dp"
+            android:scaleType="centerInside"
+            android:src="@drawable/said" />
 
         <ImageView
             android:id="@+id/monkey_face2"
-            android:layout_width="65dp"
-            android:layout_height="65dp"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
             android:layout_marginStart="110dp"
-            android:layout_marginTop="195dp"
-            android:scaleType="centerCrop"
-            android:src="@drawable/monkey_face" />
+            android:layout_marginTop="210dp"
+            android:scaleType="centerInside"
+            android:src="@drawable/dong" />
 
         <ImageView
             android:id="@+id/monkey_face3"
-            android:layout_width="65dp"
-            android:layout_height="65dp"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
             android:layout_marginStart="110dp"
-            android:layout_marginTop="265dp"
-            android:scaleType="centerCrop"
-            android:src="@drawable/monkey_face" />
+            android:layout_marginTop="283dp"
+            android:scaleType="centerInside"
+            android:src="@drawable/annabel" />
 
         <ImageView
             android:id="@+id/credits_continue2"
-            android:layout_width="65dp"
-            android:layout_height="65dp"
+            android:layout_width="85dp"
+            android:layout_height="85dp"
             android:layout_marginStart="675dp"
-            android:layout_marginTop="310dp"
+            android:layout_marginTop="285dp"
             android:scaleType="fitCenter"
-            android:src="@drawable/continue_pause" />
+            android:src="@drawable/button_arrow_right" />
 
         <ImageView
             android:id="@+id/settings_cancel_button2"
@@ -260,7 +260,7 @@
             android:layout_width="585dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="95dp"
-            android:layout_marginTop="95dp"
+            android:layout_marginTop="105dp"
             android:fontFamily="sans-serif"
             android:text="The creators would like to thank the teaching team: Dr. Jonathan Rose, Daniel Di Matteo, and Kai Shakiba, as well as our fellow ECE1778 2020 classmates for their feedback throughout the development stages of the application.
             \n\n
@@ -268,8 +268,8 @@
             \n                                                               All rights reserved.
             \n\n
             \nSweeny, T. D., Wurnitsch, N., Gopnik, A., and Whitney, D. (2015). Ensemble perception of size in 4–5‐year‐old children. Developmental Science, 18(4), 556-568.
-            \nMusic by
-            \nSound effects by
+            \nMusic by www.bensound.com
+            \nSound effects by www.zapsplat.com
             "
             android:textAlignment="inherit"
             android:textColor="#000000"
@@ -280,7 +280,7 @@
             android:layout_width="585dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="95dp"
-            android:layout_marginTop="95dp"
+            android:layout_marginTop="105dp"
             android:fontFamily="sans-serif"
             android:text="
             \n\n\n\n                                                    Thanks for playing our game!
@@ -295,12 +295,12 @@
 
         <ImageView
             android:id="@+id/credits_continue3"
-            android:layout_width="65dp"
-            android:layout_height="65dp"
+            android:layout_width="85dp"
+            android:layout_height="85dp"
             android:layout_marginStart="675dp"
-            android:layout_marginTop="310dp"
+            android:layout_marginTop="285dp"
             android:scaleType="fitCenter"
-            android:src="@drawable/continue_pause" />
+            android:src="@drawable/button_arrow_right" />
 
         <ImageView
             android:id="@+id/settings_cancel_button3"
