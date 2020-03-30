@@ -1,6 +1,7 @@
 
 package com.android.jungledjumble.Main;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -16,11 +17,17 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.jungledjumble.Auth.StartActivity;
+import com.android.jungledjumble.Models.GlobalClass;
 import com.android.jungledjumble.Models.UserResults;
 import com.android.jungledjumble.R;
 import com.android.jungledjumble.Setting.ProgressActivity;
 import com.android.jungledjumble.Utils.FirebaseUtils;
 import com.android.jungledjumble.Utils.Utils;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -33,6 +40,7 @@ public class ReturnActivity extends AppCompatActivity {
     UserResults userResults;
     String username, choices,correct_choices;
     private FirebaseUtils firebaseUtils;
+    private FirebaseFirestore database;
     //Button button_charts;
     MediaPlayer background_sound;
     double accRate;
@@ -42,7 +50,7 @@ public class ReturnActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate (savedInstanceState);
         setContentView (R.layout.activity_return);
-
+        database = FirebaseFirestore.getInstance ();
 
         Utils utils = new Utils(this);
         utils.hideSystemUI ();
@@ -58,6 +66,8 @@ public class ReturnActivity extends AppCompatActivity {
         firebaseUtils = new FirebaseUtils (ReturnActivity.this);
         next_level_pic_right= findViewById (R.id.next_level_pic_right);
         next_level_pic_left= findViewById (R.id.next_level_pic_left);
+
+        GlobalClass globalClass = new GlobalClass ();
         // button_charts = findViewById(R.id.button_charts);
 
         // final MediaPlayer background_sound = MediaPlayer.create(this, R.raw.mixed_demo);
@@ -98,9 +108,8 @@ public class ReturnActivity extends AppCompatActivity {
 
         int cur_fruits = utils.AccToFruits (points);
         fruits = fruits + cur_fruits;
-
-        int updateSize = 5;
-        if ((int) accRate> 59){
+        int updateSize = globalClass.getUpdateSize ();
+        if ((int) accRate> globalClass.getAccThreshold ()-1){
             if (range.get(0)+2*updateSize+1>range.get (1)){
                 //Toast.makeText (this, "You finised the game!", Toast.LENGTH_SHORT).show ();
             }else{
@@ -112,7 +121,6 @@ public class ReturnActivity extends AppCompatActivity {
                 next_level_pic_right.setVisibility(View.VISIBLE);
                 Animation RotateRight = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.rotate_right);
                 next_level_pic_right.startAnimation(RotateRight);
-
 
                 Toast.makeText (this, "Next Level!", Toast.LENGTH_SHORT).show ();
                 range.set(0,range.get (0)+updateSize);
@@ -131,12 +139,29 @@ public class ReturnActivity extends AppCompatActivity {
 //            Toast.makeText (this, "You lose the game...", Toast.LENGTH_SHORT).show ();
         }
 
-        firebaseUtils.updateResults (username, choices,correct_choices);
 
+        firebaseUtils.updateResults (username, choices,correct_choices,cur_fruits);
+        database.collection ("users")
+                .whereEqualTo ("username",username)
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot> () {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
 
-        fruitsCollected.setText (String.valueOf (cur_fruits));
-        points_collected.setText (String.valueOf(points));
-        correctChoiceRate.setText (String.valueOf((int) accRate)+"%");
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                int fruits_total = (((Long) document.get("points")).intValue ());
+                                fruitsCollected.setText (String.valueOf (fruits_total));
+                            }
+
+                        } else {
+                            Log.d(TAG, "Error getting documents: ", task.getException());
+                        }
+                    }
+                });
+//        fruitsCollected.setText (String.valueOf (cur_fruits));
+        points_collected.setText (String.valueOf(fruits));
+        correctChoiceRate.setText (String.valueOf(points)+"%");
 
         replay.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){

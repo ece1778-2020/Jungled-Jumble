@@ -177,7 +177,7 @@ public class Utils {
     }
     public int AccToFruits(int acc){
         int result;
-        if (acc > 0 && acc <51){
+        if (acc >= 0 && acc <51){
             result = 5;
         }else if(acc < 71){
             result = 10;

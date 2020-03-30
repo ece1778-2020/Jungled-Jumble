@@ -50,7 +50,6 @@ public class FirebaseUtils {
     private String downloadUri = "";
 
     public FirebaseUtils(Activity activity) {
-
         mAuth = FirebaseAuth.getInstance ();
         database = FirebaseFirestore.getInstance ();
         mStorage = FirebaseStorage.getInstance ();
@@ -62,7 +61,7 @@ public class FirebaseUtils {
     }
 
     public void signUp(final String username, final String age, final String gender, final File photoFile,final String hand,final String glass,
-                       final String disorder, final String disability, final int fruitType) {
+                       final String disorder, final String disability, final int fruitType, final int points) {
         final List<Integer> range = new ArrayList<Integer> ();
         range.add(100);
         range.add(130);
@@ -87,7 +86,7 @@ public class FirebaseUtils {
                     if (task.isSuccessful()) {
                         downloadUri = task.getResult().toString ();
                         String ts = getTimestamp ();
-                        uploadNewUserData (new User(username,age,gender,hand,glass,disorder,disability,ts,downloadUri,"",""));
+                        uploadNewUserData (new User(username,age,gender,hand,glass,disorder,disability,ts,downloadUri,"","",0));
                         Intent intent = new Intent(mActivity, HomeActivity.class);
                         intent.putExtra ("username",username);
                         intent.putExtra ("fruit_type",fruitType);
@@ -106,7 +105,7 @@ public class FirebaseUtils {
 
         }else{
             String ts = getTimestamp ();
-            uploadNewUserData (new User(username,age,gender,hand,glass,disorder,disability,ts,"","",""));
+            uploadNewUserData (new User(username,age,gender,hand,glass,disorder,disability,ts,"","","",0));
             Intent intent = new Intent(mActivity, HomeActivity.class);
             intent.putExtra ("username",username);
             intent.putIntegerArrayListExtra ("range",(ArrayList<Integer>) range);
@@ -141,7 +140,7 @@ public class FirebaseUtils {
                 });
     }
 
-    public void updateResults(final String username, final String choices, final String correct_choices) {
+    public void updateResults(final String username, final String choices, final String correct_choices, final int points) {
         database.collection ("users")
                 .whereEqualTo ("username",username)
                 .get()
@@ -150,16 +149,20 @@ public class FirebaseUtils {
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
                             String choices_store = null,correct_choices_store = null;
+                            int points_store = 0;
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 Log.d(TAG, document.getId() + " => " + document.getData());
                                 choices_store = document.get("choices").toString ();
                                 correct_choices_store = document.get("correct_choices").toString ();
+                                points_store = ((Long) document.get("points")).intValue ();
                                 choices_store += " "+choices;
                                 correct_choices_store += " "+correct_choices;
+                                points_store += points;
 
                                 database.collection ("users").document(document.getId ())
                                         .update ("choices",choices_store,
-                                                "correct_choices",correct_choices_store)
+                                                "correct_choices",correct_choices_store,
+                                                                      "points",points_store)
                                         .addOnSuccessListener(new OnSuccessListener<Void>() {
                                             @Override
                                             public void onSuccess(Void aVoid) {
@@ -184,4 +187,6 @@ public class FirebaseUtils {
                     }
                 });
     }
+
+
 }

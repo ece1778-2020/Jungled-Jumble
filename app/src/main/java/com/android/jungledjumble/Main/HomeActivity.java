@@ -55,6 +55,7 @@ public class HomeActivity extends AppCompatActivity {
     TextView fruits_collected;
     RecyclerView orangeViewLeft, orangeViewRight;
     private int level,points,rewards,fruits;
+    private int life_counter;
     private String choices, correct_choices;
     private UserResults userResults;
     private Sizes sizes;
@@ -138,6 +139,25 @@ public class HomeActivity extends AppCompatActivity {
         // Retrieve the results
 
 
+        life_counter = intent.getIntExtra ("life_counter",3);
+        if (life_counter == 3){
+            lives_2.setVisibility (View.GONE);
+            lives_1.setVisibility (View.GONE);
+            lives_3.setVisibility (View.VISIBLE);
+        }else if (life_counter == 2){
+            lives_3.setVisibility (View.GONE);
+            lives_2.setVisibility (View.VISIBLE);
+            lives_1.setVisibility (View.GONE);
+
+        }else if (life_counter == 1){
+            lives_3.setVisibility (View.GONE);
+            lives_2.setVisibility (View.GONE);
+            lives_1.setVisibility (View.VISIBLE);
+        }else{
+            Log.d(TAG, "Error! the user should quit the game now");
+        }
+
+
         try{
             Log.d(TAG,intent.getStringExtra ("level"));
            next_level_flag = intent.getStringExtra("next_level_flag");
@@ -153,8 +173,6 @@ public class HomeActivity extends AppCompatActivity {
             userResults = new UserResults (0,0,0,"","","","");
         }
 
-
-
         username= intent.getStringExtra ("username");
         if (username == null){username="";}
 
@@ -165,10 +183,6 @@ public class HomeActivity extends AppCompatActivity {
 
         if (userResults.getLevel ()==0){
             //Toast.makeText (this, "Welcome "+username+"!", Toast.LENGTH_SHORT).show ();
-
-
-
-
 
                 next_level_pic_left.setVisibility(View.VISIBLE);
                 Animation RotateLeft = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.rotate_left);
@@ -254,64 +268,62 @@ public class HomeActivity extends AppCompatActivity {
             });
 
         }}else{
+            if (last_side_pressed.equals("right")) {
 
+                monkey_back.setVisibility(View.GONE);
+                monkey_back_left.setVisibility(View.GONE);
+                monkey_back_right.setVisibility(View.VISIBLE);
 
-if (last_side_pressed.equals("right")) {
+                oranges_translation_right.setVisibility(View.VISIBLE);
+                Animation TranslateRight = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.translate_right);
+                oranges_translation_right.startAnimation(TranslateRight);
 
-    monkey_back.setVisibility(View.GONE);
-    monkey_back_left.setVisibility(View.GONE);
-    monkey_back_right.setVisibility(View.VISIBLE);
+                TranslateRight.setAnimationListener(new Animation.AnimationListener() {
 
-    oranges_translation_right.setVisibility(View.VISIBLE);
-    Animation TranslateRight = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.translate_right);
-    oranges_translation_right.startAnimation(TranslateRight);
+                    @Override
+                    public void onAnimationStart(Animation Animation) {}
 
-    TranslateRight.setAnimationListener(new Animation.AnimationListener() {
+                    @Override
+                    public void onAnimationRepeat(Animation Animation) {}
 
-        @Override
-        public void onAnimationStart(Animation Animation) {}
+                    @Override
+                    public void onAnimationEnd(Animation Animation) {
+                        oranges_translation_right.setVisibility(View.GONE);
 
-        @Override
-        public void onAnimationRepeat(Animation Animation) {}
+                        monkey_back.setVisibility(View.VISIBLE);
+                        monkey_back_left.setVisibility(View.GONE);
+                        monkey_back_right.setVisibility(View.GONE);
+                    }
+                });
+            }
+            else if (last_side_pressed.equals("left")) {
 
-        @Override
-        public void onAnimationEnd(Animation Animation) {
-            oranges_translation_right.setVisibility(View.GONE);
+                monkey_back.setVisibility(View.GONE);
+                monkey_back_left.setVisibility(View.VISIBLE);
+                monkey_back_right.setVisibility(View.GONE);
 
-            monkey_back.setVisibility(View.VISIBLE);
-            monkey_back_left.setVisibility(View.GONE);
-            monkey_back_right.setVisibility(View.GONE);
-        }
-    });
-}
-else if (last_side_pressed.equals("left")) {
+                oranges_translation_left.setVisibility(View.VISIBLE);
+                Animation TranslateLeft = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.translate_left);
+                oranges_translation_left.startAnimation(TranslateLeft);
 
-    monkey_back.setVisibility(View.GONE);
-    monkey_back_left.setVisibility(View.VISIBLE);
-    monkey_back_right.setVisibility(View.GONE);
+                TranslateLeft.setAnimationListener(new Animation.AnimationListener() {
 
-    oranges_translation_left.setVisibility(View.VISIBLE);
-    Animation TranslateLeft = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.translate_left);
-    oranges_translation_left.startAnimation(TranslateLeft);
+                    @Override
+                    public void onAnimationStart(Animation Animation) {}
 
-    TranslateLeft.setAnimationListener(new Animation.AnimationListener() {
+                    @Override
+                    public void onAnimationRepeat(Animation Animation) {}
 
-        @Override
-        public void onAnimationStart(Animation Animation) {}
+                    @Override
+                    public void onAnimationEnd(Animation Animation) {
+                        oranges_translation_left.setVisibility(View.GONE);
 
-        @Override
-        public void onAnimationRepeat(Animation Animation) {}
-
-        @Override
-        public void onAnimationEnd(Animation Animation) {
-            oranges_translation_left.setVisibility(View.GONE);
-
-            monkey_back.setVisibility(View.VISIBLE);
-            monkey_back_left.setVisibility(View.GONE);
-            monkey_back_right.setVisibility(View.GONE);
-        }
-    });
-}
+                        monkey_back.setVisibility(View.VISIBLE);
+                        monkey_back_left.setVisibility(View.GONE);
+                        monkey_back_right.setVisibility(View.GONE);
+                    }
+                });
+            }
 
 
 
@@ -346,7 +358,7 @@ else if (last_side_pressed.equals("left")) {
         }
 
         int[] array = utils.genOrangeSizes (range.get(0),range.get(1),70,165,8);
-        Log.d(TAG,Arrays.toString (array)+String.valueOf (range.get (0))+range.get (1));
+//        Log.d(TAG,Arrays.toString (array)+String.valueOf (range.get (0))+range.get (1));
         sizes_small = Arrays.copyOfRange (array,0,12);
         sizes_large = Arrays.copyOfRange (array,12,24);
         // Update the results
@@ -382,16 +394,9 @@ else if (last_side_pressed.equals("left")) {
 
         left.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
-
-
-
                 monkey_back.setVisibility(View.GONE);
                 monkey_back_left.setVisibility(View.VISIBLE);
                 monkey_back_right.setVisibility(View.GONE);
-
-
-
-
 
                 //Timer ends
                 tEnd = System.currentTimeMillis();
@@ -406,13 +411,10 @@ else if (last_side_pressed.equals("left")) {
                 userResults.updateCorrect_choices (String.valueOf (larger_side));
                 if (larger_side == 0){
                     userResults.updatePoints ();
+                }else{
+                    life_counter --;
                 }
-                if (userResults.getLevel () < TOTAL_LEVELS){
-
-
-
-
-
+                if (userResults.getLevel () < TOTAL_LEVELS && life_counter > 0){
                     Intent intent = new Intent(getIntent ());
                     intent.putExtra ("last_side_pressed","left");
                     intent.putExtra ("level",String.valueOf (userResults.getLevel ()));
@@ -424,6 +426,7 @@ else if (last_side_pressed.equals("left")) {
                     intent.putExtra ("fruits",fruits);
                     intent.putIntegerArrayListExtra ("range",(ArrayList<Integer>) range);
                     intent.putExtra ("fruit_type",fruitType);
+                    intent.putExtra ("life_counter",life_counter);
                     startActivity(intent);
                     overridePendingTransition(0, 0);
                 }else{
@@ -463,8 +466,10 @@ else if (last_side_pressed.equals("left")) {
                 userResults.updateCorrect_choices (String.valueOf (larger_side));
                 if (larger_side == 1){
                     userResults.updatePoints ();
+                }else{
+                    life_counter --;
                 }
-                if (userResults.getLevel () < TOTAL_LEVELS){
+                if (userResults.getLevel () < TOTAL_LEVELS && life_counter > 0){
                     Intent intent = new Intent(getIntent ());
                     intent.putExtra ("last_side_pressed","right");
                     intent.putExtra ("level",String.valueOf (userResults.getLevel ()));
@@ -476,6 +481,7 @@ else if (last_side_pressed.equals("left")) {
                     intent.putExtra ("fruits",fruits);
                     intent.putIntegerArrayListExtra ("range",(ArrayList<Integer>) range);
                     intent.putExtra ("fruit_type",fruitType);
+                    intent.putExtra ("life_counter",life_counter);
                     startActivity(intent);
                     overridePendingTransition(0, 0);
                 }else{
