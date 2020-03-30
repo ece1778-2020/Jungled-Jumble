@@ -39,6 +39,7 @@ public class SelectUserActivity extends AppCompatActivity implements UserAdaptor
     ImageView left_arrow, right_arrow, orange, grape, banana, orange2,pear,mango;
     Integer fruit_selection;
     GlobalClass globalClass;
+    private FirebaseFirestore database;
 
     Map<Integer, ImageView> fruit_map;
 
@@ -51,6 +52,7 @@ public class SelectUserActivity extends AppCompatActivity implements UserAdaptor
         db = FirebaseFirestore.getInstance ();
         guest = findViewById (R.id.new_user);
         guest_active = findViewById (R.id.new_user_active);
+        database = FirebaseFirestore.getInstance ();
         existing_user = findViewById (R.id.existing_user);
         existing_user_active = findViewById (R.id.existing_user_active);
         add_user = findViewById (R.id.add_user);
@@ -123,7 +125,7 @@ public class SelectUserActivity extends AppCompatActivity implements UserAdaptor
                         if (task.isSuccessful()) {
                             Map<String,User> map = new HashMap<> ();
                             for (QueryDocumentSnapshot document : task.getResult()) {
-                                Log.d(TAG, document.getId() + " => " + document.getData());
+//                                Log.d(TAG, document.getId() + " => " + document.getData());
 
                                 User user = new User(document.get("username").toString (),
                                         document.get("age").toString (),
@@ -135,7 +137,8 @@ public class SelectUserActivity extends AppCompatActivity implements UserAdaptor
                                         document.get("timestamp").toString (),
                                         document.get("profile_image").toString (),
                                         document.get("choices").toString (),
-                                        document.get("correct_choices").toString ());
+                                        document.get("correct_choices").toString (),
+                                        ((Long)document.get("points")).intValue ());
                                 map.put(user.getTimestamp (),user);
                             }
                             ArrayList<String> sortedKeys = new ArrayList<String>(map.keySet());
@@ -143,7 +146,7 @@ public class SelectUserActivity extends AppCompatActivity implements UserAdaptor
                             for (String x : sortedKeys){
                                 UserItems.add (map.get(x));
                             }
-                            Log.d(TAG, UserItems.toString ());
+//                            Log.d(TAG, UserItems.toString ());
                             recycleView.setAdapter (new UserAdaptor (SelectUserActivity.this, UserItems));
 
                         } else {
@@ -219,6 +222,7 @@ public class SelectUserActivity extends AppCompatActivity implements UserAdaptor
 
     @Override
     public void OnClickUser(User user) {
+
         Intent intent = new Intent(SelectUserActivity.this, HomeActivity.class);
         intent.putExtra ("username",user.getUsername ());
 
@@ -227,9 +231,6 @@ public class SelectUserActivity extends AppCompatActivity implements UserAdaptor
         range.add(globalClass.getMeanRight ());
         intent.putIntegerArrayListExtra ("range",(ArrayList<Integer>) range);
         intent.putExtra ("fruit_type",fruit_selection);
-
-
-
         startActivity (intent);
     }
 }

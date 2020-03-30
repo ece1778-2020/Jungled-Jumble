@@ -201,7 +201,7 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
                     mAge.setText ("");
                     pd.dismiss ();
                 } else {
-                    firebaseUtils.signUp (str_username,str_age,str_gender,photoFile,str_hand,str_glass,str_disorder,str_disability,fruit_type);
+                    firebaseUtils.signUp (str_username,str_age,str_gender,photoFile,str_hand,str_glass,str_disorder,str_disability,fruit_type,0);
                     pd.dismiss();
                 }
             }

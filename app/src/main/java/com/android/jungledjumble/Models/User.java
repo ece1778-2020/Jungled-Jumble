@@ -12,10 +12,11 @@ public class User {
     private String glass;
     private String disorder;
     private String disability;
+    private int points;
 
 
     public User(String username, String age, String gender, String hand, String glass,String disorder,String disability,
-                String timestamp, String profile_image, String choices, String correct_choices) {
+                String timestamp, String profile_image, String choices, String correct_choices, int points) {
         this.username = username;
         this.age = age;
         this.gender = gender;
@@ -27,6 +28,7 @@ public class User {
         this.glass = glass;
         this.disorder = disorder;
         this.disability = disability;
+        this.points = points;
     }
 
     public User() {
@@ -120,6 +122,13 @@ public class User {
         this.disability = disability;
     }
 
+    public int getPoints() {
+        return points;
+    }
+
+    public void setPoints(int points) {
+        this.points = points;
+    }
     @Override
     public String toString() {
         return "User{" +
