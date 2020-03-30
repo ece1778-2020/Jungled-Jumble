@@ -36,12 +36,13 @@ import java.util.Map;
 
 public class SelectUserActivity extends AppCompatActivity implements UserAdaptor.OnClickUserListener{
     ImageView settings_cancel_button, existing_user,add_user, guest, existing_user_active,guest_active;
-    ImageView left_arrow, right_arrow, orange, grape, banana, orange2,pear,mango;
-    Integer fruit_selection;
+    ImageView orange, grape, banana, orange2,pear,mango, monkey, sloth;
+    ImageView left_arrow, right_arrow,left_arrow_char, right_arrow_char;
+    Integer fruit_selection, char_selection;
     GlobalClass globalClass;
     private FirebaseFirestore database;
 
-    Map<Integer, ImageView> fruit_map;
+    Map<Integer, ImageView> fruit_map, char_map;
 
     FirebaseFirestore db;
     final static String TAG = "SelectUserActivity";
@@ -65,6 +66,9 @@ public class SelectUserActivity extends AppCompatActivity implements UserAdaptor
 
         left_arrow = findViewById (R.id.left_arrow);
         right_arrow = findViewById (R.id.right_arrow);
+        left_arrow_char = findViewById (R.id.left_arrow_char);
+        right_arrow_char = findViewById (R.id.right_arrow_char);
+
         orange = findViewById (R.id.orange);
         banana = findViewById (R.id.banana);
         grape = findViewById (R.id.grape);
@@ -100,6 +104,36 @@ public class SelectUserActivity extends AppCompatActivity implements UserAdaptor
                 fruit_selection ++;
                 fruit_selection = fruit_selection % num_fruits;
                 fruit_map.get(fruit_selection).setVisibility (View.VISIBLE);
+            }
+        });
+
+        monkey = findViewById (R.id.monkey);
+        sloth = findViewById (R.id.sloth);
+        char_map = new HashMap<Integer, ImageView> ();
+        char_map.put(0,monkey);
+        char_map.put(1,sloth);
+        char_selection = 0;
+        final int num_char = 2;
+        for (int i=1;i<num_char;i++){
+            char_map.get(i).setVisibility (View.GONE);
+        }
+        left_arrow_char.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View view){
+                char_map.get(char_selection).setVisibility (View.GONE);
+                if(char_selection == 0){
+                    char_selection = num_char;
+                }
+                char_selection --;
+                char_map.get(char_selection).setVisibility (View.VISIBLE);
+            }
+        });
+
+        right_arrow_char.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View view){
+                char_map.get(char_selection).setVisibility (View.GONE);
+                char_selection ++;
+                char_selection = char_selection % num_char;
+                char_map.get(char_selection).setVisibility (View.VISIBLE);
             }
         });
 

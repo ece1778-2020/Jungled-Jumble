@@ -3,7 +3,10 @@
     <dimen name="small_orange">55dp</dimen>
     <dimen name="medium_orange">60dp</dimen>
     <dimen name="large_orange">65dp</dimen>
-    <dimen name="user_height">75dp</dimen>
+    <dimen name="user_height">125dp</dimen>
+    <dimen name="fruit_height">105dp</dimen>
+    <dimen name="char_width">233dp</dimen>
+    <dimen name="char_height">242dp</dimen>
     <dimen name="meanLeft">100</dimen>
     <dimen name="meanright">130</dimen>
 </resources>
