@@ -5,6 +5,7 @@ import android.Manifest;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
@@ -194,7 +195,6 @@ TextView time_title;
 
         forresearchers_button = findViewById(R.id.forresearchers_button);
         cancel_button = findViewById(R.id.cancel_button);
-        forresearchers2_button = findViewById(R.id.forresearchers2_button);
 
         chart1 = findViewById(R.id.chart1);
         chart2 = findViewById(R.id.chart2);
@@ -202,8 +202,7 @@ TextView time_title;
         chart4 = findViewById(R.id.chart4);
 
 
-        researchers_title = findViewById(R.id.researchers_title);
-        for_title = findViewById(R.id.for_title);
+
 
         chart1.getDescription().setEnabled(false);
         chart2.getDescription().setEnabled(false);
@@ -301,20 +300,40 @@ TextView time_title;
 
 
 
-        dataSet4.setColors(Color.rgb(0, 190, 0),Color.rgb(133, 87, 35));
+        Drawable drawable = ContextCompat.getDrawable(this, R.drawable.fade_green);
 
-        dataSet1.setColor(Color.rgb(0, 190, 0));
-        dataSet1.setCircleColor(Color.rgb(0, 190, 0));
+        dataSet1.setDrawFilled(true);
+        dataSet1.setFillDrawable(drawable);
+
+        dataSet2.setDrawFilled(true);
+        dataSet2.setFillDrawable(drawable);
+
+        dataSet3.setDrawFilled(true);
+        dataSet3.setFillDrawable(drawable);
+
+        dataSet1.setDrawCircleHole(false);
+        dataSet1.setDrawCircles(false);
+
+        dataSet2.setDrawCircleHole(false);
+        dataSet2.setDrawCircles(false);
+
+        dataSet3.setDrawCircleHole(false);
+        dataSet3.setDrawCircles(false);
+
+        dataSet4.setColors(Color.rgb(142,169,64),Color.rgb(70,87,42));
+
+        dataSet1.setColor(Color.rgb(142,169,64));
+        //dataSet1.setCircleColor(Color.rgb(142,169,64));
         LineData lineData1 = new LineData(dataSet1);
 
 
 
-        dataSet2.setColor(Color.rgb(0, 190, 0));
-        dataSet2.setCircleColor(Color.rgb(0, 190, 0));
+        dataSet2.setColor(Color.rgb(142,169,64));
+        //dataSet2.setCircleColor(Color.rgb(142,169,64));
         LineData lineData2 = new LineData(dataSet2);
 
-        dataSet3.setColor(Color.rgb(0, 190, 0));
-        dataSet3.setCircleColor(Color.rgb(0, 190, 0));
+        dataSet3.setColor(Color.rgb(142,169,64));
+        //dataSet3.setCircleColor(Color.rgb(142,169,64));
         LineData lineData3 = new LineData(dataSet3);
 
         BarData BarData = new BarData(dataSet4);
@@ -322,10 +341,10 @@ TextView time_title;
 
         LegendEntry legendEntryA = new LegendEntry();
         legendEntryA.label = "Your's";
-        legendEntryA.formColor = Color.rgb(0, 190, 0);
+        legendEntryA.formColor = Color.rgb(142,169,64);
         LegendEntry legendEntryB = new LegendEntry();
         legendEntryB.label = "Others";
-        legendEntryB.formColor = Color.rgb(133, 87, 35);
+        legendEntryB.formColor = Color.rgb(70,87,42);
 
 
         lineData1.setValueFormatter(formatter);
@@ -369,9 +388,7 @@ TextView time_title;
         forresearchers_button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View arg0) {
 
-                forresearchers2_button.bringToFront();
-                researchers_title.bringToFront();
-                for_title.bringToFront();
+
                 DisplayMetrics displayMetrics = new DisplayMetrics();
                 getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
                 width = displayMetrics.widthPixels;
@@ -426,9 +443,7 @@ TextView time_title;
                         fileIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
                         fileIntent.putExtra(Intent.EXTRA_STREAM, path);
                         startActivity(Intent.createChooser(fileIntent, "Send mail"));
-                        forresearchers_button.bringToFront();
-                        researchers_title.bringToFront();
-                        for_title.bringToFront();
+
 
                     } catch (Exception e) {
                         e.printStackTrace();
