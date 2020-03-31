@@ -32,10 +32,10 @@ import java.util.Locale;
 
 public class Tutorial extends AppCompatActivity {
 
-FrameLayout frameLay1,frameLay2,frameLay3,frameLay4,frameLay5,frameLay6,frameLay7,frameLay8,frameLay9;
-ImageView left2, right2, hand_pointing2, hand_tapping2, left5, right5, hand_pointing5, hand_tapping5, left8, right8, hand_pointing8, hand_tapping8, points_game3, points_game6, lives_1_3,lives_2_3,lives_3_3,lives_1_6,lives_2_6,lives_3_6;
-ImageView next_level_pic_right1,next_level_pic_right3,next_level_pic_right9,next_level_pic_left1,next_level_pic_left3,next_level_pic_left9;
-TextView fruits_collected3,fruits_collected6;
+    FrameLayout frameLay1,frameLay2,frameLay3,frameLay4,frameLay5,frameLay6,frameLay7,frameLay8,frameLay9;
+    ImageView left2, right2, hand_pointing2, hand_tapping2, left5, right5, hand_pointing5, hand_tapping5, left8, right8, hand_pointing8, hand_tapping8, points_game3, points_game6, lives_1_3,lives_2_3,lives_3_3,lives_1_6,lives_2_6,lives_3_6;
+    ImageView next_level_pic_right1,next_level_pic_right3,next_level_pic_right9,next_level_pic_left1,next_level_pic_left3,next_level_pic_left9;
+    TextView fruits_collected3,fruits_collected6;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate (savedInstanceState);
