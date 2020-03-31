@@ -46,7 +46,7 @@ public class ReturnActivity extends AppCompatActivity {
     //Button button_charts;
     MediaPlayer background_sound;
     double accRate;
-
+    Boolean sound_on = true;
     final static String TAG = "ReturnActivity";
 
     @Override
@@ -55,6 +55,8 @@ public class ReturnActivity extends AppCompatActivity {
         setContentView (R.layout.activity_return);
 
         final MediaPlayer click_sound = MediaPlayer.create(this, R.raw.blip_annabel);
+        try{sound_on = getIntent().getExtras().getBoolean("sound_on",true);}
+        catch (Exception e){}
 
         database = FirebaseFirestore.getInstance ();
 
@@ -146,6 +148,7 @@ public class ReturnActivity extends AppCompatActivity {
                 intent.putExtra("next_level_flag", "Yes");
                 intent.putExtra ("fruit_type",fruitType);
                 intent.putExtra ("trial",trial);
+                intent.putExtra ("sound_on",sound_on);
                 startActivity(intent);
             }
 
@@ -179,7 +182,7 @@ public class ReturnActivity extends AppCompatActivity {
 
         replay.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
-                click_sound.start();
+                if (sound_on){click_sound.start();}
                 Intent intent = new Intent (ReturnActivity.this, HomeActivity.class);
                 intent.putExtra ("username",username);
                 List<Integer> range = new ArrayList<Integer> ();
@@ -188,32 +191,36 @@ public class ReturnActivity extends AppCompatActivity {
                 intent.putIntegerArrayListExtra ("range",(ArrayList<Integer>) range);
                 intent.putExtra ("fruits",fruits);
                 intent.putExtra ("fruit_type",fruitType);
+                intent.putExtra ("sound_on",sound_on);
                 startActivity(intent);
             }
         });
 
         menu.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
-                click_sound.start();
+                if (sound_on){click_sound.start();}
                 Intent intent = new Intent (ReturnActivity.this, StartActivity.class);
                 intent.putExtra ("fruits",fruits);
+                intent.putExtra ("sound_on",sound_on);
                 startActivity(intent);
             }
         });
 
         plots_button.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
-                click_sound.start();
+                if (sound_on){click_sound.start();}
                 Intent intent = new Intent(ReturnActivity.this,ProgressActivity.class);
                 intent.putExtra("accRate", accRate);
+                intent.putExtra ("sound_on",sound_on);
                 startActivity(intent);
             }
         });
         cancel_button.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
-                click_sound.start();
+                if (sound_on){click_sound.start();}
                 Intent intent = new Intent (ReturnActivity.this, StartActivity.class);
                 intent.putExtra ("fruits",fruits);
+                intent.putExtra ("sound_on",sound_on);
                 startActivity(intent);
             }
         });

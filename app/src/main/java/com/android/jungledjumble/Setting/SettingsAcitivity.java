@@ -31,6 +31,10 @@ public class SettingsAcitivity extends AppCompatActivity {
         setContentView (R.layout.activity_settings_acitivity);
 
         final MediaPlayer click_sound = MediaPlayer.create(this, R.raw.blip_annabel);
+        try{sound_on = getIntent().getExtras().getBoolean("sound_on",true);}
+        catch (Exception e){}
+
+
 
         Utils utils = new Utils(this);
         utils.hideSystemUI ();
@@ -48,10 +52,17 @@ public class SettingsAcitivity extends AppCompatActivity {
         credits_text = findViewById (R.id.credits_text);
         settings_cancel_button = findViewById (R.id.settings_cancel_button);
 
+        if (sound_on){
+            sound_button.setVisibility(View.VISIBLE);
+            sound_button_pressed.setVisibility(View.GONE);
+        }else{
+            sound_button.setVisibility(View.GONE);
+            sound_button_pressed.setVisibility(View.VISIBLE);
+        }
 
         music_button.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
-                if (sound_on = true){click_sound.start();}
+                if (sound_on){click_sound.start();}
                     music_on = false;
                     music_button.setVisibility(View.GONE);
                     music_button_pressed.setVisibility(View.VISIBLE);
@@ -62,7 +73,7 @@ public class SettingsAcitivity extends AppCompatActivity {
 
         music_button_pressed.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
-                if (sound_on = true){click_sound.start();}
+                if (sound_on){click_sound.start();}
                     music_on = true;
                     music_button.setVisibility(View.VISIBLE);
                     music_button_pressed.setVisibility(View.GONE);
@@ -72,7 +83,7 @@ public class SettingsAcitivity extends AppCompatActivity {
 
         sound_button.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
-                    //if (sound_on = true){click_sound.start();}
+                    //if (sound_on){click_sound.start();}
                     sound_on = false;
                     sound_button.setVisibility(View.GONE);
                     sound_button_pressed.setVisibility(View.VISIBLE);
@@ -82,7 +93,8 @@ public class SettingsAcitivity extends AppCompatActivity {
 
         sound_button_pressed.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
-                if (sound_on = true){click_sound.start();}
+                    //if (sound_on){click_sound.start();}
+                    click_sound.start();
                     sound_on = true;
                     sound_button.setVisibility(View.VISIBLE);
                     sound_button_pressed.setVisibility(View.GONE);
@@ -91,7 +103,7 @@ public class SettingsAcitivity extends AppCompatActivity {
 
         how_to_play_text.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
-                if (sound_on = true){click_sound.start();}
+                if (sound_on){click_sound.start();}
                 Intent intent = new Intent(SettingsAcitivity.this, Tutorial.class);
                 intent.putExtra ("sound_on",sound_on);
                 startActivity(intent);
@@ -109,7 +121,7 @@ public class SettingsAcitivity extends AppCompatActivity {
 
         settings_cancel_button.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
-                if (sound_on = true){click_sound.start();}
+                if (sound_on){click_sound.start();}
                 background_sound.pause();
                 Intent intent = new Intent(SettingsAcitivity.this, StartActivity.class);
                 intent.putExtra ("sound_on",sound_on);

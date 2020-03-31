@@ -38,7 +38,7 @@ public class Credits extends AppCompatActivity {
     FrameLayout frameLay1,frameLay2,frameLay3;
     TextView credits_text1_1,credits_text1_2, credits_text2_a, credits_text2_b, credits_text2_c;
     static final int MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE=0;
-    Boolean sound_on;
+    Boolean sound_on = true;
 
     @Override
     public void onResume(){
@@ -72,7 +72,8 @@ public class Credits extends AppCompatActivity {
         credits_text2_b = findViewById (R.id.credits_text2_b);
         credits_text2_c = findViewById (R.id.credits_text2_c);
 
-        sound_on = getIntent().getExtras().getBoolean("sound_on",true);
+        try{sound_on = getIntent().getExtras().getBoolean("sound_on",true);}
+        catch (Exception e){}
         //Toast.makeText (this, " " + sound_on, Toast.LENGTH_SHORT).show ();
 
         credits_continue1.setOnClickListener(new View.OnClickListener(){
@@ -108,21 +109,27 @@ public class Credits extends AppCompatActivity {
         settings_cancel_button1.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
                 if (sound_on){click_sound.start();}
-                startActivity(new Intent (Credits.this, StartActivity.class));
+                Intent intent = new Intent(Credits.this, StartActivity.class);
+                intent.putExtra ("sound_on",sound_on);
+                startActivity(intent);
             }
         });
 
         settings_cancel_button2.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
                 if (sound_on){click_sound.start();}
-                startActivity(new Intent (Credits.this, StartActivity.class));
+                Intent intent = new Intent(Credits.this, StartActivity.class);
+                intent.putExtra ("sound_on",sound_on);
+                startActivity(intent);
             }
         });
 
         settings_cancel_button3.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
                 if (sound_on){click_sound.start();}
-                startActivity(new Intent (Credits.this, StartActivity.class));
+                Intent intent = new Intent(Credits.this, StartActivity.class);
+                intent.putExtra ("sound_on",sound_on);
+                startActivity(intent);
             }
         });
 

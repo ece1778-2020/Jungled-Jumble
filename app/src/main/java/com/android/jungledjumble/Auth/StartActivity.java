@@ -23,7 +23,7 @@ public class StartActivity extends AppCompatActivity {
     TextView points;
     FirebaseUser firebaseUser;
     MediaPlayer background_sound;
-
+    Boolean sound_on = true;
 
     @Override
     protected void onStart() {
@@ -44,6 +44,8 @@ public class StartActivity extends AppCompatActivity {
         utils.hideSystemUI ();
 
         final MediaPlayer click_sound = MediaPlayer.create(this, R.raw.blip_annabel);
+        try{sound_on = getIntent().getExtras().getBoolean("sound_on",true);}
+        catch (Exception e){}
 
         setContentView(R.layout.activity_start);
         play = findViewById(R.id.play_button);
@@ -66,25 +68,31 @@ public class StartActivity extends AppCompatActivity {
         play.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                click_sound.start();
+                if (sound_on){click_sound.start();}
                 background_sound.pause();
-                startActivity(new Intent(StartActivity.this, SelectUserActivity.class));
+                Intent intent = new Intent(StartActivity.this, SelectUserActivity.class);
+                intent.putExtra ("sound_on",sound_on);
+                startActivity(intent);
             }
         });
 
         settings.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
-                click_sound.start();
+                if (sound_on){click_sound.start();}
                 background_sound.pause();
-                startActivity(new Intent(StartActivity.this, SettingsAcitivity.class));
+                Intent intent = new Intent(StartActivity.this, SettingsAcitivity.class);
+                intent.putExtra ("sound_on",sound_on);
+                startActivity(intent);
             }
         });
 
         data.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
-                click_sound.start();
+                if (sound_on){click_sound.start();}
                 background_sound.pause();
-                startActivity(new Intent(StartActivity.this, ProgressActivity.class));
+                Intent intent = new Intent(StartActivity.this, ProgressActivity.class);
+                intent.putExtra ("sound_on",sound_on);
+                startActivity(intent);
             }
         });
 

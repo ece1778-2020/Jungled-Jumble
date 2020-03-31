@@ -12,27 +12,29 @@ import com.android.jungledjumble.R;
 
 public class PrivacyPolicyActivity extends AppCompatActivity {
     Button decline, accept;
-
+    Boolean sound_on = true;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate (savedInstanceState);
         setContentView (R.layout.activity_privacy_policy);
 
         final MediaPlayer click_sound = MediaPlayer.create(this, R.raw.blip_annabel);
+        try{sound_on = getIntent().getExtras().getBoolean("sound_on",true);}
+        catch (Exception e){}
 
         decline = findViewById (R.id.decline_policy);
         accept = findViewById (R.id.accept_policy);
 
         decline.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
-                click_sound.start();
+                if (sound_on){click_sound.start();}
                 finish();
             }
         });
 
         accept.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
-                click_sound.start();
+                if (sound_on){click_sound.start();}
 //                startActivity(new Intent (PrivacyPolicyActivity.this, RegisterActivity.class));
                 finish ();
             }

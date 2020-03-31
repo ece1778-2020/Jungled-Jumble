@@ -83,6 +83,8 @@ public class HomeActivity extends AppCompatActivity {
     private final String TAG = "HomeActivity";
     FrameLayout frameLay3;
     TranslateAnimation trans;
+    Boolean sound_on = true;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate (savedInstanceState);
@@ -149,6 +151,8 @@ public class HomeActivity extends AppCompatActivity {
         final MediaPlayer transition3_sound = MediaPlayer.create(this, R.raw.rustle3_sfx);
 
         final ArrayList<Integer> range = intent.getIntegerArrayListExtra ("range");
+        try{sound_on = getIntent().getExtras().getBoolean("sound_on",true);}
+        catch (Exception e){}
 
 
         utils.hideSystemUI ();
@@ -482,7 +486,7 @@ public class HomeActivity extends AppCompatActivity {
         left.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
 
-                click_sound.start();
+                if (sound_on){click_sound.start();}
                 monkey_back.setVisibility(View.GONE);
                 monkey_back_left.setVisibility(View.VISIBLE);
                 monkey_back_right.setVisibility(View.GONE);
@@ -515,6 +519,7 @@ public class HomeActivity extends AppCompatActivity {
                     intent.putExtra ("fruit_type",fruitType);
                     intent.putExtra ("life_counter",life_counter);
                     intent.putExtra ("char_selection",char_selection);
+                    intent.putExtra ("sound_on",sound_on);
                     startActivity(intent);
                     overridePendingTransition(0, 0);
                 }else{
@@ -529,6 +534,7 @@ public class HomeActivity extends AppCompatActivity {
                     intent.putExtra ("fruit_type",fruitType);
                     intent.putExtra ("char_selection",char_selection);
                     intent.putExtra ("trial",trial+1);
+                    intent.putExtra ("sound_on",sound_on);
                     startActivity(intent);
                 }
             }
@@ -537,7 +543,7 @@ public class HomeActivity extends AppCompatActivity {
         right.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
 
-                click_sound.start();
+                if (sound_on){click_sound.start();}
                 monkey_back.setVisibility(View.GONE);
                 monkey_back_left.setVisibility(View.GONE);
                 monkey_back_right.setVisibility(View.VISIBLE);
@@ -570,6 +576,7 @@ public class HomeActivity extends AppCompatActivity {
                     intent.putExtra ("fruit_type",fruitType);
                     intent.putExtra ("life_counter",life_counter);
                     intent.putExtra ("char_selection",char_selection);
+                    intent.putExtra ("sound_on",sound_on);
                     startActivity(intent);
                     overridePendingTransition(0, 0);
                 }else{
@@ -584,26 +591,32 @@ public class HomeActivity extends AppCompatActivity {
                     intent.putExtra ("fruit_type",fruitType);
                     intent.putExtra ("char_selection",char_selection);
                     intent.putExtra ("trial",trial+1);
+                    intent.putExtra ("sound_on",sound_on);
                     startActivity(intent);
                 }
             }
         });
    /*     quit.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
-                click_sound.start();
-                startActivity(new Intent (HomeActivity.this, StartActivity.class));
+                 if (sound_on){click_sound.start();}
+                 Intent intent = new Intent(HomeActivity.this, StartActivity.class);
+                intent.putExtra ("sound_on",sound_on);
+                startActivity(intent);
             }
         });*/
 /*        cancel_button.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
-                click_sound.start();
+                 if (sound_on){click_sound.start();}
+                Intent intent = new Intent(HomeActivity.this, StartActivity.class);
+                intent.putExtra ("sound_on",sound_on);
+                startActivity(intent);
                 startActivity(new Intent (HomeActivity.this, StartActivity.class));
             }
         });*/
 
         pause_button.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
-                click_sound.start();
+                if (sound_on){click_sound.start();}
                 frameLay3.bringToFront();
                 frameLay3.setVisibility(View.VISIBLE);
 
@@ -612,7 +625,7 @@ public class HomeActivity extends AppCompatActivity {
 
         restart_pause.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
-                click_sound.start();
+                if (sound_on){click_sound.start();}
                 frameLay3.setVisibility(View.GONE);
                 Intent intent = new Intent (HomeActivity.this, HomeActivity.class);
                 intent.putExtra ("username",username);
@@ -620,13 +633,14 @@ public class HomeActivity extends AppCompatActivity {
                 range.add(115);
                 range.add(130);
                 intent.putIntegerArrayListExtra ("range",(ArrayList<Integer>) range);
+                intent.putExtra ("sound_on",sound_on);
                 startActivity(intent);
             }
         });
 
         continue_pause.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
-                click_sound.start();
+                if (sound_on){click_sound.start();}
                 //frameLay3.bringToFront();
                 frameLay3.setVisibility(View.GONE);
             }
@@ -634,9 +648,11 @@ public class HomeActivity extends AppCompatActivity {
 
         quit_pause.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
-                click_sound.start();
+                if (sound_on){click_sound.start();}
                 //frameLay3.setVisibility(View.GONE);
-                startActivity(new Intent (HomeActivity.this, StartActivity.class));
+                Intent intent = new Intent(HomeActivity.this, StartActivity.class);
+                intent.putExtra ("sound_on",sound_on);
+                startActivity(intent);
             }
         });
 

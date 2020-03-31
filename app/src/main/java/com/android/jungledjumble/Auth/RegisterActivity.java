@@ -54,7 +54,7 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
     ImageView female_button, male_button, other_gender_button;
     int state_female, state_male, state_other_gender;
     int fruit_type;
-
+    Boolean sound_on = true;
     //
 
     private FirebaseUtils firebaseUtils;
@@ -81,6 +81,8 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
         setContentView (R.layout.activity_register);
 
         final MediaPlayer click_sound = MediaPlayer.create(this, R.raw.blip_annabel);
+        try{sound_on = getIntent().getExtras().getBoolean("sound_on",true);}
+        catch (Exception e){}
 
         registerButton = findViewById (R.id.register);
         registerButtonBottom = findViewById (R.id.register2);
@@ -104,7 +106,7 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
 
         female_button.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
-                click_sound.start();
+                if (sound_on){click_sound.start();}
                 if (state_female == 0){
                     female_button.setActivated (true);
                     male_button.setActivated (false);
@@ -117,7 +119,7 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
         });
         male_button.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
-                click_sound.start();
+                if (sound_on){click_sound.start();}
                 if (state_male == 0){
                     male_button.setActivated (true);
                     other_gender_button.setActivated (false);
@@ -130,7 +132,7 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
         });
         other_gender_button.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
-                click_sound.start();
+                if (sound_on){click_sound.start();}
                 if (state_other_gender == 0){
                     other_gender_button.setActivated (true);
                     female_button.setActivated (false);
@@ -176,8 +178,10 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
         settings_cancel_button.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
                 //background_sound.pause();
-                click_sound.start();
-                startActivity(new Intent (RegisterActivity.this, SelectUserActivity.class));
+                if (sound_on){click_sound.start();}
+                Intent intent = new Intent(RegisterActivity.this, SelectUserActivity.class);
+                intent.putExtra ("sound_on",sound_on);
+                startActivity(intent);
             }
         });
         SetProfileImage();
@@ -185,8 +189,9 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
         Register(registerButtonBottom);
 //        nextPage.setOnClickListener(new View.OnClickListener(){
 //            public void onClick(View view){
-//                click_sound.start();
-//                Intent intent = new Intent (RegisterActivity.this, OptionalActivity.class);
+//                 if (sound_on){click_sound.start();}
+//                Intent intent = new Intent (RegisterActivity.this, SelectUserActivity.class);
+//                intent.putExtra ("sound_on",sound_on);
 //                startActivity(intent);
 //            }
 //        });

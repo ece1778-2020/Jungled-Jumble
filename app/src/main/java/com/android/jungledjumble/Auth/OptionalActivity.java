@@ -17,7 +17,7 @@ import com.android.jungledjumble.R;
 public class OptionalActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
     Button back;
     Spinner glass_spinner, disorder_spinner, disability_spinner;
-
+    Boolean sound_on = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +25,9 @@ public class OptionalActivity extends AppCompatActivity implements AdapterView.O
         setContentView (R.layout.activity_optional);
 
         final MediaPlayer click_sound = MediaPlayer.create(this, R.raw.blip_annabel);
+        try{sound_on = getIntent().getExtras().getBoolean("sound_on",true);}
+        catch (Exception e){}
+
 
         back = findViewById (R.id.back);
         glass_spinner = findViewById (R.id.glass_spinner);
@@ -49,8 +52,9 @@ public class OptionalActivity extends AppCompatActivity implements AdapterView.O
         back.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
 
-                click_sound.start();
+                if (sound_on){click_sound.start();}
                 Intent intent = new Intent (OptionalActivity.this, RegisterActivity.class);
+                intent.putExtra ("sound_on",sound_on);
                 startActivity(intent);
             }
         });
