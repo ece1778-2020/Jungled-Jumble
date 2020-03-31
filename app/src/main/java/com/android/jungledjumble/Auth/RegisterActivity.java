@@ -6,23 +6,28 @@ import androidx.core.content.FileProvider;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.jungledjumble.Main.ReturnActivity;
 import com.android.jungledjumble.R;
+import com.android.jungledjumble.Setting.ProgressActivity;
 import com.android.jungledjumble.Utils.FirebaseUtils;
 
 import java.io.File;
@@ -41,15 +46,18 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
     // Layout
     EditText mUsername, mAge, mGender;
     ImageView settings_cancel_button;
-    Button registerButton;
+    ImageView registerButton, registerButtonBottom;
     CircleImageView profile_image;
     TextView txt_login;
     Spinner gender_spinner,hand_spinner,glass_spinner,disorder_spinner,disability_spinner;
+    ImageView female_button, male_button, other_gender_button;
+    int state_female, state_male, state_other_gender;
     int fruit_type;
 
     //
 
     private FirebaseUtils firebaseUtils;
+    private Utils utils;
     File photoFile;
     ProgressDialog pd;
     private final int TAKE_CAMERA_REQUEST = 21;
@@ -65,39 +73,81 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
 
 
         registerButton = findViewById (R.id.register);
+        registerButtonBottom = findViewById (R.id.register2);
         profile_image = findViewById (R.id.profile_image);
 
         mUsername = findViewById (R.id.username_text);
         mAge = findViewById (R.id.age_text);
 
-        gender_spinner = findViewById (R.id.gender_spinner);
         hand_spinner = findViewById (R.id.hand_spinner);
         glass_spinner = findViewById (R.id.glass_spinner);
         disorder_spinner = findViewById (R.id.disorder_spinner);
         disability_spinner = findViewById (R.id.disability_spinner);
         settings_cancel_button = findViewById (R.id.settings_cancel_button);
 
+        female_button = findViewById (R.id.female_button);
+        male_button = findViewById (R.id.male_button);
+        other_gender_button = findViewById (R.id.other_gender_button);
+
         Utils utils = new Utils(this);
         utils.hideSystemUI ();
 
-        ArrayAdapter<CharSequence> adaptor = ArrayAdapter.createFromResource (this,R.array.gender,android.R.layout.simple_spinner_item);
-        adaptor.setDropDownViewResource (android.R.layout.simple_spinner_dropdown_item);
-        gender_spinner.setAdapter (adaptor);
-        gender_spinner.setOnItemSelectedListener (this);
+        female_button.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View view){
+                if (state_female == 0){
+                    female_button.setActivated (true);
+                    male_button.setActivated (false);
+                    other_gender_button.setActivated (false);
+                }else{
+                    female_button.setActivated (false);
+                }
+                state_female = 1-state_female;
+            }
+        });
+        male_button.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View view){
+                if (state_male == 0){
+                    male_button.setActivated (true);
+                    other_gender_button.setActivated (false);
+                    female_button.setActivated (false);
+                }else{
+                    male_button.setActivated (false);
+                }
+                state_male = 1-state_male;
+            }
+        });
+        other_gender_button.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View view){
+                if (state_other_gender == 0){
+                    other_gender_button.setActivated (true);
+                    female_button.setActivated (false);
+                    male_button.setActivated (false);
+                }else{
+                    other_gender_button.setActivated (false);
+                }
+                state_other_gender = 1-state_other_gender;
+            }
+        });
+
+//        ArrayAdapter<CharSequence> adaptor = ArrayAdapter.createFromResource (this,R.array.gender,R.layout.custom_spinner);
+////        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.custom_spinner);
+//        adaptor.setDropDownViewResource (android.R.layout.simple_spinner_dropdown_item);
+//        gender_spinner.setAdapter (adaptor);
+//        gender_spinner.setOnItemSelectedListener (this);
 
 
-        ArrayAdapter<CharSequence> handAdaptor = ArrayAdapter.createFromResource (this,R.array.hand,android.R.layout.simple_spinner_item);
+        ArrayAdapter<CharSequence> handAdaptor = ArrayAdapter.createFromResource (this,R.array.hand,R.layout.custom_spinner);
         handAdaptor.setDropDownViewResource (android.R.layout.simple_spinner_dropdown_item);
         hand_spinner.setAdapter (handAdaptor);
         hand_spinner.setOnItemSelectedListener (this);
 
-        ArrayAdapter<CharSequence> needAdaptor = ArrayAdapter.createFromResource (this,R.array.need,android.R.layout.simple_spinner_item);
+        ArrayAdapter<CharSequence> needAdaptor = ArrayAdapter.createFromResource (this,R.array.need,R.layout.custom_spinner);
         needAdaptor.setDropDownViewResource (android.R.layout.simple_spinner_dropdown_item);
         glass_spinner.setAdapter (needAdaptor);
         glass_spinner.setOnItemSelectedListener (this);
 
-        ArrayAdapter<CharSequence> haveAdaptor = ArrayAdapter.createFromResource (this,R.array.have,android.R.layout.simple_spinner_item);
-        haveAdaptor .setDropDownViewResource (android.R.layout.simple_spinner_dropdown_item);
+        ArrayAdapter<CharSequence> haveAdaptor = ArrayAdapter.createFromResource (this,R.array.have,R.layout.custom_spinner);
+        haveAdaptor.setDropDownViewResource (android.R.layout.simple_spinner_dropdown_item);
         disorder_spinner.setAdapter (haveAdaptor );
         disorder_spinner.setOnItemSelectedListener (this);
 
@@ -105,6 +155,7 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
         disability_spinner.setOnItemSelectedListener (this);
 
         firebaseUtils = new FirebaseUtils (RegisterActivity.this);
+        utils = new Utils (this);
 
         Intent intent = getIntent ();
         fruit_type = intent.getIntExtra ("fruit_type",0);
@@ -116,7 +167,8 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
             }
         });
         SetProfileImage();
-        Register();
+        Register(registerButton);
+        Register(registerButtonBottom);
 //        nextPage.setOnClickListener(new View.OnClickListener(){
 //            public void onClick(View view){
 //                Intent intent = new Intent (RegisterActivity.this, OptionalActivity.class);
@@ -179,8 +231,8 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
 
     }
 
-    private void Register(){
-        registerButton.setOnClickListener (new View.OnClickListener () {
+    private void Register(ImageView button){
+        button.setOnClickListener (new View.OnClickListener () {
             public void onClick(View view) {
                 pd = new ProgressDialog (RegisterActivity.this);
                 pd.setMessage ("Please wait..");
@@ -189,7 +241,7 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
                 String str_username = mUsername.getText ().toString ();
                 String str_age = mAge.getText ().toString ();
 //                String str_gender = mGender.getText ().toString ();
-                String str_gender = gender_spinner.getSelectedItem ().toString ();
+                String str_gender = utils.getGender (state_female,state_male,state_other_gender);
 
                 String str_hand = hand_spinner.getSelectedItem ().toString ();
                 String str_glass = glass_spinner.getSelectedItem ().toString ();

@@ -10,6 +10,7 @@
     <color name="colorLightBlue">#4AE389 </color>
     <color name="colorPink">#D64AE3 </color>
     <color name="colorOval">#FCF6E4 </color>
+    <color name="colorText">#281C1E </color>
 
     <color name="black_overlay">#66000000</color>
 

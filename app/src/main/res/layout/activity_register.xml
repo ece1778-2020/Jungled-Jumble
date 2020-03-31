@@ -4,184 +4,321 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/user_select_background"
+    android:background="@color/colorOval"
     tools:context=".Auth.RegisterActivity">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:gravity="center_horizontal"
-        android:padding="10dp">
 
+    <ScrollView
+        android:layout_width="790dp"
+        android:layout_height="397dp"
+        tools:layout_editor_absoluteX="-5dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0">
 
-        <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="550dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="30dp"
+            android:orientation="vertical">
 
             <LinearLayout
-                android:layout_width="450dp"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
-
-                android:layout_gravity="center_horizontal"
-
-                android:orientation="vertical">
-
-                <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
-                    android:id="@+id/profile_image"
-                    android:layout_width="96dp"
-                    android:layout_height="96dp"
-                    android:layout_gravity="center_horizontal"
-                    android:src="@drawable/empty_user"
-                    app:civ_border_color="#FF000000"
-                    app:civ_border_width="2dp" />
-
-                <EditText
-                    android:id="@+id/username_text"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="45dp"
-                    android:background="@drawable/edittext_background"
-                    android:hint="Username"
-                    android:padding="10dp" />
-
-
-                <EditText
-                    android:id="@+id/age_text"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="15dp"
-                    android:background="@drawable/edittext_background"
-                    android:hint="Age"
-                    android:padding="10dp" />
+                android:orientation="horizontal">
 
                 <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="15dp"
-                    android:orientation="horizontal"
-                    android:padding="10dp">
+                    android:layout_width="150dp"
+                    android:layout_height="200dp"
+                    android:orientation="vertical">
 
-                    <TextView
-                        android:layout_width="80dp"
-                        android:layout_height="wrap_content"
-                        android:text="Gender"
-                        android:textSize="20sp" />
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/profile_image"
+                        android:layout_width="120dp"
+                        android:layout_height="120dp"
+                        android:layout_gravity="center_horizontal"
+                        android:src="@drawable/user_button"
+                        app:civ_border_color="#FF000000"
+                        app:civ_border_width="2dp" />
 
-                    <Spinner
-                        android:id="@+id/gender_spinner"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
-
-                    <TextView
-                        android:layout_width="80dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="0dp"
-                        android:text="Hand"
-                        android:textSize="20sp" />
-
-                    <Spinner
-                        android:id="@+id/hand_spinner"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:id="@+id/register"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/button_register_setting" />
                 </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="300dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="30dp"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="42dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="@dimen/register_info_width"
+                            android:layout_height="match_parent"
+                            android:fontFamily="@font/droid_sans_bold"
+                            android:gravity="bottom"
+                            android:text="name"
+                            android:textColor="@color/colorBlack"
+                            android:textSize="25sp" />
+
+                        <EditText
+                            android:id="@+id/username_text"
+                            android:layout_width="200dp"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/edittext_background"
+                            android:inputType="text"
+                            android:maxLines="1"
+                            android:padding="10dp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="42dp"
+                        android:layout_marginTop="16dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="@dimen/register_info_width"
+                            android:layout_height="match_parent"
+                            android:fontFamily="@font/droid_sans_bold"
+                            android:gravity="bottom"
+                            android:text="age"
+                            android:textColor="@color/colorBlack"
+
+                            android:textSize="25sp" />
+
+                        <EditText
+                            android:id="@+id/age_text"
+                            android:layout_width="200dp"
+                            android:layout_height="match_parent"
+
+                            android:background="@drawable/edittext_background"
+                            android:inputType="text"
+
+                            android:maxLines="1"
+                            android:padding="10dp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="42dp"
+                        android:layout_marginTop="16dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="@dimen/register_info_width"
+                            android:layout_height="match_parent"
+                            android:fontFamily="@font/droid_sans_bold"
+                            android:gravity="bottom"
+                            android:text="gender"
+                            android:textColor="@color/colorBlack"
+
+                            android:textSize="25sp" />
+
+                        <ImageView
+                            android:id="@+id/female_button"
+                            android:layout_width="63dp"
+                            android:layout_height="match_parent"
+                            android:src="@drawable/button_female_setting" />
+
+                        <ImageView
+                            android:id="@+id/male_button"
+                            android:layout_width="63dp"
+                            android:layout_height="match_parent"
+                            android:src="@drawable/button_male_setting" />
+
+                        <ImageView
+                            android:id="@+id/other_gender_button"
+                            android:layout_width="63dp"
+                            android:layout_height="match_parent"
+                            android:src="@drawable/button_other_gender_setting" />
+                    </LinearLayout>
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:fontFamily="@font/droid_sans_bold"
+                android:gravity="bottom"
+                android:text="OPTIONAL QUESTIONS"
+                android:textColor="@color/colorBlack"
+                android:textSize="25sp" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:orientation="horizontal"
+                android:padding="10dp">
 
                 <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginTop="10dp"
-                    android:text="*Optional"
-                    android:textSize="20sp" />
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/droid_sans_bold"
+                    android:gravity="bottom"
+                    android:text="I'm"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="25sp" />
 
-                <LinearLayout
+                <Spinner
+                    android:id="@+id/hand_spinner"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="15dp"
-                    android:orientation="horizontal"
-                    android:padding="10dp">
+                    android:layout_marginStart="5dp" />
 
-                    <TextView
-                        android:layout_width="10dp"
-                        android:layout_height="wrap_content"
-                        android:text="I"
-                        android:textSize="20sp" />
-
-                    <Spinner
-                        android:id="@+id/glass_spinner"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="5dp" />
-
-                    <TextView
-                        android:layout_width="180dp"
-                        android:layout_height="wrap_content"
-                        android:text="glasses or contacts"
-                        android:textSize="20sp" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
+                <TextView
+                    android:layout_width="300dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="15dp"
-                    android:orientation="horizontal"
-                    android:padding="10dp">
-
-                    <TextView
-                        android:layout_width="10dp"
-                        android:layout_height="wrap_content"
-                        android:text="I"
-                        android:textSize="20sp" />
-
-                    <Spinner
-                        android:id="@+id/disorder_spinner"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="5dp" />
-
-                    <TextView
-                        android:layout_width="240dp"
-                        android:layout_height="wrap_content"
-                        android:text="any neurological disorders"
-                        android:textSize="20sp" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="15dp"
-                    android:orientation="horizontal"
-                    android:padding="10dp">
-
-                    <TextView
-                        android:layout_width="10dp"
-                        android:layout_height="wrap_content"
-                        android:text="I"
-                        android:textSize="20sp" />
-
-                    <Spinner
-                        android:id="@+id/disability_spinner"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="5dp" />
-
-                    <TextView
-                        android:layout_width="240dp"
-                        android:layout_height="wrap_content"
-                        android:text="any learning disabilities"
-                        android:textSize="20sp" />
-                </LinearLayout>
-
-                <Button
-                    android:id="@+id/register"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="15dp"
-                    android:background="@drawable/edittext_background"
-                    android:text="Register"
-                    android:textColor="@color/colorPrimary" />
+                    android:fontFamily="@font/droid_sans_bold"
+                    android:gravity="bottom"
+                    android:text="handed."
+                    android:textColor="@color/colorBlack"
+                    android:textSize="25sp" />
             </LinearLayout>
-        </ScrollView>
-    </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:orientation="horizontal"
+                android:padding="10dp">
+
+                <TextView
+                    android:layout_width="10dp"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/droid_sans_bold"
+                    android:gravity="bottom"
+                    android:text="I"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="25sp" />
+
+                <Spinner
+                    android:id="@+id/glass_spinner"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp" />
+
+                <TextView
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/droid_sans_bold"
+                    android:gravity="bottom"
+                    android:text="glasses or contacts."
+                    android:textColor="@color/colorBlack"
+                    android:textSize="25sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:orientation="horizontal"
+                android:padding="10dp">
+
+                <TextView
+                    android:layout_width="10dp"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/droid_sans_bold"
+                    android:gravity="bottom"
+                    android:text="I"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="25sp" />
+
+                <Spinner
+                    android:id="@+id/disorder_spinner"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp" />
+
+                <TextView
+                    android:layout_width="472dp"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/droid_sans_bold"
+                    android:gravity="bottom"
+                    android:text="any neurological disorders."
+                    android:textColor="@color/colorBlack"
+                    android:textSize="25sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:orientation="horizontal"
+                android:padding="10dp">
+
+                <TextView
+                    android:layout_width="10dp"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/droid_sans_bold"
+                    android:gravity="bottom"
+                    android:text="I"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="25sp" />
+
+                <Spinner
+                    android:id="@+id/disability_spinner"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp" />
+
+                <TextView
+                    android:layout_width="472dp"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/droid_sans_bold"
+                    android:gravity="bottom"
+                    android:text="any learning disabilities."
+                    android:textColor="@color/colorBlack"
+                    android:textSize="25sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:orientation="horizontal"
+                android:padding="10dp">
+
+                <ImageView
+                    android:layout_width="200dp"
+                    android:layout_height="55dp"
+                    android:id="@+id/register2"
+                    android:src="@drawable/button_register_setting" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:layout_marginStart="50dp"
+                    android:text="thanks for answering our questions." />
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="141dp"
+                android:layout_marginTop="15dp"
+                android:orientation="horizontal"
+                android:padding="10dp">
+
+            </LinearLayout>
+        </LinearLayout>
+
+
+    </ScrollView>
+
     <ImageView
         android:id="@+id/settings_cancel_button"
         android:layout_width="76dp"

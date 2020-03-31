@@ -8,11 +8,13 @@
     tools:context=".Auth.StartActivity">
 
     <ImageView
+        android:id="@+id/main_background"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/main_background"
         android:scaleType="centerCrop"
-        android:src="@drawable/main_background"/>
+        android:src="@drawable/main_background"
+        tools:layout_editor_absoluteX="31dp"
+        tools:layout_editor_absoluteY="-16dp" />
 
     <ImageView
         android:id="@+id/play_button"
@@ -90,19 +92,19 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginTop="27dp"
+        android:layout_marginTop="25dp"
+        android:fontFamily="@font/skranji"
         android:scaleType="fitCenter"
+        android:src="@drawable/rewards_button"
         android:text="0"
         android:textAlignment="center"
-        android:textColor="@color/colorOrangeRed"
+        android:textColor="@color/colorText"
         android:textSize="52sp"
-        android:fontFamily="@font/skranji"
-        android:src="@drawable/rewards_button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.896"
+        app:layout_constraintHorizontal_bias="0.96"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.111" />
+        app:layout_constraintVertical_bias="0.127" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

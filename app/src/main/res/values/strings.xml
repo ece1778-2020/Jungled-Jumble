@@ -10,8 +10,8 @@
         <item>Female</item>
     </string-array>
     <string-array name="hand">
-        <item>Left-handed</item>
-        <item>right-handed</item>
+        <item>left</item>
+        <item>right</item>
     </string-array>
 
     <string-array name="need">

@@ -175,6 +175,18 @@ public class Utils {
         int correct_choice_rate = (int)correct_choice_d;
         return String.valueOf (correct_choice_rate);
     }
+
+    public String getGender(int female, int male, int otherGender){
+        if (female == 1){
+            return "Female";
+        }else if (male == 1){
+            return "Male";
+        }else if (otherGender == 1){
+            return "Other gender";
+        }else{
+            return "Unknown gender";
+        }
+    }
     public int AccToFruits(int acc){
         int result;
         if (acc >= 0 && acc <51){

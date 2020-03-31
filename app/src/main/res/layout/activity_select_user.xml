@@ -13,8 +13,8 @@
         android:layout_height="match_parent"
         android:scaleType="fitXY"
         android:src="@drawable/user_select_background"
-        tools:layout_editor_absoluteX="36dp"
-        tools:layout_editor_absoluteY="18dp" />
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp" />
 
     <ImageView
         android:id="@+id/existing_user"
@@ -55,6 +55,174 @@
         app:layout_constraintTop_toTopOf="parent" />
 
 
+    <ImageView
+        android:id="@+id/left_arrow_char"
+        android:layout_width="60dp"
+        android:layout_height="@dimen/char_height"
+        android:src="@drawable/arrow_left_button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.558"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.403" />
+
+    <ImageView
+        android:id="@+id/right_arrow_char"
+        android:layout_width="60dp"
+        android:layout_height="@dimen/char_height"
+        android:src="@drawable/arrow_right_button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.921"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.403" />
+    <ImageView
+        android:id="@+id/monkey"
+        android:layout_width="183dp"
+        android:layout_height="239dp"
+        android:src="@drawable/monkey_char"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.79"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.415" />
+
+    <ImageView
+        android:id="@+id/sloth"
+        android:layout_width="175dp"
+        android:layout_height="232dp"
+        android:src="@drawable/sloth_locked"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.78"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.397" />
+
+    <ImageView
+        android:id="@+id/orange"
+        android:layout_width="@dimen/fruit_height"
+        android:layout_height="@dimen/fruit_height"
+        android:src="@drawable/orange_detailed"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.647"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.937" />
+
+    <ImageView
+        android:id="@+id/banana"
+        android:layout_width="@dimen/fruit_height"
+        android:layout_height="@dimen/fruit_height"
+        android:src="@drawable/banana_detailed"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.647"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.937" />
+
+    <ImageView
+        android:id="@+id/grape"
+        android:layout_width="@dimen/fruit_height"
+        android:layout_height="@dimen/fruit_height"
+        android:src="@drawable/grapes_detailed"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.647"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.937" />
+
+    <ImageView
+        android:id="@+id/orange2"
+        android:layout_width="@dimen/fruit_height"
+        android:layout_height="@dimen/fruit_height"
+        android:src="@drawable/orange2_detailed"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.647"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.937" />
+    <ImageView
+        android:id="@+id/pear"
+        android:layout_width="@dimen/fruit_height"
+        android:layout_height="@dimen/fruit_height"
+        android:src="@drawable/pear_detailed"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.647"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.937" />
+
+    <ImageView
+        android:id="@+id/mango"
+        android:layout_width="@dimen/fruit_height"
+        android:layout_height="@dimen/fruit_height"
+        android:src="@drawable/mango_detailed"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.647"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.937" />
+
+
+    <ImageView
+        android:id="@+id/left_arrow"
+        android:layout_width="50dp"
+        android:layout_height="@dimen/fruit_height"
+        android:src="@drawable/arrow_left_button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.534"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.937" />
+
+    <!--    <androidx.recyclerview.widget.RecyclerView-->
+<!--        android:id="@+id/user_list"-->
+<!--        android:layout_width="532dp"-->
+<!--        android:layout_height="518dp"-->
+<!--        android:background="@color/colorOval"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.31"-->
+<!--        app:layout_constraintStart_toEndOf="@+id/existing_user"-->
+<!--        app:layout_constraintTop_toTopOf="parent" />-->
+
+    <ImageView
+        android:id="@+id/right_arrow"
+        android:layout_width="50dp"
+        android:layout_height="@dimen/fruit_height"
+        android:src="@drawable/arrow_right_button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.745"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.937" />
+
+
+
+        <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/user_list"
+        android:layout_width="369dp"
+        android:layout_height="400dp"
+        android:background="@color/colorOval"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/existing_user"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.526" />
+
 
     <ImageView
         android:id="@+id/add_user"
@@ -69,175 +237,9 @@
         app:layout_constraintVertical_bias="1.0" />
 
     <ImageView
-        android:id="@+id/orange"
-        android:layout_width="@dimen/fruit_height"
-        android:layout_height="@dimen/fruit_height"
-        android:src="@drawable/orange_detailed"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.836"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.898" />
-
-    <ImageView
-        android:id="@+id/banana"
-        android:layout_width="@dimen/fruit_height"
-        android:layout_height="@dimen/fruit_height"
-        android:src="@drawable/banana_detailed"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.836"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.898" />
-
-    <ImageView
-        android:id="@+id/grape"
-        android:layout_width="@dimen/fruit_height"
-        android:layout_height="@dimen/fruit_height"
-        android:src="@drawable/grapes_detailed"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.836"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.898" />
-
-    <ImageView
-        android:id="@+id/orange2"
-        android:layout_width="@dimen/fruit_height"
-        android:layout_height="@dimen/fruit_height"
-        android:src="@drawable/orange2_detailed"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.836"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.898" />
-    <ImageView
-        android:id="@+id/pear"
-        android:layout_width="@dimen/fruit_height"
-        android:layout_height="@dimen/fruit_height"
-        android:src="@drawable/pear_detailed"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.836"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.898" />
-
-    <ImageView
-        android:id="@+id/mango"
-        android:layout_width="@dimen/fruit_height"
-        android:layout_height="@dimen/fruit_height"
-        android:src="@drawable/mango_detailed"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.836"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.899" />
-
-
-    <ImageView
-        android:id="@+id/left_arrow"
-        android:layout_width="50dp"
-        android:layout_height="@dimen/fruit_height"
-        android:src="@drawable/arrow_left_button"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.694"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.905" />
-
-    <ImageView
-        android:id="@+id/right_arrow"
-        android:layout_width="50dp"
-        android:layout_height="@dimen/fruit_height"
-        android:src="@drawable/arrow_right_button"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.922"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.898" />
-
-    <ImageView
-        android:id="@+id/monkey"
-        android:layout_width="183dp"
-        android:layout_height="239dp"
-        android:src="@drawable/monkey_char"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.762"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.418" />
-
-    <!--    <androidx.recyclerview.widget.RecyclerView-->
-<!--        android:id="@+id/user_list"-->
-<!--        android:layout_width="532dp"-->
-<!--        android:layout_height="518dp"-->
-<!--        android:background="@color/colorOval"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintHorizontal_bias="0.31"-->
-<!--        app:layout_constraintStart_toEndOf="@+id/existing_user"-->
-<!--        app:layout_constraintTop_toTopOf="parent" />-->
-    <ImageView
-        android:id="@+id/sloth"
-        android:layout_width="175dp"
-        android:layout_height="232dp"
-        android:src="@drawable/sloth_locked"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.762"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.418" />
-
-    <ImageView
-        android:id="@+id/left_arrow_char"
-        android:layout_width="60dp"
-        android:layout_height="@dimen/char_height"
-        android:src="@drawable/arrow_left_button"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.542"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.408" />
-
-    <ImageView
-        android:id="@+id/right_arrow_char"
-        android:layout_width="60dp"
-        android:layout_height="@dimen/char_height"
-        android:src="@drawable/arrow_right_button"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.892"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.408" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/user_list"
-        android:layout_width="369dp"
-        android:layout_height="400dp"
-        android:background="@color/colorOval"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/existing_user"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.526" />
-
-    <ImageView
         android:id="@+id/settings_cancel_button"
         android:layout_width="76dp"
-        android:layout_height="76dp"
+        android:layout_height="67dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"

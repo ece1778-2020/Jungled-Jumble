@@ -94,7 +94,7 @@
         android:fontFamily="@font/skranji"
         android:text="17"
         android:textAlignment="center"
-        android:textColor="#80604D"
+        android:textColor="@color/colorText"
         android:textSize="46sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
