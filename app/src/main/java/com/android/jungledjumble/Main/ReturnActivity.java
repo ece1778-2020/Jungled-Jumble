@@ -23,6 +23,7 @@ import com.android.jungledjumble.R;
 import com.android.jungledjumble.Setting.ProgressActivity;
 import com.android.jungledjumble.Utils.FirebaseUtils;
 import com.android.jungledjumble.Utils.Utils;
+import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -34,13 +35,14 @@ import java.util.Collections;
 import java.util.List;
 
 public class ReturnActivity extends AppCompatActivity {
-    ImageView replay, menu,plots_button, cancel_button,next_level_pic_right, next_level_pic_left;
+    ImageView replay, menu,plots_button, cancel_button,next_level_pic_right, next_level_pic_left,character;
     TextView fruitsCollected, correctChoiceRate, points_collected;
     int level,points,rewards,fruits,fruitType;
     UserResults userResults;
     String username, choices,correct_choices;
     private FirebaseUtils firebaseUtils;
     private FirebaseFirestore database;
+    int trial;
     //Button button_charts;
     MediaPlayer background_sound;
     double accRate;
@@ -66,6 +68,7 @@ public class ReturnActivity extends AppCompatActivity {
         firebaseUtils = new FirebaseUtils (ReturnActivity.this);
         next_level_pic_right= findViewById (R.id.next_level_pic_right);
         next_level_pic_left= findViewById (R.id.next_level_pic_left);
+        character = findViewById (R.id.character);
 
         GlobalClass globalClass = new GlobalClass ();
         // button_charts = findViewById(R.id.button_charts);
@@ -96,6 +99,11 @@ public class ReturnActivity extends AppCompatActivity {
 
         final ArrayList<Integer> range = intent.getIntegerArrayListExtra ("range");
 
+        trial = intent.getIntExtra ("trial",1);
+        int char_selection = intent.getIntExtra ("char_selection",0);
+        if (char_selection == 1){
+            Glide.with(this).load(R.drawable.sloth_win).into(character);
+        }
 
         int n = choices.length ();
         int count = 0;
@@ -126,12 +134,14 @@ public class ReturnActivity extends AppCompatActivity {
                 range.set(0,range.get (0)+updateSize);
                 range.set(1,range.get (1)-updateSize);
                 intent = new Intent (ReturnActivity.this, HomeActivity.class);
+                intent.putExtra ("char_selection",char_selection);
                 intent.putExtra ("username",username);
                 List<Integer> indices = new ArrayList<Integer> ();
                 intent.putIntegerArrayListExtra ("range", range);
                 intent.putExtra ("fruits",fruits);
                 intent.putExtra("next_level_flag", "Yes");
                 intent.putExtra ("fruit_type",fruitType);
+                intent.putExtra ("trial",trial);
                 startActivity(intent);
             }
 

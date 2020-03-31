@@ -241,7 +241,16 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
                 String str_username = mUsername.getText ().toString ();
                 String str_age = mAge.getText ().toString ();
 //                String str_gender = mGender.getText ().toString ();
-                String str_gender = utils.getGender (state_female,state_male,state_other_gender);
+                String str_gender;
+                if (female_button.isActivated ()){
+                    str_gender = "Female";
+                }else if (male_button.isActivated ()){
+                    str_gender = "Male";
+                }else if(other_gender_button.isActivated ()){
+                    str_gender = "Other gender";
+                }else{
+                    str_gender = "Unknown gender";
+                }
 
                 String str_hand = hand_spinner.getSelectedItem ().toString ();
                 String str_glass = glass_spinner.getSelectedItem ().toString ();

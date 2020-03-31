@@ -40,6 +40,7 @@ import com.android.jungledjumble.Utils.OrangeAdaptor;
 import com.android.jungledjumble.Utils.UserAdaptor;
 import com.android.jungledjumble.Utils.Utils;
 import com.android.jungledjumble.Models.Sizes;
+import com.bumptech.glide.Glide;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -50,8 +51,10 @@ import java.util.Random;
 
 public class HomeActivity extends AppCompatActivity {
     private Utils utils;
-    ImageView left,right,quit, cancel_button, pause_button, continue_pause, restart_pause, quit_pause, next_level_pic_right, next_level_pic_left, monkey_back, monkey_back_right, monkey_back_left, oranges_translation_right, oranges_translation_left;
+    ImageView left,right,quit, cancel_button, pause_button, continue_pause, restart_pause, quit_pause, next_level_pic_right, next_level_pic_left,
+            monkey_back, monkey_back_right, monkey_back_left, oranges_translation_right, oranges_translation_left;
     ImageView points_button,lives_1,lives_2,lives_3;
+    ImageView background;
     TextView fruits_collected;
     RecyclerView orangeViewLeft, orangeViewRight;
     private int level,points,rewards,fruits;
@@ -65,7 +68,7 @@ public class HomeActivity extends AppCompatActivity {
     private long tDelta;
     private double elapsedSeconds;
     int[] sizes_large,sizes_small;
-    int fruitType;
+    int fruitType, char_selection;
     String last_side_pressed ="";
 
 
@@ -100,6 +103,7 @@ public class HomeActivity extends AppCompatActivity {
         monkey_back = findViewById (R.id.monkey_back);
         monkey_back_right= findViewById (R.id.monkey_back_right);
         monkey_back_left= findViewById (R.id.monkey_back_left);
+        background = findViewById (R.id.main_game_background);
 
         points_button= findViewById (R.id.points_button);
         lives_1= findViewById (R.id.lives_1);
@@ -113,6 +117,7 @@ public class HomeActivity extends AppCompatActivity {
 
         textView_whichtree = findViewById (R.id.textView_whichtree);
         textView_countdown = findViewById (R.id.textView_countdown);
+
 
         monkey_back.setVisibility(View.VISIBLE);
         monkey_back_left.setVisibility(View.GONE);
@@ -160,7 +165,7 @@ public class HomeActivity extends AppCompatActivity {
 
         try{
             Log.d(TAG,intent.getStringExtra ("level"));
-           next_level_flag = intent.getStringExtra("next_level_flag");
+            next_level_flag = intent.getStringExtra("next_level_flag");
             last_side_pressed = intent.getStringExtra ("last_side_pressed");
             level = Integer.parseInt (intent.getStringExtra ("level"));
             points = Integer.parseInt (intent.getStringExtra ("points"));
@@ -172,6 +177,26 @@ public class HomeActivity extends AppCompatActivity {
         }catch (Exception e){
             userResults = new UserResults (0,0,0,"","","","");
         }
+
+        char_selection = intent.getIntExtra ("char_selection",0);
+        if (char_selection == 1){
+            Glide.with(this).load(R.drawable.sloth_middle).into(monkey_back);
+            Glide.with(this).load(R.drawable.sloth_left).into(monkey_back_left);
+            Glide.with(this).load(R.drawable.sloth_right).into(monkey_back_right);
+            Glide.with(this).load(R.drawable.sloth_lives1).into(lives_1);
+            Glide.with(this).load(R.drawable.sloth_lives2).into(lives_2);
+            Glide.with(this).load(R.drawable.sloth_lives3).into(lives_3);
+        }
+
+        final int trial = intent.getIntExtra ("trial",1);
+        if (trial == 1){
+            Glide.with(this).load(R.drawable.main_game_background).into(background);
+        }else if (trial == 2){
+            Glide.with(this).load(R.drawable.background_afternoon).into(background);
+        }else{
+            Glide.with(this).load(R.drawable.background_evening).into(background);
+        }
+
 
         username= intent.getStringExtra ("username");
         if (username == null){username="";}
@@ -357,6 +382,8 @@ public class HomeActivity extends AppCompatActivity {
 
         }
 
+
+
         int[] array = utils.genOrangeSizes (range.get(0),range.get(1),70,165,8);
 //        Log.d(TAG,Arrays.toString (array)+String.valueOf (range.get (0))+range.get (1));
         sizes_small = Arrays.copyOfRange (array,0,12);
@@ -427,6 +454,7 @@ public class HomeActivity extends AppCompatActivity {
                     intent.putIntegerArrayListExtra ("range",(ArrayList<Integer>) range);
                     intent.putExtra ("fruit_type",fruitType);
                     intent.putExtra ("life_counter",life_counter);
+                    intent.putExtra ("char_selection",char_selection);
                     startActivity(intent);
                     overridePendingTransition(0, 0);
                 }else{
@@ -439,6 +467,8 @@ public class HomeActivity extends AppCompatActivity {
                     intent.putExtra ("fruits",fruits);
                     intent.putIntegerArrayListExtra ("range",(ArrayList<Integer>) range);
                     intent.putExtra ("fruit_type",fruitType);
+                    intent.putExtra ("char_selection",char_selection);
+                    intent.putExtra ("trial",trial+1);
                     startActivity(intent);
                 }
             }
@@ -482,6 +512,7 @@ public class HomeActivity extends AppCompatActivity {
                     intent.putIntegerArrayListExtra ("range",(ArrayList<Integer>) range);
                     intent.putExtra ("fruit_type",fruitType);
                     intent.putExtra ("life_counter",life_counter);
+                    intent.putExtra ("char_selection",char_selection);
                     startActivity(intent);
                     overridePendingTransition(0, 0);
                 }else{
@@ -494,6 +525,8 @@ public class HomeActivity extends AppCompatActivity {
                     intent.putExtra ("fruits",fruits);
                     intent.putIntegerArrayListExtra ("range",(ArrayList<Integer>) range);
                     intent.putExtra ("fruit_type",fruitType);
+                    intent.putExtra ("char_selection",char_selection);
+                    intent.putExtra ("trial",trial+1);
                     startActivity(intent);
                 }
             }

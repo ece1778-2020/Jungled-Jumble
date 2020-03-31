@@ -12,10 +12,21 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scaleType="fitXY"
-        android:src="@drawable/gameend_wtext" />
+        android:src="@drawable/end_background" />
 
 
-
+    <ImageView
+        android:id="@+id/character"
+        android:layout_width="276dp"
+        android:layout_height="195dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/monkey_win"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.194"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.474" />
 
     <ImageView
         android:id="@+id/replay"
@@ -29,7 +40,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.85" />
-
     <ImageView
         android:id="@+id/menu"
         android:layout_width="50dp"
@@ -57,18 +67,18 @@
         app:layout_constraintVertical_bias="0.85" />
 
 
-    <ImageView
-        android:id="@+id/points_button"
-        android:layout_width="201dp"
-        android:layout_height="114dp"
-        android:scaleType="centerInside"
-        android:src="@drawable/points_button"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.797"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.143" />
+<!--    <ImageView-->
+<!--        android:id="@+id/points_button"-->
+<!--        android:layout_width="201dp"-->
+<!--        android:layout_height="114dp"-->
+<!--        android:scaleType="centerInside"-->
+<!--        android:src="@drawable/points_button"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.797"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        app:layout_constraintVertical_bias="0.143" />-->
 
     <TextView
         android:id="@+id/correct_choice"
@@ -98,10 +108,10 @@
         android:textSize="46sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.773"
+        app:layout_constraintHorizontal_bias="0.801"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.20" />
+        app:layout_constraintVertical_bias="0.292" />
 
     <TextView
         android:id="@+id/points_collected"
