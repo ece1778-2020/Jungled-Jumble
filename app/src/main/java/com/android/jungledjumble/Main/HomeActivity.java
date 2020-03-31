@@ -481,6 +481,8 @@ public class HomeActivity extends AppCompatActivity {
 
         left.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
+
+                click_sound.start();
                 monkey_back.setVisibility(View.GONE);
                 monkey_back_left.setVisibility(View.VISIBLE);
                 monkey_back_right.setVisibility(View.GONE);
@@ -490,8 +492,6 @@ public class HomeActivity extends AppCompatActivity {
                 tDelta = tEnd - tStart;
                 elapsedSeconds = tDelta / 800.0;
                 //Toast.makeText(HomeActivity.this, " " + elapsedSeconds, Toast.LENGTH_SHORT).show();
-
-                click_sound.start();
 
                 finish();
                 userResults.updateChoices ("0");
@@ -537,8 +537,7 @@ public class HomeActivity extends AppCompatActivity {
         right.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
 
-
-
+                click_sound.start();
                 monkey_back.setVisibility(View.GONE);
                 monkey_back_left.setVisibility(View.GONE);
                 monkey_back_right.setVisibility(View.VISIBLE);
@@ -548,8 +547,6 @@ public class HomeActivity extends AppCompatActivity {
                 tDelta = tEnd - tStart;
                 elapsedSeconds = tDelta / 800.0;
                 //Toast.makeText(HomeActivity.this, " " + elapsedSeconds, Toast.LENGTH_SHORT).show();
-
-                click_sound.start();
 
                 finish();
                 userResults.updateChoices ("1");
@@ -593,14 +590,12 @@ public class HomeActivity extends AppCompatActivity {
         });
    /*     quit.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
-
                 click_sound.start();
                 startActivity(new Intent (HomeActivity.this, StartActivity.class));
             }
         });*/
 /*        cancel_button.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
-
                 click_sound.start();
                 startActivity(new Intent (HomeActivity.this, StartActivity.class));
             }
@@ -608,6 +603,7 @@ public class HomeActivity extends AppCompatActivity {
 
         pause_button.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
+                click_sound.start();
                 frameLay3.bringToFront();
                 frameLay3.setVisibility(View.VISIBLE);
 
@@ -616,14 +612,13 @@ public class HomeActivity extends AppCompatActivity {
 
         restart_pause.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
-
+                click_sound.start();
                 frameLay3.setVisibility(View.GONE);
                 Intent intent = new Intent (HomeActivity.this, HomeActivity.class);
                 intent.putExtra ("username",username);
                 List<Integer> range = new ArrayList<Integer> ();
                 range.add(115);
                 range.add(130);
-
                 intent.putIntegerArrayListExtra ("range",(ArrayList<Integer>) range);
                 startActivity(intent);
             }
@@ -631,16 +626,15 @@ public class HomeActivity extends AppCompatActivity {
 
         continue_pause.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
-
+                click_sound.start();
                 //frameLay3.bringToFront();
                 frameLay3.setVisibility(View.GONE);
-
             }
         });
 
         quit_pause.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
-
+                click_sound.start();
                 //frameLay3.setVisibility(View.GONE);
                 startActivity(new Intent (HomeActivity.this, StartActivity.class));
             }

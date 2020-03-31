@@ -23,6 +23,8 @@ public class StartActivity extends AppCompatActivity {
     TextView points;
     FirebaseUser firebaseUser;
     MediaPlayer background_sound;
+
+
     @Override
     protected void onStart() {
         super.onStart();
@@ -36,10 +38,13 @@ public class StartActivity extends AppCompatActivity {
     }
     @Override
     public void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
+
         Utils utils = new Utils(this);
         utils.hideSystemUI ();
+
+        final MediaPlayer click_sound = MediaPlayer.create(this, R.raw.blip_annabel);
+
         setContentView(R.layout.activity_start);
         play = findViewById(R.id.play_button);
         settings = findViewById(R.id.settings_button);
@@ -52,7 +57,7 @@ public class StartActivity extends AppCompatActivity {
         points.setText (String.valueOf (fruits));
 
 
-        final MediaPlayer click_sound = MediaPlayer.create(this, R.raw.blip_annabel);
+
 
 
 

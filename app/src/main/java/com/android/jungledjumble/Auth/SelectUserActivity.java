@@ -53,6 +53,7 @@ public class SelectUserActivity extends AppCompatActivity implements UserAdaptor
     ArrayList<Integer> fruit_lock_list, char_lock_list;
     private FirebaseFirestore database;
 
+
     Map<Integer, ImageView> fruit_map, char_map;
 
     FirebaseFirestore db;
@@ -61,6 +62,9 @@ public class SelectUserActivity extends AppCompatActivity implements UserAdaptor
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate (savedInstanceState);
         setContentView (R.layout.activity_select_user);
+
+        final MediaPlayer click_sound = MediaPlayer.create(this, R.raw.blip_annabel);
+
         db = FirebaseFirestore.getInstance ();
         guest = findViewById (R.id.new_user);
         guest_active = findViewById (R.id.new_user_active);
@@ -148,6 +152,7 @@ public class SelectUserActivity extends AppCompatActivity implements UserAdaptor
         }
         left_arrow.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
+                click_sound.start();
                 fruit_map.get(fruit_selection).setVisibility (View.GONE);
                 if(fruit_selection == 0){
                     fruit_selection = num_fruits;
@@ -165,6 +170,7 @@ public class SelectUserActivity extends AppCompatActivity implements UserAdaptor
 
         right_arrow.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
+                click_sound.start();
                 fruit_map.get(fruit_selection).setVisibility (View.GONE);
                 fruit_selection ++;
                 fruit_selection = fruit_selection % num_fruits;
@@ -193,6 +199,7 @@ public class SelectUserActivity extends AppCompatActivity implements UserAdaptor
         }
         left_arrow_char.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
+                click_sound.start();
                 char_map.get(char_selection).setVisibility (View.GONE);
                 if(char_selection == 0){
                     char_selection = num_char;
@@ -211,6 +218,7 @@ public class SelectUserActivity extends AppCompatActivity implements UserAdaptor
 
         right_arrow_char.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
+                click_sound.start();
                 char_map.get(char_selection).setVisibility (View.GONE);
                 char_selection ++;
                 char_selection = char_selection % num_char;
@@ -224,7 +232,6 @@ public class SelectUserActivity extends AppCompatActivity implements UserAdaptor
         });
 
         //back = findViewById (R.id.back);
-        final MediaPlayer click_sound = MediaPlayer.create(this, R.raw.blip_annabel);
 
         Utils utils = new Utils(this);
         utils.hideSystemUI ();
@@ -277,10 +284,8 @@ public class SelectUserActivity extends AppCompatActivity implements UserAdaptor
 
         guest_active.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
-
                 click_sound.start();
                 Intent intent = new Intent(SelectUserActivity.this, HomeActivity.class);
-
                 List<Integer> range = new ArrayList<Integer> ();
                 range.add(globalClass.getMeanLeft ());
                 range.add(globalClass.getMeanRight ());
@@ -293,6 +298,7 @@ public class SelectUserActivity extends AppCompatActivity implements UserAdaptor
 
         guest.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
+                click_sound.start();
                 guest_active.setVisibility (View.VISIBLE);
                 guest.setVisibility (View.GONE);
                 existing_user_active.setVisibility (View.GONE);
@@ -304,7 +310,6 @@ public class SelectUserActivity extends AppCompatActivity implements UserAdaptor
         me.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
                 click_sound.start();
-
                 guest.setVisibility (View.VISIBLE);
                 recycleView.setVisibility (View.VISIBLE);
                 add_user.setVisibility (View.VISIBLE);
@@ -314,6 +319,7 @@ public class SelectUserActivity extends AppCompatActivity implements UserAdaptor
 
         add_user.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
+                click_sound.start();
                 Intent intent = new Intent (SelectUserActivity.this, RegisterActivity.class);
                 intent.putExtra ("fruit_type",fruit_selection);
                 startActivity(intent);
@@ -322,12 +328,11 @@ public class SelectUserActivity extends AppCompatActivity implements UserAdaptor
 
         existing_user.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
-
                 click_sound.start();
                 guest_active.setVisibility (View.GONE);
                 guest.setVisibility (View.VISIBLE);
                 existing_user_active.setVisibility (View.VISIBLE);
-//                startActivity(new Intent (SelectUserActivity.this, UserListActivity.class));
+//              startActivity(new Intent (SelectUserActivity.this, UserListActivity.class));
                 recycleView.setVisibility (View.VISIBLE);
                 add_user.setVisibility (View.VISIBLE);
                 block.setVisibility (View.VISIBLE);
@@ -336,7 +341,7 @@ public class SelectUserActivity extends AppCompatActivity implements UserAdaptor
 
         existing_user_active.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
-
+                click_sound.start();
                 recycleView.setVisibility (View.GONE);
                 add_user.setVisibility (View.GONE);
                 guest_active.setVisibility (View.VISIBLE);
@@ -346,7 +351,7 @@ public class SelectUserActivity extends AppCompatActivity implements UserAdaptor
 
         block.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
-
+                click_sound.start();
                 recycleView.setVisibility (View.GONE);
                 add_user.setVisibility (View.GONE);
                 guest_active.setVisibility (View.VISIBLE);
@@ -380,6 +385,7 @@ public class SelectUserActivity extends AppCompatActivity implements UserAdaptor
         settings_cancel_button.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
                 //background_sound.pause();
+                click_sound.start();
                 startActivity(new Intent (SelectUserActivity.this, StartActivity.class));
             }
         });
@@ -407,6 +413,7 @@ public class SelectUserActivity extends AppCompatActivity implements UserAdaptor
 //    public Integer selectFruit(final ImageView fruit, final int state){
 //        fruit.setOnClickListener(new View.OnClickListener(){
 //            public void onClick(View view){
+//                click_sound.start();
 //                if (state == 0){
 //                    fruit.setActivated (true);
 //                }else{

@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -16,10 +17,14 @@ import com.android.jungledjumble.R;
 public class OptionalActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
     Button back;
     Spinner glass_spinner, disorder_spinner, disability_spinner;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate (savedInstanceState);
         setContentView (R.layout.activity_optional);
+
+        final MediaPlayer click_sound = MediaPlayer.create(this, R.raw.blip_annabel);
 
         back = findViewById (R.id.back);
         glass_spinner = findViewById (R.id.glass_spinner);
@@ -43,6 +48,8 @@ public class OptionalActivity extends AppCompatActivity implements AdapterView.O
 
         back.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
+
+                click_sound.start();
                 Intent intent = new Intent (OptionalActivity.this, RegisterActivity.class);
                 startActivity(intent);
             }

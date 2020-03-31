@@ -17,6 +17,7 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.jungledjumble.Auth.StartActivity;
 import com.android.jungledjumble.Main.HomeActivity;
@@ -26,6 +27,7 @@ import com.android.jungledjumble.Utils.Utils;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 
@@ -36,26 +38,21 @@ public class Credits extends AppCompatActivity {
     FrameLayout frameLay1,frameLay2,frameLay3;
     TextView credits_text1_1,credits_text1_2, credits_text2_a, credits_text2_b, credits_text2_c;
     static final int MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE=0;
-
+    Boolean sound_on;
 
     @Override
     public void onResume(){
         super.onResume();
-        // put your code here...
-
         Utils utils = new Utils(this);
         utils.hideSystemUI ();
-
     }
-
-
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate (savedInstanceState);
         setContentView (R.layout.activity_credits);
+
+        final MediaPlayer click_sound = MediaPlayer.create(this, R.raw.blip_annabel);
 
         Utils utils = new Utils(this);
         utils.hideSystemUI ();
@@ -75,10 +72,12 @@ public class Credits extends AppCompatActivity {
         credits_text2_b = findViewById (R.id.credits_text2_b);
         credits_text2_c = findViewById (R.id.credits_text2_c);
 
-
+        sound_on = getIntent().getExtras().getBoolean("sound_on",true);
+        //Toast.makeText (this, " " + sound_on, Toast.LENGTH_SHORT).show ();
 
         credits_continue1.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
+                if (sound_on){click_sound.start();}
                 frameLay2.bringToFront();
                 frameLay1.setVisibility(View.GONE);
                 frameLay2.setVisibility(View.VISIBLE);
@@ -88,6 +87,7 @@ public class Credits extends AppCompatActivity {
 
         credits_continue2.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
+                if (sound_on){click_sound.start();}
                 frameLay3.bringToFront();
                 frameLay1.setVisibility(View.GONE);
                 frameLay2.setVisibility(View.GONE);
@@ -97,6 +97,7 @@ public class Credits extends AppCompatActivity {
 
         credits_continue3.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
+                if (sound_on){click_sound.start();}
                 frameLay1.bringToFront();
                 frameLay1.setVisibility(View.VISIBLE);
                 frameLay2.setVisibility(View.GONE);
@@ -106,25 +107,28 @@ public class Credits extends AppCompatActivity {
 
         settings_cancel_button1.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
+                if (sound_on){click_sound.start();}
                 startActivity(new Intent (Credits.this, StartActivity.class));
             }
         });
 
         settings_cancel_button2.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
+                if (sound_on){click_sound.start();}
                 startActivity(new Intent (Credits.this, StartActivity.class));
             }
         });
 
         settings_cancel_button3.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
+                if (sound_on){click_sound.start();}
                 startActivity(new Intent (Credits.this, StartActivity.class));
             }
         });
 
         credits_text1_1.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
-
+                if (sound_on){click_sound.start();}
                 int width ;
                 int height ;
                 String _OSVERSION = System.getProperty("os.version");
@@ -212,16 +216,15 @@ public class Credits extends AppCompatActivity {
 
         credits_text1_2.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
-
+                if (sound_on){click_sound.start();}
                 Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/ece1778-2020/Jungled-Jumble"));
                 startActivity(browserIntent);
-
             }
         });
 
         credits_text2_a.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
-
+                if (sound_on){click_sound.start();}
                 String[] TO = {"said.banoscuevas@mail.utoronto.ca"};
                 Intent emailIntent = new Intent(Intent.ACTION_SEND);
                 emailIntent.setData(Uri.parse("mailto:"));
@@ -239,7 +242,7 @@ public class Credits extends AppCompatActivity {
 
         credits_text2_b.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
-
+                if (sound_on){click_sound.start();}
                 String[] TO = {"zhaodong.yan@mail.utoronto.ca"};
                 Intent emailIntent = new Intent(Intent.ACTION_SEND);
                 emailIntent.setData(Uri.parse("mailto:"));
@@ -257,7 +260,7 @@ public class Credits extends AppCompatActivity {
 
         credits_text2_c.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
-
+                if (sound_on){click_sound.start();}
                 String[] TO = {"annabel.fan@mail.utoronto.ca"};
                 Intent emailIntent = new Intent(Intent.ACTION_SEND);
                 emailIntent.setData(Uri.parse("mailto:"));

@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -44,10 +45,14 @@ public class UserListActivity extends AppCompatActivity implements UserAdaptor.O
 
     final static String TAG = "UserListActivity";
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate (savedInstanceState);
         setContentView (R.layout.activity_user_list);
+
+        final MediaPlayer click_sound = MediaPlayer.create(this, R.raw.blip_annabel);
+
         db = FirebaseFirestore.getInstance ();
         new_user = findViewById (R.id.new_user);
         back = findViewById (R.id.back);
@@ -101,12 +106,14 @@ public class UserListActivity extends AppCompatActivity implements UserAdaptor.O
                 });
         new_user.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
+                click_sound.start();
                 Intent intent = new Intent (UserListActivity.this, RegisterActivity.class);
                 startActivity(intent);
             }
         });
         back.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
+                click_sound.start();
                 startActivity(new Intent (UserListActivity.this, StartActivity.class));
             }
         });

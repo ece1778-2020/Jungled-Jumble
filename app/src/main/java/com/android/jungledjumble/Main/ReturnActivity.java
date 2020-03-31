@@ -48,10 +48,14 @@ public class ReturnActivity extends AppCompatActivity {
     double accRate;
 
     final static String TAG = "ReturnActivity";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate (savedInstanceState);
         setContentView (R.layout.activity_return);
+
+        final MediaPlayer click_sound = MediaPlayer.create(this, R.raw.blip_annabel);
+
         database = FirebaseFirestore.getInstance ();
 
         Utils utils = new Utils(this);
@@ -175,6 +179,7 @@ public class ReturnActivity extends AppCompatActivity {
 
         replay.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
+                click_sound.start();
                 Intent intent = new Intent (ReturnActivity.this, HomeActivity.class);
                 intent.putExtra ("username",username);
                 List<Integer> range = new ArrayList<Integer> ();
@@ -189,23 +194,24 @@ public class ReturnActivity extends AppCompatActivity {
 
         menu.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
+                click_sound.start();
                 Intent intent = new Intent (ReturnActivity.this, StartActivity.class);
                 intent.putExtra ("fruits",fruits);
                 startActivity(intent);
-
             }
         });
 
         plots_button.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
+                click_sound.start();
                 Intent intent = new Intent(ReturnActivity.this,ProgressActivity.class);
                 intent.putExtra("accRate", accRate);
                 startActivity(intent);
-
             }
         });
         cancel_button.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
+                click_sound.start();
                 Intent intent = new Intent (ReturnActivity.this, StartActivity.class);
                 intent.putExtra ("fruits",fruits);
                 startActivity(intent);
