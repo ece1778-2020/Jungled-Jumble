@@ -40,7 +40,7 @@ public class FirebaseUtils {
     private static final String TAG = "FirebaseMethods";
     private Activity mActivity;
     private String userID;
-//    private User user;
+    //    private User user;
     private FirebaseAuth mAuth;
     private DatabaseReference myRef;
     private FirebaseFirestore database;
@@ -163,7 +163,7 @@ public class FirebaseUtils {
                                 database.collection ("users").document(document.getId ())
                                         .update ("choices",choices_store,
                                                 "correct_choices",correct_choices_store,
-                                                                      "points",points_store)
+                                                "points",points_store)
                                         .addOnSuccessListener(new OnSuccessListener<Void>() {
                                             @Override
                                             public void onSuccess(Void aVoid) {

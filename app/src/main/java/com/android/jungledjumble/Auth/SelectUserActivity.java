@@ -48,7 +48,7 @@ public class SelectUserActivity extends AppCompatActivity implements UserAdaptor
     ImageView char_lock, fruit_lock;
     ImageView block;
     Integer fruit_selection, char_selection, is_ready,fruit_selection_final;
-//    Integer state_orange, state_banana, state_grape, state_grapefruit, state_pear, state_mango;
+    //    Integer state_orange, state_banana, state_grape, state_grapefruit, state_pear, state_mango;
     GlobalClass globalClass;
     ArrayList<Integer> fruit_lock_list, char_lock_list;
     private FirebaseFirestore database;

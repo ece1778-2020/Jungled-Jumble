@@ -75,7 +75,7 @@ public class HomeActivity extends AppCompatActivity {
     TextView textView_whichtree;
     TextView textView_countdown;
     int countdown = 3;
-   String next_level_flag="No";
+    String next_level_flag="No";
     private int larger_side;
     private static int TOTAL_LEVELS = 5;
     private final String TAG = "HomeActivity";
@@ -91,8 +91,8 @@ public class HomeActivity extends AppCompatActivity {
         utils = new Utils (HomeActivity.this);
         left = findViewById (R.id.left);
         right = findViewById (R.id.right);
-       // quit = findViewById (R.id.quit);
-       // cancel_button= findViewById (R.id.cancel_button);
+        // quit = findViewById (R.id.quit);
+        // cancel_button= findViewById (R.id.cancel_button);
         pause_button= findViewById (R.id.pause_button);
         continue_pause= findViewById (R.id.continue_pause);
         restart_pause= findViewById (R.id.restart_pause);
@@ -209,13 +209,13 @@ public class HomeActivity extends AppCompatActivity {
         if (userResults.getLevel ()==0){
             //Toast.makeText (this, "Welcome "+username+"!", Toast.LENGTH_SHORT).show ();
 
-                next_level_pic_left.setVisibility(View.VISIBLE);
-                Animation RotateLeft = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.rotate_left);
-                next_level_pic_left.startAnimation(RotateLeft);
+            next_level_pic_left.setVisibility(View.VISIBLE);
+            Animation RotateLeft = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.rotate_left);
+            next_level_pic_left.startAnimation(RotateLeft);
 
-                next_level_pic_right.setVisibility(View.VISIBLE);
-                Animation RotateRight = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.rotate_right);
-                next_level_pic_right.startAnimation(RotateRight);
+            next_level_pic_right.setVisibility(View.VISIBLE);
+            Animation RotateRight = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.rotate_right);
+            next_level_pic_right.startAnimation(RotateRight);
 
 
 
@@ -239,60 +239,60 @@ public class HomeActivity extends AppCompatActivity {
             if (next_level_flag.equals("No")) {
 
 
-            //background_sound.start();
+                //background_sound.start();
 
-            textView_whichtree.setVisibility(View.VISIBLE);
-            textView_countdown.setVisibility(View.VISIBLE);
+                textView_whichtree.setVisibility(View.VISIBLE);
+                textView_countdown.setVisibility(View.VISIBLE);
 
-            final Animation in = new AlphaAnimation(0.0f, 1.0f);
-            in.setDuration(800);
+                final Animation in = new AlphaAnimation(0.0f, 1.0f);
+                in.setDuration(800);
 
-            final Animation out = new AlphaAnimation(1.0f, 0.0f);
-            out.setDuration(800);
+                final Animation out = new AlphaAnimation(1.0f, 0.0f);
+                out.setDuration(800);
 
-            textView_countdown.setText(String.valueOf(countdown));
-            textView_countdown.startAnimation(in);
+                textView_countdown.setText(String.valueOf(countdown));
+                textView_countdown.startAnimation(in);
 
-            in.setAnimationListener(new Animation.AnimationListener() {
-                @Override
-                public void onAnimationStart(Animation animation) {
-                }
-                @Override
-                public void onAnimationEnd(Animation animation) {
-                    textView_countdown.startAnimation(out);
-                }
-                @Override
-                public void onAnimationRepeat(Animation animation) {
-                }
-            });
-
-            out.setAnimationListener(new Animation.AnimationListener() {
-                @Override
-                public void onAnimationStart(Animation animation) {
-                }
-                @Override
-                public void onAnimationEnd(Animation animation) {
-                    countdown--;
-                    if (countdown == 0) {
-                        textView_countdown.setText("");
-                        textView_whichtree.startAnimation(out);
-                        textView_countdown.startAnimation(out);
-                        textView_whichtree.setVisibility(View.GONE);
-                        textView_countdown.setVisibility(View.GONE);
-                        return;}
-                    else if  (countdown < 0) {
-                        return;
+                in.setAnimationListener(new Animation.AnimationListener() {
+                    @Override
+                    public void onAnimationStart(Animation animation) {
                     }
-                    else{
-                        textView_countdown.setText(String.valueOf(countdown));
-                        textView_countdown.startAnimation(in);}
-                }
-                @Override
-                public void onAnimationRepeat(Animation animation) {
-                }
-            });
+                    @Override
+                    public void onAnimationEnd(Animation animation) {
+                        textView_countdown.startAnimation(out);
+                    }
+                    @Override
+                    public void onAnimationRepeat(Animation animation) {
+                    }
+                });
 
-        }}else{
+                out.setAnimationListener(new Animation.AnimationListener() {
+                    @Override
+                    public void onAnimationStart(Animation animation) {
+                    }
+                    @Override
+                    public void onAnimationEnd(Animation animation) {
+                        countdown--;
+                        if (countdown == 0) {
+                            textView_countdown.setText("");
+                            textView_whichtree.startAnimation(out);
+                            textView_countdown.startAnimation(out);
+                            textView_whichtree.setVisibility(View.GONE);
+                            textView_countdown.setVisibility(View.GONE);
+                            return;}
+                        else if  (countdown < 0) {
+                            return;
+                        }
+                        else{
+                            textView_countdown.setText(String.valueOf(countdown));
+                            textView_countdown.startAnimation(in);}
+                    }
+                    @Override
+                    public void onAnimationRepeat(Animation animation) {
+                    }
+                });
+
+            }}else{
             if (last_side_pressed.equals("right")) {
 
                 monkey_back.setVisibility(View.GONE);
@@ -406,7 +406,7 @@ public class HomeActivity extends AppCompatActivity {
         Random r = new Random ();
         int randomSelection = r.nextInt(2);
 
-        
+
         if (randomSelection == 0){
             orangeViewLeft.setAdapter (new OrangeAdaptor (HomeActivity.this,sizes_small,fruitType));
             orangeViewRight.setAdapter (new OrangeAdaptor (HomeActivity.this,sizes_large,fruitType));

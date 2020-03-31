@@ -32,10 +32,10 @@ import java.util.Locale;
 
 public class Tutorial extends AppCompatActivity {
 
-FrameLayout frameLay1,frameLay2,frameLay3,frameLay4,frameLay5,frameLay6,frameLay7,frameLay8,frameLay9;
-ImageView left2, right2, hand_pointing2, hand_tapping2, left5, right5, hand_pointing5, hand_tapping5, left8, right8, hand_pointing8, hand_tapping8, points_game3, points_game6, lives_1_3,lives_2_3,lives_3_3,lives_1_6,lives_2_6,lives_3_6;
-ImageView next_level_pic_right1,next_level_pic_right3,next_level_pic_right9,next_level_pic_left1,next_level_pic_left3,next_level_pic_left9;
-TextView fruits_collected3,fruits_collected6;
+    FrameLayout frameLay1,frameLay2,frameLay3,frameLay4,frameLay5,frameLay6,frameLay7,frameLay8,frameLay9;
+    ImageView left2, right2, hand_pointing2, hand_tapping2, left5, right5, hand_pointing5, hand_tapping5, left8, right8, hand_pointing8, hand_tapping8, points_game3, points_game6, lives_1_3,lives_2_3,lives_3_3,lives_1_6,lives_2_6,lives_3_6;
+    ImageView next_level_pic_right1,next_level_pic_right3,next_level_pic_right9,next_level_pic_left1,next_level_pic_left3,next_level_pic_left9;
+    TextView fruits_collected3,fruits_collected6;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate (savedInstanceState);
@@ -68,18 +68,13 @@ TextView fruits_collected3,fruits_collected6;
         hand_pointing8 = findViewById (R.id.hand_pointing8);
         hand_tapping8 = findViewById (R.id.hand_tapping8);
 
-        points_game3 = findViewById (R.id.points_game3);
-        points_game6 = findViewById (R.id.points_game6);
         lives_1_3 = findViewById (R.id.lives_1_3);
         lives_2_3 = findViewById (R.id.lives_2_3);
         lives_3_3 = findViewById (R.id.lives_3_3);
 
         lives_1_6 = findViewById (R.id.lives_1_6);
-        lives_1_6 = findViewById (R.id.lives_1_6);
-        lives_1_6 = findViewById (R.id.lives_1_6);
-
-        fruits_collected3 = findViewById (R.id.fruits_collected3);
-        fruits_collected6 = findViewById (R.id.fruits_collected6);
+        lives_2_6 = findViewById (R.id.lives_2_6);
+        lives_3_6 = findViewById (R.id.lives_3_6);
 
         next_level_pic_right1 = findViewById (R.id.next_level_pic_right1);
         next_level_pic_right3 = findViewById (R.id.next_level_pic_right3);
@@ -165,14 +160,14 @@ TextView fruits_collected3,fruits_collected6;
 
                 Animation TranslateInto = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.translate_into);
 
-                points_game3.setVisibility(View.VISIBLE);
-                points_game3.startAnimation(TranslateInto);
+       /*         points_game3.setVisibility(View.VISIBLE);
+                points_game3.startAnimation(TranslateInto);*/
 
-                lives_2_3.setVisibility(View.VISIBLE);
-                lives_2_3.startAnimation(TranslateInto);
+                lives_3_3.setVisibility(View.VISIBLE);
+                lives_3_3.startAnimation(TranslateInto);
 
-                fruits_collected3.setVisibility(View.VISIBLE);
-                fruits_collected3.startAnimation(TranslateInto);
+       /*         fruits_collected3.setVisibility(View.VISIBLE);
+                fruits_collected3.startAnimation(TranslateInto);*/
 
 
 
@@ -249,14 +244,14 @@ TextView fruits_collected3,fruits_collected6;
 
                 Animation TranslateInto = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.translate_into);
 
-                points_game6.setVisibility(View.VISIBLE);
-                points_game6.startAnimation(TranslateInto);
+          /*      points_game6.setVisibility(View.VISIBLE);
+                points_game6.startAnimation(TranslateInto);*/
 
-                lives_1_6.setVisibility(View.VISIBLE);
-                lives_1_6.startAnimation(TranslateInto);
+                lives_2_6.setVisibility(View.VISIBLE);
+                lives_2_6.startAnimation(TranslateInto);
 
-                fruits_collected6.setVisibility(View.VISIBLE);
-                fruits_collected6.startAnimation(TranslateInto);
+/*                fruits_collected6.setVisibility(View.VISIBLE);
+                fruits_collected6.startAnimation(TranslateInto);*/
 
                 final Handler handler = new Handler();
                 handler.postDelayed(new Runnable() {
@@ -346,7 +341,7 @@ TextView fruits_collected3,fruits_collected6;
                         startActivity(new Intent (Tutorial.this, StartActivity.class));
 
                     }
-                }, 2000);
+                }, 4000);
 
 
             }
