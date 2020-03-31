@@ -84,7 +84,7 @@ public class ReturnActivity extends AppCompatActivity {
         //
         background_sound.start();
 
-        
+
         Intent intent = getIntent ();
         points = Integer.parseInt (intent.getStringExtra ("correct_choice_rate"));
         Log.d("test",String.valueOf (points));
@@ -112,7 +112,7 @@ public class ReturnActivity extends AppCompatActivity {
                 count ++;
             }
         }
-         accRate = 1d * count * 100 / n;
+        accRate = 1d * count * 100 / n;
 
         int cur_fruits = utils.AccToFruits (points);
         fruits = fruits + cur_fruits;

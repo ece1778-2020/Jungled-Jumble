@@ -40,6 +40,7 @@ import com.android.jungledjumble.Utils.OrangeAdaptor;
 import com.android.jungledjumble.Utils.UserAdaptor;
 import com.android.jungledjumble.Utils.Utils;
 import com.android.jungledjumble.Models.Sizes;
+import com.bumptech.glide.Glide;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -50,8 +51,10 @@ import java.util.Random;
 
 public class HomeActivity extends AppCompatActivity {
     private Utils utils;
-    ImageView left,right,quit, cancel_button, pause_button, continue_pause, restart_pause, quit_pause, next_level_pic_right, next_level_pic_left, monkey_back, monkey_back_right, monkey_back_left, oranges_translation_right, oranges_translation_left;
-    ImageView points_button,lives_1,lives_2,lives_3, main_game_background;
+    ImageView left,right,quit, cancel_button, pause_button, continue_pause, restart_pause, quit_pause, next_level_pic_right, next_level_pic_left,
+            monkey_back, monkey_back_right, monkey_back_left, oranges_translation_right, oranges_translation_left;
+    ImageView points_button,lives_1,lives_2,lives_3;
+    ImageView background;
     TextView fruits_collected;
     RecyclerView orangeViewLeft, orangeViewRight;
     private int level,points,rewards,fruits;
@@ -65,14 +68,14 @@ public class HomeActivity extends AppCompatActivity {
     private long tDelta;
     private double elapsedSeconds;
     int[] sizes_large,sizes_small;
-    int fruitType;
+    int fruitType, char_selection;
     String last_side_pressed ="";
 
 
     TextView textView_whichtree;
     TextView textView_countdown;
     int countdown = 3;
-   String next_level_flag="No";
+    String next_level_flag="No";
     private int larger_side;
     private static int TOTAL_LEVELS = 5;
     private final String TAG = "HomeActivity";
@@ -83,13 +86,13 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate (savedInstanceState);
         setContentView (R.layout.activity_home);
 
-int temp=2;
+
 
         utils = new Utils (HomeActivity.this);
         left = findViewById (R.id.left);
         right = findViewById (R.id.right);
-       // quit = findViewById (R.id.quit);
-       // cancel_button= findViewById (R.id.cancel_button);
+        // quit = findViewById (R.id.quit);
+        // cancel_button= findViewById (R.id.cancel_button);
         pause_button= findViewById (R.id.pause_button);
         continue_pause= findViewById (R.id.continue_pause);
         restart_pause= findViewById (R.id.restart_pause);
@@ -100,12 +103,13 @@ int temp=2;
         monkey_back = findViewById (R.id.monkey_back);
         monkey_back_right= findViewById (R.id.monkey_back_right);
         monkey_back_left= findViewById (R.id.monkey_back_left);
+        background = findViewById (R.id.main_game_background);
 
-        //points_button= findViewById (R.id.points_button);
+        points_button= findViewById (R.id.points_button);
         lives_1= findViewById (R.id.lives_1);
         lives_2= findViewById (R.id.lives_2);
         lives_3= findViewById (R.id.lives_3);
-        //fruits_collected= findViewById (R.id.fruits_collected);
+        fruits_collected= findViewById (R.id.fruits_collected);
 
         oranges_translation_right= findViewById (R.id.oranges_translation_right);
         oranges_translation_left= findViewById (R.id.oranges_translation_left);
@@ -113,7 +117,6 @@ int temp=2;
 
         textView_whichtree = findViewById (R.id.textView_whichtree);
         textView_countdown = findViewById (R.id.textView_countdown);
-
 
 
         monkey_back.setVisibility(View.VISIBLE);
@@ -162,7 +165,7 @@ int temp=2;
 
         try{
             Log.d(TAG,intent.getStringExtra ("level"));
-           next_level_flag = intent.getStringExtra("next_level_flag");
+            next_level_flag = intent.getStringExtra("next_level_flag");
             last_side_pressed = intent.getStringExtra ("last_side_pressed");
             level = Integer.parseInt (intent.getStringExtra ("level"));
             points = Integer.parseInt (intent.getStringExtra ("points"));
@@ -175,6 +178,26 @@ int temp=2;
             userResults = new UserResults (0,0,0,"","","","");
         }
 
+        char_selection = intent.getIntExtra ("char_selection",0);
+        if (char_selection == 1){
+            Glide.with(this).load(R.drawable.sloth_middle).into(monkey_back);
+            Glide.with(this).load(R.drawable.sloth_left).into(monkey_back_left);
+            Glide.with(this).load(R.drawable.sloth_right).into(monkey_back_right);
+            Glide.with(this).load(R.drawable.sloth_lives1).into(lives_1);
+            Glide.with(this).load(R.drawable.sloth_lives2).into(lives_2);
+            Glide.with(this).load(R.drawable.sloth_lives3).into(lives_3);
+        }
+
+        final int trial = intent.getIntExtra ("trial",1);
+        if (trial == 1){
+            Glide.with(this).load(R.drawable.main_game_background).into(background);
+        }else if (trial == 2){
+            Glide.with(this).load(R.drawable.background_afternoon).into(background);
+        }else{
+            Glide.with(this).load(R.drawable.background_evening).into(background);
+        }
+
+
         username= intent.getStringExtra ("username");
         if (username == null){username="";}
 
@@ -186,90 +209,90 @@ int temp=2;
         if (userResults.getLevel ()==0){
             //Toast.makeText (this, "Welcome "+username+"!", Toast.LENGTH_SHORT).show ();
 
-                next_level_pic_left.setVisibility(View.VISIBLE);
-                Animation RotateLeft = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.rotate_left);
-                next_level_pic_left.startAnimation(RotateLeft);
+            next_level_pic_left.setVisibility(View.VISIBLE);
+            Animation RotateLeft = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.rotate_left);
+            next_level_pic_left.startAnimation(RotateLeft);
 
-                next_level_pic_right.setVisibility(View.VISIBLE);
-                Animation RotateRight = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.rotate_right);
-                next_level_pic_right.startAnimation(RotateRight);
+            next_level_pic_right.setVisibility(View.VISIBLE);
+            Animation RotateRight = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.rotate_right);
+            next_level_pic_right.startAnimation(RotateRight);
 
 
 
-            //points_button.setVisibility(View.GONE);
+            points_button.setVisibility(View.GONE);
             lives_3.setVisibility(View.GONE);
-            //fruits_collected.setVisibility(View.GONE);
+            fruits_collected.setVisibility(View.GONE);
 
             Animation TranslateInto = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.translate_into);
 
-            //points_button.setVisibility(View.VISIBLE);
-            //points_button.startAnimation(TranslateInto);
+            points_button.setVisibility(View.VISIBLE);
+            points_button.startAnimation(TranslateInto);
 
             lives_3.setVisibility(View.VISIBLE);
             lives_3.startAnimation(TranslateInto);
 
-            //fruits_collected.setVisibility(View.VISIBLE);
-            //fruits_collected.startAnimation(TranslateInto);
+            fruits_collected.setVisibility(View.VISIBLE);
+            fruits_collected.startAnimation(TranslateInto);
 
 
 
             if (next_level_flag.equals("No")) {
 
 
-            //background_sound.start();
+                //background_sound.start();
 
-            textView_whichtree.setVisibility(View.VISIBLE);
-            textView_countdown.setVisibility(View.VISIBLE);
+                textView_whichtree.setVisibility(View.VISIBLE);
+                textView_countdown.setVisibility(View.VISIBLE);
 
-            final Animation in = new AlphaAnimation(0.0f, 1.0f);
-            in.setDuration(800);
+                final Animation in = new AlphaAnimation(0.0f, 1.0f);
+                in.setDuration(800);
 
-            final Animation out = new AlphaAnimation(1.0f, 0.0f);
-            out.setDuration(800);
+                final Animation out = new AlphaAnimation(1.0f, 0.0f);
+                out.setDuration(800);
 
-            textView_countdown.setText(String.valueOf(countdown));
-            textView_countdown.startAnimation(in);
+                textView_countdown.setText(String.valueOf(countdown));
+                textView_countdown.startAnimation(in);
 
-            in.setAnimationListener(new Animation.AnimationListener() {
-                @Override
-                public void onAnimationStart(Animation animation) {
-                }
-                @Override
-                public void onAnimationEnd(Animation animation) {
-                    textView_countdown.startAnimation(out);
-                }
-                @Override
-                public void onAnimationRepeat(Animation animation) {
-                }
-            });
-
-            out.setAnimationListener(new Animation.AnimationListener() {
-                @Override
-                public void onAnimationStart(Animation animation) {
-                }
-                @Override
-                public void onAnimationEnd(Animation animation) {
-                    countdown--;
-                    if (countdown == 0) {
-                        textView_countdown.setText("");
-                        textView_whichtree.startAnimation(out);
-                        textView_countdown.startAnimation(out);
-                        textView_whichtree.setVisibility(View.GONE);
-                        textView_countdown.setVisibility(View.GONE);
-                        return;}
-                    else if  (countdown < 0) {
-                        return;
+                in.setAnimationListener(new Animation.AnimationListener() {
+                    @Override
+                    public void onAnimationStart(Animation animation) {
                     }
-                    else{
-                        textView_countdown.setText(String.valueOf(countdown));
-                        textView_countdown.startAnimation(in);}
-                }
-                @Override
-                public void onAnimationRepeat(Animation animation) {
-                }
-            });
+                    @Override
+                    public void onAnimationEnd(Animation animation) {
+                        textView_countdown.startAnimation(out);
+                    }
+                    @Override
+                    public void onAnimationRepeat(Animation animation) {
+                    }
+                });
 
-        }}else{
+                out.setAnimationListener(new Animation.AnimationListener() {
+                    @Override
+                    public void onAnimationStart(Animation animation) {
+                    }
+                    @Override
+                    public void onAnimationEnd(Animation animation) {
+                        countdown--;
+                        if (countdown == 0) {
+                            textView_countdown.setText("");
+                            textView_whichtree.startAnimation(out);
+                            textView_countdown.startAnimation(out);
+                            textView_whichtree.setVisibility(View.GONE);
+                            textView_countdown.setVisibility(View.GONE);
+                            return;}
+                        else if  (countdown < 0) {
+                            return;
+                        }
+                        else{
+                            textView_countdown.setText(String.valueOf(countdown));
+                            textView_countdown.startAnimation(in);}
+                    }
+                    @Override
+                    public void onAnimationRepeat(Animation animation) {
+                    }
+                });
+
+            }}else{
             if (last_side_pressed.equals("right")) {
 
                 monkey_back.setVisibility(View.GONE);
@@ -359,6 +382,8 @@ int temp=2;
 
         }
 
+
+
         int[] array = utils.genOrangeSizes (range.get(0),range.get(1),70,165,8);
 //        Log.d(TAG,Arrays.toString (array)+String.valueOf (range.get (0))+range.get (1));
         sizes_small = Arrays.copyOfRange (array,0,12);
@@ -381,7 +406,7 @@ int temp=2;
         Random r = new Random ();
         int randomSelection = r.nextInt(2);
 
-        
+
         if (randomSelection == 0){
             orangeViewLeft.setAdapter (new OrangeAdaptor (HomeActivity.this,sizes_small,fruitType));
             orangeViewRight.setAdapter (new OrangeAdaptor (HomeActivity.this,sizes_large,fruitType));
@@ -429,6 +454,7 @@ int temp=2;
                     intent.putIntegerArrayListExtra ("range",(ArrayList<Integer>) range);
                     intent.putExtra ("fruit_type",fruitType);
                     intent.putExtra ("life_counter",life_counter);
+                    intent.putExtra ("char_selection",char_selection);
                     startActivity(intent);
                     overridePendingTransition(0, 0);
                 }else{
@@ -441,6 +467,8 @@ int temp=2;
                     intent.putExtra ("fruits",fruits);
                     intent.putIntegerArrayListExtra ("range",(ArrayList<Integer>) range);
                     intent.putExtra ("fruit_type",fruitType);
+                    intent.putExtra ("char_selection",char_selection);
+                    intent.putExtra ("trial",trial+1);
                     startActivity(intent);
                 }
             }
@@ -484,6 +512,7 @@ int temp=2;
                     intent.putIntegerArrayListExtra ("range",(ArrayList<Integer>) range);
                     intent.putExtra ("fruit_type",fruitType);
                     intent.putExtra ("life_counter",life_counter);
+                    intent.putExtra ("char_selection",char_selection);
                     startActivity(intent);
                     overridePendingTransition(0, 0);
                 }else{
@@ -496,6 +525,8 @@ int temp=2;
                     intent.putExtra ("fruits",fruits);
                     intent.putIntegerArrayListExtra ("range",(ArrayList<Integer>) range);
                     intent.putExtra ("fruit_type",fruitType);
+                    intent.putExtra ("char_selection",char_selection);
+                    intent.putExtra ("trial",trial+1);
                     startActivity(intent);
                 }
             }
