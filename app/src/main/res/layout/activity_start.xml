@@ -96,15 +96,15 @@
         android:fontFamily="@font/skranji"
         android:scaleType="fitCenter"
         android:src="@drawable/rewards_button"
-        android:text="0"
+        android:text="000"
         android:textAlignment="center"
         android:textColor="@color/colorText"
         android:textSize="52sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.96"
+        app:layout_constraintHorizontal_bias="0.929"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.127" />
+        app:layout_constraintVertical_bias="0.115" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
