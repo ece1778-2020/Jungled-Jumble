@@ -86,7 +86,7 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate (savedInstanceState);
         setContentView (R.layout.activity_home);
 
-
+int temp=2;
 
         utils = new Utils (HomeActivity.this);
         left = findViewById (R.id.left);
