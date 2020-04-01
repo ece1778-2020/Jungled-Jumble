@@ -183,6 +183,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.937" />
 
+
     <ImageView
         android:id="@+id/mango"
         android:layout_width="@dimen/fruit_height"
@@ -190,15 +191,14 @@
         android:src="@drawable/mango_detailed"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.647"
+        app:layout_constraintHorizontal_bias="0.63"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.937" />
 
-
     <ImageView
         android:id="@+id/left_arrow"
-        android:layout_width="50dp"
+        android:layout_width="40dp"
         android:layout_height="@dimen/fruit_height"
         android:src="@drawable/arrow_left_button"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -209,42 +209,41 @@
         app:layout_constraintVertical_bias="0.937" />
 
 
-
     <ImageView
         android:id="@+id/fruit_lock"
         android:layout_width="32dp"
         android:layout_height="46dp"
-        android:src="@drawable/lock"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.642"
+        app:layout_constraintHorizontal_bias="0.632"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.873" />
+        app:layout_constraintVertical_bias="0.896" />
 
     <ImageView
         android:id="@+id/right_arrow"
-        android:layout_width="50dp"
+        android:layout_width="40dp"
         android:layout_height="@dimen/fruit_height"
         android:src="@drawable/arrow_right_button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.745"
+        app:layout_constraintHorizontal_bias="0.732"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.937" />
+        app:layout_constraintVertical_bias="0.946" />
 
     <ImageView
         android:id="@+id/button_play"
-        android:layout_width="70dp"
-        android:layout_height="@dimen/fruit_height"
-        android:src="@drawable/button_play_setting"
+        android:layout_width="166dp"
+        android:layout_height="90dp"
+        android:rotation="26"
+        android:src="@drawable/play_button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.908"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.937" />
+        app:layout_constraintVertical_bias="1.0" />
 
     <ImageView
         android:id="@+id/settings_cancel_button"
