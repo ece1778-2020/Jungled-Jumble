@@ -7,6 +7,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.media.Image;
+import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -53,7 +54,9 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
     ImageView female_button, male_button, other_gender_button;
     int state_female, state_male, state_other_gender;
     int fruit_type;
-
+    Boolean sound_on = true;
+    Boolean music_on = true;
+    MediaPlayer background_sound;
     //
 
     private FirebaseUtils firebaseUtils;
@@ -63,14 +66,32 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
     private final int TAKE_CAMERA_REQUEST = 21;
     int EMPTY_PROFILE_IMAGE = 1;
 
-
-
     private static final String TAG = "RegisterActivity";
+
+
+    @Override
+    public void onResume(){
+        super.onResume();
+        Utils utils = new Utils(this);
+        utils.hideSystemUI ();
+    }
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate (savedInstanceState);
         setContentView (R.layout.activity_register);
 
+        final MediaPlayer click_sound = MediaPlayer.create(this, R.raw.blip_annabel);
+        background_sound = MediaPlayer.create(this, R.raw.mixed_demo);
+
+        try{sound_on = getIntent().getExtras().getBoolean("sound_on",true);}
+        catch (Exception e){}
+
+        try{music_on = getIntent().getExtras().getBoolean("music_on",true);}
+        catch (Exception e){}
+
+        if (music_on){background_sound.start();}
 
         registerButton = findViewById (R.id.register);
         registerButtonBottom = findViewById (R.id.register2);
@@ -94,6 +115,7 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
 
         female_button.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
+                if (sound_on){click_sound.start();}
                 if (state_female == 0){
                     female_button.setActivated (true);
                     male_button.setActivated (false);
@@ -106,6 +128,7 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
         });
         male_button.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
+                if (sound_on){click_sound.start();}
                 if (state_male == 0){
                     male_button.setActivated (true);
                     other_gender_button.setActivated (false);
@@ -118,6 +141,7 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
         });
         other_gender_button.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
+                if (sound_on){click_sound.start();}
                 if (state_other_gender == 0){
                     other_gender_button.setActivated (true);
                     female_button.setActivated (false);
@@ -163,7 +187,12 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
         settings_cancel_button.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
                 //background_sound.pause();
-                startActivity(new Intent (RegisterActivity.this, SelectUserActivity.class));
+                if (sound_on){click_sound.start();}
+                Intent intent = new Intent(RegisterActivity.this, SelectUserActivity.class);
+                intent.putExtra ("sound_on",sound_on);
+                intent.putExtra ("music_on",music_on);
+                background_sound.pause();
+                startActivity(intent);
             }
         });
         SetProfileImage();
@@ -171,7 +200,11 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
         Register(registerButtonBottom);
 //        nextPage.setOnClickListener(new View.OnClickListener(){
 //            public void onClick(View view){
-//                Intent intent = new Intent (RegisterActivity.this, OptionalActivity.class);
+//                 if (sound_on){click_sound.start();}
+//                Intent intent = new Intent (RegisterActivity.this, SelectUserActivity.class);
+//                intent.putExtra ("sound_on",sound_on);
+//                intent.putExtra ("music_on",music_on);
+//                background_sound.pause();
 //                startActivity(intent);
 //            }
 //        });
@@ -234,6 +267,7 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
     private void Register(ImageView button){
         button.setOnClickListener (new View.OnClickListener () {
             public void onClick(View view) {
+
                 pd = new ProgressDialog (RegisterActivity.this);
                 pd.setMessage ("Please wait..");
                 pd.show ();

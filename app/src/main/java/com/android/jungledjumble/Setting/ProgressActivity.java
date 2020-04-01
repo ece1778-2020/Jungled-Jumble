@@ -60,7 +60,7 @@ public class ProgressActivity extends AppCompatActivity {
     ImageView forresearchers_button;
     ImageView cancel_button;
     ImageView forresearchers2_button;
-TextView time_title;
+    TextView time_title;
 
     TextView researchers_title;
     TextView for_title;
@@ -96,15 +96,14 @@ TextView time_title;
     String currentTime = new SimpleDateFormat("HH:mm:ss", Locale.getDefault()).format(new Date());
     static final int MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE=0;
     MediaPlayer background_sound;
+    Boolean sound_on = true;
+    Boolean music_on = true;
 
     @Override
     public void onResume(){
         super.onResume();
-        // put your code here...
-
         Utils utils = new Utils(this);
         utils.hideSystemUI ();
-
     }
 
 
@@ -112,6 +111,17 @@ TextView time_title;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_progress);
+
+        final MediaPlayer click_sound = MediaPlayer.create(this, R.raw.blip_annabel);
+        background_sound = MediaPlayer.create(this, R.raw.mixed_demo);
+
+        try{sound_on = getIntent().getExtras().getBoolean("sound_on",true);}
+        catch (Exception e){}
+
+        try{music_on = getIntent().getExtras().getBoolean("music_on",true);}
+        catch (Exception e){}
+
+        if (music_on){background_sound.start();}
 
         Utils utils = new Utils(this);
         utils.hideSystemUI ();
@@ -139,10 +149,10 @@ TextView time_title;
 
         }
 
-        background_sound = MediaPlayer.create(this, R.raw.mixed_demo);
-        if (!background_sound.isPlaying()) {
+
+  /*      if (!background_sound.isPlaying()) {
             background_sound.start();
-        }
+        }*/
         time_title=findViewById(R.id.time_title);
 
         final TabHost mTabHost = (TabHost)findViewById(R.id.tabHost);
@@ -168,20 +178,21 @@ TextView time_title;
             public void onTabChanged(String tabId) {
                 int i = mTabHost.getCurrentTab();
                 if (i == 0) {
-
+                    if (sound_on){click_sound.start();}
                     time_title.setText("TIME (Hours)");
                     // your method 1
                     chart1.invalidate(); // refresh
                     chart1.animateXY(200, 300); // animate horizontal and vertical 3000 milliseconds
                 }
                 else if (i ==1) {
-
+                    if (sound_on){click_sound.start();}
                     time_title.setText("TIME (Days)");
                     //your method 2
                     chart2.invalidate(); // refresh
                     chart2.animateXY(200, 300); // animate horizontal and vertical 3000 milliseconds
                 }
                 else if (i ==2) {
+                    if (sound_on){click_sound.start();}
                     time_title.setText("TIME (Months)");
                     //your method 3
                     chart3.invalidate(); // refresh
@@ -387,8 +398,7 @@ TextView time_title;
 
         forresearchers_button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View arg0) {
-
-
+                if (sound_on){click_sound.start();}
                 DisplayMetrics displayMetrics = new DisplayMetrics();
                 getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
                 width = displayMetrics.widthPixels;
@@ -457,10 +467,13 @@ TextView time_title;
 
         cancel_button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View arg0) {
+                if (sound_on){click_sound.start();}
                 background_sound.pause();
-
-                startActivity(new Intent (ProgressActivity.this, StartActivity.class));
-//Comment 1
+                Intent intent = new Intent(ProgressActivity.this, StartActivity.class);
+                intent.putExtra ("sound_on",sound_on);
+                intent.putExtra ("music_on",music_on);
+                background_sound.pause();
+                startActivity(intent);
             }
         });
 

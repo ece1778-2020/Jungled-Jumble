@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -41,13 +42,27 @@ public class UserListActivity extends AppCompatActivity implements UserAdaptor.O
     DocumentReference docRef;
     private Button new_user;
     ImageView back;
-
+    Boolean sound_on = true;
+    Boolean music_on = true;
     final static String TAG = "UserListActivity";
+    MediaPlayer background_sound;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate (savedInstanceState);
         setContentView (R.layout.activity_user_list);
+
+        final MediaPlayer click_sound = MediaPlayer.create(this, R.raw.blip_annabel);
+        background_sound = MediaPlayer.create(this, R.raw.mixed_demo);
+
+        try{sound_on = getIntent().getExtras().getBoolean("sound_on",true);}
+        catch (Exception e){}
+
+        try{music_on = getIntent().getExtras().getBoolean("music_on",true);}
+        catch (Exception e){}
+
+        if (music_on){background_sound.start();}
+
         db = FirebaseFirestore.getInstance ();
         new_user = findViewById (R.id.new_user);
         back = findViewById (R.id.back);
@@ -101,13 +116,22 @@ public class UserListActivity extends AppCompatActivity implements UserAdaptor.O
                 });
         new_user.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
+                if (sound_on){click_sound.start();}
                 Intent intent = new Intent (UserListActivity.this, RegisterActivity.class);
+                intent.putExtra ("sound_on",sound_on);
+                intent.putExtra ("music_on",music_on);
+                background_sound.pause();
                 startActivity(intent);
             }
         });
         back.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
-                startActivity(new Intent (UserListActivity.this, StartActivity.class));
+                if (sound_on){click_sound.start();}
+                Intent intent = new Intent(UserListActivity.this, StartActivity.class);
+                intent.putExtra ("sound_on",sound_on);
+                intent.putExtra ("music_on",music_on);
+                background_sound.pause();
+                startActivity(intent);
             }
         });
     }
@@ -129,9 +153,9 @@ public class UserListActivity extends AppCompatActivity implements UserAdaptor.O
         range.add(115);
         range.add(130);
         intent.putIntegerArrayListExtra ("range",(ArrayList<Integer>) range);
-
-
-
+        intent.putExtra ("sound_on",sound_on);
+        intent.putExtra ("music_on",music_on);
+        background_sound.pause();
         startActivity (intent);
     }
 }

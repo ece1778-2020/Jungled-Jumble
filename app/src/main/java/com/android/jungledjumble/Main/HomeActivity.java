@@ -52,7 +52,9 @@ import java.util.Random;
 public class HomeActivity extends AppCompatActivity {
     private Utils utils;
     ImageView left,right,quit, cancel_button, pause_button, continue_pause, restart_pause, quit_pause, next_level_pic_right, next_level_pic_left,
-            monkey_back, monkey_back_right, monkey_back_left, oranges_translation_right, oranges_translation_left;
+            monkey_back, monkey_back_right, monkey_back_left, oranges_translation_right, oranges_translation_left,oranges2_translation_right, oranges2_translation_left,
+            grapes_translation_right, grapes_translation_left,pears_translation_right, pears_translation_left,
+            mangos_translation_right, mangos_translation_left,bananas_translation_right, bananas_translation_left;
     ImageView points_button,lives_1,lives_2,lives_3;
     ImageView background;
     TextView fruits_collected;
@@ -81,6 +83,10 @@ public class HomeActivity extends AppCompatActivity {
     private final String TAG = "HomeActivity";
     FrameLayout frameLay3;
     TranslateAnimation trans;
+    Boolean sound_on = true;
+    Boolean music_on = true;
+    MediaPlayer background_sound;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate (savedInstanceState);
@@ -105,7 +111,7 @@ public class HomeActivity extends AppCompatActivity {
         monkey_back_left= findViewById (R.id.monkey_back_left);
         background = findViewById (R.id.main_game_background);
 
-        points_button= findViewById (R.id.points_button);
+//        points_button= findViewById (R.id.points_button);
         lives_1= findViewById (R.id.lives_1);
         lives_2= findViewById (R.id.lives_2);
         lives_3= findViewById (R.id.lives_3);
@@ -113,6 +119,22 @@ public class HomeActivity extends AppCompatActivity {
 
         oranges_translation_right= findViewById (R.id.oranges_translation_right);
         oranges_translation_left= findViewById (R.id.oranges_translation_left);
+
+        oranges2_translation_right= findViewById (R.id.oranges2_translation_right);
+        oranges2_translation_left= findViewById (R.id.oranges2_translation_left);
+
+        grapes_translation_right= findViewById (R.id.grapes_translation_right);
+        grapes_translation_left= findViewById (R.id.grapes_translation_left);
+
+        pears_translation_right= findViewById (R.id.pears_translation_right);
+        pears_translation_left= findViewById (R.id.pears_translation_left);
+
+        mangos_translation_right= findViewById (R.id.mangos_translation_right);
+        mangos_translation_left= findViewById (R.id.mangos_translation_left);
+
+        bananas_translation_right= findViewById (R.id.bananas_translation_right);
+        bananas_translation_left= findViewById (R.id.bananas_translation_left);
+
         Intent intent = getIntent ();
 
         textView_whichtree = findViewById (R.id.textView_whichtree);
@@ -124,7 +146,6 @@ public class HomeActivity extends AppCompatActivity {
         monkey_back_right.setVisibility(View.GONE);
 
 
-
         final MediaPlayer click_sound = MediaPlayer.create(this, R.raw.blip_annabel);
         final MediaPlayer background_sound = MediaPlayer.create(this, R.raw.mixed_demo);
         final MediaPlayer transition1_sound = MediaPlayer.create(this, R.raw.rustle1_sfx);
@@ -132,7 +153,13 @@ public class HomeActivity extends AppCompatActivity {
         final MediaPlayer transition3_sound = MediaPlayer.create(this, R.raw.rustle3_sfx);
 
         final ArrayList<Integer> range = intent.getIntegerArrayListExtra ("range");
+        try{sound_on = getIntent().getExtras().getBoolean("sound_on",true);}
+        catch (Exception e){}
 
+        try{music_on = getIntent().getExtras().getBoolean("music_on",true);}
+        catch (Exception e){}
+
+        if (music_on){background_sound.start();}
 
         utils.hideSystemUI ();
 
@@ -219,20 +246,20 @@ public class HomeActivity extends AppCompatActivity {
 
 
 
-            points_button.setVisibility(View.GONE);
+//            points_button.setVisibility(View.GONE);
             lives_3.setVisibility(View.GONE);
-            fruits_collected.setVisibility(View.GONE);
+//            fruits_collected.setVisibility(View.GONE);
 
             Animation TranslateInto = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.translate_into);
 
-            points_button.setVisibility(View.VISIBLE);
-            points_button.startAnimation(TranslateInto);
+//            points_button.setVisibility(View.VISIBLE);
+//            points_button.startAnimation(TranslateInto);
 
             lives_3.setVisibility(View.VISIBLE);
             lives_3.startAnimation(TranslateInto);
 
-            fruits_collected.setVisibility(View.VISIBLE);
-            fruits_collected.startAnimation(TranslateInto);
+//            fruits_collected.setVisibility(View.VISIBLE);
+//            fruits_collected.startAnimation(TranslateInto);
 
 
 
@@ -299,27 +326,49 @@ public class HomeActivity extends AppCompatActivity {
                 monkey_back_left.setVisibility(View.GONE);
                 monkey_back_right.setVisibility(View.VISIBLE);
 
-                oranges_translation_right.setVisibility(View.VISIBLE);
                 Animation TranslateRight = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.translate_right);
-                oranges_translation_right.startAnimation(TranslateRight);
-
+                if(fruitType == 0){
+                    oranges_translation_right.setVisibility(View.VISIBLE);
+                    oranges_translation_right.startAnimation(TranslateRight);
+                }else if (fruitType == 1){
+                    bananas_translation_right.setVisibility(View.VISIBLE);
+                    bananas_translation_right.startAnimation(TranslateRight);
+                }else if (fruitType == 2){
+                    grapes_translation_right.setVisibility(View.VISIBLE);
+                    grapes_translation_right.startAnimation(TranslateRight);
+                }else if (fruitType == 3){
+                    oranges2_translation_right.setVisibility(View.VISIBLE);
+                    oranges2_translation_right.startAnimation(TranslateRight);
+                }else if (fruitType == 4){
+                    pears_translation_right.setVisibility(View.VISIBLE);
+                    pears_translation_right.startAnimation(TranslateRight);
+                }else if (fruitType == 5){
+                    mangos_translation_right.setVisibility(View.VISIBLE);
+                    mangos_translation_right.startAnimation(TranslateRight);
+                }else{
+                    grapes_translation_right.setVisibility(View.VISIBLE);
+                    grapes_translation_right.startAnimation(TranslateRight);
+                }
                 TranslateRight.setAnimationListener(new Animation.AnimationListener() {
-
                     @Override
                     public void onAnimationStart(Animation Animation) {}
-
                     @Override
                     public void onAnimationRepeat(Animation Animation) {}
-
                     @Override
                     public void onAnimationEnd(Animation Animation) {
                         oranges_translation_right.setVisibility(View.GONE);
-
+                        grapes_translation_right.setVisibility(View.GONE);
+                        pears_translation_right.setVisibility(View.GONE);
+                        bananas_translation_right.setVisibility(View.GONE);
+                        mangos_translation_right.setVisibility(View.GONE);
+                        oranges2_translation_right.setVisibility(View.GONE);
                         monkey_back.setVisibility(View.VISIBLE);
                         monkey_back_left.setVisibility(View.GONE);
                         monkey_back_right.setVisibility(View.GONE);
                     }
                 });
+
+
             }
             else if (last_side_pressed.equals("left")) {
 
@@ -327,27 +376,48 @@ public class HomeActivity extends AppCompatActivity {
                 monkey_back_left.setVisibility(View.VISIBLE);
                 monkey_back_right.setVisibility(View.GONE);
 
-                oranges_translation_left.setVisibility(View.VISIBLE);
                 Animation TranslateLeft = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.translate_left);
-                oranges_translation_left.startAnimation(TranslateLeft);
-
+                if(fruitType == 0){
+                    oranges_translation_left.setVisibility(View.VISIBLE);
+                    oranges_translation_left.startAnimation(TranslateLeft);
+                }else if (fruitType == 1){
+                    bananas_translation_left.setVisibility(View.VISIBLE);
+                    bananas_translation_left.startAnimation(TranslateLeft);
+                }else if (fruitType == 2){
+                    grapes_translation_left.setVisibility(View.VISIBLE);
+                    grapes_translation_left.startAnimation(TranslateLeft);
+                }else if (fruitType == 3){
+                    oranges2_translation_left.setVisibility(View.VISIBLE);
+                    oranges2_translation_left.startAnimation(TranslateLeft);
+                }else if (fruitType == 4){
+                    pears_translation_left.setVisibility(View.VISIBLE);
+                    pears_translation_left.startAnimation(TranslateLeft);
+                }else if (fruitType == 5){
+                    mangos_translation_left.setVisibility(View.VISIBLE);
+                    mangos_translation_left.startAnimation(TranslateLeft);
+                }else{
+                    grapes_translation_left.setVisibility(View.VISIBLE);
+                    grapes_translation_left.startAnimation(TranslateLeft);
+                }
                 TranslateLeft.setAnimationListener(new Animation.AnimationListener() {
-
                     @Override
                     public void onAnimationStart(Animation Animation) {}
-
                     @Override
                     public void onAnimationRepeat(Animation Animation) {}
-
                     @Override
                     public void onAnimationEnd(Animation Animation) {
                         oranges_translation_left.setVisibility(View.GONE);
-
+                        grapes_translation_left.setVisibility(View.GONE);
+                        pears_translation_left.setVisibility(View.GONE);
+                        bananas_translation_left.setVisibility(View.GONE);
+                        mangos_translation_left.setVisibility(View.GONE);
+                        oranges2_translation_left.setVisibility(View.GONE);
                         monkey_back.setVisibility(View.VISIBLE);
                         monkey_back_left.setVisibility(View.GONE);
                         monkey_back_right.setVisibility(View.GONE);
                     }
                 });
+
             }
 
 
@@ -421,6 +491,8 @@ public class HomeActivity extends AppCompatActivity {
 
         left.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
+
+                if (sound_on){click_sound.start();}
                 monkey_back.setVisibility(View.GONE);
                 monkey_back_left.setVisibility(View.VISIBLE);
                 monkey_back_right.setVisibility(View.GONE);
@@ -430,8 +502,6 @@ public class HomeActivity extends AppCompatActivity {
                 tDelta = tEnd - tStart;
                 elapsedSeconds = tDelta / 800.0;
                 //Toast.makeText(HomeActivity.this, " " + elapsedSeconds, Toast.LENGTH_SHORT).show();
-
-                click_sound.start();
 
                 finish();
                 userResults.updateChoices ("0");
@@ -455,6 +525,9 @@ public class HomeActivity extends AppCompatActivity {
                     intent.putExtra ("fruit_type",fruitType);
                     intent.putExtra ("life_counter",life_counter);
                     intent.putExtra ("char_selection",char_selection);
+                    intent.putExtra ("sound_on",sound_on);
+                    intent.putExtra ("music_on",music_on);
+                    background_sound.pause();
                     startActivity(intent);
                     overridePendingTransition(0, 0);
                 }else{
@@ -469,6 +542,9 @@ public class HomeActivity extends AppCompatActivity {
                     intent.putExtra ("fruit_type",fruitType);
                     intent.putExtra ("char_selection",char_selection);
                     intent.putExtra ("trial",trial+1);
+                    intent.putExtra ("sound_on",sound_on);
+                    intent.putExtra ("music_on",music_on);
+                    background_sound.pause();
                     startActivity(intent);
                 }
             }
@@ -477,8 +553,7 @@ public class HomeActivity extends AppCompatActivity {
         right.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
 
-
-
+                if (sound_on){click_sound.start();}
                 monkey_back.setVisibility(View.GONE);
                 monkey_back_left.setVisibility(View.GONE);
                 monkey_back_right.setVisibility(View.VISIBLE);
@@ -488,8 +563,6 @@ public class HomeActivity extends AppCompatActivity {
                 tDelta = tEnd - tStart;
                 elapsedSeconds = tDelta / 800.0;
                 //Toast.makeText(HomeActivity.this, " " + elapsedSeconds, Toast.LENGTH_SHORT).show();
-
-                click_sound.start();
 
                 finish();
                 userResults.updateChoices ("1");
@@ -513,6 +586,9 @@ public class HomeActivity extends AppCompatActivity {
                     intent.putExtra ("fruit_type",fruitType);
                     intent.putExtra ("life_counter",life_counter);
                     intent.putExtra ("char_selection",char_selection);
+                    intent.putExtra ("sound_on",sound_on);
+                    intent.putExtra ("music_on",music_on);
+                    background_sound.pause();
                     startActivity(intent);
                     overridePendingTransition(0, 0);
                 }else{
@@ -527,27 +603,38 @@ public class HomeActivity extends AppCompatActivity {
                     intent.putExtra ("fruit_type",fruitType);
                     intent.putExtra ("char_selection",char_selection);
                     intent.putExtra ("trial",trial+1);
+                    intent.putExtra ("sound_on",sound_on);
+                    intent.putExtra ("music_on",music_on);
+                    background_sound.pause();
                     startActivity(intent);
                 }
             }
         });
    /*     quit.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
-
-                click_sound.start();
-                startActivity(new Intent (HomeActivity.this, StartActivity.class));
+                 if (sound_on){click_sound.start();}
+                 Intent intent = new Intent(HomeActivity.this, StartActivity.class);
+                intent.putExtra ("sound_on",sound_on);
+                intent.putExtra ("music_on",music_on);
+                background_sound.pause();
+                startActivity(intent);
             }
         });*/
 /*        cancel_button.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
-
-                click_sound.start();
+                 if (sound_on){click_sound.start();}
+                Intent intent = new Intent(HomeActivity.this, StartActivity.class);
+                intent.putExtra ("sound_on",sound_on);
+                intent.putExtra ("music_on",music_on);
+                background_sound.pause();
+                startActivity(intent);
                 startActivity(new Intent (HomeActivity.this, StartActivity.class));
             }
         });*/
 
         pause_button.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
+                if (sound_on){click_sound.start();}
                 frameLay3.bringToFront();
                 frameLay3.setVisibility(View.VISIBLE);
 
@@ -556,33 +643,38 @@ public class HomeActivity extends AppCompatActivity {
 
         restart_pause.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
-
+                if (sound_on){click_sound.start();}
                 frameLay3.setVisibility(View.GONE);
                 Intent intent = new Intent (HomeActivity.this, HomeActivity.class);
                 intent.putExtra ("username",username);
                 List<Integer> range = new ArrayList<Integer> ();
                 range.add(115);
                 range.add(130);
-
                 intent.putIntegerArrayListExtra ("range",(ArrayList<Integer>) range);
+                intent.putExtra ("sound_on",sound_on);
+                intent.putExtra ("music_on",music_on);
+                background_sound.pause();
                 startActivity(intent);
             }
         });
 
         continue_pause.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
-
+                if (sound_on){click_sound.start();}
                 //frameLay3.bringToFront();
                 frameLay3.setVisibility(View.GONE);
-
             }
         });
 
         quit_pause.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
-
+                if (sound_on){click_sound.start();}
                 //frameLay3.setVisibility(View.GONE);
-                startActivity(new Intent (HomeActivity.this, StartActivity.class));
+                Intent intent = new Intent(HomeActivity.this, StartActivity.class);
+                intent.putExtra ("sound_on",sound_on);
+                intent.putExtra ("music_on",music_on);
+                background_sound.pause();
+                startActivity(intent);
             }
         });
 
