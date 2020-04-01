@@ -56,7 +56,7 @@ public class HomeActivity extends AppCompatActivity {
             grapes_translation_right, grapes_translation_left,pears_translation_right, pears_translation_left,
             mangos_translation_right, mangos_translation_left,bananas_translation_right, bananas_translation_left;
     ImageView points_button,lives_1,lives_2,lives_3;
-    ImageView background;
+    ImageView background,ba,be;
     TextView fruits_collected;
     RecyclerView orangeViewLeft, orangeViewRight;
     private int level,points,rewards,fruits;
@@ -110,6 +110,8 @@ public class HomeActivity extends AppCompatActivity {
         monkey_back_right= findViewById (R.id.monkey_back_right);
         monkey_back_left= findViewById (R.id.monkey_back_left);
         background = findViewById (R.id.main_game_background);
+        ba=findViewById (R.id.background_after);
+        be = findViewById (R.id.background_eve);
 
 //        points_button= findViewById (R.id.points_button);
         lives_1= findViewById (R.id.lives_1);
@@ -217,11 +219,20 @@ public class HomeActivity extends AppCompatActivity {
 
         final int trial = intent.getIntExtra ("trial",1);
         if (trial == 1){
-            Glide.with(this).load(R.drawable.main_game_background).into(background);
+//            Glide.with(this).load(R.drawable.main_game_background).into(background);
+            background.setVisibility (View.VISIBLE);
+            ba.setVisibility (View.GONE);
+            be.setVisibility (View.GONE);
         }else if (trial == 2){
-            Glide.with(this).load(R.drawable.background_afternoon).into(background);
+            background.setVisibility (View.GONE);
+            ba.setVisibility (View.VISIBLE);
+            be.setVisibility (View.GONE);
+//            Glide.with(this).load(R.drawable.background_afternoon).into(background);
         }else{
-            Glide.with(this).load(R.drawable.background_evening).into(background);
+            background.setVisibility (View.GONE);
+            ba.setVisibility (View.GONE);
+            be.setVisibility (View.VISIBLE);
+//            Glide.with(this).load(R.drawable.background_evening).into(background);
         }
 
 
