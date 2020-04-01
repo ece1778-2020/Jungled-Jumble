@@ -186,8 +186,8 @@ public class ReturnActivity extends AppCompatActivity {
                         }
                     }
                 });
-        fruitsCollected.setText (String.valueOf (cur_fruits));
-        points_collected.setText (String.valueOf(fruits));
+        fruitsCollected.setText (String.valueOf (fruits));
+        points_collected.setText (String.valueOf(cur_fruits));
         correctChoiceRate.setText (String.valueOf(points)+"%");
 
         replay.setOnClickListener(new View.OnClickListener(){
