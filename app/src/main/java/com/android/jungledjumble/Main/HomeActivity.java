@@ -84,6 +84,8 @@ public class HomeActivity extends AppCompatActivity {
     FrameLayout frameLay3;
     TranslateAnimation trans;
     Boolean sound_on = true;
+    Boolean music_on = true;
+    MediaPlayer background_sound;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -154,6 +156,10 @@ public class HomeActivity extends AppCompatActivity {
         try{sound_on = getIntent().getExtras().getBoolean("sound_on",true);}
         catch (Exception e){}
 
+        try{music_on = getIntent().getExtras().getBoolean("music_on",true);}
+        catch (Exception e){}
+
+        if (music_on){background_sound.start();}
 
         utils.hideSystemUI ();
 
@@ -520,6 +526,8 @@ public class HomeActivity extends AppCompatActivity {
                     intent.putExtra ("life_counter",life_counter);
                     intent.putExtra ("char_selection",char_selection);
                     intent.putExtra ("sound_on",sound_on);
+                    intent.putExtra ("music_on",music_on);
+                    background_sound.pause();
                     startActivity(intent);
                     overridePendingTransition(0, 0);
                 }else{
@@ -535,6 +543,8 @@ public class HomeActivity extends AppCompatActivity {
                     intent.putExtra ("char_selection",char_selection);
                     intent.putExtra ("trial",trial+1);
                     intent.putExtra ("sound_on",sound_on);
+                    intent.putExtra ("music_on",music_on);
+                    background_sound.pause();
                     startActivity(intent);
                 }
             }
@@ -577,6 +587,8 @@ public class HomeActivity extends AppCompatActivity {
                     intent.putExtra ("life_counter",life_counter);
                     intent.putExtra ("char_selection",char_selection);
                     intent.putExtra ("sound_on",sound_on);
+                    intent.putExtra ("music_on",music_on);
+                    background_sound.pause();
                     startActivity(intent);
                     overridePendingTransition(0, 0);
                 }else{
@@ -592,6 +604,8 @@ public class HomeActivity extends AppCompatActivity {
                     intent.putExtra ("char_selection",char_selection);
                     intent.putExtra ("trial",trial+1);
                     intent.putExtra ("sound_on",sound_on);
+                    intent.putExtra ("music_on",music_on);
+                    background_sound.pause();
                     startActivity(intent);
                 }
             }
@@ -601,6 +615,8 @@ public class HomeActivity extends AppCompatActivity {
                  if (sound_on){click_sound.start();}
                  Intent intent = new Intent(HomeActivity.this, StartActivity.class);
                 intent.putExtra ("sound_on",sound_on);
+                intent.putExtra ("music_on",music_on);
+                background_sound.pause();
                 startActivity(intent);
             }
         });*/
@@ -609,6 +625,8 @@ public class HomeActivity extends AppCompatActivity {
                  if (sound_on){click_sound.start();}
                 Intent intent = new Intent(HomeActivity.this, StartActivity.class);
                 intent.putExtra ("sound_on",sound_on);
+                intent.putExtra ("music_on",music_on);
+                background_sound.pause();
                 startActivity(intent);
                 startActivity(new Intent (HomeActivity.this, StartActivity.class));
             }
@@ -634,6 +652,8 @@ public class HomeActivity extends AppCompatActivity {
                 range.add(130);
                 intent.putIntegerArrayListExtra ("range",(ArrayList<Integer>) range);
                 intent.putExtra ("sound_on",sound_on);
+                intent.putExtra ("music_on",music_on);
+                background_sound.pause();
                 startActivity(intent);
             }
         });
@@ -652,6 +672,8 @@ public class HomeActivity extends AppCompatActivity {
                 //frameLay3.setVisibility(View.GONE);
                 Intent intent = new Intent(HomeActivity.this, StartActivity.class);
                 intent.putExtra ("sound_on",sound_on);
+                intent.putExtra ("music_on",music_on);
+                background_sound.pause();
                 startActivity(intent);
             }
         });

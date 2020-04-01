@@ -47,6 +47,7 @@ public class ReturnActivity extends AppCompatActivity {
     MediaPlayer background_sound;
     double accRate;
     Boolean sound_on = true;
+    Boolean music_on = true;
     final static String TAG = "ReturnActivity";
 
     @Override
@@ -55,8 +56,15 @@ public class ReturnActivity extends AppCompatActivity {
         setContentView (R.layout.activity_return);
 
         final MediaPlayer click_sound = MediaPlayer.create(this, R.raw.blip_annabel);
+        background_sound = MediaPlayer.create(this, R.raw.mixed_demo);
+
         try{sound_on = getIntent().getExtras().getBoolean("sound_on",true);}
         catch (Exception e){}
+
+        try{music_on = getIntent().getExtras().getBoolean("music_on",true);}
+        catch (Exception e){}
+
+        if (music_on){background_sound.start();}
 
         database = FirebaseFirestore.getInstance ();
 
@@ -82,13 +90,13 @@ public class ReturnActivity extends AppCompatActivity {
         // final MediaPlayer background_sound = MediaPlayer.create(this, R.raw.mixed_demo);
         //background_sound.start();
 
-        if (background_sound != null && background_sound.isPlaying()) {
+   /*     if (background_sound != null && background_sound.isPlaying()) {
             background_sound.stop();
             background_sound.reset();
         }
-        background_sound = MediaPlayer.create(this, R.raw.mixed_demo);
+
         //
-        background_sound.start();
+        background_sound.start();*/
 
 
         Intent intent = getIntent ();
@@ -149,6 +157,8 @@ public class ReturnActivity extends AppCompatActivity {
                 intent.putExtra ("fruit_type",fruitType);
                 intent.putExtra ("trial",trial);
                 intent.putExtra ("sound_on",sound_on);
+                intent.putExtra ("music_on",music_on);
+                background_sound.pause();
                 startActivity(intent);
             }
 
@@ -192,6 +202,8 @@ public class ReturnActivity extends AppCompatActivity {
                 intent.putExtra ("fruits",fruits);
                 intent.putExtra ("fruit_type",fruitType);
                 intent.putExtra ("sound_on",sound_on);
+                intent.putExtra ("music_on",music_on);
+                background_sound.pause();
                 startActivity(intent);
             }
         });
@@ -202,6 +214,8 @@ public class ReturnActivity extends AppCompatActivity {
                 Intent intent = new Intent (ReturnActivity.this, StartActivity.class);
                 intent.putExtra ("fruits",fruits);
                 intent.putExtra ("sound_on",sound_on);
+                intent.putExtra ("music_on",music_on);
+                background_sound.pause();
                 startActivity(intent);
             }
         });
@@ -212,6 +226,8 @@ public class ReturnActivity extends AppCompatActivity {
                 Intent intent = new Intent(ReturnActivity.this,ProgressActivity.class);
                 intent.putExtra("accRate", accRate);
                 intent.putExtra ("sound_on",sound_on);
+                intent.putExtra ("music_on",music_on);
+                background_sound.pause();
                 startActivity(intent);
             }
         });
@@ -221,6 +237,8 @@ public class ReturnActivity extends AppCompatActivity {
                 Intent intent = new Intent (ReturnActivity.this, StartActivity.class);
                 intent.putExtra ("fruits",fruits);
                 intent.putExtra ("sound_on",sound_on);
+                intent.putExtra ("music_on",music_on);
+                background_sound.pause();
                 startActivity(intent);
             }
         });

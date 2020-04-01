@@ -53,7 +53,8 @@ public class SelectUserActivity extends AppCompatActivity implements UserAdaptor
     ArrayList<Integer> fruit_lock_list, char_lock_list;
     private FirebaseFirestore database;
     Boolean sound_on = true;
-
+    Boolean music_on = true;
+    MediaPlayer background_sound;
     Map<Integer, ImageView> fruit_map, char_map;
 
     FirebaseFirestore db;
@@ -64,8 +65,15 @@ public class SelectUserActivity extends AppCompatActivity implements UserAdaptor
         setContentView (R.layout.activity_select_user);
 
         final MediaPlayer click_sound = MediaPlayer.create(this, R.raw.blip_annabel);
+        background_sound = MediaPlayer.create(this, R.raw.mixed_demo);
+
         try{sound_on = getIntent().getExtras().getBoolean("sound_on",true);}
         catch (Exception e){}
+
+        try{music_on = getIntent().getExtras().getBoolean("music_on",true);}
+        catch (Exception e){}
+
+        if (music_on){background_sound.start();}
 
         db = FirebaseFirestore.getInstance ();
         guest = findViewById (R.id.new_user);
@@ -295,6 +303,8 @@ public class SelectUserActivity extends AppCompatActivity implements UserAdaptor
                 intent.putIntegerArrayListExtra ("range",(ArrayList<Integer>) range);
                 intent.putExtra ("fruit_type",(int)fruit_selection);
                 intent.putExtra ("sound_on",sound_on);
+                intent.putExtra ("music_on",music_on);
+                background_sound.pause();
                 startActivity(intent);
             }
         });
@@ -326,6 +336,8 @@ public class SelectUserActivity extends AppCompatActivity implements UserAdaptor
                 Intent intent = new Intent (SelectUserActivity.this, RegisterActivity.class);
                 intent.putExtra ("fruit_type",fruit_selection);
                 intent.putExtra ("sound_on",sound_on);
+                intent.putExtra ("music_on",music_on);
+                background_sound.pause();
                 startActivity(intent);
             }
         });
@@ -383,6 +395,8 @@ public class SelectUserActivity extends AppCompatActivity implements UserAdaptor
                 intent.putIntegerArrayListExtra ("range",(ArrayList<Integer>) range);
                 intent.putExtra ("fruit_type",(int)fruit_selection);
                 intent.putExtra ("sound_on",sound_on);
+                intent.putExtra ("music_on",music_on);
+                background_sound.pause();
                 startActivity(intent);
             }
         });
@@ -393,6 +407,8 @@ public class SelectUserActivity extends AppCompatActivity implements UserAdaptor
                 if (sound_on){click_sound.start();}
                 Intent intent = new Intent(SelectUserActivity.this, StartActivity.class);
                 intent.putExtra ("sound_on",sound_on);
+                intent.putExtra ("music_on",music_on);
+                background_sound.pause();
                 startActivity(intent);
             }
         });
@@ -408,6 +424,8 @@ public class SelectUserActivity extends AppCompatActivity implements UserAdaptor
         intent.putExtra ("fruit_selection",fruit_selection);
         intent.putExtra ("profile_image",user.getProfile_image ());
         intent.putExtra ("sound_on",sound_on);
+        intent.putExtra ("music_on",music_on);
+        background_sound.pause();
         guest_active.setVisibility (View.GONE);
 
 //        List<Integer> range = new ArrayList<Integer>();

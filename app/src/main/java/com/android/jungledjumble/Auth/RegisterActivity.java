@@ -55,6 +55,8 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
     int state_female, state_male, state_other_gender;
     int fruit_type;
     Boolean sound_on = true;
+    Boolean music_on = true;
+    MediaPlayer background_sound;
     //
 
     private FirebaseUtils firebaseUtils;
@@ -81,8 +83,15 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
         setContentView (R.layout.activity_register);
 
         final MediaPlayer click_sound = MediaPlayer.create(this, R.raw.blip_annabel);
+        background_sound = MediaPlayer.create(this, R.raw.mixed_demo);
+
         try{sound_on = getIntent().getExtras().getBoolean("sound_on",true);}
         catch (Exception e){}
+
+        try{music_on = getIntent().getExtras().getBoolean("music_on",true);}
+        catch (Exception e){}
+
+        if (music_on){background_sound.start();}
 
         registerButton = findViewById (R.id.register);
         registerButtonBottom = findViewById (R.id.register2);
@@ -181,6 +190,8 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
                 if (sound_on){click_sound.start();}
                 Intent intent = new Intent(RegisterActivity.this, SelectUserActivity.class);
                 intent.putExtra ("sound_on",sound_on);
+                intent.putExtra ("music_on",music_on);
+                background_sound.pause();
                 startActivity(intent);
             }
         });
@@ -192,6 +203,8 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
 //                 if (sound_on){click_sound.start();}
 //                Intent intent = new Intent (RegisterActivity.this, SelectUserActivity.class);
 //                intent.putExtra ("sound_on",sound_on);
+//                intent.putExtra ("music_on",music_on);
+//                background_sound.pause();
 //                startActivity(intent);
 //            }
 //        });

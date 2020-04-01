@@ -18,6 +18,8 @@ public class OptionalActivity extends AppCompatActivity implements AdapterView.O
     Button back;
     Spinner glass_spinner, disorder_spinner, disability_spinner;
     Boolean sound_on = true;
+    Boolean music_on = true;
+    MediaPlayer background_sound;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,9 +27,15 @@ public class OptionalActivity extends AppCompatActivity implements AdapterView.O
         setContentView (R.layout.activity_optional);
 
         final MediaPlayer click_sound = MediaPlayer.create(this, R.raw.blip_annabel);
+        background_sound = MediaPlayer.create(this, R.raw.mixed_demo);
+
         try{sound_on = getIntent().getExtras().getBoolean("sound_on",true);}
         catch (Exception e){}
 
+        try{music_on = getIntent().getExtras().getBoolean("music_on",true);}
+        catch (Exception e){}
+
+        if (music_on){background_sound.start();}
 
         back = findViewById (R.id.back);
         glass_spinner = findViewById (R.id.glass_spinner);
@@ -55,6 +63,8 @@ public class OptionalActivity extends AppCompatActivity implements AdapterView.O
                 if (sound_on){click_sound.start();}
                 Intent intent = new Intent (OptionalActivity.this, RegisterActivity.class);
                 intent.putExtra ("sound_on",sound_on);
+                intent.putExtra ("music_on",music_on);
+                background_sound.pause();
                 startActivity(intent);
             }
         });

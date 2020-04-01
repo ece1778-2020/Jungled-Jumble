@@ -38,6 +38,8 @@ public class Tutorial extends AppCompatActivity {
     ImageView next_level_pic_right1,next_level_pic_right3,next_level_pic_right9,next_level_pic_left1,next_level_pic_left3,next_level_pic_left9;
     TextView fruits_collected3,fruits_collected6;
     Boolean sound_on = true;
+    Boolean music_on = true;
+    MediaPlayer background_sound;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,8 +47,15 @@ public class Tutorial extends AppCompatActivity {
         setContentView (R.layout.activity_tutorial);
 
         final MediaPlayer click_sound = MediaPlayer.create(this, R.raw.blip_annabel);
+        background_sound = MediaPlayer.create(this, R.raw.mixed_demo);
+
         try{sound_on = getIntent().getExtras().getBoolean("sound_on",true);}
         catch (Exception e){}
+
+        try{music_on = getIntent().getExtras().getBoolean("music_on",true);}
+        catch (Exception e){}
+
+        if (music_on){background_sound.start();}
 
         Utils utils = new Utils(this);
         utils.hideSystemUI ();
@@ -347,6 +356,8 @@ public class Tutorial extends AppCompatActivity {
 
                         Intent intent = new Intent(Tutorial.this, StartActivity.class);
                         intent.putExtra ("sound_on",sound_on);
+                        intent.putExtra ("music_on",music_on);
+                        background_sound.pause();
                         startActivity(intent);
 
                     }

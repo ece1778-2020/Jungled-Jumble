@@ -39,6 +39,8 @@ public class Credits extends AppCompatActivity {
     TextView credits_text1_1,credits_text1_2, credits_text2_a, credits_text2_b, credits_text2_c;
     static final int MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE=0;
     Boolean sound_on = true;
+    Boolean music_on = true;
+    MediaPlayer background_sound;
 
     @Override
     public void onResume(){
@@ -53,6 +55,7 @@ public class Credits extends AppCompatActivity {
         setContentView (R.layout.activity_credits);
 
         final MediaPlayer click_sound = MediaPlayer.create(this, R.raw.blip_annabel);
+        background_sound = MediaPlayer.create(this, R.raw.mixed_demo);
 
         Utils utils = new Utils(this);
         utils.hideSystemUI ();
@@ -74,6 +77,12 @@ public class Credits extends AppCompatActivity {
 
         try{sound_on = getIntent().getExtras().getBoolean("sound_on",true);}
         catch (Exception e){}
+
+        try{music_on = getIntent().getExtras().getBoolean("music_on",true);}
+        catch (Exception e){}
+
+        if (music_on){background_sound.start();}
+
         //Toast.makeText (this, " " + sound_on, Toast.LENGTH_SHORT).show ();
 
         credits_continue1.setOnClickListener(new View.OnClickListener(){
@@ -111,6 +120,8 @@ public class Credits extends AppCompatActivity {
                 if (sound_on){click_sound.start();}
                 Intent intent = new Intent(Credits.this, StartActivity.class);
                 intent.putExtra ("sound_on",sound_on);
+                intent.putExtra ("music_on",music_on);
+                background_sound.pause();
                 startActivity(intent);
             }
         });
@@ -120,6 +131,8 @@ public class Credits extends AppCompatActivity {
                 if (sound_on){click_sound.start();}
                 Intent intent = new Intent(Credits.this, StartActivity.class);
                 intent.putExtra ("sound_on",sound_on);
+                intent.putExtra ("music_on",music_on);
+                background_sound.pause();
                 startActivity(intent);
             }
         });
@@ -129,6 +142,8 @@ public class Credits extends AppCompatActivity {
                 if (sound_on){click_sound.start();}
                 Intent intent = new Intent(Credits.this, StartActivity.class);
                 intent.putExtra ("sound_on",sound_on);
+                intent.putExtra ("music_on",music_on);
+                background_sound.pause();
                 startActivity(intent);
             }
         });

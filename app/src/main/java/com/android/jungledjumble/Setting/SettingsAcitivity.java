@@ -21,8 +21,8 @@ public class SettingsAcitivity extends AppCompatActivity {
 
     ImageView music_button, music_button_pressed, sound_button, sound_button_pressed, settings_cancel_button;
     TextView how_to_play_text, credits_text;
-    Boolean music_on = true;
     Boolean sound_on = true;
+    Boolean music_on = true;
     MediaPlayer background_sound;
 
     @Override
@@ -31,18 +31,24 @@ public class SettingsAcitivity extends AppCompatActivity {
         setContentView (R.layout.activity_settings_acitivity);
 
         final MediaPlayer click_sound = MediaPlayer.create(this, R.raw.blip_annabel);
+        background_sound = MediaPlayer.create(this, R.raw.mixed_demo);
+
         try{sound_on = getIntent().getExtras().getBoolean("sound_on",true);}
         catch (Exception e){}
 
+        try{music_on = getIntent().getExtras().getBoolean("music_on",true);}
+        catch (Exception e){}
 
+        if (music_on){background_sound.start();}
 
         Utils utils = new Utils(this);
         utils.hideSystemUI ();
 
-        background_sound = MediaPlayer.create(this, R.raw.mixed_demo);
-        if (!background_sound.isPlaying()) {
+ /*       if (!background_sound.isPlaying()) {
             background_sound.start();
-        }
+        }*/
+
+       /* if (music_on){background_sound.start();}*/
 
         music_button = findViewById (R.id.music_button);
         music_button_pressed = findViewById (R.id.music_button_pressed);
@@ -58,6 +64,14 @@ public class SettingsAcitivity extends AppCompatActivity {
         }else{
             sound_button.setVisibility(View.GONE);
             sound_button_pressed.setVisibility(View.VISIBLE);
+        }
+
+        if (music_on){
+            music_button.setVisibility(View.VISIBLE);
+            music_button_pressed.setVisibility(View.GONE);
+        }else{
+            music_button.setVisibility(View.GONE);
+            music_button_pressed.setVisibility(View.VISIBLE);
         }
 
         music_button.setOnClickListener(new View.OnClickListener(){
@@ -106,6 +120,8 @@ public class SettingsAcitivity extends AppCompatActivity {
                 if (sound_on){click_sound.start();}
                 Intent intent = new Intent(SettingsAcitivity.this, Tutorial.class);
                 intent.putExtra ("sound_on",sound_on);
+                intent.putExtra ("music_on",music_on);
+                background_sound.pause();
                 startActivity(intent);
             }
         });
@@ -115,6 +131,8 @@ public class SettingsAcitivity extends AppCompatActivity {
                 if (sound_on){click_sound.start();}
                 Intent intent = new Intent(SettingsAcitivity.this, Credits.class);
                 intent.putExtra ("sound_on",sound_on);
+                intent.putExtra ("music_on",music_on);
+                background_sound.pause();
                 startActivity(intent);
             }
         });
@@ -125,6 +143,8 @@ public class SettingsAcitivity extends AppCompatActivity {
                 background_sound.pause();
                 Intent intent = new Intent(SettingsAcitivity.this, StartActivity.class);
                 intent.putExtra ("sound_on",sound_on);
+                intent.putExtra ("music_on",music_on);
+                background_sound.pause();
                 startActivity(intent);
             }
         });

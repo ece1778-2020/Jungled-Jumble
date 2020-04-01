@@ -97,6 +97,7 @@ public class ProgressActivity extends AppCompatActivity {
     static final int MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE=0;
     MediaPlayer background_sound;
     Boolean sound_on = true;
+    Boolean music_on = true;
 
     @Override
     public void onResume(){
@@ -112,8 +113,15 @@ public class ProgressActivity extends AppCompatActivity {
         setContentView(R.layout.activity_progress);
 
         final MediaPlayer click_sound = MediaPlayer.create(this, R.raw.blip_annabel);
+        background_sound = MediaPlayer.create(this, R.raw.mixed_demo);
+
         try{sound_on = getIntent().getExtras().getBoolean("sound_on",true);}
         catch (Exception e){}
+
+        try{music_on = getIntent().getExtras().getBoolean("music_on",true);}
+        catch (Exception e){}
+
+        if (music_on){background_sound.start();}
 
         Utils utils = new Utils(this);
         utils.hideSystemUI ();
@@ -141,10 +149,10 @@ public class ProgressActivity extends AppCompatActivity {
 
         }
 
-        background_sound = MediaPlayer.create(this, R.raw.mixed_demo);
-        if (!background_sound.isPlaying()) {
+
+  /*      if (!background_sound.isPlaying()) {
             background_sound.start();
-        }
+        }*/
         time_title=findViewById(R.id.time_title);
 
         final TabHost mTabHost = (TabHost)findViewById(R.id.tabHost);
@@ -463,6 +471,8 @@ public class ProgressActivity extends AppCompatActivity {
                 background_sound.pause();
                 Intent intent = new Intent(ProgressActivity.this, StartActivity.class);
                 intent.putExtra ("sound_on",sound_on);
+                intent.putExtra ("music_on",music_on);
+                background_sound.pause();
                 startActivity(intent);
             }
         });

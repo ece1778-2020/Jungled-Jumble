@@ -24,16 +24,17 @@ public class StartActivity extends AppCompatActivity {
     FirebaseUser firebaseUser;
     MediaPlayer background_sound;
     Boolean sound_on = true;
+    Boolean music_on = true;
 
     @Override
     protected void onStart() {
         super.onStart();
 
 
-        background_sound = MediaPlayer.create(this, R.raw.mixed_demo);
+  /*      background_sound = MediaPlayer.create(this, R.raw.mixed_demo);
         if (!background_sound.isPlaying()) {
             background_sound.start();
-        }
+        }*/
 
     }
     @Override
@@ -44,8 +45,15 @@ public class StartActivity extends AppCompatActivity {
         utils.hideSystemUI ();
 
         final MediaPlayer click_sound = MediaPlayer.create(this, R.raw.blip_annabel);
+        background_sound = MediaPlayer.create(this, R.raw.mixed_demo);
+
         try{sound_on = getIntent().getExtras().getBoolean("sound_on",true);}
         catch (Exception e){}
+
+        try{music_on = getIntent().getExtras().getBoolean("music_on",true);}
+        catch (Exception e){}
+
+        if (music_on){background_sound.start();}
 
         setContentView(R.layout.activity_start);
         play = findViewById(R.id.play_button);
@@ -72,6 +80,8 @@ public class StartActivity extends AppCompatActivity {
                 background_sound.pause();
                 Intent intent = new Intent(StartActivity.this, SelectUserActivity.class);
                 intent.putExtra ("sound_on",sound_on);
+                intent.putExtra ("music_on",music_on);
+                background_sound.pause();
                 startActivity(intent);
             }
         });
@@ -82,6 +92,8 @@ public class StartActivity extends AppCompatActivity {
                 background_sound.pause();
                 Intent intent = new Intent(StartActivity.this, SettingsAcitivity.class);
                 intent.putExtra ("sound_on",sound_on);
+                intent.putExtra ("music_on",music_on);
+                background_sound.pause();
                 startActivity(intent);
             }
         });
@@ -92,6 +104,8 @@ public class StartActivity extends AppCompatActivity {
                 background_sound.pause();
                 Intent intent = new Intent(StartActivity.this, ProgressActivity.class);
                 intent.putExtra ("sound_on",sound_on);
+                intent.putExtra ("music_on",music_on);
+                background_sound.pause();
                 startActivity(intent);
             }
         });
