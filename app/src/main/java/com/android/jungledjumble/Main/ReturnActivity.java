@@ -169,7 +169,7 @@ public class ReturnActivity extends AppCompatActivity {
                         }
                     }
                 });
-//        fruitsCollected.setText (String.valueOf (cur_fruits));
+        fruitsCollected.setText (String.valueOf (cur_fruits));
         points_collected.setText (String.valueOf(fruits));
         correctChoiceRate.setText (String.valueOf(points)+"%");
 
