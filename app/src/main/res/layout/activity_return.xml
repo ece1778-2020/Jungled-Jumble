@@ -7,13 +7,15 @@
     android:layout_height="match_parent"
     tools:context=".Main.ReturnActivity">
 
+
     <ImageView
         android:id="@+id/green_background"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scaleType="fitXY"
-        android:src="@drawable/end_background" />
-
+        android:src="@drawable/end_background"
+        tools:layout_editor_absoluteX="-187dp"
+        tools:layout_editor_absoluteY="-159dp" />
 
     <ImageView
         android:id="@+id/character"
@@ -108,10 +110,10 @@
         android:textSize="46sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.801"
+        app:layout_constraintHorizontal_bias="0.802"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.292" />
+        app:layout_constraintVertical_bias="0.314" />
 
     <TextView
         android:id="@+id/points_collected"

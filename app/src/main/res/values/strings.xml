@@ -10,18 +10,21 @@
         <item>Female</item>
     </string-array>
     <string-array name="hand">
-        <item>left</item>
+
         <item>right</item>
+        <item>left</item>
     </string-array>
 
     <string-array name="need">
-        <item>need</item>
+
         <item>do not need</item>
+        <item>need</item>
     </string-array>
 
     <string-array name="have">
-        <item>have</item>
+
         <item>do not have</item>
+        <item>have</item>
     </string-array>
     <!---Firebase-->
     <string name="users_node">users</string>

@@ -292,22 +292,22 @@ public class SelectUserActivity extends AppCompatActivity implements UserAdaptor
                     }
                 });
 
-        guest_active.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View view){
-                if (sound_on){click_sound.start();}
-                Intent intent = new Intent(SelectUserActivity.this, HomeActivity.class);
-                List<Integer> range = new ArrayList<Integer> ();
-                range.add(globalClass.getMeanLeft ());
-                range.add(globalClass.getMeanRight ());
-                intent.putExtra ("char_selection",char_selection);
-                intent.putIntegerArrayListExtra ("range",(ArrayList<Integer>) range);
-                intent.putExtra ("fruit_type",(int)fruit_selection);
-                intent.putExtra ("sound_on",sound_on);
-                intent.putExtra ("music_on",music_on);
-                background_sound.pause();
-                startActivity(intent);
-            }
-        });
+//        guest_active.setOnClickListener(new View.OnClickListener(){
+//            public void onClick(View view){
+//                if (sound_on){click_sound.start();}
+//                Intent intent = new Intent(SelectUserActivity.this, HomeActivity.class);
+//                List<Integer> range = new ArrayList<Integer> ();
+//                range.add(globalClass.getMeanLeft ());
+//                range.add(globalClass.getMeanRight ());
+//                intent.putExtra ("char_selection",char_selection);
+//                intent.putIntegerArrayListExtra ("range",(ArrayList<Integer>) range);
+//                intent.putExtra ("fruit_type",(int)fruit_selection);
+//                intent.putExtra ("sound_on",sound_on);
+//                intent.putExtra ("music_on",music_on);
+//                background_sound.pause();
+//                startActivity(intent);
+//            }
+//        });
 
         guest.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
