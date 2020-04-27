@@ -30,12 +30,6 @@ public class StartActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
 
-
-  /*      background_sound = MediaPlayer.create(this, R.raw.mixed_demo);
-        if (!background_sound.isPlaying()) {
-            background_sound.start();
-        }*/
-
     }
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -65,13 +59,6 @@ public class StartActivity extends AppCompatActivity {
         Intent intent = getIntent ();
         fruits = intent.getIntExtra ("fruits",0);
         points.setText (String.valueOf (fruits));
-
-
-
-
-
-
-
 
         play.setOnClickListener(new View.OnClickListener(){
             @Override

@@ -34,9 +34,6 @@
             android:name=".Setting.ProgressActivity"
             android:screenOrientation="landscape" />
         <activity
-            android:name=".Auth.UserListActivity"
-            android:screenOrientation="landscape" />
-        <activity
             android:name=".Setting.SettingsAcitivity"
             android:screenOrientation="landscape" />
         <activity

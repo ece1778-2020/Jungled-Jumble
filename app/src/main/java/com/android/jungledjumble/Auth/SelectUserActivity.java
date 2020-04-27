@@ -41,7 +41,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class SelectUserActivity extends AppCompatActivity implements UserAdaptor.OnClickUserListener{
     ImageView settings_cancel_button, button_play, existing_user,add_user, guest, existing_user_active,guest_active;
-    ImageView orange, grape, banana, orange2,pear,mango, monkey, sloth;
+    ImageView orange, grape, banana, orange2,pear,mango, monkey, sloth, sloth_locked;
     ImageView left_arrow, right_arrow,left_arrow_char, right_arrow_char;
     CircleImageView me;
     String username, profile_image;
@@ -56,6 +56,7 @@ public class SelectUserActivity extends AppCompatActivity implements UserAdaptor
     Boolean music_on = true;
     MediaPlayer background_sound;
     Map<Integer, ImageView> fruit_map, char_map;
+
 
     FirebaseFirestore db;
     final static String TAG = "SelectUserActivity";
@@ -119,9 +120,6 @@ public class SelectUserActivity extends AppCompatActivity implements UserAdaptor
         add_user.setVisibility (View.GONE);
         char_lock_list = new ArrayList<> ();
         fruit_lock_list = new ArrayList<> ();
-        char_lock_list.add(1);
-        fruit_lock_list.add(4);
-        fruit_lock_list.add(5);
 
         //Get info from activity
         Intent intent = getIntent ();
@@ -131,9 +129,20 @@ public class SelectUserActivity extends AppCompatActivity implements UserAdaptor
         try{
             username = intent.getStringExtra("username");
             profile_image = intent.getStringExtra ("profile_image");
+            char_lock_list = intent.getIntegerArrayListExtra ("char_lock");
+            fruit_lock_list = intent.getIntegerArrayListExtra ("fruit_lock");
             Log.d("test,11",username+profile_image);
         }catch (Exception e){
         }
+
+        if (char_lock_list == null){
+            char_lock_list = new ArrayList<> ();
+            fruit_lock_list = new ArrayList<> ();
+            char_lock_list.add(1);
+            fruit_lock_list.add(4);
+            fruit_lock_list.add(5);
+        }
+
         if (username != null){
             existing_user.setVisibility (View.GONE);
             me.setVisibility (View.VISIBLE);
@@ -197,9 +206,11 @@ public class SelectUserActivity extends AppCompatActivity implements UserAdaptor
 
         monkey = findViewById (R.id.monkey);
         sloth = findViewById (R.id.sloth);
+        sloth.setVisibility (View.GONE);
+        sloth_locked = findViewById (R.id.sloth_locked);
         char_map = new HashMap<Integer, ImageView> ();
         char_map.put(0,monkey);
-        char_map.put(1,sloth);
+        char_map.put(1,sloth_locked);
 //        char_selection = 0;
         final int num_char = 2;
         for (int i=0;i<num_char;i++){
@@ -220,8 +231,11 @@ public class SelectUserActivity extends AppCompatActivity implements UserAdaptor
                     char_lock.setVisibility (View.VISIBLE);
                 }else{
                     char_lock.setVisibility (View.GONE);
+                    if (char_selection == 1){
+                        sloth.setVisibility (View.VISIBLE);
+                        sloth_locked.setVisibility (View.GONE);
+                    }
                 }
-
 
             }
         });
@@ -237,6 +251,10 @@ public class SelectUserActivity extends AppCompatActivity implements UserAdaptor
                     char_lock.setVisibility (View.VISIBLE);
                 }else{
                     char_lock.setVisibility (View.GONE);
+                    if (char_selection == 1){
+                        sloth.setVisibility (View.VISIBLE);
+                        sloth_locked.setVisibility (View.GONE);
+                    }
                 }
             }
         });
@@ -275,7 +293,9 @@ public class SelectUserActivity extends AppCompatActivity implements UserAdaptor
                                         document.get("profile_image").toString (),
                                         document.get("choices").toString (),
                                         document.get("correct_choices").toString (),
-                                        ((Long)document.get("points")).intValue ());
+                                        ((Long)document.get("points")).intValue (),
+                                        document.get("fruit_lock").toString (),
+                                        document.get("char_lock").toString ());
                                 map.put(user.getTimestamp (),user);
                             }
                             ArrayList<String> sortedKeys = new ArrayList<String>(map.keySet());
@@ -425,9 +445,37 @@ public class SelectUserActivity extends AppCompatActivity implements UserAdaptor
         intent.putExtra ("profile_image",user.getProfile_image ());
         intent.putExtra ("sound_on",sound_on);
         intent.putExtra ("music_on",music_on);
+
+
         background_sound.pause();
         guest_active.setVisibility (View.GONE);
+        char_lock_list = new ArrayList<> ();
+        String[] splited = user.getChar_lock ().split("\\s+");
+        for (int i=0;i<splited.length;i++){
+            String e =splited[i];
+            if (e == ""){
+                break;
+            }
+            char_lock_list.add(Integer.parseInt (e));
+        }
 
+
+        fruit_lock_list = new ArrayList<> ();
+
+        String[] fruit_splited = user.getFruit_lock ().split("\\s+");
+        if (fruit_splited.length > 0){
+            for (int i=0;i<splited.length;i++){
+                String e =fruit_splited[i];
+                if (e == ""){
+                    break;
+                }
+                fruit_lock_list.add(Integer.parseInt (e));
+            }
+        }
+
+
+        intent.putExtra ("char_lock",char_lock_list);
+        intent.putExtra ("fruit_lock",fruit_lock_list);
 //        List<Integer> range = new ArrayList<Integer>();
 //        range.add(globalClass.getMeanLeft ());
 //        range.add(globalClass.getMeanRight ());

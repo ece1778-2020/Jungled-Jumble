@@ -65,8 +65,7 @@ public class OrangeAdaptor extends RecyclerView.Adapter<RecyclerView.ViewHolder>
                     ViewGroup.LayoutParams.WRAP_CONTENT
             ));
             ImageView field = new ImageView (context);
-//            double size_d = size*60;
-//            Log.d("test",String.valueOf ((int)size_d));
+
             LinearLayout.LayoutParams lay = new LinearLayout.LayoutParams ((int) size, (int) size);
             lay.gravity = Gravity.CENTER_HORIZONTAL;
             int id = 1;

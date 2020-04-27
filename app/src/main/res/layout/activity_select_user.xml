@@ -104,6 +104,18 @@
         android:id="@+id/sloth"
         android:layout_width="175dp"
         android:layout_height="232dp"
+        android:src="@drawable/sloth"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.78"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.397" />
+
+    <ImageView
+        android:id="@+id/sloth_locked"
+        android:layout_width="175dp"
+        android:layout_height="232dp"
         android:src="@drawable/sloth_locked"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -211,14 +223,15 @@
 
     <ImageView
         android:id="@+id/fruit_lock"
-        android:layout_width="32dp"
-        android:layout_height="46dp"
+        android:layout_width="40dp"
+        android:layout_height="51dp"
+        android:src="@drawable/lock"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.632"
+        app:layout_constraintHorizontal_bias="0.652"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.896" />
+        app:layout_constraintVertical_bias="0.951" />
 
     <ImageView
         android:id="@+id/right_arrow"
