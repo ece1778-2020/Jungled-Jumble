@@ -87,7 +87,7 @@ public class FirebaseUtils {
                     if (task.isSuccessful()) {
                         downloadUri = task.getResult().toString ();
                         String ts = getTimestamp ();
-                        uploadNewUserData (new User(username,age,gender,hand,glass,disorder,disability,ts,downloadUri,"","",0,globalClass.getFruit_lock (),globalClass.getChar_lock ()));
+                        uploadNewUserData (new User(username,age,gender,hand,glass,disorder,disability,ts,downloadUri,"","",0));
                         Intent intent = new Intent(mActivity, HomeActivity.class);
                         intent.putExtra ("username",username);
                         intent.putExtra ("fruit_type",fruitType);
@@ -107,7 +107,7 @@ public class FirebaseUtils {
         }else{
             String ts = getTimestamp ();
             String profile_image = "https://firebasestorage.googleapis.com/v0/b/jumgledjumble.appspot.com/o/user.png?alt=media&token=6ca268a0-8caf-4481-b4d3-21a3939a9b53";
-            uploadNewUserData (new User(username,age,gender,hand,glass,disorder,disability,ts,profile_image,"","",0,globalClass.getFruit_lock (),globalClass.getChar_lock ()));
+            uploadNewUserData (new User(username,age,gender,hand,glass,disorder,disability,ts,profile_image,"","",0));
             Intent intent = new Intent(mActivity, HomeActivity.class);
             intent.putExtra ("username",username);
             intent.putIntegerArrayListExtra ("range",(ArrayList<Integer>) range);

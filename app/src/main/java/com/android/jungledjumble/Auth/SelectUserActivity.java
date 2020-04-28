@@ -40,7 +40,7 @@ import java.util.Map;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class SelectUserActivity extends AppCompatActivity implements UserAdaptor.OnClickUserListener{
-    ImageView settings_cancel_button, button_play, existing_user,add_user, guest, existing_user_active,guest_active;
+    ImageView settings_cancel_button, button_play, existing_user,add_user, guest, existing_user_active,guest_active, ready_screen;
     ImageView orange, grape, banana, orange2,pear,mango, monkey, sloth, sloth_locked;
     ImageView left_arrow, right_arrow,left_arrow_char, right_arrow_char;
     CircleImageView me;
@@ -84,6 +84,7 @@ public class SelectUserActivity extends AppCompatActivity implements UserAdaptor
         button_play = findViewById (R.id.button_play);
         existing_user_active = findViewById (R.id.existing_user_active);
         add_user = findViewById (R.id.add_user);
+        ready_screen = findViewById (R.id.ready_screen);
         me = findViewById (R.id.me);
 
         settings_cancel_button= findViewById (R.id.settings_cancel_button);
@@ -126,23 +127,32 @@ public class SelectUserActivity extends AppCompatActivity implements UserAdaptor
 
         char_selection = intent.getIntExtra ("char_selection",0);
         fruit_selection = intent.getIntExtra ("fruit_selection",0);
+
+
         try{
             username = intent.getStringExtra("username");
             profile_image = intent.getStringExtra ("profile_image");
-            char_lock_list = intent.getIntegerArrayListExtra ("char_lock");
-            fruit_lock_list = intent.getIntegerArrayListExtra ("fruit_lock");
+//            char_lock_list = intent.getIntegerArrayListExtra ("char_lock");
+//            fruit_lock_list = intent.getIntegerArrayListExtra ("fruit_lock");
             Log.d("test,11",username+profile_image);
         }catch (Exception e){
         }
 
-        if (char_lock_list == null){
-            char_lock_list = new ArrayList<> ();
-            fruit_lock_list = new ArrayList<> ();
+        // Build the lock list that specifies which fruit or characters are locked
+        // It is determined by the points of user
+        char_lock_list = new ArrayList<> ();
+        fruit_lock_list = new ArrayList<> ();
+        final int points = intent.getIntExtra ("points",0);
+        if (points < 30){          //less than 30 -> all possible lock used
             char_lock_list.add(1);
             fruit_lock_list.add(4);
+        }else if (points < 70){    //less than 70, only two are locked
             fruit_lock_list.add(5);
+        }else{                     //more than 79 -> everything ublocked
         }
 
+
+        // Put profile image into the existing user if some user is selected otherwise guest
         if (username != null){
             existing_user.setVisibility (View.GONE);
             me.setVisibility (View.VISIBLE);
@@ -162,7 +172,6 @@ public class SelectUserActivity extends AppCompatActivity implements UserAdaptor
         fruit_map.put(4,pear);
         fruit_map.put(5,mango);
 
-//        fruit_selection = 0;
         final int num_fruits = 6;
         for (int i=0;i<num_fruits;i++){
             if (!(i==fruit_selection) ){
@@ -203,21 +212,31 @@ public class SelectUserActivity extends AppCompatActivity implements UserAdaptor
             }
         });
 
-
+        // built the map for character and index while considering the lock
         monkey = findViewById (R.id.monkey);
         sloth = findViewById (R.id.sloth);
         sloth.setVisibility (View.GONE);
         sloth_locked = findViewById (R.id.sloth_locked);
         char_map = new HashMap<Integer, ImageView> ();
         char_map.put(0,monkey);
-        char_map.put(1,sloth_locked);
-//        char_selection = 0;
+        if (char_lock_list.contains (1)){
+            char_map.put(1,sloth_locked);
+            sloth.setVisibility (View.GONE);
+        }else{
+            char_map.put(1,sloth);
+            sloth_locked.setVisibility (View.GONE);
+        }
+
+        // Only display the selected character
         final int num_char = 2;
         for (int i=0;i<num_char;i++){
             if (!(i==char_selection) ){
                 char_map.get(i).setVisibility (View.GONE);
+            }else{
+                char_map.get(i).setVisibility (View.VISIBLE);
             }
         }
+
         left_arrow_char.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
                 if (sound_on){click_sound.start();}
@@ -231,10 +250,6 @@ public class SelectUserActivity extends AppCompatActivity implements UserAdaptor
                     char_lock.setVisibility (View.VISIBLE);
                 }else{
                     char_lock.setVisibility (View.GONE);
-                    if (char_selection == 1){
-                        sloth.setVisibility (View.VISIBLE);
-                        sloth_locked.setVisibility (View.GONE);
-                    }
                 }
 
             }
@@ -251,10 +266,6 @@ public class SelectUserActivity extends AppCompatActivity implements UserAdaptor
                     char_lock.setVisibility (View.VISIBLE);
                 }else{
                     char_lock.setVisibility (View.GONE);
-                    if (char_selection == 1){
-                        sloth.setVisibility (View.VISIBLE);
-                        sloth_locked.setVisibility (View.GONE);
-                    }
                 }
             }
         });
@@ -293,9 +304,7 @@ public class SelectUserActivity extends AppCompatActivity implements UserAdaptor
                                         document.get("profile_image").toString (),
                                         document.get("choices").toString (),
                                         document.get("correct_choices").toString (),
-                                        ((Long)document.get("points")).intValue (),
-                                        document.get("fruit_lock").toString (),
-                                        document.get("char_lock").toString ());
+                                        ((Long)document.get("points")).intValue ());
                                 map.put(user.getTimestamp (),user);
                             }
                             ArrayList<String> sortedKeys = new ArrayList<String>(map.keySet());
@@ -312,22 +321,6 @@ public class SelectUserActivity extends AppCompatActivity implements UserAdaptor
                     }
                 });
 
-//        guest_active.setOnClickListener(new View.OnClickListener(){
-//            public void onClick(View view){
-//                if (sound_on){click_sound.start();}
-//                Intent intent = new Intent(SelectUserActivity.this, HomeActivity.class);
-//                List<Integer> range = new ArrayList<Integer> ();
-//                range.add(globalClass.getMeanLeft ());
-//                range.add(globalClass.getMeanRight ());
-//                intent.putExtra ("char_selection",char_selection);
-//                intent.putIntegerArrayListExtra ("range",(ArrayList<Integer>) range);
-//                intent.putExtra ("fruit_type",(int)fruit_selection);
-//                intent.putExtra ("sound_on",sound_on);
-//                intent.putExtra ("music_on",music_on);
-//                background_sound.pause();
-//                startActivity(intent);
-//            }
-//        });
 
         guest.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
@@ -396,28 +389,27 @@ public class SelectUserActivity extends AppCompatActivity implements UserAdaptor
             }
         });
 
-//        state_orange = selectFruit(orange,state_orange);
-//        state_banana = selectFruit (banana,state_banana);
-//        state_grape = selectFruit (grape,state_grape);
-//        state_grapefruit = selectFruit (orange2,state_grapefruit);
-//        state_pear = selectFruit (pear,state_pear);
-//        state_mango = selectFruit (mango,state_mango);
 
         button_play.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
                 if (sound_on){click_sound.start();}
-                Intent intent = new Intent(SelectUserActivity.this, HomeActivity.class);
-                intent.putExtra ("username",username);
-                intent.putExtra ("char_selection",char_selection);
-                List<Integer> range = new ArrayList<Integer> ();
-                range.add(globalClass.getMeanLeft ());
-                range.add(globalClass.getMeanRight ());
-                intent.putIntegerArrayListExtra ("range",(ArrayList<Integer>) range);
-                intent.putExtra ("fruit_type",(int)fruit_selection);
-                intent.putExtra ("sound_on",sound_on);
-                intent.putExtra ("music_on",music_on);
-                background_sound.pause();
-                startActivity(intent);
+                if (char_lock_list.contains (char_selection) || fruit_lock_list.contains (fruit_selection)){
+                    ready_screen.bringToFront ();
+                    ready_screen.setVisibility (View.VISIBLE);
+                }else{
+                    Intent intent = new Intent(SelectUserActivity.this, HomeActivity.class);
+                    intent.putExtra ("username",username);
+                    intent.putExtra ("char_selection",char_selection);
+                    List<Integer> range = new ArrayList<Integer> ();
+                    range.add(globalClass.getMeanLeft ());
+                    range.add(globalClass.getMeanRight ());
+                    intent.putIntegerArrayListExtra ("range",(ArrayList<Integer>) range);
+                    intent.putExtra ("fruit_type",(int)fruit_selection);
+                    intent.putExtra ("sound_on",sound_on);
+                    intent.putExtra ("music_on",music_on);
+                    background_sound.pause();
+                    startActivity(intent);
+                }
             }
         });
 
@@ -433,6 +425,22 @@ public class SelectUserActivity extends AppCompatActivity implements UserAdaptor
             }
         });
 
+        ready_screen.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View view){
+                //background_sound.pause();
+                ready_screen.setVisibility (View.GONE);
+//                Intent intent = new Intent(getIntent ());
+//                intent.putExtra ("username",username);
+//                intent.putExtra ("char_selection",char_selection);
+//                intent.putExtra ("fruit_selection",fruit_selection);
+//                intent.putExtra ("profile_image",profile_image);
+//                intent.putExtra ("sound_on",sound_on);
+//                intent.putExtra ("music_on",music_on);
+//                intent.putExtra ("points",points);
+//                startActivity (intent);
+            }
+        });
+
     }
 
     @Override
@@ -445,58 +453,40 @@ public class SelectUserActivity extends AppCompatActivity implements UserAdaptor
         intent.putExtra ("profile_image",user.getProfile_image ());
         intent.putExtra ("sound_on",sound_on);
         intent.putExtra ("music_on",music_on);
+        intent.putExtra ("points",user.getPoints ());
 
 
         background_sound.pause();
         guest_active.setVisibility (View.GONE);
-        char_lock_list = new ArrayList<> ();
-        String[] splited = user.getChar_lock ().split("\\s+");
-        for (int i=0;i<splited.length;i++){
-            String e =splited[i];
-            if (e == ""){
-                break;
-            }
-            char_lock_list.add(Integer.parseInt (e));
-        }
-
-
-        fruit_lock_list = new ArrayList<> ();
-
-        String[] fruit_splited = user.getFruit_lock ().split("\\s+");
-        if (fruit_splited.length > 0){
-            for (int i=0;i<splited.length;i++){
-                String e =fruit_splited[i];
-                if (e == ""){
-                    break;
-                }
-                fruit_lock_list.add(Integer.parseInt (e));
-            }
-        }
-
-
-        intent.putExtra ("char_lock",char_lock_list);
-        intent.putExtra ("fruit_lock",fruit_lock_list);
-//        List<Integer> range = new ArrayList<Integer>();
-//        range.add(globalClass.getMeanLeft ());
-//        range.add(globalClass.getMeanRight ());
-//        intent.putIntegerArrayListExtra ("range",(ArrayList<Integer>) range);
-//        intent.putExtra ("fruit_type",fruit_selection);
+//        char_lock_list = new ArrayList<> ();
+//        String[] splited = user.getChar_lock ().split("\\s+");
+//        for (int i=0;i<splited.length;i++){
+//            String e =splited[i];
+//            if (e == ""){
+//                break;
+//            }
+//            char_lock_list.add(Integer.parseInt (e));
+//        }
+//
+//
+//        fruit_lock_list = new ArrayList<> ();
+//
+//        String[] fruit_splited = user.getFruit_lock ().split("\\s+");
+//        if (fruit_splited.length > 0){
+//            for (int i=0;i<splited.length;i++){
+//                String e =fruit_splited[i];
+//                if (e == ""){
+//                    break;
+//                }
+//                fruit_lock_list.add(Integer.parseInt (e));
+//            }
+//        }
+//
+//
+//        intent.putExtra ("char_lock",char_lock_list);
+//        intent.putExtra ("fruit_lock",fruit_lock_list);
         startActivity (intent);
     }
 
-//    public Integer selectFruit(final ImageView fruit, final int state){
-//        fruit.setOnClickListener(new View.OnClickListener(){
-//            public void onClick(View view){
-//                 if (sound_on){click_sound.start();}
-//                if (state == 0){
-//                    fruit.setActivated (true);
-//                }else{
-//                    fruit.setActivated (false);
-//                }
-//                state = 1-state
-//            }
-//        });
-//
-//        return 1-state;
-//    }
+
 }

@@ -18,7 +18,7 @@ public class User {
 
 
     public User(String username, String age, String gender, String hand, String glass,String disorder,String disability,
-                String timestamp, String profile_image, String choices, String correct_choices, int points, String fruit_lock, String char_lock) {
+                String timestamp, String profile_image, String choices, String correct_choices, int points) {
         this.username = username;
         this.age = age;
         this.gender = gender;
@@ -31,8 +31,6 @@ public class User {
         this.disorder = disorder;
         this.disability = disability;
         this.points = points;
-        this.fruit_lock = fruit_lock;
-        this.char_lock = char_lock;
     }
 
     public User() {
@@ -134,21 +132,6 @@ public class User {
         this.points = points;
     }
 
-    public String getFruit_lock() {
-        return fruit_lock;
-    }
-
-    public void setFruit_lock(String fruit_lock) {
-        this.fruit_lock = fruit_lock;
-    }
-
-    public String getChar_lock() {
-        return char_lock;
-    }
-
-    public void setChar_lock(String char_lock) {
-        this.char_lock = char_lock;
-    }
     @Override
     public String toString() {
         return "User{" +
